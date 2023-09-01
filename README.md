@@ -19,9 +19,9 @@
 ---
 
 **Member C: Nicole Cui**  
-*Skills:*  
-*Tools:*  
-*Interests:*  
+*Skills:*  Python, Java, C, C++
+*Tools:*  Tableau, NLP (nltk, vader, textblob...), plotly, scraping
+*Interests:*  Video games, movies, cooking
 
 ---
 
