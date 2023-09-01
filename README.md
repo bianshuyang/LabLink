@@ -1,19 +1,19 @@
 # literate-octo-broccoli
 Emory CS 370
 Current Members: Nazif Azizi, Simon Bian, Nicole Cui, Sofia Gukelberger, Marcus Hill
-
+<br>
 Member A: Nazif Azizi
 Skills:
 Tools:
 Interests:
 Project Idea(s):
-
+<br>
 Member B: Simon Bain
-Skills:
+Skills: Python, Javascript
 Tools:
 Interests:
 Project Idea(s):
-
+<br>
 Member C: Nicole Cui
 Skills:
 Tools:
