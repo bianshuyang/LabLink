@@ -3,10 +3,10 @@ Emory CS 370
 Current Members: Nazif Azizi, Simon Bian, Nicole Cui, Sofia Gukelberger, Marcus Hill
 <br>
 Member A: Nazif Azizi
-Skills:
-Tools:
-Interests:
-Project Idea(s):
+Skills: HTML, CSS, Javascript, python, and SQL
+Tools: FIGMA, EXCEL, CANVA
+Interests: Any Sport, Music, Movies, and Traveling.
+
 <br>
 Member B: Simon Bain
 Skills: Python, Javascript
