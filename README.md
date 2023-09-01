@@ -12,9 +12,9 @@
 ---
 
 **Member B: Simon Bian**  
-*Skills:* Python, Javascript, Java, SQL, Android, Visual Basic, C++
-*Tools:*  Tableau, NLP, ImageJ
-*Interests:* Biology
+*Skills:* Python, Javascript, Java, SQL, Android, Visual Basic, C++  
+*Tools:*  Tableau, NLP, ImageJ  
+*Interests:* Biology  
 
 ---
 
