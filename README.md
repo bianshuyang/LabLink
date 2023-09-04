@@ -36,3 +36,10 @@
 *Skills:* JavaScript, HTML, CSS, React.js, Java, Python, Git  
 *Tools:* Figma, Canva, Trello, Github  
 *Interests:* Basketball, Music (R&B & HipHop), Tattoos, Video Games
+
+---
+
+**Member F: Michelle Kiml**  
+*Skills:* Python, Java, C++
+*Tools:* Canva, NLP, Machine Learning
+*Interests:* Linguistics, iOS development, educational technology
