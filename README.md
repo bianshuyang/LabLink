@@ -26,9 +26,9 @@
 ---
 
 **Member D: Sofia Gukelberger**  
-*Skills:*  
-*Tools:*  
-*Interests:*  
+*Skills:*  Java, Python, C, HTML, CSS, TypeScript, Angular, UI/UX Design
+*Tools:*  Figma, Git/Github, Canva
+*Interests:*  Video Games, Books, Creative Writing, Ice Hockey
 
 ---
 
