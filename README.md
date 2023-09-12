@@ -1,6 +1,6 @@
 # literate-octo-broccoli
 ## Emory CS 370
-**Current Members:** Nazif Azizi, Simon Bian, Nicole Cui, Sofia Gukelberger, Marcus Hill
+**Current Members:** Nazif Azizi, Simon Bian, Nicole Cui,  Marcus Hill
 
 ---
 
@@ -22,13 +22,6 @@
 *Skills:*  Python, Java, C, C++  
 *Tools:*  Tableau, NLP (nltk, vader, textblob...), plotly, scraping  
 *Interests:*  Video games, movies, cooking  
-
----
-
-**Member D: Sofia Gukelberger**  
-*Skills:*  Java, Python, C, HTML, CSS, TypeScript, Angular, UI/UX Design
-*Tools:*  Figma, Git/Github, Canva
-*Interests:*  Video Games, Books, Creative Writing, Ice Hockey
 
 ---
 
