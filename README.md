@@ -1,6 +1,9 @@
 # literate-octo-broccoli
+
+Project Proposal: https://docs.google.com/presentation/d/1MUET9wXdNRrpPAVYPk73Sr6Xgsx1RuSuVASkQorBsf4/edit?usp=sharing
+
 ## Emory CS 370
-**Current Members:** Nazif Azizi, Simon Bian, Nicole Cui,  Marcus Hill
+**Current Members:** Nazif Azizi, Simon Bian, Nicole Cui, Marcus Hill, Michelle Kim.
 
 ---
 
@@ -32,7 +35,7 @@
 
 ---
 
-**Member F: Michelle Kiml**  
+**Member F: Michelle Kim**  
 *Skills:* Python, Java, C++
 *Tools:* Canva, NLP, Machine Learning
 *Interests:* Linguistics, iOS development, educational technology
