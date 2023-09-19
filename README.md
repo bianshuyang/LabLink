@@ -59,21 +59,26 @@ _Coming soon..._
 
 ## Tools and Technologies
 
-**Front-End:**
-- ![HTML logo](https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg) HTML
-- ![CSS logo](https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg) CSS
-- ![JavaScript logo](https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png) JavaScript
-- ![React.js logo](https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg) React.js
-- ![Figma logo](https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg) Figma
+## Tools and Technologies
 
-**Back-End:**
-- Python
-- Docker/Flask
-- MongoDB
+### Front-End:
 
-**Product Management:**
-- Notion
-- Git
+- HTML <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML logo" width="32" height="32">
+- CSS <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS logo" width="32" height="32">
+- JavaScript <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript logo" width="32" height="32">
+- React.js <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React.js logo" width="32" height="32">
+- Figma <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma logo" width="32" height="32">
+
+### Back-End:
+
+- Python <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python logo" width="32" height="32">
+- Docker/Flask <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_(container_engine)_logo.svg" alt="Docker logo" width="32" height="32"> <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg" alt="Flask logo" width="32" height="32">
+- MongoDB <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/45/MongoDB-Logo.svg/1200px-MongoDB-Logo.svg.png" alt="MongoDB logo" width="32" height="32">
+
+### Product Management:
+
+- Notion <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Notion_app_logo.png/1200px-Notion_app_logo.png" alt="Notion logo" width="32" height="32">
+- Git <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png" alt="Git logo" width="32" height="32">
 
 ## Risks and Unknowns
 
