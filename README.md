@@ -73,10 +73,10 @@ _Coming soon..._
 
 - Python <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python logo" width="32" height="32">
 - Docker/Flask <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_(container_engine)_logo.svg" alt="Docker logo" width="64" height="32"> <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg" alt="Flask logo" width="64" height="32">
-- MongoDB <img src="[https://upload.wikimedia.org/wikipedia/en/thumb/4/45/MongoDB-Logo.svg/1200px-MongoDB-Logo.svg.png](https://en.wikipedia.org/wiki/MongoDB#/media/File:MongoDB_Logo.svg)" alt="MongoDB logo" width="32" height="32">
+- MongoDB <img src="https://en.wikipedia.org/wiki/MongoDB#/media/File:MongoDB_Logo.svg" alt="MongoDB logo" width="32" height="32">
 
 ### Product Management:
-- Trello <img src="https://en.wikipedia.org/wiki/Trello#/media/File:Trello_logo.svg" alt="Git logo" width="64" height="32">
+- Trello <img src="https://en.wikipedia.org/wiki/Trello#/media/File:Trello_logo.svg" alt="Trello logo" width="64" height="32">
 - Git <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png" alt="Git logo" width="32" height="32">
 
 ## Risks and Unknowns
