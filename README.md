@@ -60,11 +60,11 @@ _Coming soon..._
 ## Tools and Technologies
 
 **Front-End:**
--[HTML] <img src=“https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg” alt=“HTML logo” width=“32” height=“32”>
--[CSS] <img src=“https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg” alt=“HTML logo” width=“32” height=“32”>
--[JavaScript] <img src=“https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png” alt=“JavaScript logo” width=“32” height=“32”>
--[React.js] <img src=“https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg” alt=“React.js logo” width=“32” height=“32”>
--[Figma] <img src=“https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg” alt=“Figma logo” width=“32” height=“32”>
+-[HTML]<img src=“https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg” alt=“HTML logo” width=“32” height=“32”>
+-[CSS]<img src=“https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg” alt=“HTML logo” width=“32” height=“32”>
+-[JavaScript]<img src=“https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png” alt=“JavaScript logo” width=“32” height=“32”>
+-[React.js]<img src=“https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg” alt=“React.js logo” width=“32” height=“32”>
+-[Figma]<img src=“https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg” alt=“Figma logo” width=“32” height=“32”>
 
 **Back-End:**
 - Python
