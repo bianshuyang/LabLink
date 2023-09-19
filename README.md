@@ -76,7 +76,7 @@ _Coming soon..._
 - MongoDB <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Mongodb.png" alt="MongoDB logo" width="100" height="32">
 
 ### Product Management:
-- Trello <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Antu_trello.svg" alt="Trello logo" width="32" height="32">
+- Trello <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Antu_trello.svg/512px-Antu_trello.svg.png" alt="Trello logo" width="32" height="32">
 - Git <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png" alt="Git logo" width="32" height="32">
 
 ## Risks and Unknowns
