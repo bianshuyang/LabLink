@@ -6,7 +6,7 @@ Internal Use Only
 
 [Prototype](https://www.figma.com/file/VORvPq5pEvHRowpMs0lBT1/LabLink-Prototype?type=design&node-id=0-1&mode=design&t=QfI9RIIbYg8u3rFR-0)
 
-[Trello](https://www.notion.so/Literate-Octo-Broccolli-3801af3234a147dd84d05b5b1f35de2a](https://trello.com/b/OAJifYDW/agile-sprint-board)
+[Trello](https://trello.com/b/OAJifYDW/agile-sprint-board)
 
 A platform connecting CS students at Emory with research opportunities. LabLink aims to simplify and centralize the search for research positions, making it easier for students to get involved and for professors to find passionate individuals.
 
