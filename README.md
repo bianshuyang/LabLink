@@ -10,6 +10,21 @@ Internal Use Only
 
 A platform connecting CS students at Emory with research opportunities. LabLink aims to simplify and centralize the search for research positions, making it easier for students to get involved and for professors to find passionate individuals.
 
+
+## Installation and Setup
+
+You must have npm installed.
+If you are want to download npm: 
+1) brew install node
+2) npm install
+3) npm start
+
+
+## Usage
+
+
+
+
 ## Table of Contents
 
 - [Background](#background)
@@ -41,13 +56,7 @@ A platform connecting CS students at Emory with research opportunities. LabLink 
 - Online announcements for ad-hoc meetings.
 - Potential iOS/Android application.
 
-## Installation and Setup
 
-_Coming soon..._ 
-
-## Usage
-
-_Coming soon..._ 
 
 ## Team
 
@@ -56,6 +65,8 @@ _Coming soon..._
 - **Nicole Cui:** Developer
 - **Marcus Hill:** Developer (Front-End)
 - **Michelle Kim:** Developer
+
+
 
 ## Tools and Technologies
 
