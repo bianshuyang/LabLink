@@ -8,6 +8,7 @@ Internal Use Only
 
 [Trello](https://trello.com/b/OAJifYDW/agile-sprint-board)
 
+[ScrumDaily](https://docs.google.com/document/d/192U_1Ll_wggVFn-dcOcKPKsg9WLCd95rJ27rHAkjPxA/edit)
 A platform connecting CS students at Emory with research opportunities. LabLink aims to simplify and centralize the search for research positions, making it easier for students to get involved and for professors to find passionate individuals.
 
 
