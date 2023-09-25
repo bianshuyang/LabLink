@@ -1103,8 +1103,12 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
     text-align: center; }
   .custom-pagination li.active > a {
     background: #136ad5;
-    color: #ffffff;
+    color: white;
     border-radius: 50%; }
+
+.custom-pagination li.active a {
+    color: white;
+}
 
 .contact-info i {
   font-size: 20px;
