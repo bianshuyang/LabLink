@@ -1,5 +1,5 @@
 
-var newsData = [
+var oldnewsData = [
 {
     id: "0",
     title: "0",
