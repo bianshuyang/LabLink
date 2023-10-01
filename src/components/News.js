@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { Modal, Button } from 'react-bootstrap';
 
 
-import oldnewsData from './news_data.json';
 
-//console.log(oldnewsData);
+import oldnewsData from './seminars.json';
 
 
-const ITEMS_PER_PAGE = 4;
+
+
+const ITEMS_PER_PAGE = 10;
 const MAX_VISIBLE_PAGINATION = 8; // Example: 1 ... 4 5 6 ... 25
 // import oldnewsData from './fakeData';
 // console.log(oldnewsData);
@@ -40,7 +42,9 @@ function News(){
   
 
 
-
+  //console.log(oldnewsData);
+  const [showModal, setShowModal] = useState(false);
+  const [currentDescription, setCurrentDescription] = useState('');
   useEffect(() => {
         setNewsData(oldnewsData); // Replace with data fetch if needed
     }, []);
@@ -152,7 +156,30 @@ if (oldnewsData){
                           <span className="icon-calendar mr-2"></span><span>{news.date}</span>
                           <span className="icon-person mr-2"></span>{news.author}
                       </div>
-                      <p>{news.description}</p>
+                      <p onClick={() => {
+    if (news.description.length > 100) {
+        setCurrentDescription(news.description);
+        setShowModal(true);
+    }
+}}>
+    {news.description.length > 100 ? `${news.description.substring(0, 100)}...` : news.description}
+</p>
+<Modal show={showModal} onHide={() => setShowModal(false)}>
+    <Modal.Header closeButton>
+        <Modal.Title>Full Description</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+        {currentDescription}
+    </Modal.Body>
+    <Modal.Footer>
+        <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+        </Button>
+    </Modal.Footer>
+</Modal>
+
+
+
                   </div>
               </div>
           </div>
