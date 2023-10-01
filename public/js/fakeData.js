@@ -1,5 +1,4 @@
-
-var oldnewsData = [
+[
 {
     id: "0",
     title: "0",
@@ -8000,4 +7999,4 @@ var oldnewsData = [
     description: `Within despite three listen too every fast .`,
     imageUrl: "images/test.jpg",
 },
-];
+]
