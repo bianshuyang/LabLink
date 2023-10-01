@@ -1,10 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
+
+import oldnewsData from './news_data.json';
+
+console.log(oldnewsData);
+
+
+const ITEMS_PER_PAGE = 4;
+const MAX_VISIBLE_PAGINATION = 8; // Example: 1 ... 4 5 6 ... 25
+// import oldnewsData from './fakeData';
+console.log(oldnewsData);
+
+function generatePagination(currentPage, maxPages) {
+    let pages = [];
+    if (maxPages <= MAX_VISIBLE_PAGINATION) {
+        for (let i = 1; i <= maxPages; i++) {
+            pages.push(i);
+        }
+    } else {
+        // ... same logic as you provided
+    }
+    return pages;
+}
+
+
+
 function News(){
+
+  
+
+  const [newsData, setNewsData] = useState(oldnewsData); // You can fetch this from an external source if needed
+  const [currentPage, setCurrentPage] = useState(1);
+  
+
+
+
+  useEffect(() => {
+        setNewsData(oldnewsData); // Replace with data fetch if needed
+    }, []);
+
+
+if (newsData){
+  console.log("====")
+  console.log(newsData);
   return(
+
+
     <>
-      <div className="site-mobile-menu">
+
+<div className="site-mobile-menu">
         <div className="site-mobile-menu-header">
           <div className="site-mobile-menu-close">
             <span className="icofont-close js-menu-toggle"></span>
@@ -12,8 +57,6 @@ function News(){
         </div>
         <div className="site-mobile-menu-body"></div>
       </div>
-
-
 
       <nav className="site-nav mb-5">
         <div className="pb-2 top-bar mb-3">
@@ -61,7 +104,6 @@ function News(){
         </div>
       </nav>
 
-
       <div className="untree_co-hero overlay">
         <div className="container">
           <div className="row align-items-center justify-content-center">
@@ -88,98 +130,50 @@ function News(){
 
           </div>
         </div>
-
       </div>
-
-
-
       <div className="untree_co-section bg-light" id = "News_concrete">
-
-
-
         <div className="container">
-    <div className="page-jump">
-        Go to page: <input type="text" id="gotoPage" size="5" />
-        <button id="jumpToPage">Jump</button>
-        <p></p>
-        <p></p>
+    <div className="row align-items-stretch">
+          {newsData.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((news, index) => (
+          <div key={news.id} className="col-lg-6 mb-4 news-item" data-aos="fade-up" data-aos-delay={(index + 1) * 100}>
+              <div className="media-h d-flex h-100">
+                  <figure>
+                      <img src={news.imageUrl} alt="Image"/>
+                  </figure>
+                  <div className="media-h-body">
+                      <h2 className="mb-3"><Link to="/">{news.title}</Link>
+                      </h2>
+                      <div className="meta ">
+                          <span className="icon-calendar mr-2"></span><span>{news.date}</span>
+                          <span className="icon-person mr-2"></span>{news.author}
+                      </div>
+                      <p>{news.description}</p>
+                  </div>
+              </div>
+          </div>
+      ))}
 
+  </div>
+
+<div className="row mt-5">
+
+    <div className="col-12 text-center">
+        <ul className="list-unstyled custom-pagination">
+
+
+            {generatePagination(currentPage, Math.ceil(newsData.length / ITEMS_PER_PAGE)).map((page, index) => (
+                <li key={index} className={page === currentPage ? 'active' : ''}>
+                    {page === '...' ? (
+                        '...'
+                    ) : (
+                        <a onClick={() => setCurrentPage(page)}>{page}</a>
+                    )}
+                </li>
+            ))}
+        </ul>
     </div>
-
-          <div className="row align-items-stretch">
-            <div className="col-lg-6 mb-4 news-item" id="news-1" data-aos="fade-up" data-aos-delay="100">
-
-              <div className="media-h d-flex h-100">
-                <figure>
-                  <img src="images/test.jpg" alt="Image"/>
-                </figure>
-                <div className="media-h-body">
-                  <h2 className="mb-3"><Link to={'/'}>1</Link></h2>
-                  <div className="meta "><span className="icon-calendar mr-2"></span><span>June 22, 2020</span>  <span className="icon-person mr-2"></span>Professor Cat</div>
-                  <p>Emory announces that everyone would get 100 on CS 170.</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6 mb-4 news-item" id="news-2" data-aos="fade-up" data-aos-delay="100">
-
-              <div className="media-h d-flex h-100">
-                <figure>
-                  <img src="images/test.jpg" alt="Image"/>
-                </figure>
-                <div className="media-h-body">
-                  <h2 className="mb-3"><a href="#">2</a></h2>
-                  <div className="meta "><span className="icon-calendar mr-2"></span><span>June 22, 2030</span>  <span className="icon-person mr-2"></span>Professor Miao</div>
-                  <p>Emory announces that it would increase fund for CS by 1000%.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-6 mb-4 news-item" id="news-3" data-aos="fade-up" data-aos-delay="100">
-
-              <div className="media-h d-flex h-100">
-                <figure>
-                  <img src="images/test.jpg" alt="Image"/>
-                </figure>
-                <div className="media-h-body">
-                  <h2 className="mb-3"><a href="#">3</a></h2>
-                  <div className="meta "><span className="icon-calendar mr-2"></span><span>June 22, 2040</span>  <span className="icon-person mr-2"></span>AP Meow</div>
-                  <p>Emory have plugged in ChatGPT as their course, entitled "Usage of Artificial Intelligence". </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6 mb-4 news-item" id="news-4" data-aos="fade-up" data-aos-delay="100">
-
-              <div className="media-h d-flex h-100">
-                <figure>
-                  <img src="images/test.jpg" alt="Image"/>
-                </figure>
-                <div className="media-h-body">
-                  <h2 className="mb-3"><a href="#">4</a></h2>
-                  <div className="meta "><span className="icon-calendar mr-2"></span><span>June 22, 2050</span>  <span className="icon-person mr-2"></span>PI Mew</div>
-                  <p>All students majoring in CS get 80% discount in their tuition.</p>
-                </div>
-              </div>
-            </div>
-
-
-
-          </div>
-
-          <div className="row mt-5">
-            <div className="col-12 text-center">
-              <ul className="list-unstyled custom-pagination">
-              <li className="active"><a>1</a></li>
-              <li><a>2</a></li>
-              <li><a>3</a></li>
-              <li><a>4</a></li>
-          </ul>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="site-footer">
+</div>
+<div className="site-footer">
 
 
         <div className="container">
@@ -258,8 +252,18 @@ function News(){
             </div>
           </div>
         </div>
-    </>
-  )
+
+</div>
+
+
+</div>
+</>
+
+  ); // mark end
+
+  }
+
+  return <div>...</div>
 }
 
 export default News;
