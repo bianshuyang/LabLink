@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 import oldnewsData from './news_data.json';
 
-console.log(oldnewsData);
+//console.log(oldnewsData);
 
 
 const ITEMS_PER_PAGE = 4;
 const MAX_VISIBLE_PAGINATION = 8; // Example: 1 ... 4 5 6 ... 25
 // import oldnewsData from './fakeData';
-console.log(oldnewsData);
+// console.log(oldnewsData);
 
 function generatePagination(currentPage, maxPages) {
     let pages = [];
@@ -19,7 +19,12 @@ function generatePagination(currentPage, maxPages) {
             pages.push(i);
         }
     } else {
-        // ... same logic as you provided
+        pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', maxPages];
+        if (currentPage <= 3) {
+            pages = [1, 2, 3, 4, '...', maxPages];
+        } else if (currentPage >= maxPages - 2) {
+            pages = [1, '...', maxPages - 3, maxPages - 2, maxPages - 1, maxPages];
+        }
     }
     return pages;
 }
@@ -41,9 +46,9 @@ function News(){
     }, []);
 
 
-if (newsData){
+if (oldnewsData){
   console.log("====")
-  console.log(newsData);
+  console.log(oldnewsData);
   return(
 
 
