@@ -1,24 +1,15 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-  font-family: Quicksand, sans-serif;
-}
-
 html {
   font-size: 62.5%;
 }
 
-.container {
-  width: 100%;
+.login-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.form-wrapper {
+.login-form-wrapper {
   width: 100rem;
   height: 70rem;
   background-color: #eee;
@@ -28,7 +19,7 @@ html {
   overflow: hidden;
 }
 
-.banner {
+.login-banner {
   position: absolute;
   top: 25%;
   left: -30rem;
@@ -39,16 +30,16 @@ html {
   transition: left 0.8s;
 }
 
-.container.change .banner {
+.login-container.change .login-banner {
   left: 5rem;
 }
 
-.banner h1 {
+.login-banner h1 {
   font-size: 4rem;
   margin-bottom: 3rem;
 }
 
-.banner p {
+.login-banner p {
   font-size: 2rem;
   margin-top: 6rem;
 }
@@ -64,7 +55,7 @@ html {
   transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.container.change .blue-bg {
+.login-container.change .blue-bg {
   width: 40%;
 }
 
@@ -102,7 +93,7 @@ html {
   transition: left 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.container.change .signin-form {
+.login-container.change .signin-form {
   left: 40rem;
 }
 
@@ -120,6 +111,7 @@ html {
 
 .input-group {
   position: relative;
+  max-width: 45%;
 }
 
 .input-group input {
