@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
 import Forum from './Forum'; // Adjust the path accordingly.
+import Register from './Register';
 
 function Home(){
 
@@ -28,10 +29,18 @@ function Home(){
               <Link to={'/'} className="small mr-3"><span className="icon-envelope mr-2"></span> <span className="d-none d-lg-inline-block"></span></Link>
             </div>
 
-            <div className="col-6 col-lg-3 text-right">
+            <div className="col-6 col-lg-2 text-right">
               <Link to={'/login'} className="small mr-3">
                 <span className="icon-lock"></span>
                 Log In
+              </Link>
+
+            </div>
+
+            <div className="col-6 col-lg-1 text-right">
+              <Link to={'/register'} className="small mr-3">
+                <span className="icon-lock"></span>
+                Register
               </Link>
 
             </div>
@@ -52,6 +61,7 @@ function Home(){
               <li><Link to={'/'}>About</Link></li>
               <li><Link to={'/'}>Contact</Link></li>
               <li><Link to={'/forum'}>Forum</Link></li>
+
             </ul>
 
             <Link to={'/'} className="btn-book btn btn-secondary btn-sm menu-absolute">Explore Now</Link>

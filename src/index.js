@@ -7,6 +7,8 @@ import Error from "./components/Error.js";
 import News from "./components/News.js"
 import Login from "./components/Login.js";
 import Forum from "./components/Forum.js";
+import Register from './components/Register.js';
+
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
@@ -26,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "Forum",
     element: <Forum />,
+  },
+  {
+    path: "Register",
+    element: <Register />,
   }
 ]);
 

@@ -95,13 +95,15 @@ if (oldnewsData){
               <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary">.</span></Link>
 
               <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
-                <li><Link to={'/'}>Home</Link></li>
-                <li><Link to={'/'}>Professors</Link></li>
-                <li className="active"><Link to={'/news'}>Projects</Link></li>
-                <li className="active"><Link to={'/news'}>Events</Link></li>
-                <li><Link to={'/'}>About</Link></li>
-                <li><Link to={'/'}>Contact</Link></li>
-              </ul>
+              <li><Link to={'/'}>Home</Link></li>
+              <li><Link to={'/'}>Professors</Link></li>
+              <li className="active" ><Link to={'/news'}>Projects</Link></li>
+              <li className="active"><Link to={'/news'}>Events</Link></li>
+              <li><Link to={'/'}>About</Link></li>
+              <li><Link to={'/'}>Contact</Link></li>
+              <li><Link to={'/forum'}>Forum</Link></li>
+            </ul>
+
               <Link to={'/'} className="btn-book btn btn-secondary btn-sm menu-absolute">Enroll Now</Link>
 
               <Link to={'/'} className="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
