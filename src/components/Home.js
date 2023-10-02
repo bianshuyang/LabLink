@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"
+import Forum from './Forum'; // Adjust the path accordingly.
 
 function Home(){
 
@@ -50,6 +51,7 @@ function Home(){
               <li><Link to={'/news'}>Events</Link></li>
               <li><Link to={'/'}>About</Link></li>
               <li><Link to={'/'}>Contact</Link></li>
+              <li><Link to={'/forum'}>Forum</Link></li>
             </ul>
 
             <Link to={'/'} className="btn-book btn btn-secondary btn-sm menu-absolute">Explore Now</Link>
