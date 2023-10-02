@@ -6,6 +6,7 @@ import Root from './Root';
 import Error from "./components/Error.js";
 import News from "./components/News.js"
 import Login from "./components/Login.js";
+import Forum from "./components/Forum.js";
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
     path: "login",
     element: <Login />,
   },
+  {
+    path: "Forum",
+    element: <Forum />,
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
