@@ -51,6 +51,7 @@ function Register(){
               <input type="password" placeholder="Password" value={password}  onChange={e => setPassword(e.target.value)}  />
             </div>
             <button type="submit">Register!</button>
+            <Link to={'/'}><button type="submit">Go to the Home Page</button></Link>
           </form>
         </div>
       </div>
