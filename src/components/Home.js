@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom"
 import Forum from './Forum'; // Adjust the path accordingly.
 import Register from './Register';
+import Contact from './Contact';
 
 function Home(){
 
@@ -59,7 +60,7 @@ function Home(){
               <li><Link to={'/news'}>Projects</Link></li>
               <li><Link to={'/news'}>Events</Link></li>
               <li><Link to={'/'}>About</Link></li>
-              <li><Link to={'/'}>Contact</Link></li>
+              <li><Link to={'/Contact'}>Contact</Link></li>
               <li><Link to={'/forum'}>Forum</Link></li>
 
             </ul>
