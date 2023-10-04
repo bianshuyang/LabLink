@@ -326,7 +326,7 @@ function Home(){
               <div className="item">
                 <blockquote className="block-testimonial">
 
-                  <p>&ldquo;intro&rdquo;</p>
+                  <p>&ldquo;Meet your Future Principal Investigator&rdquo;</p>
                   <div className="author">
                     <img src="images/person_1.jpg" alt="Free template by TemplateUX"/>
                     <h3>Jinho Choi</h3>
