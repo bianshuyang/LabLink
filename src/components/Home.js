@@ -282,7 +282,7 @@ function Home(){
         <div className="row justify-content-center mb-5">
           <div className="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
             <h2 className="line-bottom text-center mb-4">Upcoming Events</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <p>Learn about research related events in the Emory Computer Science Department</p>
           </div>
         </div>
         <div className="row align-items-stretch">
@@ -292,9 +292,9 @@ function Home(){
                 <img src="images/img-school-1-min.jpg" alt="Image"/>
               </figure>
               <div className="media-h-body">
-                <h2 className="mb-3"><Link to={'/'}>Event1</Link></h2>
-                <div className="meta mb-2"><span className="icon-calendar mr-2"></span><span>June 22, 2020</span>  <span className="icon-person mr-2"></span>Admin</div>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <h2 className="mb-3"><Link to={'/'}>Annual Undergraduate Student Research Panel</Link></h2>
+                <div className="meta mb-2"><span className="icon-calendar mr-2"></span><span>September 22, 2020</span>  <span className="icon-person mr-2"></span>Emory CS Department</div>
+                <p>Undergraduate students hold a panel discussing their experience with research at Emory</p>
                 <p><Link to={'/'}>Learn More</Link></p>
               </div>
             </div>
@@ -305,9 +305,9 @@ function Home(){
                 <img src="images/img-school-2-min.jpg" alt="Image"/>
               </figure>
               <div className="media-h-body">
-                <h2 className="mb-3"><a href="#">Event2</a></h2>
-                <div className="meta mb-2"><span className="icon-calendar mr-2"></span><span>June 22, 2020</span>  <span className="icon-person mr-2"></span>Admin</div>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <h2 className="mb-3"><a href="#">Networking Night</a></h2>
+                <div className="meta mb-2"><span className="icon-calendar mr-2"></span><span>June 2, 2021</span>  <span className="icon-person mr-2"></span>Emory CS Department</div>
+                <p>Join the Emory Computer Science Department in hosting a Networking Night</p>
                 <p><a href="#">Learn More</a></p>
               </div>
             </div>
