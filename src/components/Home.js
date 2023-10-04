@@ -326,7 +326,7 @@ function Home(){
               <div className="item">
                 <blockquote className="block-testimonial">
 
-                  <p>&ldquo;Meet your Future Principal Investigator&rdquo;</p>
+                  <p>&ldquo;Emory Natural Language Processing&rdquo;</p>
                   <div className="author">
                     <img src="images/person_1.jpg" alt="Free template by TemplateUX"/>
                     <h3>Jinho Choi</h3>
@@ -338,7 +338,7 @@ function Home(){
               <div className="item">
                 <blockquote className="block-testimonial">
 
-                  <p>&ldquo;intro&rdquo;</p>
+                  <p>&ldquo;Data Driven Innovations for Huamn-Technology Symbiosis Group&rdquo;</p>
                   <div className="author">
                     <img src="images/person_2.jpg" alt="Free template by TemplateUX"/>
                     <h3>Nirmalya Thakur</h3>
@@ -350,7 +350,7 @@ function Home(){
               <div className="item">
                 <blockquote className="block-testimonial">
 
-                  <p>&ldquo;intro&rdquo;</p>
+                  <p>&ldquo;Cognition & Visualization Lab at Emory&rdquo;</p>
                   <div className="author">
                     <img src="images/person_3.jpg" alt="Free template by TemplateUX"/>
                     <h3>Emily Wall</h3>
