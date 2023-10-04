@@ -4,11 +4,12 @@ import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import './index.css';
 import Root from './Root';
 import Error from "./components/Error.js";
-import News from "./components/News.js"
+import Professors from "./components/Professors.js";
+import News from "./components/News.js";
 import Login from "./components/Login.js";
 import Forum from "./components/Forum.js";
 import Register from './components/Register.js';
-import Contact from './components/Contact.js'
+import Contact from './components/Contact.js';
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     errorElement: <Error />,
+  },
+  {
+    path: "Professors",
+    element: <Professors />,
   },
   {
     path: "news",

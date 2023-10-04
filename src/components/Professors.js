@@ -1,43 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { Modal, Button } from 'react-bootstrap';
 
-import { Link } from "react-router-dom"
+const ITEMS_PER_PAGE = 10;
+const MAX_VISIBLE_PAGINATION = 8;
 
-import postsData from './forum_data.json';
-// Mock data
-const usersData = [
-    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com' },
-    { netid: 'def02', Name: 'Bob', address: 'bob@example.com' }
-];
+// function SampleComponent() {
+//   const [count, setCount] = useState(0);
 
+//   const incrementCount = () => {
+//     setCount(count + 1);
+//   };
 
+//   return (
+//     <div>
+//       <h1>Welcome to SampleComponent</h1>
+//       <p>Count: {count}</p>
+//       <button onClick={incrementCount}>Increment Count</button>
+//     </div>
+//   );
 
-const repliesData = [
-    { netid: 'def02', replycontent: 'Reply by Bob to Alice', replydate: '2023-10-03', replyid: 'uuid-1', postid: 1 },
-    { netid: 'abc01', replycontent: 'Reply by Alice to Bob', replydate: '2023-10-04', replyid: 'uuid-2', postid: 2 }
-];
+// }
 
-function Forum() {
-    // State to determine which view to show: users, posts, or replies
-    const [view, setView] = useState('users');
-    const [selectedNetid, setSelectedNetid] = useState(null);
-    const [selectedPostId, setSelectedPostId] = useState(null);
+function SampleComponent() {
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+    </div>
+  );
+}
 
-    const handleUserClick = (netid) => {
-        setSelectedNetid(netid);
-        setView('posts');
-    };
+function generatePagination(currentPage, maxPages) {
+    let pages = [];
+    if (maxPages <= MAX_VISIBLE_PAGINATION) {
+        for (let i = 1; i <= maxPages; i++) {
+            pages.push(i);
+        }
+    } else {
+        pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', maxPages];
+        if (currentPage <= 3) {
+            pages = [1, 2, 3, 4, '...', maxPages];
+        } else if (currentPage >= maxPages - 2) {
+            pages = [1, '...', maxPages - 3, maxPages - 2, maxPages - 1, maxPages];
+        }
+    }
+    return pages;
+}
 
-    const handlePostClick = (postid) => {
-        setSelectedPostId(postid);
-        setView('replies');
-    };
+function Professors() {
+    const [ProfessorsData, setProfessorsData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [showModal, setShowModal] = useState(false);
+    const [currentDescription, setCurrentDescription] = useState('');
 
-    const handleViewChange = (event) => {
-        setView(event.target.value);
-    };
+    useEffect(() => {
+        // fetch('/api/professors').then(response => response.json()).then(data => setProfessorsData(data));
+    }, []);
 
-    // Depending on the state, we'll render different views
     return (
+        // <div>
+        //   return (
        
 
     <>
@@ -105,14 +127,14 @@ function Forum() {
             <div className="col-12">
               <div className="row justify-content-center ">
                 <div className="col-lg-6 text-center ">
-                  <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Forum of Discussion</h1>
+                  <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Professors</h1>
                   <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                    <p>A great place for discussion. </p>
+                    <p>Professors. </p>
                     <p>All @ Emory.</p>
                   </div>
 
                   <p className="mb-0" data-aos="fade-up" data-aos-delay="300">
-        <a href="#News_concrete" className="btn btn-secondary">Check on the forum</a>
+        <a href="#News_concrete" className="btn btn-secondary">Explore instructors</a>
     </p>
 
 
@@ -130,50 +152,7 @@ function Forum() {
       <div className="untree_co-section bg-light" id = "News_concrete">
         <div className="container">
 
-
-
-            <div>
-                <label>Select View: </label>
-                <select value={view} onChange={handleViewChange}>
-                    <option value="posts">Posts</option>
-                    <option value="replies">Replies</option>
-                </select>
-            </div>
-
-
-            <main>
-                
-
-                { view === 'posts' && (
-                    <div>
-                        <h2>Posts by {selectedNetid}</h2>
-                        <ul>
-                            {postsData.map(user => (
-                                <li key={user.netid} onClick={() => handleUserClick(user.netid)}>
-                                    <strong>{user.posttitle}</strong> ({user.description}) - {user.postdate}
-                                </li>
-                            ))}
-                        </ul>
-                        <button onClick={() => setView('users')}>Back to Users</button>
-                    </div>
-                )}
-
-                
-
-                { view === 'users' && (
-                    <div>
-                        <h2>Users</h2>
-                        <ul>
-                            {usersData.map(user => (
-                                <li key={user.netid} onClick={() => handleUserClick(user.netid)}>
-                                    <strong>{user.Name}</strong> ({user.netid}) - {user.address}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-
-            </main>
+            
 
   </div>
 
@@ -257,7 +236,7 @@ function Forum() {
         </div>
         </div>
 
-</div>
+// </div>
 
 
 
@@ -266,4 +245,4 @@ function Forum() {
     );
 }
 
-export default Forum;
+export default Professors;
