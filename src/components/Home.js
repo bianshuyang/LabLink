@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
 import Forum from './Forum'; // Adjust the path accordingly.
+import Professors from './Professors';
 import Register from './Register';
 import Contact from './Contact';
 
@@ -56,7 +57,7 @@ function Home(){
 
             <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
               <li className="active"><Link to={'/'}>Home</Link></li>
-              <li><Link to={'/'}>Professors</Link></li>
+              <li><Link to={'/Professors'}>Professors</Link></li>
               <li><Link to={'/news'}>Projects</Link></li>
               <li><Link to={'/news'}>Events</Link></li>
               <li><Link to={'/'}>About</Link></li>
