@@ -3,14 +3,25 @@ import { Link } from "react-router-dom";
 import "../styles/login.css";
 import eLogo from "../images/eLogo.png";
 
-function Login(){
+function Register(){
 
   const [isChange, setIsChange] = React.useState(false);
+
+  const [netID, setNetID] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   const handleButtonClick = () => {
     setIsChange(!isChange);
   };
 
+  const handleFormSubmit = (e) => {
+      console.log("NetID:", netID);
+      console.log("Password:", password);
+      e.preventDefault();
+      // Here, you can now use the netID and password state variables
+      // to send to your server or perform other operations.
+
+  };
   return(
       <div className={`login-container ${isChange ? "change" : ""}`}>
         <div className="login-form-wrapper">
@@ -27,23 +38,24 @@ function Login(){
             </div>
             <button type="button" onClick={() => handleButtonClick()}>Lab Link</button>
           </div>
-          <form className="signin-form">
+          <form className="signin-form" onSubmit={handleFormSubmit}>
             <h1>Lab Link</h1>
-            <h1>Login</h1>
-            <p>use your Emory NetID to login!</p>
+            <h1>Register</h1>
+            <p>Register as a guest to collect your favorites or cast votes!</p>
             <div className="input-group">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="NetID" />
+              <input type="email" placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
             </div>
             <div className="input-group">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" value={password}  onChange={e => setPassword(e.target.value)}  />
             </div>
-            <Link to={'/'}><button type="button">Sign in</button></Link>
+            <button type="submit">Register!</button>
+            <Link to={'/'}><button type="submit">Go to the Home Page</button></Link>
           </form>
         </div>
       </div>
   )
 }
 
-export default Login
+export default Register
