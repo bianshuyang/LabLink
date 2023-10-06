@@ -43,7 +43,7 @@ export default function Contact() {
           <div className="sticky-nav js-sticky-header">
             <div className="container position-relative">
               <div className="site-navigation text-center">
-                <Link to={'/'} className="logo menu-absolute m-0">LabLink<span className="text-primary">.</span></Link>
+                <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary">.</span></Link>
 
               <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
                 <li><Link to={'/'}>Home</Link></li>
@@ -75,7 +75,7 @@ export default function Contact() {
                   <div className="col-lg-6 text-center ">
                     <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Contact Us</h1>
                     <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                      <p>Welcome to the LabLink Contact Page! Whether you're a student looking to join a research project, a professor eager to showcase your work, or someone with a general inquiry, we're here to help.</p>
+                      <p>Welcome to the LabLink! Contact Page! Whether you're a student looking to join a research project, a professor eager to showcase your work, or someone with a general inquiry, we're here to help.</p>
                     </div>
 
                     <p className="mb-0" data-aos="fade-up" data-aos-delay="300"><Link to={'/'} className="btn btn-secondary">Explore courses</Link></p>
