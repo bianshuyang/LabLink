@@ -71,7 +71,7 @@ If you are want to download npm:
 
 ## Tools and Technologies
 
-## Tools and Technologies
+- Javascript Tutorial: https://www.youtube.com/watch?v=W6NZfCO5SIk&t=18s&ab_channel=ProgrammingwithMosh 
 
 ### Front-End:
 
