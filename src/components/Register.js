@@ -1,53 +1,49 @@
-// src/Components/DataFetcher.js
+import * as React from "react";
+import { Link } from "react-router-dom";
+import "../styles/login.css";
+import eLogo from "../images/eLogo.png";
 
-import { useEffect, useState } from "react";
+function Register(){
 
-function Register() {
-  const [data, setData] = useState(null);  // Use null as an initial state to signify 'not yet loaded'
-  const [loading, setLoading] = useState(true);
+  const [isChange, setIsChange] = React.useState(false);
 
-  async function fetchData() {
-  try {
-    const response = await fetch("http://localhost:3000/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        field1: "1",
-        field2: "1",
-      }),
-    });
+  const handleButtonClick = () => {
+    setIsChange(!isChange);
+  };
 
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-
-    const responseData = await response.json();
-    setData(responseData);
-    setLoading(false);
-    console.log("Done loading!");
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    setLoading(false);
-  }
+  return(
+      <div className={`login-container ${isChange ? "change" : ""}`}>
+        <div className="login-form-wrapper">
+          <div className="eLogo">
+            <img src={eLogo} alt="Emory Logo"/>
+          </div>
+          <div className="banner">
+            <h1>Lab Link</h1>
+            <p>Enter your Emory credential and start journey with us!</p>
+          </div>
+          <div className="blue-bg">
+            <div className={`logo-2 ${isChange ? "change" : ""}`} id="logoonce">
+              <img src={eLogo} alt="Emory Logo"/>
+            </div>
+            <button type="button" onClick={() => handleButtonClick()}>Lab Link</button>
+          </div>
+          <form className="signin-form">
+            <h1>Lab Link</h1>
+            <h1>Login</h1>
+            <p>use your Emory NetID to register!</p>
+            <div className="input-group">
+              <i className="fas fa-envelope"></i>
+              <input type="email" placeholder="NetID" />
+            </div>
+            <div className="input-group">
+              <i className="fas fa-lock"></i>
+              <input type="password" placeholder="Password" />
+            </div>
+            <Link to={'/'}><button type="button">Sign in</button></Link>
+          </form>
+        </div>
+      </div>
+  )
 }
 
-
-  useEffect(() => {
-    fetchData();  // Call the fetchData function when the component mounts
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;  // Display loading indicator when data is being fetched
-  }
-
-  return (
-    <div>
-      <h1>Data from MongoDB</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
-  );
-}
-
-export default Register;
+export default Register

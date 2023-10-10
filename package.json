@@ -16,6 +16,7 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.16.0",
     "react-scripts": "^5.0.1",
+    "use-history": "^1.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
