@@ -2,7 +2,6 @@
 
 [Project Proposal](https://docs.google.com/presentation/d/1MUET9wXdNRrpPAVYPk73Sr6Xgsx1RuSuVASkQorBsf4/edit?usp=sharing)
 
-Internal Use Only
 
 [Prototype](https://www.figma.com/file/VORvPq5pEvHRowpMs0lBT1/LabLink-Prototype?type=design&node-id=0-1&mode=design&t=QfI9RIIbYg8u3rFR-0)
 
@@ -14,16 +13,10 @@ A platform connecting CS students at Emory with research opportunities. LabLink 
 
 ## Installation and Setup
 
-You must have npm installed.
+You must have npm installed, and we use vercel to deploy.
 If you are want to download npm: 
 1) brew install node
-2) npm install
-3) npm start
-
-
-## Usage
-
-
+2) vercel dev (after verifying your credentials)
 
 
 ## Table of Contents
