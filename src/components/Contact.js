@@ -1,7 +1,109 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root') 
 export default function Contact() {
+  const [isChange, setIsChange] = React.useState(false);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [name, setname] = React.useState('');
+  const [email, setemail] = React.useState('');
+  const [subject, setsubject] = React.useState('');
+  const [text, settext] = React.useState('');
+  const handleButtonClick = () => {
+    setIsChange(!isChange);
+  };
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
+  const showModal = (message) => {
+    setModalMessage(message);
+    setModalIsOpen(true);
+  }
+
+  const showErrorModal = (message) => {
+    setModalMessage(message);
+    setErrorModalIsOpen(true);
+  }
+
+
+  const validateFields = () => {
+    if (!name || !email || !subject || !text) {
+      showModal('All fields are required. Please fill them out before submitting.');
+      return false;
+    }
+    return true;
+  }
+
+  async function fetchData(netID, password) {
+    try {
+      console.log(process.env);
+        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                field1: name,
+                field2: email,
+                field3: subject,
+                field4: text
+            }),
+        });
+        
+        console.log(name,email,subject,text);
+        console.log(response);
+
+        const statusCode = response.status;
+        console.log(statusCode);
+        if (statusCode >= 200 && statusCode < 300) {  // Successful response range
+            const responseData = await response.json();
+            setData(responseData);
+            setLoading(false);
+            console.log("Response status:", response.status);
+            console.log("Response status text:", response.statusText);
+            
+        } else {
+            let errorMessage;
+            try {
+                const errorData = await response.text();  // Try parsing JSON first
+                errorMessage = errorData;
+            } catch {
+                errorMessage = "Message sent failed. Please try again.";  // If not JSON, then parse as text
+            }
+            throw new Error(errorMessage);
+        }
+
+    } catch (error) {
+        //console.error('Error during registration:', error.message);
+        alert(error.message);  // Display the error message in an alert
+    }
+    console.log(isError);
+}
+
+  const handleFormSubmit = (e) => {
+    console.log("Name:", name);
+    console.log("Email:", email);
+    console.log("Subject:", subject);
+    console.log("Text:", text);
+    e.preventDefault();
+    if (!validateFields()) return;
+    fetchData(name,email,subject,text);  // Call fetchData with netID and password
+    showModal('Thank you for sending a query');
+  };
+
+  useEffect(() => {
+    // fetchData();  // Removed this because we now fetch data on form submit
+  }, []);
+
+
+  const navigate = useNavigate();
     return (
       <>
         <div className="site-mobile-menu">
@@ -132,19 +234,60 @@ export default function Contact() {
                 </div>
               </div>
               <div className="col-lg-7 mr-auto order-1" data-aos="fade-up" data-aos-delay="200">
-                <form action="#">
+                <form onSubmit={handleFormSubmit}>
+                {/* Notification Modal */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Notification Modal"
+        style={
+          {
+            overlay: {
+              backgroundColor: 'rgba(0, 0, 0, 0.75)'
+            },
+            content: {
+              color: 'lightsteelblue'
+            }
+          }
+        }
+      >
+        <h2>Notification</h2>
+        <p>{modalMessage}</p>
+        <button onClick={() => setModalIsOpen(false)}>Close</button>
+      </Modal>
+
+      {/* Error Modal */}
+      <Modal
+        isOpen={errorModalIsOpen}
+        onRequestClose={() => setErrorModalIsOpen(false)}
+        contentLabel="Error Modal"
+        style={
+          {
+            overlay: {
+              backgroundColor: 'rgba(255, 0, 0, 0.75)' // Reddish overlay for errors
+            },
+            content: {
+              color: 'salmon'  // Reddish text for errors
+            }
+          }
+        }
+      >
+        <h2>Error</h2>
+        <p>{modalMessage}</p>
+        <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
+      </Modal>
                   <div className="row">
                     <div className="col-6 mb-3">
-                      <input type="text" className="form-control" placeholder="Your Name"/>
+                      <input type="text" className="form-control" placeholder="Your Name" value = {name} onChange={e => setname(e.target.value)}  />
                     </div>
                     <div className="col-6 mb-3">
-                      <input type="email" className="form-control" placeholder="Your Email"/>
+                      <input type="email" className="form-control" placeholder="Your Email" value = {email} onChange={e => setemail(e.target.value)}  />
                     </div>
                     <div className="col-12 mb-3">
-                      <input type="text" className="form-control" placeholder="Subject"/>
+                      <input type="text" className="form-control" placeholder="Subject" value = {subject} onChange={e => setsubject(e.target.value)} />
                     </div>
                     <div className="col-12 mb-3">
-                      <textarea name="" id="" cols="30" rows="7" className="form-control" placeholder="Message"></textarea>
+                      <textarea name="" id="" cols="30" rows="7" className="form-control" placeholder="Message" value = {text} onChange={e => settext(e.target.value)} ></textarea>
                     </div>
 
                     <div className="col-12">
