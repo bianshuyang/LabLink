@@ -10,6 +10,8 @@ import Login from "./components/Login.js";
 import Forum from "./components/Forum.js";
 import Register from './components/Register.js';
 import Contact from './components/Contact.js';
+import ResearchList from './components/ResearchList.js';
+import ProfessorInfo from './components/ProfessorInfo.js';
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
