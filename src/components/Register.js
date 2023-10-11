@@ -22,7 +22,7 @@ function Register(){
   async function fetchData(netID, password) {
     try {
       console.log(process.env);
-        const response = await fetch("https://" + process.env.VERCEL_URL + "/api/register", {
+        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
