@@ -4,9 +4,6 @@ import { Modal, Button } from 'react-bootstrap';
 
 
 
-import oldnewsData from './seminars.json';
-
-
 
 
 const ITEMS_PER_PAGE = 10;
@@ -37,7 +34,7 @@ function News(){
 
   
 
-  const [newsData, setNewsData] = useState(oldnewsData); // You can fetch this from an external source if needed
+  const [newsData, setNewsData] = useState([]); // You can fetch this from an external source if needed
   const [currentPage, setCurrentPage] = useState(1);
   
 
@@ -45,14 +42,23 @@ function News(){
   //console.log(oldnewsData);
   const [showModal, setShowModal] = useState(false);
   const [currentDescription, setCurrentDescription] = useState('');
+  const bool = true;
   useEffect(() => {
-        setNewsData(oldnewsData); // Replace with data fetch if needed
+        // Replace this URL with your server's endpoint URL
+        fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/news")
+            .then(response => response.json())
+            .then(data => {
+                setNewsData(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                bool = false;
+            });
     }, []);
 
 
-if (oldnewsData){
+if (bool){
   console.log("====")
-  console.log(oldnewsData);
   return(
 
 
