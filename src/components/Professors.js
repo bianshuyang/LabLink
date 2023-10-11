@@ -128,6 +128,9 @@ function Professors() {
       
   <div className="untree_co-section bg-light" id = "News_concrete">
     <div className="container">
+      <main>
+      
+      </main>
     </div>
   
   <div className="site-footer">
