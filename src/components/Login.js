@@ -21,6 +21,7 @@ function Login(){
 
   async function fetchData(netID, password) {
     try {
+      console.log(process.env);
       const response = await fetch("https://" + process.env.VERCEL_URL + "/api/login", {
         method: "POST",
         headers: {
