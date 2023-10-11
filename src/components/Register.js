@@ -21,7 +21,7 @@ function Register(){
 
   async function fetchData(netID, password) {
     try {
-        const response = await fetch("http://localhost:3000/api/register", {
+        const response = await fetch("https://lab-link-m88gskr6d-bianshuyang.vercel.app/api/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -21,7 +21,7 @@ function Login(){
 
   async function fetchData(netID, password) {
     try {
-      const response = await fetch("http://localhost:3000/api/login", {
+      const response = await fetch("https://lab-link-m88gskr6d-bianshuyang.vercel.app/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
