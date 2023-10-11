@@ -22,12 +22,12 @@ module.exports = async (req, res) => {
         // If a user with the given fields already exists, send an error response
         if (findOneResult !== null) {
             console.log("User already registered.");
-            res.status(202).send('User already registered');
+            res.status(400).send('User already registered');
         } else {
             // Insert the new user's data into the collection
             const insertResult = await collection.insertOne(data);
-            console.log(`Successfully registered a new user: ${JSON.stringify(insertResult.ops[0])}`);
-            res.status(201).json(insertResult.ops[0]); // 201 means "Created"
+            console.log("Yes~")
+            res.status(201); // 201 means "Created"
         }
 
     } catch (error) {

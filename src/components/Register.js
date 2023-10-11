@@ -21,35 +21,48 @@ function Register(){
 
   async function fetchData(netID, password) {
     try {
-      const response = await fetch("http://localhost:3000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          field1: netID,
-          field2: password,
-        }),
-      });
-      console.log(netID,password);
-      console.log(response);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+        const response = await fetch("http://localhost:3000/api/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                field1: netID,
+                field2: password,
+            }),
+        });
+        
+        console.log(netID, password);
+        console.log(response);
 
-      const responseData = await response.json();
-      setData(responseData);
-      setLoading(false);
-      console.log("Done loading!");
-      navigate('/');
+        const statusCode = response.status;
+        console.log(statusCode);
+        if (statusCode >= 200 && statusCode < 300) {  // Successful response range
+            const responseData = await response.json();
+            setData(responseData);
+            setLoading(false);
+            console.log("Response status:", response.status);
+            console.log("Response status text:", response.statusText);
+            navigate('/');
+
+        } else {
+            let errorMessage;
+            try {
+                const errorData = await response.text();  // Try parsing JSON first
+                errorMessage = errorData;
+            } catch {
+                errorMessage = "Registration failed. Please try again.";  // If not JSON, then parse as text
+            }
+            throw new Error(errorMessage);
+        }
+
     } catch (error) {
-      console.error("Error fetching data:", error);
-      setLoading(false);
-      setIsError(true);
-      window.alert("Error occurred while fetching data!");
+        //console.error('Error during registration:', error.message);
+        alert(error.message);  // Display the error message in an alert
     }
     console.log(isError);
-  }
+}
+
 
   const handleFormSubmit = (e) => {
     console.log("NetID:", netID);
