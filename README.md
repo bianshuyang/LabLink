@@ -13,10 +13,7 @@ A platform connecting CS students at Emory with research opportunities. LabLink 
 
 ## Installation and Setup
 
-You must have npm installed, and we use vercel to deploy.
-If you are want to download npm: 
-1) brew install node
-2) vercel dev (after verifying your credentials)
+It is deployed on vercel. Therefore, no installation is necessary for now. 
 
 
 ## Table of Contents
