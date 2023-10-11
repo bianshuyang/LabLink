@@ -207,6 +207,11 @@ if (oldnewsData){
         </ul>
     </div>
 </div>
+
+
+
+</div>
+
 <div className="site-footer">
 
 
@@ -286,9 +291,6 @@ if (oldnewsData){
             </div>
           </div>
         </div>
-
-</div>
-
 
 </div>
 </>
