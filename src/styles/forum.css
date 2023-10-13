@@ -1,0 +1,126 @@
+/* General Styling */
+.postsContainer body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.postsContainer main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.postsContainer div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+.postsContainer h2 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.postsContainer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Post styling */
+.postsContainer li {
+    padding: 15px 20px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.postsContainer li:hover {
+    background-color: #f9f9f9;
+}
+
+/* Reply (Dialogue Bubble) styling */
+.postsContainer li.reply {
+    position: relative;
+    background-color: #e6f7ff;
+    border-color: #b3e0ff;
+}
+
+.postsContainer li.reply:before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: #e6f7ff;
+    border: 1px solid #b3e0ff;
+    border-width: 1px 1px 0 0;
+    transform: rotate(45deg);
+    box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+.postsContainer button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+.postsContainer button:hover {
+    background-color: #0056b3;
+}
+
+
+.postsContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.postsContainer label {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.postsContainer input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #e0e0e0;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.postsContainer input[type="text"]:focus {
+    border-bottom-color: #007BFF;
+}
+
+.postsContainer input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.postsContainer input[type="submit"]:hover {
+    background-color: #0056b3;
+}

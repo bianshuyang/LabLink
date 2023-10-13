@@ -1,8 +1,51 @@
 import React, { useState } from 'react';
-
+import "../styles/forum.css";
 import { Link } from "react-router-dom"
 
-import postsData from './forum_data.json';
+
+// reusing News because pagination is EVERYWHERE...
+
+
+const ITEMS_PER_PAGE = 4;
+const MAX_VISIBLE_PAGINATION = 8; // Example: 1 ... 4 5 6 ... 25
+// import oldnewsData from './fakeData';
+// console.log(oldnewsData);
+
+function generatePagination(currentPage, maxPages) {
+    let pages = [];
+    if (maxPages <= MAX_VISIBLE_PAGINATION) {
+        for (let i = 1; i <= maxPages; i++) {
+            pages.push(i);
+        }
+    } else {
+        pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', maxPages];
+        if (currentPage <= 3) {
+            pages = [1, 2, 3, 4, '...', maxPages];
+        } else if (currentPage >= maxPages - 2) {
+            pages = [1, '...', maxPages - 3, maxPages - 2, maxPages - 1, maxPages];
+        }
+    }
+    return pages;
+}
+
+
+
+
+const postsData = [
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:1,postData:"Hi there" },
+    { netid: 'def02', Name: 'Bob', address: 'bob@example.com', postid:2,postData:"Hi ther2e" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:3,postData:"Hi there" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:4,postData:"Hi there" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:5,postData:"Hi there" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:6,postData:"Hi there" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:7,postData:"Hi there" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:8,postData:"Hi there" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:9,postData:"Hi there" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:10,postData:"Hi there" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:11,postData:"Hi there" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:12,postData:"Hi there" },
+    { netid: 'abc01', Name: 'Alice', address: 'alice@example.com', postid:13,postData:"Hi there" }
+];
 // Mock data
 const usersData = [
     { netid: 'abc01', Name: 'Alice', address: 'alice@example.com' },
@@ -12,30 +55,31 @@ const usersData = [
 
 
 const repliesData = [
-    { netid: 'def02', replycontent: 'Reply by Bob to Alice', replydate: '2023-10-03', replyid: 'uuid-1', postid: 1 },
-    { netid: 'abc01', replycontent: 'Reply by Alice to Bob', replydate: '2023-10-04', replyid: 'uuid-2', postid: 2 }
+    { netid: 'def02', replycontent: 'Reply by Bob to Alice', replydate: '2023-10-03', replyid: 1, postid: 1 },
+    { netid: 'def02', replycontent: 'Reply by Bob to Alice 3', replydate: '2023-10-04', replyid: 2, postid: 1 },
+    { netid: 'def02', replycontent: 'Reply by Bob to Alice 4', replydate: '2023-10-05', replyid: 3, postid: 1 },
+    { netid: 'abc01', replycontent: 'Reply by Alice to Bob', replydate: '2023-10-04', replyid: 4, postid: 2 }
 ];
 
 function Forum() {
     // State to determine which view to show: users, posts, or replies
     const [view, setView] = useState('users');
-    const [selectedNetid, setSelectedNetid] = useState(null);
+    const [showReplies, setShowReplies] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
 
-    const handleUserClick = (netid) => {
-        setSelectedNetid(netid);
-        setView('posts');
+    const handlePostClick = (postId) => {
+        setSelectedPostId(postId);
+        setShowReplies(true);
     };
 
-    const handlePostClick = (postid) => {
-        setSelectedPostId(postid);
-        setView('replies');
+    const handleBackClick = () => {
+        setShowReplies(false);
+        setSelectedPostId(null);
     };
 
-    const handleViewChange = (event) => {
-        setView(event.target.value);
-    };
-
+    //const [postsData, setpostsData] = useState([]); // You can fetch this from an external source if needed
+    const [currentPage, setCurrentPage] = useState(1);  
+    const [currentReplyPage, setCurrentReplyPage] = useState(1);  
     // Depending on the state, we'll render different views
     return (
        
@@ -128,54 +172,79 @@ function Forum() {
         </div>
       </div>
       <div className="untree_co-section bg-light" id = "News_concrete">
-        <div className="container">
+        <div className="postsContainer">
 
 
 
-            <div>
-                <label>Select View: </label>
-                <select value={view} onChange={handleViewChange}>
-                    <option value="posts">Posts</option>
-                    <option value="replies">Replies</option>
-                </select>
-            </div>
+
+
+
 
 
             <main>
-                
-
-                { view === 'posts' && (
-                    <div>
-                        <h2>Posts by {selectedNetid}</h2>
-                        <ul>
-                            {postsData.map(user => (
-                                <li key={user.netid} onClick={() => handleUserClick(user.netid)}>
-                                    <strong>{user.posttitle}</strong> ({user.description}) - {user.postdate}
+            {showReplies ? (
+                <div>
+                    <button onClick={handleBackClick}>Back to Posts</button>
+                    <h2>Replies</h2>
+                    <ul>
+                        {repliesData
+                            .filter(reply => reply.postid === selectedPostId)
+                            .map(reply => (
+                                <li key={reply.replyid}>
+                                    <strong>{reply.replydate}</strong> {reply.replycontent}
                                 </li>
                             ))}
-                        </ul>
-                        <button onClick={() => setView('users')}>Back to Users</button>
-                    </div>
-                )}
+                    </ul>
+                    <form>
+                    <label>
+                      Replies
+                      <input type="text" name="Replies" />
+                    </label>
+                    <input type="submit" value="SubmitReplies" />
+                  </form>
+                </div>
+            ) : (
+                <div>
+                    <h2>Posts</h2>
+                    <ul>
+                        {postsData.slice((currentPage-1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((user, index) => (
+                            <li key={user.postid} onClick={() => handlePostClick(user.postid)}>
+                                <strong>{user.postid}</strong> {user.postData}
+                            </li>
+                        ))}
+                    </ul>
+                    <form>
+                    <label>
+                      New Thread
+                      <input type="text" name="Thread" />
+                    </label>
+                    <input type="submit" value="SubmitThread" />
+                  </form>
 
-                
-
-                { view === 'users' && (
-                    <div>
-                        <h2>Users</h2>
-                        <ul>
-                            {usersData.map(user => (
-                                <li key={user.netid} onClick={() => handleUserClick(user.netid)}>
-                                    <strong>{user.Name}</strong> ({user.netid}) - {user.address}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-
-            </main>
+                </div>
+            )}
+        </main>
 
   </div>
+
+<div className="row mt-5">
+
+    <div className="col-12 text-center">
+        <ul className="list-unstyled custom-pagination">
+
+
+            {generatePagination(currentPage, Math.ceil(postsData.length / ITEMS_PER_PAGE)).map((page, index) => (
+                <li key={index} className={page === currentPage ? 'active' : ''}>
+                    {page === '...' ? (
+                        '...'
+                    ) : (
+                        <a onClick={() => setCurrentPage(page)}>{page}</a>
+                    )}
+                </li>
+            ))}
+        </ul>
+    </div>
+</div>
 
 
 <div className="site-footer">
