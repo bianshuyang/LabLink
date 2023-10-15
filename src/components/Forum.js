@@ -54,13 +54,13 @@ function Forum() {
     useEffect(() => {
         // Define the fetch calls
         // https://${process.env.REACT_APP_VERCEL_URL}
-        const fetchReplies = fetch(`https://${process.env.REACT_APP_VERCEL_URL}/api/forum/getreplies`)
+        const fetchReplies = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getreplies")
             .then(response => response.json());
         
-        const fetchPosts = fetch(`https://${process.env.REACT_APP_VERCEL_URL}/api/forum/getthread`)
+        const fetchPosts = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getthread")
             .then(response => response.json());
         
-        const fetchUsers = fetch(`https://${process.env.REACT_APP_VERCEL_URL}/api/forum/getusers`)
+        const fetchUsers = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getusers")
             .then(response => response.json());
 
         // Use Promise.all to fetch all data in parallel
