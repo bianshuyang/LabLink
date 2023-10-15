@@ -12,8 +12,6 @@ module.exports = async (req, res) => {
         console.log(data);
 
         // Define the query to check if a user already exists
-        const findOneQuery = { field1: data.field1, field2: data.field2};
-        const findUsername = {field1:data.field1};
         await client.connect();
         const collection = client.db('forum').collection('threads');
         const insertResult = await collection.insertOne(data);

@@ -34,7 +34,7 @@ function Forum() {
 
     const getUserNameByNetId = (netid) => {
         const user = usersData.find(u => u.netid === netid);
-        return user ? user.Name : netid; // Assuming the property is 'name' not 'Name'
+        return user ? user.Name : netid; 
     };
 
 
@@ -42,16 +42,25 @@ function Forum() {
     const [repliesData, setrepliesData] = useState([]);
     const [usersData, setusersData] = useState([]);
 
+    const [netid, setnetid] = React.useState('');
+    const [postid, setpostid] = React.useState('');
+    const [postData, setpostData] = React.useState('');
+    const [postDate, setpostDate] = React.useState('');
+    ////////////
+    const [replyid,setreplyid]= React.useState('');
+    const [replyData,setreplyData] = React.useState('');
+    const [replyDate,setreplyDate] = React.useState('');
+    /////////////
     useEffect(() => {
         // Define the fetch calls
         // https://${process.env.REACT_APP_VERCEL_URL}
-        const fetchReplies = fetch(`http://localhost:3000/api/forum/getreplies`)
+        const fetchReplies = fetch(`https://${process.env.REACT_APP_VERCEL_URL}/api/forum/getreplies`)
             .then(response => response.json());
         
-        const fetchPosts = fetch(`http://localhost:3000/api/forum/getthread`)
+        const fetchPosts = fetch(`https://${process.env.REACT_APP_VERCEL_URL}/api/forum/getthread`)
             .then(response => response.json());
         
-        const fetchUsers = fetch(`http://localhost:3000/api/forum/getusers`)
+        const fetchUsers = fetch(`https://${process.env.REACT_APP_VERCEL_URL}/api/forum/getusers`)
             .then(response => response.json());
 
         // Use Promise.all to fetch all data in parallel
@@ -70,6 +79,98 @@ function Forum() {
     }, []);
 
 
+
+    async function addreply(netid, replyData, replyDate, replyid, selectedPostId) {
+        try {
+          console.log(process.env);
+            const response = await fetch("https://${process.env.REACT_APP_VERCEL_URL}/api/forum/addreplies", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    netid: netid,
+                    replycontent: replyData,
+                    replydate: replyDate,
+                    replyid: replyid,
+                    postid: selectedPostId
+                }),
+            });
+            console.log(response);
+            const statusCode = response.status;
+            console.log(statusCode);
+
+        } catch (error) {
+            //console.error('Error during registration:', error.message);
+            console.log("Something is wrong...?")
+            console.log(error);
+        }
+    }
+
+    async function addthread(netid, postid, postData,postDate) {
+        try {
+          console.log(process.env);
+            const response = await fetch("https://${process.env.REACT_APP_VERCEL_URL}/api/forum/addthread", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    netid: netid,
+                    postid: postid,
+                    postData: postData,
+                    postDate: postDate
+                }),
+            });
+            console.log(response);
+            const statusCode = response.status;
+            console.log(statusCode);
+
+        } catch (error) {
+            //console.error('Error during registration:', error.message);
+            console.log("Something is wrong...?")
+            console.log(error);
+        }
+    }
+
+const addReplySubmit = async (event) => {
+    event.preventDefault();
+
+    const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
+
+    // Determine the next reply ID
+    const nextReplyId = repliesForSelectedPost.length + 1;
+    const randomNetId = "abc01"; // Placeholder for your actual netid logic
+    const currentDate = new Date().toISOString();
+
+    const newReply = {
+        netid: randomNetId,
+        replycontent: replyData,
+        replydate: currentDate,
+        replyid: nextReplyId,
+        postid: selectedPostId, // This should already be set when the user began the reply process
+    };
+    console.log(postid);
+    await addreply(newReply.netid, newReply.replycontent, newReply.replydate, newReply.replyid, newReply.postid);
+
+    // After submission, clear the form states if necessary
+    setreplyData('');
+    setreplyDate(''); 
+};
+
+
+  const addThreadSubmit = async (event) => {
+    event.preventDefault();
+
+    const maxPostId = postsData.length;
+    const nextPostId = maxPostId + 1;
+    const randomNetId = "abc01"; // to be replaced when we connect
+    const currentDate = new Date().toISOString();
+    setnetid(randomNetId);
+    setpostid(nextPostId);
+    setpostDate(currentDate);
+    await addthread(randomNetId, nextPostId, postData, currentDate);  // Call fetchData with netID and password
+  };
 
     // State to determine which view to show: users, posts, or replies
     const [view, setView] = useState('users');
@@ -92,6 +193,7 @@ function Forum() {
     const handleReplyPageChange = (page) => {
         setCurrentReplyPage(page);
     };
+
 
     //const [postsData, setpostsData] = useState([]); // You can fetch this from an external source if needed
     const [currentPage, setCurrentPage] = useState(1);  
@@ -211,10 +313,10 @@ function Forum() {
                                 </li>
                             ))}
                     </ul>
-                    <form>
+                    <form onSubmit = {addReplySubmit}>
                     <label>
                       Replies
-                      <textarea type="text" name="Replies"  rows="2" cols="50" placeholder = "Peace and love."></textarea>
+                      <textarea onChange={(e) => setreplyData(e.target.value)}  type="text" name="Replies"  rows="2" cols="50" placeholder = "Peace and love."></textarea>
                     </label>
                     <input type="submit" value="SubmitReplies" />
                   </form>
@@ -231,11 +333,19 @@ function Forum() {
 
                         ))}
                     </ul>
-                    <form>
+                    <form  onSubmit = {addThreadSubmit}>
                     <label>
                       New Thread
-                      <textarea type="text" name="Thread"  rows="4" cols="50" placeholder = "Sincerity brings connection."></textarea>
-                    </label>
+                                      <textarea 
+                  onChange={(e) => setpostData(e.target.value)} 
+                  type="text" 
+                  name="New Posts" 
+                  rows="2" 
+                  cols="50" 
+                  placeholder="Sincerity brings connections."
+                  value={postData} // This line ensures the value is updated in the UI
+                />
+                </label>
                     <input type="submit" value="I want to Make a new Post" />
                   </form>
 

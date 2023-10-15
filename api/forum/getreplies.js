@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
 
         if (allDocuments.length === 0) {
             console.log("No documents found.");
-            res.status(404).send('No documents found');
+            res.status(200).json([]);
         } else {
             console.log(`Found ${allDocuments.length} documents.`);
             res.status(200).json(allDocuments);
