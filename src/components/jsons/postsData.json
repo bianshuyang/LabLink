@@ -1,0 +1,6 @@
+{ "netid": "abc01", "postid": 1, "postData": "Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!", "postDate": "2023-10-01" }
+{ "netid": "def02", "postid": 2, "postData": "Hello everyone!", "postDate": "2023-10-02" }
+{ "netid": "ghi03", "postid": 3, "postData": "What's up?", "postDate": "2023-10-03" }
+{ "netid": "abc01", "postid": 4, "postData": "Sharing a cool pic!", "postDate": "2023-10-04" }
+{ "netid": "ghi03", "postid": 5, "postData": "My first post here!", "postDate": "2023-10-05" }
+{ "netid": "abc01", "postid": 6, "postData": "Any movie recommendations?", "postDate": "2023-10-06" }

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../styles/forum.css";
 import { Link } from "react-router-dom"
-
 
 // reusing News because pagination is EVERYWHERE...
 
@@ -29,36 +28,49 @@ function generatePagination(currentPage, maxPages) {
 }
 
 
-function getUserNameByNetId(netid) {
-    const user = usersData.find(u => u.netid === netid);
-    return user ? user.Name : "Unknown";
-}
-
-
-const usersData = [
-    { netid: 'abc01', Name: 'Amazing Alice', email: 'alice@example.com' },
-    { netid: 'def02', Name: 'Busy Bob', email: 'bob@example.com' },
-    { netid: 'ghi03', Name: 'Cool Charlie', email: 'charlie@example.com' }
-];
-
-const postsData = [
-    { netid: 'abc01', postid:1, postData:"Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!Hi there!", postDate: '2023-10-01' },
-    { netid: 'def02', postid:2, postData:"Hello everyone!", postDate: '2023-10-02' },
-    { netid: 'ghi03', postid:3, postData:"What's up?", postDate: '2023-10-03' },
-    { netid: 'abc01', postid:4, postData:"Sharing a cool pic!", postDate: '2023-10-04' },
-    { netid: 'ghi03', postid:5, postData:"My first post here!", postDate: '2023-10-05' },
-    { netid: 'abc01', postid:6, postData:"Any movie recommendations?", postDate: '2023-10-06' },
-];
-
-const repliesData = [
-    { netid: 'def02', replycontent: 'Reply by Bob to Alice', replydate: '2023-10-03', replyid: 1, postid: 1 },
-    { netid: 'ghi03', replycontent: 'Charlies thoughts on this', replydate: '2023-10-04', replyid: 2, postid: 1 },
-    { netid: 'abc01', replycontent: 'Reply by Alice to Bob', replydate: '2023-10-04', replyid: 3, postid: 2 },
-    { netid: 'ghi03', replycontent: 'Charlie agrees with Alice', replydate: '2023-10-05', replyid: 4, postid: 3 },
-];
 
 
 function Forum() {
+
+    const getUserNameByNetId = (netid) => {
+        const user = usersData.find(u => u.netid === netid);
+        return user ? user.Name : netid; // Assuming the property is 'name' not 'Name'
+    };
+
+
+    const [postsData, setpostsData] = useState([]);
+    const [repliesData, setrepliesData] = useState([]);
+    const [usersData, setusersData] = useState([]);
+
+    useEffect(() => {
+        // Define the fetch calls
+        // https://${process.env.REACT_APP_VERCEL_URL}
+        const fetchReplies = fetch(`http://localhost:3000/api/forum/getreplies`)
+            .then(response => response.json());
+        
+        const fetchPosts = fetch(`http://localhost:3000/api/forum/getthread`)
+            .then(response => response.json());
+        
+        const fetchUsers = fetch(`http://localhost:3000/api/forum/getusers`)
+            .then(response => response.json());
+
+        // Use Promise.all to fetch all data in parallel
+        Promise.all([fetchReplies, fetchPosts, fetchUsers])
+            .then(([replies, posts, users]) => {
+                // Set state with the results from the API
+                setrepliesData(replies);
+                setpostsData(posts);
+                setusersData(users);
+                console.log(users)
+
+            })
+            .catch(error => {
+                console.error('Error fetching data: ', error);
+            });
+    }, []);
+
+
+
     // State to determine which view to show: users, posts, or replies
     const [view, setView] = useState('users');
     const [showReplies, setShowReplies] = useState(false);

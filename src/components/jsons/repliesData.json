@@ -1,0 +1,5 @@
+{ "netid": "def02", "replycontent": "Reply by Bob to Alice", "replydate": "2023-10-03", "replyid": 1, "postid": 1 }
+{ "netid": "ghi03", "replycontent": "Charlies thoughts on this", "replydate": "2023-10-04", "replyid": 2, "postid": 1 }
+{ "netid": "abc01", "replycontent": "Reply by Alice to Bob", "replydate": "2023-10-04", "replyid": 3, "postid": 2 }
+{ "netid": "ghi03", "replycontent": "Charlie agrees with Alice", "replydate": "2023-10-05", "replyid": 4, "postid": 3 }
+
