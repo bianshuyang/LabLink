@@ -83,7 +83,7 @@ function Forum() {
     async function addreply(netid, replyData, replyDate, replyid, selectedPostId) {
         try {
           console.log(process.env);
-            const response = await fetch("https://${process.env.REACT_APP_VERCEL_URL}/api/forum/addreplies", {
+            const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL +"/api/forum/addreplies", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -110,7 +110,7 @@ function Forum() {
     async function addthread(netid, postid, postData,postDate) {
         try {
           console.log(process.env);
-            const response = await fetch("https://${process.env.REACT_APP_VERCEL_URL}/api/forum/addthread", {
+            const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL +"/api/forum/addthread", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
