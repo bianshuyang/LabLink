@@ -33,7 +33,8 @@ function generatePagination(currentPage, maxPages) {
 function News(){
 
   
-
+  const token = sessionStorage.getItem('userToken');
+  console.log(token,"is token!!!!");
   const [newsData, setNewsData] = useState([]); // You can fetch this from an external source if needed
   const [currentPage, setCurrentPage] = useState(1);
   

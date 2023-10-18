@@ -41,13 +41,13 @@ function Login(){
       const responseData = await response.json();
       setData(responseData);
       setLoading(false);
-      console.log("Done loading!");
+      console.log("Login successful!");
+      sessionStorage.setItem('userToken', netID+"@@@@");
       navigate('/');
     } catch (error) {
-      console.error("Error fetching data:", error);
       setLoading(false);
       setIsError(true);
-      window.alert("Error occurred while fetching data!");
+      window.alert("Either your credential is not in our database, or your password is wrong!");
     }
     console.log(isError);
   }
