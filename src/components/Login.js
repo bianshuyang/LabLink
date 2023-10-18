@@ -96,7 +96,7 @@ function Login(){
               <i className="fas fa-lock"></i>
               <input type="password" placeholder="Password" value={password}  onChange={e => setPassword(e.target.value)}  />
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit">Login</button>
           </form>
         
         </div>
