@@ -83,12 +83,12 @@ function SingleProf() {
                     <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
                     <li><Link to={'/Home'}>Home</Link></li>
                     <li><Link to={'/Professors'}>Professors</Link></li>
-                    <li><Link to={'/SingleProf'}>Single Professor</Link></li> 
+                    <li  className="active" ><Link to={'/SingleProf'}>Single Professor</Link></li> 
                     <li><Link to={'/news'}>Projects</Link></li>
                     <li><Link to={'/news'}>Events</Link></li>
                     <li><Link to={'/'}>About</Link></li>
                     <li><Link to={'/Contact'}>Contact</Link></li>
-                    <li  className="active" ><Link to={'/forum'}>Forum</Link></li>
+                    <li><Link to={'/forum'}>Forum</Link></li>
                   </ul>
 
                     <Link to={'/'} className="btn-book btn btn-secondary btn-sm menu-absolute">Enroll Now</Link>

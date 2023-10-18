@@ -102,12 +102,15 @@ if (bool){
               <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary">.</span></Link>
 
               <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
-              <li><Link to={'/'}>Home</Link></li>
-              <li><Link to={'/'}>Professors</Link></li>
+
+
+              <li><Link to={'/Home'}>Home</Link></li>
+              <li><Link to={'/Professors'}>Professors</Link></li>
+              <li><Link to={'/SingleProf'}>Single Professor</Link></li> 
               <li className="active" ><Link to={'/news'}>Projects</Link></li>
               <li className="active"><Link to={'/news'}>Events</Link></li>
               <li><Link to={'/'}>About</Link></li>
-              <li><Link to={'/'}>Contact</Link></li>
+              <li><Link to={'/Contact'}>Contact</Link></li>
               <li><Link to={'/forum'}>Forum</Link></li>
             </ul>
 
