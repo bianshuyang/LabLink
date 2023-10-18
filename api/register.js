@@ -25,8 +25,8 @@ module.exports = async (req, res) => {
         } else {
             // Insert the new user's data into the collection
             const insertResult = await collection.insertOne(data);
-            console.log("Yes~")
-            res.status(201); // 201 means "Created"
+            console.log("Yes")
+            res.status(200).send("User created"); // 200 means "Created"
         }
 
     } catch (error) {

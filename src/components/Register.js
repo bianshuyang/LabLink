@@ -39,7 +39,7 @@ function Register(){
         const statusCode = response.status;
         console.log(statusCode);
         if (statusCode >= 200 && statusCode < 300) {  // Successful response range
-            const responseData = await response.json();
+            const responseData = await response.text();
             setData(responseData);
             setLoading(false);
             console.log("Response status:", response.status);
@@ -102,7 +102,7 @@ function Register(){
             <h1>Register</h1>
             <div className="input-group">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
+              <input placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
             </div>
             <div className="input-group">
               <i className="fas fa-lock"></i>

@@ -90,7 +90,7 @@ function Login(){
             <p>Login as a guest to collect your favorites or cast votes!</p>
             <div className="input-group">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
+              <input placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
             </div>
             <div className="input-group">
               <i className="fas fa-lock"></i>
