@@ -14,7 +14,7 @@ function SampleComponent() {
     </div>
   );
 }
-
+// Pagination Control
 function generatePagination(currentPage, maxPages) {
     let pages = [];
     if (maxPages <= MAX_VISIBLE_PAGINATION) {
@@ -55,7 +55,7 @@ function Professors() {
         <div className="site-mobile-menu-body"></div>
         </div>
 
-        <nav className="site-nav mb-5">
+        <nav className="site-nav mb-5">  
               <div className="pb-2 top-bar mb-3">
                 <div className="container">
                   <div className="row align-items-center">
@@ -80,7 +80,7 @@ function Professors() {
               <div className="sticky-nav js-sticky-header">
                 <div className="container position-relative">
                   <div className="site-navigation text-center">
-                    <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary">.</span></Link>
+                    <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary"></span></Link>
 
                     <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
                     <li><Link to={'/'}>Home</Link></li>
@@ -214,4 +214,4 @@ function Professors() {
   );
 }
 
-export default Professors;
+export default Professors; // makes module available to be imported to other files
