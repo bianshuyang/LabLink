@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../styles/forum.css";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import Navbar from './Navbar';
 
 // reusing News because pagination is EVERYWHERE...
 
@@ -34,7 +35,7 @@ function Forum() {
 
     const getUserNameByNetId = (netid) => {
         const user = usersData.find(u => u.netid === netid);
-        return user ? user.Name : netid; 
+        return user ? user.Name : netid;
     };
 
 
@@ -56,10 +57,10 @@ function Forum() {
         // https://${process.env.REACT_APP_VERCEL_URL}
         const fetchReplies = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getreplies")
             .then(response => response.json());
-        
+
         const fetchPosts = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getthread")
             .then(response => response.json());
-        
+
         const fetchUsers = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getusers")
             .then(response => response.json());
 
@@ -155,7 +156,7 @@ const addReplySubmit = async (event) => {
 
     // After submission, clear the form states if necessary
     setreplyData('');
-    setreplyDate(''); 
+    setreplyDate('');
 };
 
 
@@ -196,11 +197,11 @@ const addReplySubmit = async (event) => {
 
 
     //const [postsData, setpostsData] = useState([]); // You can fetch this from an external source if needed
-    const [currentPage, setCurrentPage] = useState(1);  
- 
+    const [currentPage, setCurrentPage] = useState(1);
+
     // Depending on the state, we'll render different views
     return (
-       
+
 
     <>
 
@@ -213,53 +214,7 @@ const addReplySubmit = async (event) => {
         <div className="site-mobile-menu-body"></div>
       </div>
 
-      <nav className="site-nav mb-5">
-        <div className="pb-2 top-bar mb-3">
-          <div className="container">
-            <div className="row align-items-center">
-
-              <div className="col-6 col-lg-9">
-                <Link to={'/'} className="small mr-3"><span className="icon-question-circle-o mr-2"></span> <span className="d-none d-lg-inline-block">Contact us</span></Link>
-                <Link to={'/'} className="small mr-3"><span className="icon-phone mr-2"></span> <span className="d-none d-lg-inline-block"></span></Link>
-                <Link to={'/'} className="small mr-3"><span className="icon-envelope mr-2"></span> <span className="d-none d-lg-inline-block"></span></Link>
-              </div>
-
-              <div className="col-6 col-lg-3 text-right">
-                <Link to={'/login'} className="small mr-3">
-                  <span className="icon-lock"></span>
-                  Log In
-                </Link>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <div className="sticky-nav js-sticky-header">
-          <div className="container position-relative">
-            <div className="site-navigation text-center">
-              <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary">.</span></Link>
-
-              <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
-              <li><Link to={'/'}>Home</Link></li>
-              <li><Link to={'/'}>Professors</Link></li>
-              <li><Link to={'/news'}>Projects</Link></li>
-              <li><Link to={'/news'}>Events</Link></li>
-              <li><Link to={'/'}>About</Link></li>
-              <li><Link to={'/'}>Contact</Link></li>
-              <li  className="active" ><Link to={'/forum'}>Forum</Link></li>
-            </ul>
-
-              <Link to={'/'} className="btn-book btn btn-secondary btn-sm menu-absolute">Enroll Now</Link>
-
-              <Link to={'/'} className="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
-                <span></span>
-              </Link>
-
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar/>
 
       <div className="untree_co-hero overlay">
         <div className="container">
@@ -326,7 +281,7 @@ const addReplySubmit = async (event) => {
                     <h2>Posts</h2>
                     <ul>
                         {postsData.slice((currentPage-1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((post, index) => (
-                            
+
     <li key={post.postid} onClick={() => handlePostClick(post.postid)}>
         {post.postData} - by {getUserNameByNetId(post.netid)}
     </li>
@@ -336,12 +291,12 @@ const addReplySubmit = async (event) => {
                     <form  onSubmit = {addThreadSubmit}>
                     <label>
                       New Thread
-                                      <textarea 
-                  onChange={(e) => setpostData(e.target.value)} 
-                  type="text" 
-                  name="New Posts" 
-                  rows="2" 
-                  cols="50" 
+                                      <textarea
+                  onChange={(e) => setpostData(e.target.value)}
+                  type="text"
+                  name="New Posts"
+                  rows="2"
+                  cols="50"
                   placeholder="Sincerity brings connections."
                   value={postData} // This line ensures the value is updated in the UI
                 />
@@ -361,7 +316,7 @@ const addReplySubmit = async (event) => {
         <ul className="list-unstyled custom-pagination">
 
 
-            {showReplies ? 
+            {showReplies ?
                         generatePagination(currentReplyPage, Math.ceil(repliesData.filter(reply => reply.postid === selectedPostId).length / ITEMS_PER_PAGE)).map((page, index) => (
                             <li key={index} className={page === currentReplyPage ? 'active' : ''}>
                                 {page === '...' ? (

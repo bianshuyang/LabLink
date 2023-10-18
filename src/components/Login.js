@@ -4,9 +4,12 @@ import "../styles/login.css";
 import eLogo from "../images/eLogo.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { LabLinkContext } from "../LabLinkProvider";
+
 
 function Login(){
 
+  const { isLoggedIn, setIsLoggedIn } = React.useContext(LabLinkContext);
   const [isChange, setIsChange] = React.useState(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -47,6 +50,7 @@ function Login(){
       console.error("Error fetching data:", error);
       setLoading(false);
       setIsError(true);
+      setIsLoggedIn(true);
       window.alert("Error occurred while fetching data!");
     }
     console.log(isError);
@@ -67,7 +71,7 @@ function Login(){
   if (loading) {
     return <div>Loading...</div>;
   }
-  
+
   return(
       <div className={`login-container ${isChange ? "change" : ""}`}>
         <div className="login-form-wrapper">
@@ -98,8 +102,8 @@ function Login(){
             </div>
             <button type="submit">Submit</button>
           </form>
-        
         </div>
+        <Link to={"/"} className="test-log-in" onClick={() => setIsLoggedIn(!isLoggedIn)}>TEST LOG IN</Link>
       </div>
   )
 }
