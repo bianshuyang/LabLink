@@ -5,6 +5,7 @@ import Professors from './Professors';
 import Register from './Register';
 import Contact from './Contact';
 import { useNavigation } from 'react-router-dom';
+import SingleProf from "./SingleProf";
 function Home(){
 
   return(
@@ -58,6 +59,7 @@ function Home(){
             <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
               <li className="active"><Link to={'/'}>Home</Link></li>
               <li><Link to={'/Professors'}>Professors</Link></li>
+              <li><Link to={'/SingleProf'}>Single Professor</Link></li> 
               <li><Link to={'/news'}>Projects</Link></li>
               <li><Link to={'/news'}>Events</Link></li>
               <li><Link to={'/'}>About</Link></li>
