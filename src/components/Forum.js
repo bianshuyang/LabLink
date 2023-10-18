@@ -52,8 +52,6 @@ function Forum() {
     const [replyDate,setreplyDate] = React.useState('');
     /////////////
     useEffect(() => {
-        // Define the fetch calls
-        // https://${process.env.REACT_APP_VERCEL_URL}
         const fetchReplies = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getreplies")
             .then(response => response.json());
         
@@ -63,7 +61,7 @@ function Forum() {
         const fetchUsers = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getusers")
             .then(response => response.json());
 
-        // Use Promise.all to fetch all data in parallel
+
         Promise.all([fetchReplies, fetchPosts, fetchUsers])
             .then(([replies, posts, users]) => {
                 // Set state with the results from the API
@@ -140,7 +138,9 @@ const addReplySubmit = async (event) => {
 
     // Determine the next reply ID
     const nextReplyId = repliesForSelectedPost.length + 1;
-    const randomNetId = "abc01"; // Placeholder for your actual netid logic
+    const token = sessionStorage.getItem('userToken');
+    console.log(token,"is token!!!!");
+    const randomNetId = token; // Placeholder for actual netid, to be improved
     const currentDate = new Date().toISOString();
 
     const newReply = {
@@ -153,7 +153,6 @@ const addReplySubmit = async (event) => {
     console.log(postid);
     await addreply(newReply.netid, newReply.replycontent, newReply.replydate, newReply.replyid, newReply.postid);
 
-    // After submission, clear the form states if necessary
     setreplyData('');
     setreplyDate(''); 
 };
@@ -164,7 +163,9 @@ const addReplySubmit = async (event) => {
 
     const maxPostId = postsData.length;
     const nextPostId = maxPostId + 1;
-    const randomNetId = "abc01"; // to be replaced when we connect
+    const token = sessionStorage.getItem('userToken');
+    console.log(token,"is token!!!!");
+    const randomNetId = token; // to be replaced when we connect
     const currentDate = new Date().toISOString();
     setnetid(randomNetId);
     setpostid(nextPostId);
@@ -195,7 +196,7 @@ const addReplySubmit = async (event) => {
     };
 
 
-    //const [postsData, setpostsData] = useState([]); // You can fetch this from an external source if needed
+    //const [postsData, setpostsData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);  
  
     // Depending on the state, we'll render different views
