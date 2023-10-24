@@ -29,7 +29,7 @@ function generatePagination(currentPage, maxPages) {
 
 
 function Forum() {
-    //sessionStorage.setItem('userToken', "abc01");
+    sessionStorage.setItem('userToken', "abc01");
     const getUserNameByNetId = (netid) => {
         const user = usersData.find(u => u.netid === netid);
         return user ? user.Name : netid; 
@@ -143,13 +143,49 @@ function Forum() {
 
     }
 
+    async function deletereply(netid, postid, replyid) {
+        try {
+        console.log(process.env);
+       // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
+        //console.log(repliesForSelectedPost);
+        console.log(netid, postid, replyid);
+        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL +"/api/forum/deletereplies", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    netid: netid,
+                    postid: postid,
+                    replyid: replyid,
+                    replycontent: "deletedReply"
+                }),
+            });
+            console.log(response);
+            const statusCode = response.status;
+            if (statusCode == 403) { 
+                alert("It seems you are deleting unauthorized replies");
+            }
+            else{
+                alert("Your reply is marked as Delete.");
+            }
+            console.log(statusCode);
+
+        } catch (error) {
+            //console.error('Error during registration:', error.message);
+            console.log("Something is wrong...?")
+            console.log(error);
+        }
+    }
+
+
+
 
     async function deletethread(netid, postid) {
         try {
         console.log(process.env);
        // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
         //console.log(repliesForSelectedPost);
-        console.log("Above is replselp");
         console.log(netid, postid);
         const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL +"/api/forum/deletethread", {
                 method: "POST",
@@ -168,7 +204,7 @@ function Forum() {
                 alert("It seems you are deleting unauthorized posts");
             }
             else{
-                alert("Post Deleted! However, all replies are retained");
+                alert("Post marked as DELETE. However, all replies are retained");
             }
             console.log(statusCode);
 
@@ -180,7 +216,7 @@ function Forum() {
     }
 
 const addReplySubmit = async (event) => {
-    //event.preventDefault();
+    event.preventDefault();
 
     const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
 
@@ -235,7 +271,6 @@ const addReplySubmit = async (event) => {
     const [showReplies, setShowReplies] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [currentReplyPage, setCurrentReplyPage] = useState(1);
-
     const handlePostClick = (postId) => {
         setSelectedPostId(postId);
         setShowReplies(true);
@@ -251,7 +286,7 @@ const addReplySubmit = async (event) => {
     const deleteClick = async (event) => {
         event.preventDefault();
         setShowReplies(false);
-        setSelectedPostId(null);
+        // setSelectedPostId(null);
         setCurrentPage(1);
         console.log(selectedPostId);
         const token = sessionStorage.getItem('userToken');
@@ -261,8 +296,21 @@ const addReplySubmit = async (event) => {
         }
         else{
             await deletethread(token, selectedPostId); 
+        }  
+    };
+
+    const deleteReplyClick = async (replyId, event) => {
+        event.preventDefault();
+        setCurrentPage(1);
+        console.log(selectedPostId, replyId);
+        const token = sessionStorage.getItem('userToken');
+        if (token == null){
+            alert ("Unauthorized deletion. Please log in.")
+            return
         }
-        
+        else{
+            await deletereply(token, selectedPostId, replyId); //
+        }  
     };
 
     const handleReplyPageChange = (page) => {
@@ -390,7 +438,7 @@ const addReplySubmit = async (event) => {
                             .map(reply => (
                                 <li key={reply.replyid}>
                                     <strong>{reply.replydate}</strong> {reply.replycontent}
-                                    <button onClick={deleteClick}>Delete My Reply</button>
+                                    <button onClick={(event) => deleteReplyClick(reply.replyid, event)}>Delete My Reply</button>
                                 </li>
                             ))} 
                     </ul>

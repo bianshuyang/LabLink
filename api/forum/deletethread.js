@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
 
         if (allDocuments.length === 0) {
             console.log("No documents found.");
-            res.status(201).json([]);
+            res.status(201).send("OK");
         } else {
             const data = req.body;
             const { netid, postid, postData } = data;
@@ -19,18 +19,18 @@ module.exports = async (req, res) => {
             const update = { 
                   $set: { postData } 
                 };
-            console.log("OK ");
+            console.log("OK present to server");
             console.log(data);
             const deletion = await collection.updateOne(filter, update);
             console.log(deletion.deletedCount);
             if (deletion.deletedCount == 0){
                 console.log("Perhaps unauthorized deletion");
-                res.status(403).json([]);
+                res.status(403).send("Mal");
             }
             else{
                 console.log("OK delete one");
             //console.log(`Found ${allDocuments.length} documents.`);
-                res.status(200).json([]); 
+                res.status(200).send("OK"); 
             }
         }
 
