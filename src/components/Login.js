@@ -4,10 +4,20 @@ import "../styles/login.css";
 import eLogo from "../images/eLogo.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import jwt from 'jsonwebtoken';
+import sjcl from 'sjcl';
 
 function Login(){
 
+
+  function hashPassword(password) {
+      try{
+      return sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
+    }
+    catch(error){
+      console.error("Error hashing password:", error);
+    }
+  }
+ 
   const [isChange, setIsChange] = React.useState(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -21,6 +31,8 @@ function Login(){
   };
 
   async function fetchData(netID, password) {
+    console.log(hashPassword(password));
+    console.log("is pss")
     try {
       console.log(process.env);
       const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/login", {
@@ -30,10 +42,10 @@ function Login(){
         },
         body: JSON.stringify({
           field1: netID,
-          field2: password,
+          field2: hashPassword(password),
         }),
       });
-      console.log(netID,password);
+      console.log(netID,hashPassword(password));
       console.log(response);
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -43,12 +55,8 @@ function Login(){
       setData(responseData);
       setLoading(false);
       console.log("Login successful!");
-      
-      const token = jwt.sign({ netID, password }, 'YOUR_SECRET_KEY'); // Create a JWT token using user credentials
-      sessionStorage.setItem('userToken', token); // Store the JWT token instead of the original credentials
-      
+      sessionStorage.setItem('userToken', netID+"@@@@");
       navigate('/');
-      
     } catch (error) {
       setLoading(false);
       setIsError(true);
@@ -59,10 +67,10 @@ function Login(){
 
   const handleFormSubmit = (e) => {
     console.log("NetID:", netID);
-    console.log("Password:", password);
+    console.log("Password:", hashPassword(password));
     e.preventDefault();
 
-    fetchData(netID, password);  // Call fetchData with netID and password
+    fetchData(netID, hashPassword(password));  // Call fetchData with netID and password
   };
 
   useEffect(() => {
@@ -74,39 +82,38 @@ function Login(){
   }
   
   return(
-      <div className={`login-container ${isChange ? "change" : ""}`}>
-        <div className="login-form-wrapper">
-          <div className="eLogo">
-            <img src={eLogo} alt="Emory Logo"/>
-          </div>
-          <div className="banner">
-            <h1>Lab Link</h1>
-            <p>Enter your Emory credential and start journey with us!</p>
-          </div>
-          <div className="blue-bg">
-            <div className={`logo-2 ${isChange ? "change" : ""}`} id="logoonce">
-              <img src={eLogo} alt="Emory Logo"/>
-            </div>
-            <button type="button" onClick={() => handleButtonClick()}>Lab Link</button>
-          </div>
-          <form className="signin-form" onSubmit={handleFormSubmit}>
-            <h1>Lab Link</h1>
-            <h1>Login</h1>
-            <p>Login as a guest to collect your favorites or cast votes!</p>
-            <div className="input-group">
-              <i className="fas fa-envelope"></i>
-              <input placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
-            </div>
-            <div className="input-group">
-              <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" value={password}  onChange={e => setPassword(e.target.value)}  />
-            </div>
-            <button type="submit">Login</button>
-          </form>
-        
-        </div>
+    <div className={`login-container ${isChange ? "change" : ""}`}>
+    <div className="login-form-wrapper">
+      <div className="eLogo">
+        <img src={eLogo} alt="Emory Logo"/>
       </div>
-  )
+      <div className="banner">
+        <h1>Lab Link</h1>
+        <p>Enter your Emory credential and start journey with us!</p>
+      </div>
+      <div className="blue-bg">
+        <div className={`logo-2 ${isChange ? "change" : ""}`} id="logoonce">
+          <img src={eLogo} alt="Emory Logo"/>
+        </div>
+        <button type="button" onClick={() => handleButtonClick()}>Lab Link</button>
+      </div>
+      <form className="signin-form" onSubmit={handleFormSubmit}>
+        <h1>Lab Link</h1>
+        <h1>Login</h1>
+        <p>Login as a guest to collect your favorites or cast votes!</p>
+        <div className="input-group">
+          <i className="fas fa-envelope"></i>
+          <input placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
+        </div>
+        <div className="input-group">
+          <i className="fas fa-lock"></i>
+          <input type="password" placeholder="Password" value={password}  onChange={e => setPassword(e.target.value)}  />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    
+    </div>
+  </div>
+)
 }
-
 export default Login

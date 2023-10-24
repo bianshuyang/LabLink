@@ -4,8 +4,18 @@ import "../styles/login.css";
 import eLogo from "../images/eLogo.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import sjcl from 'sjcl';
 
 function Register(){
+
+  function hashPassword(password) {
+    try{
+    return sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
+  }
+  catch(error){
+    console.error("Error hashing password:", error);
+  }
+}
 
   const [isChange, setIsChange] = React.useState(false);
   const [data, setData] = useState(null);
@@ -22,18 +32,18 @@ function Register(){
   async function fetchData(netID, password) {
     try {
       console.log(process.env);
-        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/register", {
+        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 field1: netID,
-                field2: password,
+                field2: hashPassword(password),
             }),
         });
         
-        console.log(netID, password);
+        console.log(netID, hashPassword(password));
         console.log(response);
 
         const statusCode = response.status;
@@ -70,7 +80,7 @@ function Register(){
     console.log("Password:", password);
     e.preventDefault();
 
-    fetchData(netID, password);  // Call fetchData with netID and password
+    fetchData(netID, hashPassword(password));  // Call fetchData with netID and password
   };
 
   useEffect(() => {
