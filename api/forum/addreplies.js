@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
         const collection = client.db('forum').collection('replies');
         const insertResult = await collection.insertOne(data);
         console.log("OK replies")
-        res.status(200); 
+        res.status(200).send("OKreplies"); 
     } catch (error) {
         console.error(`Error occurred: ${error}`);
         res.status(500).send('Error registering user');

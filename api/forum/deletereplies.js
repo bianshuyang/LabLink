@@ -3,8 +3,7 @@ const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 module.exports = async (req, res) => {
     try {
-        const data = req.body;
-        console.log(data);
+
         await client.connect();
         const collection = client.db('forum').collection('replies');
 
@@ -14,10 +13,20 @@ module.exports = async (req, res) => {
             console.log("No documents found.");
             res.status(201).json([]);
         } else {
-            const deletion = await collection.deleteOne(data);
-            console.log("OK delete one");
+            const data = req.body;
+            console.log("OK ");
+            console.log(data);
+            const deletion = await collection.updateOne(data);
+            console.log(deletion.deletedCount);
+            if (deletion.deletedCount == 0){
+                console.log("Perhaps unauthorized deletion");
+                res.status(403).json([]);
+            }
+            else{
+                console.log("OK delete one");
             //console.log(`Found ${allDocuments.length} documents.`);
-            res.status(200).json([]);
+                res.status(200).json([]); 
+            }
         }
 
     } catch (error) {

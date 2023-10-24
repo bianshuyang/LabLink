@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import "../styles/forum.css";
 import { Link } from "react-router-dom"
 
-// reusing News because pagination is EVERYWHERE...
 
-
-const ITEMS_PER_PAGE = 3;
+const ITEMS_PER_PAGE = 9;
 const MAX_VISIBLE_PAGINATION = 8; // Example: 1 ... 4 5 6 ... 25
 // import oldnewsData from './fakeData';
 // console.log(oldnewsData);
@@ -31,7 +29,7 @@ function generatePagination(currentPage, maxPages) {
 
 
 function Forum() {
-
+    //sessionStorage.setItem('userToken', "abc01");
     const getUserNameByNetId = (netid) => {
         const user = usersData.find(u => u.netid === netid);
         return user ? user.Name : netid; 
@@ -78,9 +76,21 @@ function Forum() {
 
 
 
+    const fetchPostsAndUpdateState = async () => {
+        try {
+            const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getthread");
+            const posts = await response.json();
+            console.log("OK get response");
+            // Update the state with the new list of posts
+            setpostsData(posts);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+
+
     async function addreply(netid, replyData, replyDate, replyid, selectedPostId) {
         try {
-          console.log(process.env);
             const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL +"/api/forum/addreplies", {
                 method: "POST",
                 headers: {
@@ -123,6 +133,44 @@ function Forum() {
             console.log(response);
             const statusCode = response.status;
             console.log(statusCode);
+            console.log("I have rerendered. ")
+            
+        } catch (error) {
+            //console.error('Error during registration:', error.message);
+            console.log("Something is wrong...?")
+            console.log(error);
+        }
+
+    }
+
+
+    async function deletethread(netid, postid) {
+        try {
+        console.log(process.env);
+       // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
+        //console.log(repliesForSelectedPost);
+        console.log("Above is replselp");
+        console.log(netid, postid);
+        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL +"/api/forum/deletethread", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    netid: netid,
+                    postid: postid,
+                    postData: "deleted"
+                }),
+            });
+            console.log(response);
+            const statusCode = response.status;
+            if (statusCode == 403) { 
+                alert("It seems you are deleting unauthorized posts");
+            }
+            else{
+                alert("Post Deleted! However, all replies are retained");
+            }
+            console.log(statusCode);
 
         } catch (error) {
             //console.error('Error during registration:', error.message);
@@ -132,7 +180,7 @@ function Forum() {
     }
 
 const addReplySubmit = async (event) => {
-    event.preventDefault();
+    //event.preventDefault();
 
     const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
 
@@ -158,6 +206,9 @@ const addReplySubmit = async (event) => {
 };
 
 
+
+
+
   const addThreadSubmit = async (event) => {
     event.preventDefault();
 
@@ -170,7 +221,13 @@ const addReplySubmit = async (event) => {
     setnetid(randomNetId);
     setpostid(nextPostId);
     setpostDate(currentDate);
-    await addthread(randomNetId, nextPostId, postData, currentDate);  // Call fetchData with netID and password
+
+    const response = await addthread(randomNetId, nextPostId, postData, currentDate);  // Call fetchData with netID and password
+
+    fetchPostsAndUpdateState();
+    console.log("fetching complete!!!")
+    setpostData(''); 
+    alert("Thank you for bringing in a post, your response has been submitted");
   };
 
     // State to determine which view to show: users, posts, or replies
@@ -189,6 +246,23 @@ const addReplySubmit = async (event) => {
         setShowReplies(false);
         setSelectedPostId(null);
         setCurrentPage(1);
+    };
+
+    const deleteClick = async (event) => {
+        event.preventDefault();
+        setShowReplies(false);
+        setSelectedPostId(null);
+        setCurrentPage(1);
+        console.log(selectedPostId);
+        const token = sessionStorage.getItem('userToken');
+        if (token == null){
+            alert ("Unauthorized deletion. Please log in.")
+            return
+        }
+        else{
+            await deletethread(token, selectedPostId); 
+        }
+        
     };
 
     const handleReplyPageChange = (page) => {
@@ -304,7 +378,11 @@ const addReplySubmit = async (event) => {
             <main>
             {showReplies ? (
                 <div>
-                    <button onClick={handleBackClick}>Back to Posts</button>
+                    <div class="button-container">
+                        <button class="btn" onClick={handleBackClick}>Back to Posts</button>
+                        <button class="btn" onClick={deleteClick}>Delete My Post</button>
+                    </div>
+
                     <h2>Replies</h2>
                     <ul>
                         {repliesData
@@ -312,8 +390,9 @@ const addReplySubmit = async (event) => {
                             .map(reply => (
                                 <li key={reply.replyid}>
                                     <strong>{reply.replydate}</strong> {reply.replycontent}
+                                    <button onClick={deleteClick}>Delete My Reply</button>
                                 </li>
-                            ))}
+                            ))} 
                     </ul>
                     <form onSubmit = {addReplySubmit}>
                     <label>
@@ -330,7 +409,7 @@ const addReplySubmit = async (event) => {
                         {postsData.slice((currentPage-1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((post, index) => (
                             
     <li key={post.postid} onClick={() => handlePostClick(post.postid)}>
-        {post.postData} - by {getUserNameByNetId(post.netid)}
+        {post.postData} - by {getUserNameByNetId(post.netid)} 
     </li>
 
                         ))}

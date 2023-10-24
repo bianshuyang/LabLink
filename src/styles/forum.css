@@ -17,7 +17,7 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
     max-width: 600px;
     width: 100%;
 }
@@ -137,3 +137,51 @@
 .postsContainer input[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+.button-container {
+    display: flex;          /* Uses flexbox to lay out children */
+    justify-content: space-between; /* Children are spaced across the full width */
+    align-items: center;    /* Centers children along the cross axis */
+    width: 100%;            /* Optional: takes full width of the parent */
+    padding: 10px;          /* Optional: space around the container */
+}
+
+/* Optional: Additional styles for buttons */
+.btn {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 30px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: .05rem; }
+  .btn:active, .btn:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  .btn.btn-primary {
+    background: #136ad5;
+    border-color: #136ad5; }
+    .btn.btn-primary:hover {
+      border-color: #1573e8;
+      background: #1573e8; }
+  .btn.btn-secondary {
+    background: #00aeff;
+    border-color: #00aeff; }
+    .btn.btn-secondary:hover {
+      border-color: #14b4ff;
+      background: #14b4ff; }
+  .btn.btn-sm {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px; }
+  .btn.btn-outline-primary {
+    border-color: #136ad5;
+    color: #136ad5; }
+    .btn.btn-outline-primary:hover {
+      background: #136ad5;
+      color: #ffffff; }
+

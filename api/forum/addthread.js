@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
         const collection = client.db('forum').collection('threads');
         const insertResult = await collection.insertOne(data);
         console.log("OK Sent")
-        res.status(200); // 201 means "Created"
+        res.status(200).send("OK"); // 201 means "Created"
 
     } catch (error) {
         console.error(`Error occurred: ${error}`);
