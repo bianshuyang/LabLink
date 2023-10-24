@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import "../styles/login.css";
 import eLogo from "../images/eLogo.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import jwt from 'jsonwebtoken';
 
 function Login(){
 
@@ -42,8 +43,12 @@ function Login(){
       setData(responseData);
       setLoading(false);
       console.log("Login successful!");
-      sessionStorage.setItem('userToken', netID+"@@@@");
+      
+      const token = jwt.sign({ netID, password }, 'YOUR_SECRET_KEY'); // Create a JWT token using user credentials
+      sessionStorage.setItem('userToken', token); // Store the JWT token instead of the original credentials
+      
       navigate('/');
+      
     } catch (error) {
       setLoading(false);
       setIsError(true);
