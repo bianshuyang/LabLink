@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Professor John Doe",
-    "department": "Computer Science",
+    "title": "Assistant Professor",
     "email": "johndoe@example.com",
     "office": "Room 123",
     "researchInterest": "Machine Learning, Data Science，Algorithms, Robotics, Bioinfomatics"
@@ -10,7 +10,7 @@
   {
     "id": "2",
     "name": "Professor Jane Smith",
-    "department": "Physics",
+    "title": "Professor",
     "email": "janesmith@example.com",
     "office": "Room 456",
     "researchInterest": "Quantum Mechanics, Particle Physics"
@@ -18,9 +18,49 @@
   {
     "id": "3",
     "name": "Professor Emily Wall",
-    "department": "Chemistry",
+    "title": "Assistant Teaching Professor",
     "email": "emilywall@example.com",
     "office": "Room 789",
     "researchInterest": "Organic Chemistry, Chemical Reactions"
+  },
+  {
+    "id": "4",
+    "name": "Professor Alan Turing",
+    "title": "Associate Professor",
+    "email": "alanturing@example.com",
+    "office": "Room 101",
+    "researchInterest": "Computational Theory, Algorithms, Artificial Intelligence"
+  },
+  {
+    "id": "5",
+    "name": "Professor Grace Hopper",
+    "title": "Professor",
+    "email": "gracehopper@example.com",
+    "office": "Room 202",
+    "researchInterest": "Compilers, Software Engineering, Computer Architecture"
+  },
+  {
+    "id": "6",
+    "name": "Professor Richard Feynman",
+    "title": "Assistant Teaching Professor",
+    "email": "feynman@example.com",
+    "office": "Room 303",
+    "researchInterest": "Quantum Electrodynamics, Nanotechnology"
+  },
+  {
+    "id": "7",
+    "name": "Professor Marie Curie",
+    "title": "Full Professor",
+    "email": "curie@example.com",
+    "office": "Room 404",
+    "researchInterest": "Radioactivity, Radiology"
+  },
+  {
+    "id": "8",
+    "name": "Professor Nikola Tesla",
+    "title": "Professor",
+    "email": "tesla@example.com",
+    "office": "Room 505",
+    "researchInterest": "Electromagnetism, Wireless Communication"
   }
 ]
