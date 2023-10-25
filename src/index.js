@@ -12,6 +12,7 @@ import Forum from "./components/Forum.js";
 import Register from './components/Register.js';
 import Contact from './components/Contact.js';
 import reportWebVitals from './reportWebVitals';
+import Test from './components/test.js';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "Contact",
     element: <Contact />,
+  },
+  {
+    path: "Test",
+    element: <Test />,
   }
 ]);
 
