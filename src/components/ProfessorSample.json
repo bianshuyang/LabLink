@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "Professor John Doe",
+    "department": "Computer Science",
+    "email": "johndoe@example.com",
+    "office": "Room 123",
+    "researchInterest": "Machine Learning, Data Science，Algorithms, Robotics, Bioinfomatics"
+  },
+  {
+    "id": "2",
+    "name": "Professor Jane Smith",
+    "department": "Physics",
+    "email": "janesmith@example.com",
+    "office": "Room 456",
+    "researchInterest": "Quantum Mechanics, Particle Physics"
+  },
+  {
+    "id": "3",
+    "name": "Professor Emily Wall",
+    "department": "Chemistry",
+    "email": "emilywall@example.com",
+    "office": "Room 789",
+    "researchInterest": "Organic Chemistry, Chemical Reactions"
+  }
+]
