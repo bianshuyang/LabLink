@@ -80,14 +80,15 @@ function Professors() {
                     <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary">.</span></Link>
 
                     <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
-                    <li><Link to={'/'}>Home</Link></li>
-                    <li className="active"><Link to={'/'}>Professors</Link></li>
-                    <li><Link to={'/'}>Projects</Link></li>
-                    <li><Link to={'/'}>Events</Link></li>
-                    <li><Link to={'/'}>About</Link></li>
-                    <li><Link to={'/'}>Contact</Link></li>
-                    <li  className="active" ><Link to={'/forum'}>Forum</Link></li>
-                  </ul>
+                      <li><Link to={'/Home'}>Home</Link></li>
+                      <li className="active" ><Link to={'/Professors'}>Projects</Link></li>
+                      <li><Link to={'/SingleProf'}>Single Professor</Link></li> 
+                      <li><Link to={'/news'}>Projects</Link></li>
+                      <li><Link to={'/news'}>Events</Link></li>
+                      <li><Link to={'/'}>About</Link></li>
+                      <li><Link to={'/Contact'}>Contact</Link></li>
+                      <li><Link to={'/forum'}>Forum</Link></li>
+                    </ul>
 
                     <Link to={'/'} className="btn-book btn btn-secondary btn-sm menu-absolute">Enroll Now</Link>
 
@@ -108,8 +109,7 @@ function Professors() {
                   <div className="col-lg-6 text-center ">
                     <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Professors</h1>
                     <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                      <p>Hello Professors. </p>
-                      <p>All @ Emory.</p>
+                      <p><em>"A good teacher isn't someone who gives the answers out to their kids but is understanding of needs and challenges and gives tools to help other people succeed."</em></p>
                     </div>
                     <p className="mb-0" data-aos="fade-up" data-aos-delay="300">
                       <a href="#Professor_concrete" className="btn btn-secondary">Explore instructors</a>
