@@ -15,6 +15,12 @@ export default function Contact() {
   const [email, setemail] = React.useState('');
   const [subject, setsubject] = React.useState('');
   const [text, settext] = React.useState('');
+  const [emailData, setEmailData] = useState({
+    from: "lablnk_help@outlook.com",
+    to: '',
+    subject: 'Lab Link Information Request Initiated',
+    html: 'Dear user, Thank you for initiating your request. We have recorded it in our database. We aim to reply within 1 business year, but time may vary depending on the availability. We appreciate your interest!',
+  });
   const handleButtonClick = () => {
     setIsChange(!isChange);
   };
@@ -44,7 +50,7 @@ export default function Contact() {
   async function fetchData(netID, password) {
     try {
       console.log(process.env);
-        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/contact", {
+        const response = await fetch("https://"+ process.env.REACT_APP_VERCEL_URL + "/api/contact", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -87,7 +93,7 @@ export default function Contact() {
     console.log(isError);
 }
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     console.log("Name:", name);
     console.log("Email:", email);
     console.log("Subject:", subject);
@@ -95,7 +101,43 @@ export default function Contact() {
     e.preventDefault();
     if (!validateFields()) return;
     fetchData(name,email,subject,text);  // Call fetchData with netID and password
+    const emailToSend = {
+      ...emailData,  // Previous email data state
+      to: email,  // Setting 'to' field with the user's input email
+      html: 'Dear user, Thank you for initiating your request. We have recorded it in our database. We aim to reply within 1 business year, but time may vary depending on the availability. We appreciate your interest!'
+    };
+    try {
+      // Send a POST request to the serverless function
+      const res = await fetch('/api/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailToSend),
+      });
+      console.log(emailToSend);
+      // Error handling with the response
+      if (!res.ok) {
+        alert('Network response was not ok');
+      }
+
+      // Update state with the success response (can be customized based on your backend response)
+      alert('Email sent successfully!');
+
+      // Optionally, clear the form after successful submission
+      setEmailData({
+        from: "lablnk_help@outlook.com",
+        to: '',
+        subject: 'Lab Link Password Reset',
+        html: 'Dear user, Thank you for initiating your request. We have recorded it in our database. We aim to reply within 1 business year, but time may vary depending on the availability. We appreciate your interest!',
+      });
+    } catch (error) {
+      // Update state with error message
+      alert(`There was an error sending the email: ${error.message}`);
+    }
     showModal('Thank you for sending a query');
+
+    
   };
 
   useEffect(() => {

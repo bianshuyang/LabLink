@@ -14,7 +14,9 @@ module.exports = async (req, res) => {
         await client.connect();
         const collection = client.db('myDatabase').collection('contactCollection');
         const insertResult = await collection.insertOne(data);
-        console.log("Yes~");
+        
+
+        console.log("Yes");
         res.status(201); // 201 means "Created"
 
     } catch (error) {
