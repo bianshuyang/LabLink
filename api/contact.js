@@ -8,6 +8,7 @@ const client = new MongoClient(uri);
 
 
 module.exports = async (req, res) => {
+    console.log(req);
     try {
         const data = req.body;
         console.log(data);
