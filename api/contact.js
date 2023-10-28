@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
         
 
         console.log("Yes");
-        res.status(201); // 201 means "Created"
+        res.status(201).send("OK"); // 201 means "Created"
 
     } catch (error) {
         console.error(`Error occurred: ${error}`);
