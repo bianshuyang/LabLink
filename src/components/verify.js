@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import "../styles/login.css";
+import "../styles/verify.css";
 import eLogo from "../images/eLogo.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -81,18 +81,17 @@ const resetStates = () => {
   return(
     <div className="login-container">
     <div className="login-form-wrapper">
-      <div className="eLogo">
-        <img src={eLogo} alt="Emory Logo"/>
+      <div className="verifyeLogo">
       </div>
       <div className="banner">
         <h1>Lab Link</h1>
         <p>Enter your Emory credential and start journey with us!</p>
       </div>
-      <form className="signin-form" onSubmit={handleFormSubmit}>
+      <form className="signin-form verify-sf" onSubmit={handleFormSubmit}>
         <h1>Lab Link</h1>
         <h1>Verification Code</h1>
         <p>Verify my identity</p>
-        <div className="input-group">
+        <div className="input-group verify-ig">
           <i className="fas fa-envelope"></i>
           <input placeholder="verificationCode" value = {verificationCode} onChange={e => setVerificationCode(e.target.value)}  />
         </div>

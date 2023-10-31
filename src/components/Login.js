@@ -111,8 +111,8 @@ function Login(){
           <input type="password" placeholder="Password" value={password}  onChange={e => setPassword(e.target.value)}  />
         </div>
         <button type="submit">Login</button>
+        <Link to={'/resetPass'} className="resetPass">Reset Password</Link>
       </form>
-    
     </div>
   </div>
 )
