@@ -54,7 +54,7 @@ function Register(){
             setLoading(false);
             console.log("Response status:", response.status);
             console.log("Response status text:", response.statusText);
-            navigate('/');
+            navigate('/login');
 
         } else {
             let errorMessage;
@@ -69,7 +69,8 @@ function Register(){
 
     } catch (error) {
         //console.error('Error during registration:', error.message);
-        alert(error.message);  // Display the error message in an alert
+        alert("We believe there is a duplicate in the user Token. You are rerouted to reset password. ");  // Display the error message in an alert
+        navigate("/resetpass")
     }
     console.log(isError);
 }

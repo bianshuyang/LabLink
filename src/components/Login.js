@@ -55,12 +55,13 @@ function Login(){
       setData(responseData);
       setLoading(false);
       console.log("Login successful!");
-      sessionStorage.setItem('userToken', netID+"@@@@");
+      sessionStorage.setItem('userToken', netID);
       navigate('/');
     } catch (error) {
       setLoading(false);
       setIsError(true);
-      window.alert("Either your credential is not in our database, or your password is wrong!");
+      window.alert("Either your credential is not in our database, \n or your password is wrong! \n We have rerouted you to register page! ");
+      navigate('/register')
     }
     console.log(isError);
   }

@@ -13,7 +13,8 @@ import Register from './components/Register.js';
 import Contact from './components/Contact.js';
 import reportWebVitals from './reportWebVitals';
 import Test from './components/test.js';
-
+import ResetPass from './components/ResetPass.js';
+import Verify from './components/verify.js';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +52,14 @@ const router = createBrowserRouter([
   {
     path: "Test",
     element: <Test />,
+  },
+  {
+    path: "ResetPass",
+    element: <ResetPass />,
+  },
+  {
+    path: "Verify",
+    element: <Verify />,
   }
 ]);
 

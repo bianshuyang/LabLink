@@ -1,0 +1,153 @@
+html {
+  font-size: 62.5%;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;   /* Centers children horizontally */
+  align-items: center;       /* Centers children vertically */
+  height: 100vh;
+  width: 100vw;
+  background-color: #f7f7f7; /* optional: you can set a background color */
+}
+
+.login-form-wrapper {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* optional: for a subtle shadow effect */
+  padding: 40px; /* optional: to give some space inside the container */
+  background-color: #ffffff; /* optional: white background for the form wrapper */
+  border-radius: 8px; /* optional: for rounded corners */
+  width: auto; /* Ensure the width isn't too stretched */
+  text-align: center; 
+}
+
+
+.login-banner {
+  position: absolute;
+  top: 25%;
+  left: -30rem;
+  text-align: center;
+  color: #fff;
+  width: 30rem;
+  z-index: 100;
+  transition: left 0.8s;
+}
+
+
+.login-banner h1 {
+  font-size: 4rem;
+  margin-bottom: 3rem;
+}
+
+.login-banner p {
+  font-size: 2rem;
+  margin-top: 6rem;
+}
+
+.blue-bg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #1450A3, #337CCF);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+
+.logo-2.change {
+  display: none;
+}
+
+.blue-bg button {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16rem;
+  height: 5rem;
+  background-color: transparent;
+  border: 0.1rem solid #fff;
+  border-radius: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.signin-form {
+  width: 60rem;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16rem 0;
+  transition: left 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.signin-form h1 {
+  font-size: 4rem;
+  color: #1450A3;
+}
+
+.signin-form p {
+  font-size: 1.8rem;
+  color: #555;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+.input-group {
+  position: relative;
+  max-width: 45%;
+}
+
+.input-group input {
+  width: 28rem;
+  height: 5rem;
+  padding: 1rem 1rem 1rem 3rem;
+  background-color: #ddd;
+  border:none;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.signin-form button {
+  width: 16rem;
+  height: 5rem;
+  background-color: #1450A3;
+  border: none;
+  border-radius: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: #fff;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.logo-2{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+#logoonce img{
+  width: 30%;
+  max-width: 100%;
+  height: auto;
+  margin-top: 40px;
+}
