@@ -80,6 +80,8 @@ function Forum() {
 
     const fetchPostsAndUpdateState = async () => {
         try {
+            console.log(urlWithParams("/api/forum", 'threads'));
+            console.log("IS THE ACTUAL LIN!!!!");
             const response = await fetch(urlWithParams("/api/forum", 'threads'));
             const posts = await response.json();
             console.log("OK get response");
