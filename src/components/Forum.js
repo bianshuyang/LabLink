@@ -80,20 +80,30 @@ function Forum() {
 
 
     const fetchPostsAndUpdateState = async () => {
+    try {
+        const response = await fetch(urlWithParams("/api/forum", 'threads'));
+        const responseDataText = await response.text();
+
+        // Attempt to parse as JSON, if fails, just use the text
+        let responseData;
         try {
-            console.log(urlWithParams("/api/forum", 'threads'));
-            console.log("IS THE ACTUAL LIN!!!!");
-            const response = await fetch(urlWithParams("/api/forum", 'threads'));
-            console.log(response.text());
-            console.log("OK TEXT?????");
-            const posts = await response.json();
-            console.log("OK get response");
-            // Update the state with the new list of posts
-            setpostsData(posts);
+            responseData = JSON.parse(responseDataText);
         } catch (error) {
-            console.error('Error fetching data: ', error);
+            console.error("Failed to parse response as JSON: ", responseDataText);
+            responseData = responseDataText;
         }
-    };
+
+        // Handle based on type
+        if (typeof responseData === 'object' && response.ok) {
+            setpostsData(responseData);
+        } else {
+            console.error('Error or non-JSON response:', responseData);
+        }
+    } catch (error) {
+        console.error('Error fetching data: ', error);
+    }
+};
+
 
 
     async function addreply(netid, replyData, replyDate, replyid, selectedPostId) {
