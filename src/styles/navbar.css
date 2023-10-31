@@ -1,0 +1,56 @@
+.user-menu {
+  position: relative;
+  display: inline-block;
+  z-index: 111;
+}
+.user-button{
+  position: relative;
+  background-color: #04AA6D;
+  color: white;
+  font-size: 80%;
+  border: none;
+  z-index: 111;
+}
+.user-options{
+  display: none;
+  position: absolute;
+  left: 9.5rem;
+  background-color: rgba(255, 255, 255, .5);
+  min-width: 175px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 111;
+}
+
+/* Links inside the dropdown */
+.user-options a {
+  display: flex;
+  justify-content: center;
+  color: black;
+  font-size: 80%;
+  padding: 12px 16px;
+  text-decoration: none;
+  z-index: 111;
+}
+
+/* Change color of dropdown links on hover */
+.user-options a:hover {
+  background-color: rgba(255, 255, 255, .5);
+}
+
+/* Show the dropdown menu on hover */
+.user-menu:hover .user-options {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.user-menu:hover .user-button {
+  background-color: #3e8e41;
+}
+
+.icon-lock{
+  padding-top: .5rem;
+}
+
+.log-out-text{
+  padding: 0rem 1rem;
+}
