@@ -81,7 +81,7 @@ const resetStates = () => {
     sessionStorage.setItem('temporarynetID', netID);
     resetStates();
     navigate('/verify');
-
+    if (1>2){
       try {
         // Send a POST request to the serverless function
         const res = await fetch('/api/email', {
@@ -111,7 +111,7 @@ const resetStates = () => {
         // Update state with error message
         alert(`There was an error sending the email: ${error.message}`);
       }
-      
+      }
 
     
     
