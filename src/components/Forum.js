@@ -59,9 +59,9 @@ function Forum() {
     const fetchData = async () => {
     try {
         
-        const repliesResponse = await fetch(urlWithParams("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum", 'replies'));
-        const postsResponse = await fetch(urlWithParams("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum", 'threads'));
-        const usersResponse = await fetch(urlWithParams("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum", 'users'));
+        const repliesResponse = await fetch(urlWithParams("/api/forum", 'replies'));
+        const postsResponse = await fetch(urlWithParams("/api/forum", 'threads'));
+        const usersResponse = await fetch(urlWithParams("/api/forum", 'users'));
         
         const replies = await repliesResponse.json();
         const posts = await postsResponse.json();
