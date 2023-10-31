@@ -38,15 +38,15 @@ module.exports = async (req, res) => {
     console.log(method);
     console.log(body);
 
-    const collectionName = "threads";  // force writing it for now retrieve collection name from query parameters
-    const addcollection = body.collectionName;
-    // console.log(body.collectionName, "IS COLLEC??");
+    const collectionName = "threads";  // retrieve collection name from query parameters
+    console.log(collectionName, "IS COLLEC??");
+    console.log("OK PASS the GENERAL CHECK@!!!!!!!!!"); 
     switch (method) {
         case 'GET':
             await getDocuments(collectionName, res);
             break;
         case 'POST':
-            await addDocument(addcollection, res, body);
+            await addDocument(body.collectionName, res, body);
             break;
         case 'DELETE':
             await deleteDocument(body.collectionName, res, body);

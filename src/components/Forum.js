@@ -84,6 +84,8 @@ function Forum() {
             console.log(urlWithParams("/api/forum", 'threads'));
             console.log("IS THE ACTUAL LIN!!!!");
             const response = await fetch(urlWithParams("/api/forum", 'threads'));
+            console.log(response.text());
+            console.log("OK TEXT?????");
             const posts = await response.json();
             console.log("OK get response");
             // Update the state with the new list of posts
