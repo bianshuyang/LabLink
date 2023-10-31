@@ -50,11 +50,11 @@ module.exports = async (req, res) => {
                 break;
             
             case 'POST':
-                await addDocument(body.collectionName, body);
+                await addDocument(body.collectionName, res, body);
                 return res.status(200).json({ message: "Document added successfully!" });
             
             case 'DELETE':
-                await deleteDocument(body.collectionName, body);
+                await deleteDocument(body.collectionName, res, body);
                 return res.status(200).json({ message: "Document deleted successfully!" });
             
             default:
