@@ -35,7 +35,10 @@ async function getDocuments(collectionName, res, filter = {}) {
 
 module.exports = async (req, res) => {
     const { method, body } = req;
-    const collectionName = req.query.collectionName;  // retrieve collection name from query parameters
+    console.log(method);
+    console.log(body);
+
+    const collectionName = "threads";  // force writing it for now retrieve collection name from query parameters
     const addcollection = body.collectionName;
     // console.log(body.collectionName, "IS COLLEC??");
     switch (method) {
