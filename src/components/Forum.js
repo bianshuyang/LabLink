@@ -84,7 +84,7 @@ function Forum() {
 
     const fetchPostsAndUpdateState = async () => {
         try {
-            const response = await fetch(urlWithParams("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum", 'threads'));
+            const response = await fetch(urlWithParams("/api/forum", 'threads'));
             const posts = await response.json();
             console.log("OK get response");
             // Update the state with the new list of posts
@@ -97,7 +97,7 @@ function Forum() {
 
     async function addreply(netid, replyData, replyDate, replyid, selectedPostId) {
         try {
-            const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum?collection=replies", {
+            const response = await fetch("/api/forum?collection=replies", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -126,7 +126,7 @@ function Forum() {
     async function addthread(netid, postid, postData,postDate) {
         try {
           console.log(process.env);
-            const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum?collection=threads", {
+            const response = await fetch("/api/forum?collection=threads", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -158,7 +158,7 @@ function Forum() {
        // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
         //console.log(repliesForSelectedPost);
         console.log(netid, postid, replyid);
-        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum?collection=replies", {
+        const response = await fetch("/api/forum?collection=replies", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -197,7 +197,7 @@ function Forum() {
        // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
         //console.log(repliesForSelectedPost);
         console.log(netid, postid);
-        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum?collection=threads", {
+        const response = await fetch("/api/forum?collection=threads", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -230,7 +230,7 @@ function Forum() {
 
 const fetchRepliesAndUpdateState = async () => {
         try {
-            const response = await fetch(urlWithParams("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum", 'replies'));
+            const response = await fetch(urlWithParams("/api/forum", 'replies'));
             const replies = await response.json();
             console.log("OK get response");
             // Update the state with the new list of posts

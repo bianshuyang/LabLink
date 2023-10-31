@@ -46,7 +46,7 @@ function News(){
   const bool = true;
   useEffect(() => {
         // Replace this URL with your server's endpoint URL
-        fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/news")
+        fetch("/api/news")
             .then(response => response.json())
             .then(data => {
                 setNewsData(data);

@@ -58,7 +58,7 @@ const resetStates = () => {
     }
     console.log(verificationCode);
     try { 
-      const res = await fetch("https://" + process.env.REACT_APP_VERCEL_URL+ '/api/reset/forget', {
+      const res = await fetch('/api/reset/forget', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
