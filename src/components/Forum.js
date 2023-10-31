@@ -29,12 +29,16 @@ function generatePagination(currentPage, maxPages) {
 
 
 function Forum() {
-    sessionStorage.setItem('userToken', "abc01");
+
     const getUserNameByNetId = (netid) => {
         const user = usersData.find(u => u.netid === netid);
         return user ? user.Name : netid; 
     };
 
+    const urlWithParams = (endpoint, collectionName, filter = {}) => {
+            const params = new URLSearchParams({ collectionName});
+            return `${endpoint}?${params.toString()}`;
+        };
 
     const [postsData, setpostsData] = useState([]);
     const [repliesData, setrepliesData] = useState([]);
@@ -48,37 +52,39 @@ function Forum() {
     const [replyid,setreplyid]= React.useState('');
     const [replyData,setreplyData] = React.useState('');
     const [replyDate,setreplyDate] = React.useState('');
+    
+
     /////////////
     useEffect(() => {
-        const fetchReplies = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getreplies")
-            .then(response => response.json());
+    const fetchData = async () => {
+    try {
         
-        const fetchPosts = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getthread")
-            .then(response => response.json());
+        const repliesResponse = await fetch(urlWithParams("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum", 'replies'));
+        const postsResponse = await fetch(urlWithParams("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum", 'threads'));
+        const usersResponse = await fetch(urlWithParams("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum", 'users'));
         
-        const fetchUsers = fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getusers")
-            .then(response => response.json());
+        const replies = await repliesResponse.json();
+        const posts = await postsResponse.json();
+        const users = await usersResponse.json();
+
+        setrepliesData(replies);
+        setpostsData(posts);
+        setusersData(users);
+    } catch (error) {
+        console.error('Error fetching data: ', error);
+    }
+};
 
 
-        Promise.all([fetchReplies, fetchPosts, fetchUsers])
-            .then(([replies, posts, users]) => {
-                // Set state with the results from the API
-                setrepliesData(replies);
-                setpostsData(posts);
-                setusersData(users);
-                console.log(users)
-
-            })
-            .catch(error => {
-                console.error('Error fetching data: ', error);
-            });
+        fetchData();
     }, []);
+
 
 
 
     const fetchPostsAndUpdateState = async () => {
         try {
-            const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL + "/api/forum/getthread");
+            const response = await fetch(urlWithParams("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum", 'threads'));
             const posts = await response.json();
             console.log("OK get response");
             // Update the state with the new list of posts
@@ -91,17 +97,19 @@ function Forum() {
 
     async function addreply(netid, replyData, replyDate, replyid, selectedPostId) {
         try {
-            const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL +"/api/forum/addreplies", {
+            const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum?collection=replies", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
+                    collectionName: 'replies',
                     netid: netid,
                     replycontent: replyData,
                     replydate: replyDate,
                     replyid: replyid,
-                    postid: selectedPostId
+                    postid: selectedPostId,
+                    collectionName: "replies"
                 }),
             });
             console.log(response);
@@ -118,7 +126,7 @@ function Forum() {
     async function addthread(netid, postid, postData,postDate) {
         try {
           console.log(process.env);
-            const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL +"/api/forum/addthread", {
+            const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum?collection=threads", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -127,7 +135,8 @@ function Forum() {
                     netid: netid,
                     postid: postid,
                     postData: postData,
-                    postDate: postDate
+                    postDate: postDate,
+                    collectionName: "threads"
                 }),
             });
             console.log(response);
@@ -149,8 +158,8 @@ function Forum() {
        // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
         //console.log(repliesForSelectedPost);
         console.log(netid, postid, replyid);
-        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL +"/api/forum/deletereplies", {
-                method: "POST",
+        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum?collection=replies", {
+                method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -158,7 +167,8 @@ function Forum() {
                     netid: netid,
                     postid: postid,
                     replyid: replyid,
-                    replycontent: "deletedReply"
+                    collectionName: "replies"
+                    // replycontent: "deletedReply"
                 }),
             });
             console.log(response);
@@ -187,15 +197,15 @@ function Forum() {
        // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
         //console.log(repliesForSelectedPost);
         console.log(netid, postid);
-        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL +"/api/forum/deletethread", {
-                method: "POST",
+        const response = await fetch("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum?collection=threads", {
+                method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     netid: netid,
                     postid: postid,
-                    postData: "deleted"
+                    collectionName: "threads" //postData: "deleted"
                 }),
             });
             console.log(response);
@@ -204,8 +214,9 @@ function Forum() {
                 alert("It seems you are deleting unauthorized posts");
             }
             else{
-                alert("Post marked as DELETE. However, all replies are retained");
+                alert("Post are removed from database. However, all replies are retained");
             }
+            fetchPostsAndUpdateState();
             console.log(statusCode);
 
         } catch (error) {
@@ -214,6 +225,23 @@ function Forum() {
             console.log(error);
         }
     }
+
+
+
+const fetchRepliesAndUpdateState = async () => {
+        try {
+            const response = await fetch(urlWithParams("https://" + process.env.REACT_APP_VERCEL_URL+"/api/forum", 'replies'));
+            const replies = await response.json();
+            console.log("OK get response");
+            // Update the state with the new list of posts
+            setrepliesData(replies);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+
+
+
 
 const addReplySubmit = async (event) => {
     event.preventDefault();
@@ -236,20 +264,31 @@ const addReplySubmit = async (event) => {
     };
     console.log(postid);
     await addreply(newReply.netid, newReply.replycontent, newReply.replydate, newReply.replyid, newReply.postid);
-
+    alert("Thank you for bringing in a post, your response has been submitted");
+    fetchRepliesAndUpdateState();
+    console.log("OK??????")
     setreplyData('');
-    setreplyDate(''); 
+
 };
 
 
 
 
 
-  const addThreadSubmit = async (event) => {
+ const addThreadSubmit = async (event) => {
     event.preventDefault();
 
-    const maxPostId = postsData.length;
-    const nextPostId = maxPostId + 1;
+    let maxPostId, nextPostId;
+
+    try {
+        maxPostId = postsData.length > 0 ? postsData[postsData.length - 1].postid + 1 : 1;
+        nextPostId = maxPostId + 1;
+    } catch (error) {
+        console.error("Error getting max post id:", error);
+        maxPostId = 1;
+        nextPostId = maxPostId + 1;
+    }
+
     const token = sessionStorage.getItem('userToken');
     console.log(token,"is token!!!!");
     const randomNetId = token; // to be replaced when we connect
@@ -257,13 +296,13 @@ const addReplySubmit = async (event) => {
     setnetid(randomNetId);
     setpostid(nextPostId);
     setpostDate(currentDate);
-
+    alert("Thank you for bringing in a post, your response has been submitted");
     const response = await addthread(randomNetId, nextPostId, postData, currentDate);  // Call fetchData with netID and password
 
     fetchPostsAndUpdateState();
     console.log("fetching complete!!!")
     setpostData(''); 
-    alert("Thank you for bringing in a post, your response has been submitted");
+    
   };
 
     // State to determine which view to show: users, posts, or replies
@@ -310,7 +349,8 @@ const addReplySubmit = async (event) => {
         }
         else{
             await deletereply(token, selectedPostId, replyId); //
-        }  
+        }
+        fetchRepliesAndUpdateState();
     };
 
     const handleReplyPageChange = (page) => {
@@ -462,7 +502,7 @@ const addReplySubmit = async (event) => {
 
                         ))}
                     </ul>
-                    <form  onSubmit = {addThreadSubmit}>
+                    <form  onSubmit = {addThreadSubmit} >
                     <label>
                       New Thread
                                       <textarea 
