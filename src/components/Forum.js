@@ -138,13 +138,28 @@ const fetchUsersAndUpdateState = async () => {
 
 const fetchRepliesAndUpdateState = async () => {
         try {
-            console.log("STEP !")
+            console.log("STEP on replies?????/ !")
         const response = await fetch("/api/forum?dataType=replies", {
             method: "GET"
         });
 
+const responseDataText = await response.text();
 
-        console.log(response)
+        // Attempt to parse as JSON, if fails, just use the text
+        let responseData;
+        try {
+            responseData = JSON.parse(responseDataText);
+        } catch (error) {
+            console.error("Failed to parse response as JSON: ", responseDataText);
+            responseData = responseDataText;
+        }
+
+        // Handle based on type
+        if (typeof responseData === 'object' && response.ok) {
+            setrepliesData(responseData);
+        } else {
+            console.error('Error or non-JSON response:', responseData);
+        }
 
     } catch (error) {
         console.error('Error fetching data: ', error);
@@ -165,7 +180,6 @@ const fetchRepliesAndUpdateState = async () => {
                     replydate: replyDate,
                     replyid: replyid,
                     postid: selectedPostId,
-                    collectionName: "replies"
                 }),
             });
             console.log(response);

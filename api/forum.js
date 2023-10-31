@@ -15,7 +15,6 @@ async function addDocument(collectionName, res, data) {
     await connectToDb();
     const collection = client.db('forum').collection(collectionName);
     await collection.insertOne(data);
-    res.status(200).json({ message: "Document added successfully!" });
 }
 
 async function deleteDocument(collectionName, res, filter) {
