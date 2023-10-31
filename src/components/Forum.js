@@ -64,9 +64,13 @@ function Forum() {
         const usersResponse = await fetch(urlWithParams("/api/forum", 'users'));
         
         const replies = await repliesResponse.json();
+        console.log(replies);
         const posts = await postsResponse.json();
+        console.log(posts);
         const users = await usersResponse.json();
+        console.log(users);
 
+        console.log("ALLDONE");
         setrepliesData(replies);
         setpostsData(posts);
         setusersData(users);

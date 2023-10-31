@@ -84,7 +84,7 @@ const resetStates = () => {
 
       try {
         // Send a POST request to the serverless function
-        const res = await fetch("https://" + process.env.REACT_APP_VERCEL_URL+ '/api/email', {
+        const res = await fetch('/api/email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
