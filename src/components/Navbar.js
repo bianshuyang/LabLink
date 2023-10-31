@@ -1,5 +1,4 @@
 import * as React from "react";
-import "../styles/navbar.css";
 import { Link } from "react-router-dom";
 import { LabLinkContext } from "../LabLinkProvider";
 
