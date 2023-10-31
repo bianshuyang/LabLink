@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../styles/forum.css";
 import { Link } from "react-router-dom"
+import Navbar from './Navbar.js';
 
 
 const ITEMS_PER_PAGE = 9;
@@ -32,7 +33,7 @@ function Forum() {
 
     const getUserNameByNetId = (netid) => {
         const user = usersData.find(u => u.netid === netid);
-        return user ? user.Name : netid; 
+        return user ? user.Name : netid;
     };
 
     const urlWithParams = (endpoint, collectionName, filter = {}) => {
@@ -52,13 +53,13 @@ function Forum() {
     const [replyid,setreplyid]= React.useState('');
     const [replyData,setreplyData] = React.useState('');
     const [replyDate,setreplyDate] = React.useState('');
-    
+
 
     /////////////
     useEffect(() => {
     const fetchData = async () => {
     try {
-        
+
         //const repliesResponse = await fetch(urlWithParams("http://localhost:3000/api/forum", 'replies'));
         //const postsResponse = await fetch(urlWithParams("http://localhost:3000/api/forum", 'threads'));
         const usersResponse = await fetch(urlWithParams("api/forum", 'users'));
@@ -141,7 +142,7 @@ function Forum() {
             const statusCode = response.status;
             console.log(statusCode);
             console.log("I have rerendered. ")
-            
+
         } catch (error) {
             //console.error('Error during registration:', error.message);
             console.log("Something is wrong...?")
@@ -171,7 +172,7 @@ function Forum() {
             });
             console.log(response);
             const statusCode = response.status;
-            if (statusCode == 403) { 
+            if (statusCode == 403) {
                 alert("It seems you are deleting unauthorized replies");
             }
             else{
@@ -208,7 +209,7 @@ function Forum() {
             });
             console.log(response);
             const statusCode = response.status;
-            if (statusCode == 403) { 
+            if (statusCode == 403) {
                 alert("It seems you are deleting unauthorized posts");
             }
             else{
@@ -299,8 +300,8 @@ const addReplySubmit = async (event) => {
 
     fetchPostsAndUpdateState();
     console.log("fetching complete!!!")
-    setpostData(''); 
-    
+    setpostData('');
+
   };
 
     // State to determine which view to show: users, posts, or replies
@@ -332,8 +333,8 @@ const addReplySubmit = async (event) => {
             return
         }
         else{
-            await deletethread(token, selectedPostId); 
-        }  
+            await deletethread(token, selectedPostId);
+        }
     };
 
     const deleteReplyClick = async (replyId, event) => {
@@ -357,11 +358,11 @@ const addReplySubmit = async (event) => {
 
 
     //const [postsData, setpostsData] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);  
- 
+    const [currentPage, setCurrentPage] = useState(1);
+
     // Depending on the state, we'll render different views
     return (
-       
+
 
     <>
 
@@ -478,7 +479,7 @@ const addReplySubmit = async (event) => {
                                     <strong>{reply.replydate}</strong> {reply.replycontent}
                                     <button onClick={(event) => deleteReplyClick(reply.replyid, event)}>Delete My Reply</button>
                                 </li>
-                            ))} 
+                            ))}
                     </ul>
                     <form onSubmit = {addReplySubmit}>
                     <label>
@@ -493,9 +494,9 @@ const addReplySubmit = async (event) => {
                     <h2>Posts</h2>
                     <ul>
                         {postsData.slice((currentPage-1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((post, index) => (
-                            
+
     <li key={post.postid} onClick={() => handlePostClick(post.postid)}>
-        {post.postData} - by {getUserNameByNetId(post.netid)} 
+        {post.postData} - by {getUserNameByNetId(post.netid)}
     </li>
 
                         ))}
@@ -503,12 +504,12 @@ const addReplySubmit = async (event) => {
                     <form  onSubmit = {addThreadSubmit} >
                     <label>
                       New Thread
-                                      <textarea 
-                  onChange={(e) => setpostData(e.target.value)} 
-                  type="text" 
-                  name="New Posts" 
-                  rows="2" 
-                  cols="50" 
+                                      <textarea
+                  onChange={(e) => setpostData(e.target.value)}
+                  type="text"
+                  name="New Posts"
+                  rows="2"
+                  cols="50"
                   placeholder="Sincerity brings connections."
                   value={postData} // This line ensures the value is updated in the UI
                 />
@@ -528,7 +529,7 @@ const addReplySubmit = async (event) => {
         <ul className="list-unstyled custom-pagination">
 
 
-            {showReplies ? 
+            {showReplies ?
                         generatePagination(currentReplyPage, Math.ceil(repliesData.filter(reply => reply.postid === selectedPostId).length / ITEMS_PER_PAGE)).map((page, index) => (
                             <li key={index} className={page === currentReplyPage ? 'active' : ''}>
                                 {page === '...' ? (

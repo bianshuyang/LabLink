@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar.js';
 
 import Modal from 'react-modal';
 
-Modal.setAppElement('#root') 
+Modal.setAppElement('#root')
 export default function Contact() {
   const [isChange, setIsChange] = React.useState(false);
   const [data, setData] = useState(null);
@@ -62,7 +63,7 @@ export default function Contact() {
                 field4: text
             }),
         });
-        
+
         console.log(name,email,subject,text);
         console.log(response);
 
@@ -74,7 +75,7 @@ export default function Contact() {
             setLoading(false);
             console.log("Response status:", response.status);
             console.log("Response status text:", response.statusText);
-            
+
         } else {
             let errorMessage;
             try {
@@ -137,7 +138,7 @@ export default function Contact() {
     }
     showModal('Thank you for sending a query');
 
-    
+
   };
 
   useEffect(() => {
@@ -192,7 +193,7 @@ export default function Contact() {
               <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
                 <li><Link to={'/'}>Home</Link></li>
                 <li><Link to={'/Professors'}>Professors</Link></li>
-                <li><Link to={'/SingleProf'}>Single Professor</Link></li> 
+                <li><Link to={'/SingleProf'}>Single Professor</Link></li>
                 <li><Link to={'/news'}>Projects</Link></li>
                 <li><Link to={'/news'}>Events</Link></li>
                 <li><Link to={'/'}>About</Link></li>

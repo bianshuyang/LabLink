@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
+import Navbar from './Navbar.js';
 
 const ITEMS_PER_PAGE = 10;
 const MAX_VISIBLE_PAGINATION = 8;
@@ -49,7 +50,7 @@ function SingleProf() {
             <span className="icofont-close js-menu-toggle"></span>
           </div>
         </div>
-        
+
         <div className="site-mobile-menu-body"></div>
         </div>
 
@@ -83,7 +84,7 @@ function SingleProf() {
                     <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
                     <li><Link to={'/Home'}>Home</Link></li>
                     <li><Link to={'/Professors'}>Professors</Link></li>
-                    <li  className="active" ><Link to={'/SingleProf'}>Single Professor</Link></li> 
+                    <li  className="active" ><Link to={'/SingleProf'}>Single Professor</Link></li>
                     <li><Link to={'/news'}>Projects</Link></li>
                     <li><Link to={'/news'}>Events</Link></li>
                     <li><Link to={'/'}>About</Link></li>
@@ -204,17 +205,17 @@ function SingleProf() {
       </div>
 
         <div className="untree_co-section bg-light" id = "News_concrete">
-        
+
         <div className="site-footer">
           <div className="container">
             <div className="row">
-              
+
               <div className="col-lg-3 mr-auto">
                 <div className="widget">
                   <h3>About Us<span className="text-primary">.</span> </h3>
                     <p></p>
                 </div>
-                
+
                 <div className="widget">
                   <h3>Connect</h3>
                   <ul className="list-unstyled social">

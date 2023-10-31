@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
-
+import Navbar from './Navbar.js';
 
 
 
@@ -32,12 +32,12 @@ function generatePagination(currentPage, maxPages) {
 
 function News(){
 
-  
+
   const token = sessionStorage.getItem('userToken');
   console.log(token,"is token!!!!");
   const [newsData, setNewsData] = useState([]); // You can fetch this from an external source if needed
   const [currentPage, setCurrentPage] = useState(1);
-  
+
 
 
   //console.log(oldnewsData);
@@ -106,7 +106,7 @@ if (bool){
 
               <li><Link to={'/Home'}>Home</Link></li>
               <li><Link to={'/Professors'}>Professors</Link></li>
-              <li><Link to={'/SingleProf'}>Single Professor</Link></li> 
+              <li><Link to={'/SingleProf'}>Single Professor</Link></li>
               <li className="active" ><Link to={'/news'}>Projects</Link></li>
               <li className="active"><Link to={'/news'}>Events</Link></li>
               <li><Link to={'/'}>About</Link></li>
