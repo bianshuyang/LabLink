@@ -59,21 +59,13 @@ function Forum() {
     const fetchData = async () => {
     try {
         
-        const repliesResponse = await fetch(urlWithParams("/api/forum", 'replies'));
-        const postsResponse = await fetch(urlWithParams("/api/forum", 'threads'));
-        const usersResponse = await fetch(urlWithParams("/api/forum", 'users'));
-        
-        const replies = await repliesResponse.json();
-        console.log(replies);
-        const posts = await postsResponse.json();
-        console.log(posts);
-        const users = await usersResponse.json();
-        console.log(users);
+        //const repliesResponse = await fetch(urlWithParams("http://localhost:3000/api/forum", 'replies'));
+        //const postsResponse = await fetch(urlWithParams("http://localhost:3000/api/forum", 'threads'));
+        const usersResponse = await fetch(urlWithParams("api/forum", 'users'));
+        fetchPostsAndUpdateState();
+        fetchRepliesAndUpdateState();
 
         console.log("ALLDONE");
-        setrepliesData(replies);
-        setpostsData(posts);
-        setusersData(users);
     } catch (error) {
         console.error('Error fetching data: ', error);
     }
