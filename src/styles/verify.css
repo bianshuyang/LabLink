@@ -1,0 +1,15 @@
+.verifyeLogo{
+  background-image: url("../images/eLogo.png");
+  position: relative;
+  background-origin: center;
+  background-position-x: center;
+  width: 100%;
+  height: 100%;
+}
+ .verify-sf{
+    width: 100rem;
+ }
+
+ .verify-ig{
+  width: auto;
+ }
