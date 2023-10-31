@@ -32,27 +32,38 @@ async function getDocuments(collectionName, res, filter = {}) {
     res.status(200).json(allDocuments);
 }
 
-
 module.exports = async (req, res) => {
-    const { method, body } = req;
-    console.log(method);
-    console.log(body);
+    try {
+        const { method, body, query } = req;
+        console.log(method);
+        console.log(body);
+        console.log(query);
+        switch (method) {
+            case 'GET':
+                console.log(method);
+                console.log(body);
+                console.log(query);
+                if (query.dataType) {
+                    const documents = await getDocuments(query.dataType, res);
+                    return res.status(200).json(documents);
+                }
+                break;
+            
+            case 'POST':
+                await addDocument(body.collectionName, body);
+                return res.status(200).json({ message: "Document added successfully!" });
+            
+            case 'DELETE':
+                await deleteDocument(body.collectionName, body);
+                return res.status(200).json({ message: "Document deleted successfully!" });
+            
+            default:
+                return res.status(400).json({ error: 'Invalid request method!' });
+        }
 
-    const collectionName = "threads";  // retrieve collection name from query parameters
-    console.log(collectionName, "IS COLLEC??");
-    console.log("OK PASS the GENERAL CHECK@!!!!!!!!!"); 
-    switch (method) {
-        case 'GET':
-            await getDocuments(collectionName, res);
-            break;
-        case 'POST':
-            await addDocument(body.collectionName, res, body);
-            break;
-        case 'DELETE':
-            await deleteDocument(body.collectionName, res, body);
-            break;
-        default:
-            res.status(400).json({ error: 'Invalid request method!' });
-            break;
+    } catch (error) {
+        console.error("Error handling the request:", error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+

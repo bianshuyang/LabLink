@@ -62,9 +62,11 @@ function Forum() {
 
         //const repliesResponse = await fetch(urlWithParams("http://localhost:3000/api/forum", 'replies'));
         //const postsResponse = await fetch(urlWithParams("http://localhost:3000/api/forum", 'threads'));
-        const usersResponse = await fetch(urlWithParams("api/forum", 'users'));
+        
         fetchPostsAndUpdateState();
         fetchRepliesAndUpdateState();
+        fetchUsersAndUpdateState();
+        console.log(usersData);
 
         console.log("ALLDONE");
     } catch (error) {
@@ -78,10 +80,40 @@ function Forum() {
 
 
 
+const fetchUsersAndUpdateState = async () => {
+    try {
+         const response = await fetch("/api/forum?dataType=users", {
+            method: "GET"
+            });
+        const responseDataText = await response.text();
+
+        // Attempt to parse as JSON, if fails, just use the text
+        let responseData;
+        try {
+            responseData = JSON.parse(responseDataText);
+        } catch (error) {
+            console.error("Failed to parse response as JSON: ", responseDataText);
+            responseData = responseDataText;
+        }
+
+        // Handle based on type
+        if (typeof responseData === 'object' && response.ok) {
+            setusersData(responseData);
+        } else {
+            console.error('Error or non-JSON response:', responseData);
+        }
+    } catch (error) {
+        console.error('Error fetching data: ', error);
+    }
+    };
+
+
 
     const fetchPostsAndUpdateState = async () => {
     try {
-        const response = await fetch(urlWithParams("/api/forum", 'threads'));
+         const response = await fetch("/api/forum?dataType=threads", {
+            method: "GET"
+            });
         const responseDataText = await response.text();
 
         // Attempt to parse as JSON, if fails, just use the text
@@ -102,9 +134,22 @@ function Forum() {
     } catch (error) {
         console.error('Error fetching data: ', error);
     }
-};
+    };
+
+const fetchRepliesAndUpdateState = async () => {
+        try {
+            console.log("STEP !")
+        const response = await fetch("/api/forum?dataType=replies", {
+            method: "GET"
+        });
 
 
+        console.log(response)
+
+    } catch (error) {
+        console.error('Error fetching data: ', error);
+    }
+    };
 
     async function addreply(netid, replyData, replyDate, replyid, selectedPostId) {
         try {
@@ -239,17 +284,7 @@ function Forum() {
 
 
 
-const fetchRepliesAndUpdateState = async () => {
-        try {
-            const response = await fetch(urlWithParams("/api/forum", 'replies'));
-            const replies = await response.json();
-            console.log("OK get response");
-            // Update the state with the new list of posts
-            setrepliesData(replies);
-        } catch (error) {
-            console.error('Error fetching data: ', error);
-        }
-    };
+
 
 
 
