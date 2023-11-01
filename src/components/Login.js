@@ -8,6 +8,26 @@ import sjcl from 'sjcl';
 
 function Login(){
 
+  function validateNetID(netID) {
+    // Check if netID is empty
+    if (!netID || netID.trim() === "") {
+        throw new Error("NetID cannot be empty");
+    }
+
+    // Check if netID starts with an alphabetical character
+    if (!/^[a-zA-Z]/.test(netID)) {
+        throw new Error("NetID must start with an alphabetical character");
+    }
+
+    // Check if netID is not just numbers
+    if (/^\d+$/.test(netID)) {
+        throw new Error("NetID cannot be just numbers");
+    }
+
+}
+
+
+
 
   function hashPassword(password) {
       try{
@@ -31,6 +51,11 @@ function Login(){
   };
 
   async function fetchData(netID, password) {
+    try{
+      validateNetID(netID);
+      console.log("Valid netID FORMAT");
+
+
     console.log(hashPassword(password));
     console.log("is pss")
     try {
@@ -64,6 +89,11 @@ function Login(){
       navigate('/register')
     }
     console.log(isError);
+  }
+  catch (error){
+    alert(error.message);
+
+    }
   }
 
   const handleFormSubmit = (e) => {

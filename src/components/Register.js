@@ -29,7 +29,37 @@ function Register(){
     setIsChange(!isChange);
   };
 
+function validateNetID(netID) {
+    // Check if netID is empty
+    if (!netID || netID.trim() === "") {
+        throw new Error("NetID cannot be empty");
+    }
+
+    // Check if netID starts with an alphabetical character
+    if (!/^[a-zA-Z]/.test(netID)) {
+        throw new Error("NetID must start with an alphabetical character");
+    }
+
+    // Check if netID is not just numbers
+    if (/^\d+$/.test(netID)) {
+        throw new Error("NetID cannot be just numbers");
+    }
+
+}
+
+
+
   async function fetchData(netID, password) {
+
+
+try {
+        validateNetID(netID);
+        console.log("NetID is valid");
+    } catch (error) {
+        alert(error.message);
+    }
+
+
     try {
       console.log(process.env);
         const response = await fetch("/api/register", {

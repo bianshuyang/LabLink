@@ -43,6 +43,26 @@ const resetStates = () => {
   // Add other state resets if needed
 }
 
+  function validateNetID(netID) {
+    // Check if netID is empty
+    if (!netID || netID.trim() === "") {
+        throw new Error("NetID cannot be empty");
+    }
+
+    // Check if netID starts with an alphabetical character
+    if (!/^[a-zA-Z]/.test(netID)) {
+        throw new Error("NetID must start with an alphabetical character");
+    }
+
+    // Check if netID is not just numbers
+    if (/^\d+$/.test(netID)) {
+        throw new Error("NetID cannot be just numbers");
+    }
+
+}
+
+
+
 
   const handleFormSubmit = async (e) => {
     const verificationCode = generateRandomCode();
@@ -57,6 +77,10 @@ const resetStates = () => {
       code: verificationCode
     }
     console.log(verificationCode);
+    try {
+        validateNetID(recordedPairs.user);
+        console.log("NetID is valid");
+    
     try { 
       const res = await fetch('/api/reset/forget', {
           method: 'POST',
@@ -112,6 +136,11 @@ const resetStates = () => {
         alert(`There was an error sending the email: ${error.message}`);
       }
       }
+
+      } catch (error) {
+        alert(error.message);
+        resetStates();
+    }
 
     
     
