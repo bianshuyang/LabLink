@@ -144,7 +144,7 @@ const resetStates = () => {
       <form className="signin-form" onSubmit={handleFormSubmit}>
         <h1>Lab Link</h1>
         <h1>Forgot Password</h1>
-        <p>Forgot Password</p>
+        <p>Input your netID to initiate a password reset.</p>
         <div className="input-group">
           <i className="fas fa-envelope"></i>
           <input placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
