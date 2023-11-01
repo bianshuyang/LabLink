@@ -11,6 +11,7 @@ import Login from "./components/Login.js";
 import Forum from "./components/Forum.js";
 import Register from './components/Register.js';
 import Contact from './components/Contact.js';
+import Profile from './components/Profile.js'
 import reportWebVitals from './reportWebVitals';
 import Test from './components/test.js';
 import ResetPass from './components/ResetPass.js';
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
   {
     path: "Verify",
     element: <Verify />,
+  },
+  {
+    path: "Profile",
+    element: <Profile />
   }
 ]);
 

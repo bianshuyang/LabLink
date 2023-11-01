@@ -21,7 +21,7 @@ export default function Navbar(){
             {isLoggedIn ?
               <div className="col-6 col-lg-3 text-right user-menu">
                 <button className="user-button">
-                  User Name (Profile Picture)
+                  User NetID (profile icon)
                 </button>
                 <div className="user-options">
                   <Link to={'/profile'} className="small">

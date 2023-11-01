@@ -170,16 +170,9 @@ export default function Contact() {
                     <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
                       <p>Welcome to the LabLink! Contact Page! Whether you're a student looking to join a research project, a professor eager to showcase your work, or someone with a general inquiry, we're here to help.</p>
                     </div>
-
-                    <p className="mb-0" data-aos="fade-up" data-aos-delay="300"><Link to={'/'} className="btn btn-secondary">Explore courses</Link></p>
-
                   </div>
-
-
                 </div>
-
               </div>
-
             </div>
           </div>
 
