@@ -2,8 +2,9 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import "../styles/login.css";
 import eLogo from "../images/eLogo.png";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+import { LabLinkContext } from '../LabLinkProvider';
 import sjcl from 'sjcl';
 
 function Login(){
@@ -13,37 +14,33 @@ function Login(){
     if (!netID || netID.trim() === "") {
         throw new Error("NetID cannot be empty");
     }
-
     // Check if netID starts with an alphabetical character
     if (!/^[a-zA-Z]/.test(netID)) {
         throw new Error("NetID must start with an alphabetical character");
     }
-
     // Check if netID is not just numbers
     if (/^\d+$/.test(netID)) {
         throw new Error("NetID cannot be just numbers");
     }
-
-}
-
-
-
+  }
 
   function hashPassword(password) {
-      try{
+    try{
       return sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
     }
     catch(error){
       console.error("Error hashing password:", error);
     }
   }
- 
-  const [isChange, setIsChange] = React.useState(false);
+
+  const [isChange, setIsChange] = useState(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [netID, setNetID] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [netID, setNetID] = useState('');
+  const [password, setPassword] = useState('');
+  const { setIsLoggedIn } = useContext(LabLinkContext);
+
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
@@ -79,6 +76,7 @@ function Login(){
       const responseData = await response.json();
       setData(responseData);
       setLoading(false);
+      setIsLoggedIn(true);
       console.log("Login successful!");
       sessionStorage.setItem('userToken', netID);
       navigate('/');
@@ -111,7 +109,7 @@ function Login(){
   if (loading) {
     return <div>Loading...</div>;
   }
-  
+
   return(
     <div className={`login-container ${isChange ? "change" : ""}`}>
     <div className="login-form-wrapper">
