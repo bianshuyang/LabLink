@@ -16,7 +16,7 @@ It is deployed on vercel. Therefore, no installation is necessary for now.
 **Then you’re at the right place!**
 
 ![Example Image](public/images/CS_370_User_Documentation.jpg)
-![Example Image](public/images/CS_370_User_Documentation1.jpg)
+![Example Image](src/images/CS_370_User_Documentation1.jpg)
 
 ## Technical Documentation
 
