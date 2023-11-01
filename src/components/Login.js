@@ -37,9 +37,9 @@ function Login(){
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [netID, setNetID] = useState('');
   const [password, setPassword] = useState('');
   const { setIsLoggedIn } = useContext(LabLinkContext);
+  const { netID, setNetID } = useContext(LabLinkContext);
 
   const navigate = useNavigate();
 

@@ -1,7 +1,10 @@
 import React from 'react';
 import Navbar from './Navbar.js';
+import { LabLinkContext } from '../LabLinkProvider';
 
 export default function Profile() {
+
+  const { netID, setNetID } = React.useContext(LabLinkContext);
 
     return (
       <>
@@ -22,7 +25,7 @@ export default function Profile() {
               <div className="col-12">
                 <div className="row justify-content-center ">
                   <div className="col-lg-6 text-center ">
-                    <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Welcome (netID)</h1>
+                    <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Welcome { netID }</h1>
                     <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
                       <p>Welcome to the LabLink Profile Page! Here, you have the power to personalize your scientific identity. Update your email, fine-tune your display name, and enhance your professional bio.</p>
                     </div>

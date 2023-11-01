@@ -6,6 +6,7 @@ import { LabLinkContext } from "../LabLinkProvider";
 export default function Navbar(){
 
   const { isLoggedIn, setIsLoggedIn } = React.useContext(LabLinkContext);
+  const { netID } = React.useContext(LabLinkContext)
 
   return(
     <nav className="site-nav mb-5">
@@ -21,7 +22,7 @@ export default function Navbar(){
             {isLoggedIn ?
               <div className="col-6 col-lg-3 text-right user-menu">
                 <button className="user-button">
-                  User NetID (profile icon)
+                   { netID } (profile icon)
                 </button>
                 <div className="user-options">
                   <Link to={'/profile'} className="small">
