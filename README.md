@@ -19,5 +19,7 @@ It is deployed on vercel. Therefore, no installation is necessary for now.
 
 ## Technical Documentation
 
+List of files / folders here:
+
 We appreciate your feedback!
 
