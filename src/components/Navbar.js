@@ -22,12 +22,12 @@ export default function Navbar(){
             {isLoggedIn ?
               <div className="col-6 col-lg-3 text-right user-menu">
                 <button className="user-button">
-                   { netID } (profile icon)
+                   { netID } <span className="icon-person"></span>
                 </button>
                 <div className="user-options">
                   <Link to={'/profile'} className="small">
-                    <span></span>
-                    Profile
+                    <span className="icon-person menu-person"></span>
+                    <span className="profile-text">Profile</span>
                   </Link>
                   <Link to={'/'} onClick={() => setIsLoggedIn(!isLoggedIn)} className="small">
                     <span className="icon-lock"></span>

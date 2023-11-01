@@ -5,7 +5,7 @@
 }
 .user-button{
   position: relative;
-  background-color: #04AA6D;
+  background-color: transparent;
   color: white;
   font-size: 80%;
   border: none;
@@ -44,7 +44,8 @@
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .user-menu:hover .user-button {
-  background-color: #3e8e41;
+  background-color: rgba(255, 255, 255, .5);
+  color: black;
 }
 
 .icon-lock{
@@ -53,4 +54,11 @@
 
 .log-out-text{
   padding: 0rem 1rem;
+}
+.menu-person{
+  padding-top: .4rem;
+}
+
+.profile-text{
+  padding: 0rem 1.4rem;
 }
