@@ -9,7 +9,7 @@ const ReactComponent = (props) => {
           {props.data.map((prof, index) => (
             <div class="col-12 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay={(index) * 100}>
               <div class="staff text-center">
-                <div class="mb-4">< img src="images/staff_1.jpg" alt="Image" class="img-fluid" /></div>
+                <div class="mb-4">< img src={prof.Image} alt="Image" class="img-fluid" /></div>
                 <div class="staff-body">
                   <h3 class="staff-name">{prof.name}</h3>
                   <span class="d-block position mb-4">{prof.title}</span>
