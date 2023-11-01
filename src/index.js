@@ -15,6 +15,7 @@ import reportWebVitals from './reportWebVitals';
 import Test from './components/test.js';
 import ResetPass from './components/ResetPass.js';
 import Verify from './components/verify.js';
+import LabLinkProvider from './LabLinkProvider.js';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -66,9 +67,11 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
+  <LabLinkProvider>
     <React.StrictMode>
       <RouterProvider router={router} />
     </React.StrictMode>
+  </LabLinkProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
