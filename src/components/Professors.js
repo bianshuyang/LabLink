@@ -4,31 +4,32 @@ import { Modal, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import professorInfo from './ProfessorSample.json';
 import ReactComponent from './ReactComponent';
+// Removing pagination, we never needs them.
 
-const ITEMS_PER_PAGE = 10;
-const MAX_VISIBLE_PAGINATION = 8;
-
-function generatePagination(currentPage, maxPages) {
-    // let pages = [];
-    // if (maxPages <= MAX_VISIBLE_PAGINATION) {
-    //     for (let i = 1; i <= maxPages; i++) {
-    //         pages.push(i);
-    //     }
-    // } else {
-    //     pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', maxPages];
-    //     if (currentPage <= 3) {
-    //         pages = [1, 2, 3, 4, '...', maxPages];
-    //     } else if (currentPage >= maxPages - 2) {
-    //         pages = [1, '...', maxPages - 3, maxPages - 2, maxPages - 1, maxPages];
-    //     }
-    // }
-    // return pages;
-}
 
 function Professors() {
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [currentDescription, setCurrentDescription] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState(professorInfo);
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+    const searchLower = event.target.value.toLowerCase();
+
+    const filteredProfessors = professorInfo.filter(professor => {
+      return Object.values(professor).some(value => {
+        if (Array.isArray(value)) {
+          return value.join(' ').toLowerCase().includes(searchLower);
+        }
+        return typeof value === 'string' && value.toLowerCase().includes(searchLower);
+      });
+    });
+
+    setSearchResults(filteredProfessors);
+  };
+
 
   useEffect(() => {
 /*    fetch('/ProfessorSample.json')
@@ -122,9 +123,18 @@ function Professors() {
       </div>
             
       <div className="untree_co-section bg-light" id = "Professor_concrete">
+
+        
         <div className="container">
+
+          <input
+        type="text"
+        placeholder="Find Professor!"
+        value={searchTerm}
+        onChange={handleSearch}
+        />
           <div className="row align-items-stretch">
-            <ReactComponent data={professorInfo} />
+            <ReactComponent data={searchResults} />
           </div>
         </div>
 
