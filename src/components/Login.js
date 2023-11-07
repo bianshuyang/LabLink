@@ -6,6 +6,8 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { LabLinkContext } from '../LabLinkProvider';
 import sjcl from 'sjcl';
+import { ReactComponent as EyeIcon } from '../images/eye-solid.svg'; // Adjust the path accordingly
+import { ReactComponent as EyeSlashIcon } from '../images/eye-slash-solid.svg'; // Adjust the path accordingly
 
 function Login(){
 
@@ -40,13 +42,16 @@ function Login(){
   const [password, setPassword] = useState('');
   const { setIsLoggedIn } = useContext(LabLinkContext);
   const { netID, setNetID } = useContext(LabLinkContext);
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     setIsChange(!isChange);
   };
-
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+  
   async function fetchData(netID, password) {
     try{
       validateNetID(netID);
@@ -134,10 +139,20 @@ function Login(){
           <i className="fas fa-envelope"></i>
           <input placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
         </div>
+        
         <div className="input-group">
-          <i className="fas fa-lock"></i>
-          <input type="password" placeholder="Password" value={password}  onChange={e => setPassword(e.target.value)}  />
-        </div>
+      <input
+        type={isPasswordVisible ? "text" : "password"}
+        placeholder="Password"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+      />
+      {isPasswordVisible ? (
+        <EyeSlashIcon onClick={togglePasswordVisibility} className="eye-icon" />
+      ) : (
+        <EyeIcon onClick={togglePasswordVisibility} className="eye-icon" />
+      )}
+    </div>
         <button type="submit">Login</button>
         <Link to={'/resetPass'} className="resetPass">Reset Password</Link>
       </form>
