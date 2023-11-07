@@ -228,19 +228,25 @@ const responseDataText = await response.text();
        // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
         //console.log(repliesForSelectedPost);
         console.log(netid, postid, replyid);
+
+        let requestBody = {
+            postid: postid,
+            replyid: replyid,
+            collectionName: "replies"
+        };
+
+        if (netid !== "lablinkadmin") {
+            requestBody.netid = netid;
+        }
+
         const response = await fetch("/api/forum?collection=replies", {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    netid: netid,
-                    postid: postid,
-                    replyid: replyid,
-                    collectionName: "replies"
-                    // replycontent: "deletedReply"
-                }),
-            });
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
+        });
+
             console.log(response);
             const statusCode = response.status;
             if (statusCode == 403) {
@@ -263,6 +269,16 @@ const responseDataText = await response.text();
 
     async function deletethread(netid, postid) {
         try {
+
+        let requestBody = {
+            postid: postid,
+            collectionName: "threads"
+        };
+
+        if (netid !== "lablinkadmin") {
+            requestBody.netid = netid;
+        }
+
         console.log(process.env);
        // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
         //console.log(repliesForSelectedPost);
@@ -272,11 +288,7 @@ const responseDataText = await response.text();
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    netid: netid,
-                    postid: postid,
-                    collectionName: "threads" //postData: "deleted"
-                }),
+                body: JSON.stringify(requestBody)
             });
             console.log(response);
             const statusCode = response.status;
