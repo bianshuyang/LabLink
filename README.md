@@ -14,7 +14,9 @@ Android users: There is an APK downloadable ![here](https://www.upload-apk.com/e
 - A member of the Emory community looking to learn more about Emory Computer Science?
 
 **Then you’re at the right place!**
-![Example Image](public/images/CS_370_User_Documentation.jpg)
+![Example Image](public/images/CS_370_User_Documentation_Part_1.jpg)
+![Example Image](public/images/CS_370_User_Documentation_Part_2.jpg)
+
 
 
 ## Technical Documentation
