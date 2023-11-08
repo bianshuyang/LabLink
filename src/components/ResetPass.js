@@ -23,7 +23,11 @@ function ResetPass(){
   });
 
   const handleButtonClick = () => {
-    setIsChange(!isChange);
+    if (isChange) {
+      navigate('/'); 
+    } else {
+      setIsChange(true); 
+    }
   };
 
   const generateRandomCode = () => {
@@ -168,7 +172,7 @@ const resetStates = () => {
         <div className={`logo-2 ${isChange ? "change" : ""}`} id="logoonce">
           <img src={eLogo} alt="Emory Logo"/>
         </div>
-        <button type="button" onClick={() => handleButtonClick()}>Lab Link</button>
+        <button type="button" onClick={() => handleButtonClick()}>{isChange ? 'Home' : 'Lab Link'}</button>
       </div>
       <form className="signin-form" onSubmit={handleFormSubmit}>
         <h1>Lab Link</h1>

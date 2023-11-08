@@ -164,13 +164,100 @@ html {
   padding: 1rem;
 }
 
-
 .eye-icon {
-  width: 20px; /* or any size that fits well in your design */
-  height: 20px; /* same as width to maintain aspect ratio */
-  position: absolute; /* position it within the input group */
-  top: 50%; /* center it vertically */
-  right: 10px; /* distance from the right edge of the input group */
-  transform: translateY(-50%); /* ensure it's centered regardless of the size */
-  cursor: pointer; /* changes the cursor to indicate it's clickable */
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.input-group input {
+  width: 28rem;
+  height: 5rem;
+  padding: 1rem 1rem 1rem 3rem;
+  background-color: #ddd;
+  border:none;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Responsive adjustments */
+
+/* Smaller tablets and large phones (landscape view) */
+@media (max-width: 768px) {
+  .blue-bg {
+    display: none; /* This hides the blue background on smaller screens */
+  }
+ 
+  .login-form-wrapper {
+    width: 100%;
+    height: 60%;
+    padding: 2rem;
+  }
+
+  .login-banner {
+    top: 10%;
+    left: 0;
+    width: 100%;
+  }
+
+  .signin-form {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+
+  .input-group input {
+    width: 100%;
+  }
+}
+
+/* Smaller phones */
+@media (max-width: 480px) {
+  .login-form-wrapper {
+    border-radius: 1rem;
+  }
+
+  .login-banner h1 {
+    font-size: 3rem;
+  }
+
+
+  .signin-form h1 {
+    font-size: 2.5rem;
+    color: #1450A3;
+  }
+
+
+  .login-banner p,
+  .signin-form p {
+    font-size: 1.6rem;
+  }
+
+  .blue-bg button,
+  .signin-form button {
+    width: 12rem;
+    height: 4rem;
+  }
+}
+
+/* Specific adjustments for Samsung devices (optional) */
+@media screen and (device-width: 360px) and (device-height: 640px) {
+  /* Adjustments specifically for certain Samsung models */
+}
+
+/* Specific adjustments for iOS devices (optional) */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* Adjustments specifically for iPads */
 }
