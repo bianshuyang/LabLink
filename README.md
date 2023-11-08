@@ -48,6 +48,9 @@ ReactComponent.js: React for adding Professor information to Professors page usi
 Register.js: Register Page Javascript File 
 
 ResetPass.js:  Reset Password Page Javascript File 
+- Defines React component ResetPass for a password reset feature
+- Fanages its state with hooks for change indication, data, loading, error, user input for netID, and email content
+- Uses a function to handle form submission, which validates the netID, generates a verification code, sends an email to the user's Emory address with the code, and then navigates to a verification page.
 
 SingleProf.js: Test / Sample Page for Single Professor Page Javascript File 
 
