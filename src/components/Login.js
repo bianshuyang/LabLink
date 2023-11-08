@@ -138,7 +138,7 @@ function Login(){
       <form className="signin-form" onSubmit={handleFormSubmit}>
         <h1>Lab Link</h1>
         <h1>Login</h1>
-        <p>Login as a guest to collect your favorites or cast votes!</p>
+        <p>Please enter your credentials to log in to LabLink!</p>
         <div className="input-group">
           <i className="fas fa-envelope"></i>
           <input placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
