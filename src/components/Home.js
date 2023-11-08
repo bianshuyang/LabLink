@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom"
 import Forum from './Forum'; // Adjust the path accordingly.
 import Professors from './Professors';
+import Projects from "./Projects";
 import Register from './Register';
 import Contact from './Contact';
 import { useNavigation } from 'react-router-dom';
