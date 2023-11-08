@@ -4,7 +4,7 @@ A platform connecting CS students at Emory with research opportunities. LabLink 
 ## Deployment and Installation
 
 It is deployed on vercel. Therefore, no installation is necessary for now. 
-
+Android users: There is an APK downloadable ![here](https://www.upload-apk.com/en/1ggwF4ZCCwGOYzA)
 ## Audience-facing Documentation
 # Welcome to the LabLink! User Guide
 
