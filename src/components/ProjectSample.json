@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Project Alpha",
+    "instructor": "Professor A",
+    "email": "profA@example.com",
+    "content": "Introduction to Quantum Mechanics",
+    "introduction": "A foundational exploration of the principles of quantum mechanics and its applications."
+  },
+  {
+    "id": 2,
+    "name": "Project Beta",
+    "instructor": "Professor B",
+    "email": "profB@example.com",
+    "content": "Advanced Machine Learning Techniques",
+    "introduction": "Delve deeper into cutting-edge machine learning strategies, focusing on neural networks and deep learning."
+  },
+  {
+    "id": 3,
+    "name": "Project Gamma",
+    "instructor": "Professor C",
+    "email": "profC@example.com",
+    "content": "Robotics and Automation Basics",
+    "introduction": "An introduction to the field of robotics, emphasizing the integration of mechanics and electronics."
+  },
+  {
+    "id": 4,
+    "name": "Project Delta",
+    "instructor": "Professor D",
+    "email": "profD@example.com",
+    "content": "Principles of Bioinformatics",
+    "introduction": "Explore the intersection of biology and informatics, learning how to analyze biological data and sequences."
+  }
+]
