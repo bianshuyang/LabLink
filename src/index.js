@@ -5,6 +5,7 @@ import './index.css';
 import Root from './Root';
 import Error from "./components/Error.js";
 import Professors from "./components/Professors.js";
+import Projects from "./components/Projects.js";
 import SingleProf from "./components/SingleProf.js"
 import News from "./components/News.js";
 import Login from "./components/Login.js";
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "Professors",
     element: <Professors />,
+  },
+  {
+    path: "Projects",
+    element: <Projects />,
   },
   {
     path: "news",
