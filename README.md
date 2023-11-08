@@ -63,10 +63,14 @@ We appreciate your feedback!
 
 ### LabLink/src/styles/:
 
-**forum.css**: style for body, main, div, h2, ul, li, li:hover, li:reply, li.reply:before ..., and button 
+**forum.css**: style for body, main, div, h2, ul, li, li:hover, li:reply, li.reply:before ..., and button
+
 **login.css**: style for login page
+
 **navbar.css**: style for navigation bar
+
 **reset.css**: style for reset password page
+
 **verify.css**: style for ???
 
 
