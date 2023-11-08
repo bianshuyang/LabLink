@@ -20,7 +20,7 @@ Android users: There is an APK downloadable ![here](https://www.upload-apk.com/e
 ## Technical Documentation
 
 List of files / folders here:
-# LabLink/src/components/:
+### LabLink/src/components/:
 jsons/: Directory containing JSON files for mongodb transfer and data handling, 
 
 Contact.js: Implements the Profile Page feature
