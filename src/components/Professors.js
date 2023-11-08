@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import professorInfo from './ProfessorSample.json';
-import ReactComponent from './ReactComponent';
+// import ReactComponent from './ReactComponent';
 // Removing pagination, we never needs them.
 
 
@@ -134,7 +134,30 @@ function Professors() {
         onChange={handleSearch}
         />
           <div className="row align-items-stretch">
-            <ReactComponent data={searchResults} />
+
+
+            <div class="container">
+      <div class="untree_co-section bg-light">
+        <div class="row">
+          {searchResults.map((prof, index) => (
+            <div class="col-12 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay={(index) * 100}>
+              <div class="staff text-center">
+                <div class="mb-4">< img src={prof.Image} alt="Image" class="img-fluid" /></div>
+                <div class="staff-body">
+                  <h3 class="staff-name">
+<Link to={'/SingleProf'} state={{ prof: index } }> {prof.name} </Link></h3>
+                  <span class="d-block position mb-4">{prof.title}</span>
+                  <p class="mb-5">{prof.researchInterest}</p >
+                </div>
+              </div>
+            </div>       
+          ))}
+        </div>
+      </div>
+    </div>
+
+
+          
           </div>
         </div>
 
