@@ -20,6 +20,42 @@ Android users: There is an APK downloadable ![here](https://www.upload-apk.com/e
 ## Technical Documentation
 
 List of files / folders here:
+# LabLink/src/components/:
+jsons/: Directory containing JSON files for mongodb transfer and data handling, 
+
+Contact.js: Implements the Profile Page feature
+
+Error.js: Contains CSS styling rules
+
+Forum.js: Updates to user access privilege settings
+
+Home.js: Home Page Javascript File 
+
+Login.js: Login Page Javascript File
+
+Navbar.js: Navigation Bar Javascript File 
+
+News.js: News Page Javascript File 
+
+ProfessorSample.json: Json template for Professor Data Dictionary
+
+Professors.js: Professors Page Javascript File 
+
+Profile.js: User Profile Page Javascript File
+
+ReactComponent.js: React for adding Professor information to Professors page using props
+
+Register.js: Register Page Javascript File 
+
+ResetPass.js:  Reset Password Page Javascript File 
+
+SingleProf.js: Test / Sample Page for Single Professor Page Javascript File 
+
+test.js: A basic implementation for sending emails
+
+test2.js: Test file for experimenting with local storage and session storage
+
+verify.js: Enhancements to the CSS for the verification process
 
 We appreciate your feedback!
 
