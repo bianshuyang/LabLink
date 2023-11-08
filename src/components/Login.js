@@ -46,8 +46,13 @@ function Login(){
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    setIsChange(!isChange);
+    if (isChange) {
+      navigate('/'); 
+    } else {
+      setIsChange(true); 
+    }
   };
+
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
@@ -88,8 +93,7 @@ function Login(){
     } catch (error) {
       setLoading(false);
       setIsError(true);
-      window.alert("Either your credential is not in our database, \n or your password is wrong! \n We have rerouted you to register page! ");
-      navigate('/register')
+      window.alert("Either your credential is not in our database, \n or your password is wrong! \n Please, register or reset password!");
     }
     console.log(isError);
   }
@@ -129,7 +133,7 @@ function Login(){
         <div className={`logo-2 ${isChange ? "change" : ""}`} id="logoonce">
           <img src={eLogo} alt="Emory Logo"/>
         </div>
-        <button type="button" onClick={() => handleButtonClick()}>Lab Link</button>
+        <button type="button" onClick={() => handleButtonClick()}>{isChange ? 'Home' : 'Lab Link'}</button>
       </div>
       <form className="signin-form" onSubmit={handleFormSubmit}>
         <h1>Lab Link</h1>
@@ -155,6 +159,7 @@ function Login(){
     </div>
         <button type="submit">Login</button>
         <Link to={'/resetPass'} className="resetPass">Reset Password</Link>
+        <Link to={'/Register'} className="Register">Don't have an account? Register</Link>
       </form>
     </div>
   </div>

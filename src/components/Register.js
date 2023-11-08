@@ -5,6 +5,9 @@ import eLogo from "../images/eLogo.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import sjcl from 'sjcl';
+import { ReactComponent as EyeIcon } from '../images/eye-solid.svg'; // Adjust the path accordingly
+import { ReactComponent as EyeSlashIcon } from '../images/eye-slash-solid.svg'; // Adjust the path accordingly
+
 
 function Register(){
 
@@ -23,10 +26,19 @@ function Register(){
   const [isError, setIsError] = useState(false);
   const [netID, setNetID] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    setIsChange(!isChange);
+    if (isChange) {
+      navigate('/'); 
+    } else {
+      setIsChange(true); 
+    }
+  };
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
   };
 
 function validateNetID(netID) {
@@ -99,8 +111,7 @@ try {
 
     } catch (error) {
         //console.error('Error during registration:', error.message);
-        alert("We believe there is a duplicate in the user Token. You are rerouted to reset password. ");  // Display the error message in an alert
-        navigate("/resetpass")
+        alert("We believe there is a duplicate in the user Token. ");  // Display the error message in an alert
     }
     console.log(isError);
 }
@@ -136,7 +147,7 @@ try {
             <div className={`logo-2 ${isChange ? "change" : ""}`} id="logoonce">
               <img src={eLogo} alt="Emory Logo"/>
             </div>
-            <button type="button" onClick={() => handleButtonClick()}>Lab Link</button>
+            <button type="button" onClick={() => handleButtonClick()}>{isChange ? 'Home' : 'Lab Link'}</button>
           </div>
           <form className="signin-form" onSubmit={handleFormSubmit}>
             <h1>Lab Link</h1>
@@ -146,10 +157,20 @@ try {
               <input placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
             </div>
             <div className="input-group">
-              <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" value={password}  onChange={e => setPassword(e.target.value)}  />
+              <input
+                type={isPasswordVisible ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+              />
+              {isPasswordVisible ? (
+                <EyeSlashIcon onClick={togglePasswordVisibility} className="eye-icon" />
+              ) : (
+                <EyeIcon onClick={togglePasswordVisibility} className="eye-icon" />
+              )}
             </div>
             <button type="submit">Register</button>
+            <Link to={'/login'} className="login">Already have an account? Login</Link>
           </form>
         
         </div>
