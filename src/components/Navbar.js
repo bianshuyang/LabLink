@@ -59,7 +59,7 @@ export default function Navbar(){
             <li><Link to={'/'}>Home</Link></li>
             <li><Link to={'/Professors'}>Professors</Link></li>
             <li><Link to={'/SingleProf'}>Single Professor</Link></li>
-            <li><Link to={'/News'}>Projects</Link></li>
+            <li><Link to={'/Projects'}>Projects</Link></li>
             <li><Link to={'/News'}>Events</Link></li>
             <li><Link to={'/'}>About</Link></li>
             <li><Link to={'/Contact'}>Contact</Link></li>
