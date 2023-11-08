@@ -157,7 +157,7 @@ function Login(){
         <EyeIcon onClick={togglePasswordVisibility} className="eye-icon" />
       )}
     </div>
-        <button type="submit">Login</button>
+        <button type="submit" >Login</button>
         <Link to={'/resetPass'} className="resetPass">Reset Password</Link>
         <Link to={'/Register'} className="Register">Don't have an account? Register</Link>
       </form>

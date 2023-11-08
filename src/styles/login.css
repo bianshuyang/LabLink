@@ -112,6 +112,7 @@ html {
 .input-group {
   position: relative;
   max-width: 45%;
+  padding: 0.5rem 0rem;
 }
 
 .input-group input {
@@ -135,7 +136,7 @@ html {
 
 .signin-form button {
   width: 16rem;
-  height: 5rem;
+  padding: 1rem 0rem;
   background-color: #1450A3;
   border: none;
   border-radius: 3rem;
@@ -261,3 +262,4 @@ html {
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   /* Adjustments specifically for iPads */
 }
+
