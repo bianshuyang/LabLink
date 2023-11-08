@@ -18,8 +18,9 @@ Android users: There is an APK downloadable ![here](https://www.upload-apk.com/e
 
 
 ## Technical Documentation
+# Welcome to the LabLink! Developer Guide
 
-List of files / folders here:
+**List of files / folders here:**
 ### LabLink/src/components/:
 **jsons/**: Directory containing JSON files for mongodb transfer and data handling.
 
