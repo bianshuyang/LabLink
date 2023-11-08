@@ -75,6 +75,18 @@ def extract_info(urls):
         if education_elem:
             professor_data['Education'] = [li.text.strip() for li in education_elem.find_next_sibling().find_all('li')]
 
+        image_div = soup.find('div', class_='span2')
+        if image_div and image_div.find('img'):
+            img_tag = image_div.find('img')
+            img_url = img_tag['src']
+            img_response = requests.get(img_url)
+
+            if img_response.status_code == 200:
+                img_name = f"{professor_data['Name'].replace(' ', '_')}_profile_pic.png"
+                with open(img_name, 'wb') as img_file:
+                    img_file.write(img_response.content)
+                print(f"Image saved as {img_name}")
+
         print(professor_data)
         professors_data.append(professor_data)
         print(f"Data extracted from {url}")
