@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 import Navbar from './Navbar.js';
-
+import { useLocation } from 'react-router-dom';
+import professorInfo from './ProfessorSample.json';
 const ITEMS_PER_PAGE = 10;
 const MAX_VISIBLE_PAGINATION = 8;
+
+
 
 function SampleComponent() {
   return (
@@ -14,32 +17,31 @@ function SampleComponent() {
   );
 }
 
-function generatePagination(currentPage, maxPages) {
-    let pages = [];
-    if (maxPages <= MAX_VISIBLE_PAGINATION) {
-        for (let i = 1; i <= maxPages; i++) {
-            pages.push(i);
-        }
-    } else {
-        pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', maxPages];
-        if (currentPage <= 3) {
-            pages = [1, 2, 3, 4, '...', maxPages];
-        } else if (currentPage >= maxPages - 2) {
-            pages = [1, '...', maxPages - 3, maxPages - 2, maxPages - 1, maxPages];
-        }
-    }
-    return pages;
-}
 
 function SingleProf() {
+  const location = useLocation();
+  // const prof = location.state.prof;
   const [ProfessorsData, setProfessorsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [currentDescription, setCurrentDescription] = useState('');
+  console.log(professorInfo[location.state.prof]);
+  console.log("OK loaded");
+
+  const profdt =professorInfo[location.state.prof];
+  const [professor, setProfessor] = useState(null);
+  
+  const joinArrayOrReturnNull = (array) => {
+    return Array.isArray(array) ? array.join(', ') : null;
+  };
+
 
   useEffect(() => {
-    // fetch('/api/professors').then(response => response.json()).then(data => setProfessorsData(data));
-  }, []);
+    const profIndex = location.state.prof; // This should be passed from the previous page
+    const profData = professorInfo[profIndex];
+    setProfessor(profData);
+  }, [location.state.prof]);
+  console.log(professor);
 
   return (
     <div className='SingleProf'>
@@ -82,79 +84,22 @@ function SingleProf() {
 
 
         <div className="container">
-          <div className="row">
-            <div className="col-lg-5 mr-auto mb-5 mb-lg-0"  data-aos="fade-up" data-aos-delay="0">
-            <img src="images/NT.jpg" alt="image" className="img-fluid" style={{width: '110%', height: 'auto'}}/>
-            </div>
-            <div className="col-lg-7 ml-auto" data-aos="fade-up" data-aos-delay="100">
-              <h2 className="line-bottom mb-4">Professor Nirmalya Thakur</h2>
-
-              <div className="custom-accordion" id="accordion_1">
-                <div className="accordion-item">
-                  <h2 className="mb-0">
-                    <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Research Group: Data Driven Innovations for Human-Technology Symbiosys</button>
-                  </h2>
-
-                  <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion_1">
-                    <div className="accordion-body">
-                      <div className="d-flex">
-                        <div className="accordion-img mr-4">
-                        </div>
-                        <div>
-                          <p>One-stop shop for all Emory CS research information.</p>
-                          <p>Information about available research positions.</p>
-                          <p>Expansion potential to other departments. </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion-item">
-                  <h2 className="mb-0">
-                    <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Current links to opportunities are scattered and not regularly updated.</button>
-                  </h2>
-                  <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordion_1">
-                    <div className="accordion-body">
-                      <div className="d-flex">
-                        <div className="accordion-img mr-4">
-                        </div>
-                        <div>
-                          <p>Human-Computer Interaction</p>
-                          <p>Big Data</p>
-                          <p>Artificial Intelligence</p>
-                          <p>Machine Learning</p>
-                          <p>Natural Language processing</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="mb-0">
-                    <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Student Opportunities</button>
-                  </h2>
-
-                  <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordion_1">
-                    <div className="accordion-body">
-                      <div className="d-flex">
-                        <div className="accordion-img mr-4">
-                        </div>
-                        <div>
-                          <p>Open Position: The Research Group on Data Driven Innovations for Human-Technology Symbiosis is currently looking for a motivated student to work on a research project at the interestions of Big Data and Machine Learning. If you are a graduate or an undergrduate student at Emory University and are interested in this position, please send your resume to Dr. Thakur at nirmalya.thakur@emory.edu to apply.</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-          </div>
+      <div className="row">
+        <div className="col-lg-5 mr-auto mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
+          <img src={profdt.Image && profdt.Image.length > 0 ? profdt.Image[0] : null} alt="profile" className="img-fluid" style={{ width: '40%', height: 'auto' }} />
         </div>
+        <div>
+          <p>{profdt.title && profdt.name ? `${profdt.title} ${profdt.name}` : null}</p>
+          <p>{profdt.office ? profdt.office : null} {profdt.phone ? profdt.phone : null}</p>
+          <p>{profdt.email || null}</p>
+          <p>{profdt['Personal Website'] ? <a href={profdt['Personal Website']}>Website</a> : null}</p>
+          <p>{joinArrayOrReturnNull(profdt['office Hours'])}</p>
+          <p>{joinArrayOrReturnNull(profdt['Teaching (Fall 2023)'])}</p>
+          <p>{joinArrayOrReturnNull(profdt.researchInterest)}</p>
+          <p>{joinArrayOrReturnNull(profdt.Education)}</p>
+        </div>
+      </div>
+    </div>
       </div>
 
         <div className="untree_co-section bg-light" id = "News_concrete">
