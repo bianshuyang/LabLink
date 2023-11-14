@@ -18,7 +18,6 @@ import Test from './components/test.js';
 import ResetPass from './components/ResetPass.js';
 import Verify from './components/verify.js';
 import { LabLinkProvider } from './LabLinkProvider.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
   {
