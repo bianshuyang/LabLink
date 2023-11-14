@@ -168,7 +168,8 @@ export default function Contact() {
                   <div className="col-lg-6 text-center ">
                     <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Contact Us</h1>
                     <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                      <p>Welcome to the LabLink! Contact Page! Whether you're a student looking to join a research project, a professor eager to showcase your work, or someone with a general inquiry, we're here to help.</p>
+                      <p><em><h2>"Welcome to LabLink!"</h2></em></p>
+                      <p>Whether you're a student looking to join a research project, a professor eager to showcase your work, or someone with a general inquiry, we're here to help.</p>
                     </div>
                   </div>
                 </div>

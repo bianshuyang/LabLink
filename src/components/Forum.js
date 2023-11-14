@@ -458,7 +458,7 @@ const addReplySubmit = async (event) => {
                 <div className="col-lg-6 text-center ">
                   <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Forum of Discussion</h1>
                   <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                    <p>A great place for discussion. </p>
+                    <p><h2><em>"A great place for discussion."</em></h2></p>
                     <p>All @ Emory.</p>
                   </div>
 
