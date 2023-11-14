@@ -27,7 +27,7 @@ export default function Navbar(){
               </Link>
               <Link to={'/'} className="small mr-3">
                 <span className="icon-phone mr-2"></span>
-                <span className="d-none d-lg-inline-block">+1(404)727-6123</span>
+                <span className="d-none d-lg-inline-block">(404)727-6123</span>
               </Link>
               <Link to={'/'} className="small mr-3">
                 <span className="icon-envelope mr-2"></span>
@@ -53,11 +53,11 @@ export default function Navbar(){
               :
               <div className="col-6 col-lg-3 text-right">
                 <Link to={'/login'} className="small mr-3">
-                  <span className="icon-lock"></span>
-                  Log In
+                  <span className="icon-lock"> </span>
+                   Log In
                 </Link>
                 <Link to={'/register'} className="small">
-                  <span className="icon-person"></span>
+                  <span className="icon-person"> </span>
                   Register
                 </Link>
               </div>
