@@ -73,7 +73,16 @@ export default function Navbar(){
           <div className="site-navigation text-center">
             <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary">.</span></Link>
 
-          
+          <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
+            <li><Link to={'/'}>Home</Link></li>
+            <li><Link to={'/Professors'}>Professors</Link></li>
+            <li><Link to={'/Projects'}>Projects</Link></li>
+            <li><Link to={'/News'}>News</Link></li>
+            <li><Link to={'/'}>About</Link></li>
+            <li><Link to={'/Contact'}>Contact</Link></li>
+            <li><Link to={'/Forum'}>Forum</Link></li>
+        </ul>
+
 
         <div className="burger ml-auto float-right site-menu-toggle d-inline-block d-lg-none light" onClick={toggleMenu}>
           <span className="burger-lines"></span>
@@ -84,7 +93,7 @@ export default function Navbar(){
             <Link to={'/'} onClick={toggleMenu}><h2>Home</h2></Link>
             <Link to={'/Projects'} onClick={toggleMenu}><h2>Projects</h2></Link>
             <Link to={'/Professors'} onClick={toggleMenu}><h2>Professors</h2></Link>
-            <Link to={'/News'} onClick={toggleMenu }><h2>Events</h2></Link>
+            <Link to={'/News'} onClick={toggleMenu }><h2>News</h2></Link>
             <Link to={'/Forum'} onClick={toggleMenu}><h2>Forum</h2></Link>
             <Link to={'/Contact'} onClick={toggleMenu}><h2>Contact</h2></Link>
           </div>
