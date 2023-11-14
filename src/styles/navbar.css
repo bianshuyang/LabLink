@@ -62,3 +62,54 @@
 .profile-text{
   padding: 0rem 1.4rem;
 }
+
+
+.offcanvas-menu {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Hidden by default */
+  width: 300px; /* Width of the menu */
+  height: 100%;
+  background: #fff; /* Soft white background */
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px; /* Spacing inside the menu */
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start; /* Align items to the start of the menu */
+  z-index: 1000; /* Above other elements */
+}
+
+.offcanvas-menu.active {
+  right: 0; /* Shows the menu */
+}
+
+.offcanvas-menu h2 {
+  font-size: 24px; /* Larger, readable font size */
+  margin-bottom: 20px; /* Space between menu items */
+  font-weight: bold; /* Bold font weight */
+  color: #003366; /* A shade of blue for the links */
+  cursor: pointer;
+}
+
+.offcanvas-menu h2:hover {
+  color: #4d4d4d; /* Gentle gray for hover effects */
+}
+
+.close-menu {
+  font-size: 30px; /* Larger close button */
+  color: #000; /* Typically, close buttons are dark for contrast */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Add a transition for hover effects */
+.offcanvas-menu h2 {
+  transition: color 0.2s ease;
+}
+

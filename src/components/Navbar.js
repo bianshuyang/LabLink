@@ -1,18 +1,19 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { LabLinkContext } from "../LabLinkProvider";
-
-import { Offcanvas, Button } from 'react-bootstrap';
 import { useState } from 'react';
-
+import "../styles/navbar.css";
 export default function Navbar(){
 
   const { isLoggedIn, setIsLoggedIn } = React.useContext(LabLinkContext);
   const { netID } = React.useContext(LabLinkContext)
-
+  const [showMenu, setShowMenu] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
   return(
     <nav className="site-nav mb-5">
@@ -34,6 +35,8 @@ export default function Navbar(){
                 <span className="d-none d-lg-inline-block">jeff.epstein@emory.edu</span>
               </Link>
             </div>
+
+
             {isLoggedIn ?
               <div className="col-6 col-lg-3 text-right user-menu">
                 <button className="user-button">
@@ -70,36 +73,24 @@ export default function Navbar(){
           <div className="site-navigation text-center">
             <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary">.</span></Link>
 
-          <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
-            <li><Link to={'/'}>Home</Link></li>
-            <li><Link to={'/Professors'}>Professors</Link></li>
-            <li><Link to={'/Projects'}>Projects</Link></li>
-            <li><Link to={'/News'}>Events</Link></li>
-            <li><Link to={'/'}>About</Link></li>
-            <li><Link to={'/Contact'}>Contact</Link></li>
-            <li><Link to={'/Forum'}>Forum</Link></li>
-        </ul>
+          
 
-        <div className="burger ml-auto float-right site-menu-toggle d-inline-block d-lg-none light" onClick={handleShow}>
+        <div className="burger ml-auto float-right site-menu-toggle d-inline-block d-lg-none light" onClick={toggleMenu}>
           <span className="burger-lines"></span>
         </div>
 
+        <div className={`offcanvas-menu ${showMenu ? 'active' : ''}`}>
+            <button className="close-menu" onClick={toggleMenu}>&times;</button>
+            <Link to={'/'} onClick={toggleMenu}><h2>Home</h2></Link>
+            <Link to={'/Projects'} onClick={toggleMenu}><h2>Projects</h2></Link>
+            <Link to={'/Professors'} onClick={toggleMenu}><h2>Professors</h2></Link>
+            <Link to={'/News'} onClick={toggleMenu }><h2>Events</h2></Link>
+            <Link to={'/Forum'} onClick={toggleMenu}><h2>Forum</h2></Link>
+            <Link to={'/Contact'} onClick={toggleMenu}><h2>Contact</h2></Link>
+          </div>
+
+
       </div>
-
-
-        <Offcanvas show={show} onHide={handleClose} placement='end'>
-          <Offcanvas.Header closeButton>
-            <h1>Menu</h1>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <Link to={'/'}><h2>Home</h2></Link>
-            <Link to={'/Projects'}><h2>Projects</h2></Link>
-            <Link to={'/Professors'}><h2>Professors</h2></Link>
-            <Link to={'/News'}><h2>Events</h2></Link>
-            <Link to={'/Forum'}><h2>Forum</h2></Link>
-            <Link to={'/Contact'}><h2>Contact</h2></Link>
-          </Offcanvas.Body>
-        </Offcanvas>
 
 
         </div>
