@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import professorInfo from './ProfessorSample.json';
-// import ReactComponent from './ReactComponent';
-// Removing pagination, we never needs them.
-
+import Navbar from './Navbar.js';
 
 function Professors() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,54 +51,7 @@ function Professors() {
         </div>
       </div>
 
-      <nav className="site-nav mb-5">
-              <div className="pb-2 top-bar mb-3">
-                <div className="container">
-                  <div className="row align-items-center">
-
-                    <div className="col-6 col-lg-9">
-                      <Link to={'/'} className="small mr-3"><span className="icon-question-circle-o mr-2"></span> <span className="d-none d-lg-inline-block">Contact us</span></Link>
-                      <Link to={'/'} className="small mr-3"><span className="icon-phone mr-2"></span> <span className="d-none d-lg-inline-block"></span></Link>
-                      <Link to={'/'} className="small mr-3"><span className="icon-envelope mr-2"></span> <span className="d-none d-lg-inline-block"></span></Link>
-                    </div>
-
-                    <div className="col-6 col-lg-3 text-right">
-                      <Link to={'/login'} className="small mr-3">
-                        <span className="icon-lock"></span>
-                        Log In
-                      </Link>
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              <div className="sticky-nav js-sticky-header">
-                <div className="container position-relative">
-                  <div className="site-navigation text-center">
-                    <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary">.</span></Link>
-
-                    <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
-                      <li><Link to={'/'}>Home</Link></li>
-                      <li className="active" ><Link to={'/Professors'}>Professors</Link></li>
-                      <li><Link to={'/SingleProf'}>Single Professor</Link></li> 
-                      <li><Link to={'/Projects'}>Projects</Link></li>
-                      <li><Link to={'/news'}>Events</Link></li>
-                      <li><Link to={'/'}>About</Link></li>
-                      <li><Link to={'/Contact'}>Contact</Link></li>
-                      <li><Link to={'/forum'}>Forum</Link></li>
-                    </ul>
-
-                    <Link to={'/'} className="btn-book btn btn-secondary btn-sm menu-absolute">Enroll Now</Link>
-
-                    <Link to={'/'} className="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
-                      <span></span>
-                    </Link>
-
-                  </div>
-                </div>
-              </div>
-      </nav>
+      <Navbar />
 
       <div className="untree_co-hero overlay">
           <div className="container">
