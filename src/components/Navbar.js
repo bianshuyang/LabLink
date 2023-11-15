@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LabLinkContext } from "../LabLinkProvider";
 import { useState } from 'react';
 import "../styles/navbar.css";
+import { useLocation } from 'react-router-dom';
 export default function Navbar(){
 
   const { isLoggedIn, setIsLoggedIn } = React.useContext(LabLinkContext);
@@ -14,6 +15,9 @@ export default function Navbar(){
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+  const location = useLocation();
+    
+    const checkActive = (path) => location.pathname === path ? 'active' : '';
 
   return(
     <nav className="site-nav mb-5">
@@ -74,13 +78,13 @@ export default function Navbar(){
             <Link to={'/'} className="logo menu-absolute m-0">LabLink!<span className="text-primary">.</span></Link>
 
           <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
-            <li><Link to={'/'}>Home</Link></li>
-            <li><Link to={'/Professors'}>Professors</Link></li>
-            <li><Link to={'/Projects'}>Projects</Link></li>
-            <li><Link to={'/News'}>News</Link></li>
-            <li><Link to={'/'}>About</Link></li>
-            <li><Link to={'/Contact'}>Contact</Link></li>
-            <li><Link to={'/Forum'}>Forum</Link></li>
+            <li className={checkActive('/')}><Link to="/">Home</Link></li>
+            <li className={checkActive('/Professors')}><Link to="/Professors">Professors</Link></li>
+            <li className={checkActive('/Projects')}><Link to="/Projects">Projects</Link></li>
+            <li className={checkActive('/News')}><Link to="/News">News</Link></li>
+            <li className={checkActive('/')}><Link to="/">About</Link></li>
+            <li className={checkActive('/Contact')}><Link to="/Contact">Contact</Link></li>
+            <li className={checkActive('/Forum')}><Link to="/Forum">Forum</Link></li>
         </ul>
 
 
