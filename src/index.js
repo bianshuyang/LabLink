@@ -40,6 +40,10 @@ const router = createBrowserRouter([
     element: <News />,
   },
   {
+    path: "About",
+    element: <About />,
+  },
+  {
     path: "SingleProf",
     element: <SingleProf />,
   },
