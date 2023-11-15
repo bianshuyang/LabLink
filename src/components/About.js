@@ -36,7 +36,7 @@ function About(){
               <div className="col-lg-6 text-center ">
                 <Link to={'/'} href="https://vimeo.com/342333493" data-fancybox data-aos="fade-up" data-aos-delay="0" className="caption mb-4 d-inline-block">LabLink!</Link>
 
-                <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100"><em>Research is to see what everybody else has seen, and to think what nobody else has thought.</em></h1>
+                <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100"><em>About Emory University, the Emory CS Department, and the LabLink Team</em></h1>
                 <p className="mb-0" data-aos="fade-up" data-aos-delay="300"><a href="#" className="btn btn-secondary">Explore projects</a></p>
 
               </div>
