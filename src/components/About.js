@@ -8,7 +8,7 @@ import Contact from './Contact';
 import { useNavigation } from 'react-router-dom';
 import SingleProf from "./SingleProf";
 import Navbar from './Navbar.js';
-function Home(){
+function About(){
 
   return(
     <>
@@ -474,4 +474,4 @@ function Home(){
   )
 }
 
-export default Home
+export default About

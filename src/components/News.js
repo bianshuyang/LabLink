@@ -84,8 +84,8 @@ if (bool){
                 <div className="col-lg-6 text-center ">
                   <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">News</h1>
                   <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                    <p>More than seminars, discussions. A collection for students, faculty, and more. </p>
-                    <p>All @ Emory.</p>
+                    <p><em>More than seminars, discussions. A collection for students, faculty, and more.</em></p>
+                    <p><em>All @ Emory.</em></p>
                   </div>
 
                   <p className="mb-0" data-aos="fade-up" data-aos-delay="300">

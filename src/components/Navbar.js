@@ -82,7 +82,7 @@ export default function Navbar(){
             <li className={checkActive('/Professors')}><Link to="/Professors">Professors</Link></li>
             <li className={checkActive('/Projects')}><Link to="/Projects">Projects</Link></li>
             <li className={checkActive('/News')}><Link to="/News">News</Link></li>
-            <li className={checkActive('/')}><Link to="/">About</Link></li>
+            <li className={checkActive('/About')}><Link to="/About">About</Link></li>
             <li className={checkActive('/Contact')}><Link to="/Contact">Contact</Link></li>
             <li className={checkActive('/Forum')}><Link to="/Forum">Forum</Link></li>
         </ul>
@@ -98,8 +98,9 @@ export default function Navbar(){
             <Link to={'/Projects'} onClick={toggleMenu}><h2>Projects</h2></Link>
             <Link to={'/Professors'} onClick={toggleMenu}><h2>Professors</h2></Link>
             <Link to={'/News'} onClick={toggleMenu }><h2>News</h2></Link>
-            <Link to={'/Forum'} onClick={toggleMenu}><h2>Forum</h2></Link>
+            <Link to={'/About'} onClick={toggleMenu}><h2>About</h2></Link>
             <Link to={'/Contact'} onClick={toggleMenu}><h2>Contact</h2></Link>
+            <Link to={'/Forum'} onClick={toggleMenu}><h2>Forum</h2></Link>
           </div>
 
 
