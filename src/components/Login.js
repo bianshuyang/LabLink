@@ -6,8 +6,8 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { LabLinkContext } from '../LabLinkProvider';
 import sjcl from 'sjcl';
-import { ReactComponent as EyeIcon } from '../images/eye-solid.svg'; // Adjust the path accordingly
-import { ReactComponent as EyeSlashIcon } from '../images/eye-slash-solid.svg'; // Adjust the path accordingly
+import { ReactComponent as EyeSlashIcon } from '../images/eye-solid.svg'; // Adjust the path accordingly
+import { ReactComponent as EyeIcon } from '../images/eye-slash-solid.svg'; // Adjust the path accordingly
 
 function Login(){
 
@@ -83,17 +83,29 @@ function Login(){
         throw new Error("Network response was not ok");
       }
 
+       if (response.status === 203) {
+        // Handle the 203 response indicating that the status is not 'verified'
+        alert("You are not verified yet! Please go ahead and verify yourself!");
+        navigate('/VerifyUser');
+        return;
+    } else if (response.status === 404) {
+        // Handle the 404 response indicating that the document was not found
+        alert("Your credentials is not recorded.");
+        return;
+    }
+
       const responseData = await response.json();
       setData(responseData);
       setLoading(false);
       setIsLoggedIn(true);
+      alert("OKOKOKOK")
       console.log("Login successful!");
       sessionStorage.setItem('userToken', netID);
       navigate('/');
     } catch (error) {
       setLoading(false);
       setIsError(true);
-      window.alert("Either your credential is not in our database, \n or your password is wrong! \n Please, register or reset password!");
+      alert("Potential error")
     }
     console.log(isError);
   }
