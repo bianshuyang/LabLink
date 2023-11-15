@@ -8,6 +8,7 @@ import Professors from "./components/Professors.js";
 import Projects from "./components/Projects.js";
 import SingleProf from "./components/SingleProf.js"
 import News from "./components/News.js";
+import About from "./components/About.js";
 import Login from "./components/Login.js";
 import Forum from "./components/Forum.js";
 import Register from './components/Register.js';
