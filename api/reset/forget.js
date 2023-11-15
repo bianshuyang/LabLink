@@ -3,9 +3,6 @@ const { MongoClient } = require('mongodb');
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 
-// Connect to MongoDB once outside the function scope
-client.connect();
-
 module.exports = async (req, res) => {
     try {
         const data = req.body;
