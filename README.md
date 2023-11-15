@@ -81,5 +81,7 @@ We appreciate your feedback!
 
 **verify.css**: style for ???
 
+### LabLink/public/images/:
+Images used in the Lablink website can be found here
 
 
