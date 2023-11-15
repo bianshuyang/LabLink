@@ -5,8 +5,8 @@ import eLogo from "../images/eLogo.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import sjcl from 'sjcl';
-import { ReactComponent as EyeIcon } from '../images/eye-solid.svg'; // Adjust the path accordingly
-import { ReactComponent as EyeSlashIcon } from '../images/eye-slash-solid.svg'; // Adjust the path accordingly
+import { ReactComponent as EyeSlashIcon } from '../images/eye-solid.svg'; // Adjust the path accordingly
+import { ReactComponent as EyeIcon } from '../images/eye-slash-solid.svg'; // Adjust the path accordingly
 
 
 function Register(){
@@ -96,7 +96,7 @@ try {
             setLoading(false);
             console.log("Response status:", response.status);
             console.log("Response status text:", response.statusText);
-            navigate('/login');
+            navigate('/VerifyUser');
 
         } else {
             let errorMessage;

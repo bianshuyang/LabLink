@@ -18,7 +18,8 @@ import Test from './components/test.js';
 import ResetPass from './components/ResetPass.js';
 import Verify from './components/verify.js';
 import { LabLinkProvider } from './LabLinkProvider.js';
-
+import VerifyUser from './components/VerifyUser.js';
+import NewUserVerify from './components/NewUserVerify.js';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +53,14 @@ const router = createBrowserRouter([
   {
     path: "Register",
     element: <Register />,
+  },
+  {
+    path: "NewUserVerify",
+    element: <NewUserVerify />,
+  },
+  {
+    path: "VerifyUser",
+    element: <VerifyUser />,
   },
   {
     path: "Contact",

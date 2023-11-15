@@ -25,7 +25,11 @@ module.exports = async (req, res) => {
             res.status(404).send('Document not found');
         } else {
             console.log(`Found a document:\n${JSON.stringify(findOneResult)}\n`);
-            res.status(200).json(findOneResult);
+            if (findOneResult.status === "verified") {
+                res.status(200).json(findOneResult);
+            } else {
+                res.status(203).send("Document found, but status is not 'verified'");
+            }
         }
 
     } catch (error) {
