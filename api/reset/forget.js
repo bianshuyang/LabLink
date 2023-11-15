@@ -5,6 +5,9 @@ const client = new MongoClient(uri);
 
 module.exports = async (req, res) => {
     try {
+        // Connect to the MongoDB client
+        await client.connect();
+
         const data = req.body;
         console.log(data);
 
@@ -12,8 +15,9 @@ module.exports = async (req, res) => {
         const findOneQuery = { user: data.user};
 
         const collection = client.db('myDatabase').collection('verify');
-        const findOneResult = await collection.findOne(findOneQuery); // Use findOneQuery instead of findUsername
+        const findOneResult = await collection.findOne(findOneQuery);
         console.log(findOneResult);
+
         // If a user with the given fields already exists, send an error response
         if (findOneResult) {
             console.log("User already sent code.");
@@ -26,9 +30,9 @@ module.exports = async (req, res) => {
 
     } catch (error) {
         console.error(`Error occurred: ${error}`);
-        res.status(500).send(`Error verifying user: ${error.message}`); // More detailed error message
+        res.status(500).send(`Error verifying user: ${error.message}`);
     } finally {
-        // Close the connection (optional, based on your application's needs)
-        client.close();
+        // Close the connection
+        await client.close();
     }
 };
