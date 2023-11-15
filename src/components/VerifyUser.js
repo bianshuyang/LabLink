@@ -109,7 +109,7 @@ const resetStates = () => {
     sessionStorage.setItem('temporarynetID', netID);
     resetStates();
     navigate('/NewUserVerify');
-    if (1<2){
+    if (1>2){
       try {
         // Send a POST request to the serverless function
         const res = await fetch('/api/email', {
