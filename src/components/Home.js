@@ -4,6 +4,7 @@ import Forum from './Forum'; // Adjust the path accordingly.
 import Professors from './Professors';
 import Projects from "./Projects";
 import Register from './Register';
+import About from './About';
 import Contact from './Contact';
 import { useNavigation } from 'react-router-dom';
 import SingleProf from "./SingleProf";
