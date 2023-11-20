@@ -89,7 +89,8 @@ export default function Contact() {
 
     } catch (error) {
         //console.error('Error during registration:', error.message);
-        alert(error.message);  // Display the error message in an alert
+        console.log(error.message);
+        //alert(error.message);  // Display the error message in an alert
     }
     console.log(isError);
 }
@@ -119,7 +120,8 @@ export default function Contact() {
       console.log(emailToSend);
       // Error handling with the response
       if (!res.ok) {
-        alert('Network response was not ok');
+        console.log('network response was not ok');
+        //alert('Network response was not ok');
       }
 
       // Update state with the success response (can be customized based on your backend response)
