@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/forum.css";
+import "../styles/application.css";
 import { Link } from "react-router-dom"
 import Navbar from './Navbar.js';
 
@@ -29,7 +29,7 @@ function generatePagination(currentPage, maxPages) {
 
 
 
-function Forum() {
+function CentralizedApplication() {
 
     const getUserNameByNetId = (netid) => {
         const user = usersData.find(u => u.netid === netid);
@@ -41,18 +41,18 @@ function Forum() {
             return `${endpoint}?${params.toString()}`;
         };
 
-    const [postsData, setpostsData] = useState([]);
-    const [repliesData, setrepliesData] = useState([]);
+    const [programsData, setprogramsData] = useState([]);
+    const [applicationsData, setapplicationsData] = useState([]);
     const [usersData, setusersData] = useState([]);
 
     const [netid, setnetid] = React.useState('');
-    const [postid, setpostid] = React.useState('');
-    const [postData, setpostData] = React.useState('');
-    const [postDate, setpostDate] = React.useState('');
+    const [programId, setprogramId] = React.useState('');
+    const [programData, setprogramData] = React.useState('');
+    const [programDate, setprogramDate] = React.useState('');
     ////////////
-    const [replyid,setreplyid]= React.useState('');
-    const [replyData,setreplyData] = React.useState('');
-    const [replyDate,setreplyDate] = React.useState('');
+    const [applicationId,setapplicationId]= React.useState('');
+    const [applicationData,setapplicationData] = React.useState('');
+    const [applicationDate,setapplicationDate] = React.useState('');
 
 
     /////////////
@@ -60,11 +60,11 @@ function Forum() {
     const fetchData = async () => {
     try {
 
-        //const repliesResponse = await fetch(urlWithParams("http://localhost:3000/api/forum", 'replies'));
-        //const postsResponse = await fetch(urlWithParams("http://localhost:3000/api/forum", 'threads'));
+        //const ApplicationsResponse = await fetch(urlWithParams("http://localhost:3000/api/forum", 'Applications'));
+        //const ProgramsResponse = await fetch(urlWithParams("http://localhost:3000/api/forum", 'threads'));
         
-        fetchPostsAndUpdateState();
-        fetchRepliesAndUpdateState();
+        fetchProgramsAndUpdateState();
+        fetchApplicationsAndUpdateState();
         fetchUsersAndUpdateState();
         console.log(usersData);
 
@@ -109,9 +109,9 @@ const fetchUsersAndUpdateState = async () => {
 
 
 
-    const fetchPostsAndUpdateState = async () => {
+    const fetchProgramsAndUpdateState = async () => {
     try {
-         const response = await fetch("/api/forum?dataType=threads", {
+         const response = await fetch("/api/forum?dataType=Programs", {
             method: "GET"
             });
         const responseDataText = await response.text();
@@ -127,7 +127,7 @@ const fetchUsersAndUpdateState = async () => {
 
         // Handle based on type
         if (typeof responseData === 'object' && response.ok) {
-            setpostsData(responseData);
+            setprogramsData(responseData);
         } else {
             console.error('Error or non-JSON response:', responseData);
         }
@@ -136,10 +136,10 @@ const fetchUsersAndUpdateState = async () => {
     }
     };
 
-const fetchRepliesAndUpdateState = async () => {
+const fetchApplicationsAndUpdateState = async () => {
         try {
-            console.log("STEP on replies?????/ !")
-        const response = await fetch("/api/forum?dataType=replies", {
+            console.log("STEP on Applications?????/ !")
+        const response = await fetch("/api/forum?dataType=Applications", {
             method: "GET"
         });
 
@@ -156,7 +156,7 @@ const responseDataText = await response.text();
 
         // Handle based on type
         if (typeof responseData === 'object' && response.ok) {
-            setrepliesData(responseData);
+            setapplicationsData(responseData);
         } else {
             console.error('Error or non-JSON response:', responseData);
         }
@@ -166,20 +166,20 @@ const responseDataText = await response.text();
     }
     };
 
-    async function addreply(netid, replyData, replyDate, replyid, selectedPostId) {
+    async function addApplication(netid, applicationData, applicationDate, applicationId, selectedProgramId) {
         try {
-            const response = await fetch("/api/forum?collection=replies", {
+            const response = await fetch("/api/forum?collection=Applications", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    collectionName: 'replies',
+                    collectionName: 'Applications',
                     netid: netid,
-                    replycontent: replyData,
-                    replydate: replyDate,
-                    replyid: replyid,
-                    postid: selectedPostId,
+                    replycontent: applicationData,
+                    replydate: applicationDate,
+                    applicationId: applicationId,
+                    programId: selectedProgramId,
                 }),
             });
             console.log(response);
@@ -193,20 +193,20 @@ const responseDataText = await response.text();
         }
     }
 
-    async function addthread(netid, postid, postData,postDate) {
+    async function addProgram(netid, programId, programData,programDate) {
         try {
           console.log(process.env);
-            const response = await fetch("/api/forum?collection=threads", {
+            const response = await fetch("/api/forum?collection=Programs", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     netid: netid,
-                    postid: postid,
-                    postData: postData,
-                    postDate: postDate,
-                    collectionName: "threads"
+                    programId: programId,
+                    programData: programData,
+                    programDate: programDate,
+                    collectionName: "Programs"
                 }),
             });
             console.log(response);
@@ -222,24 +222,24 @@ const responseDataText = await response.text();
 
     }
 
-    async function deletereply(netid, postid, replyid) {
+    async function deleteApplication(netid, programId, applicationId) {
         try {
         console.log(process.env);
-       // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
-        //console.log(repliesForSelectedPost);
-        console.log(netid, postid, replyid);
+       // const ApplicationsForSelectedProgram = applicationsData.filter(reply => reply.programId === selectedProgramId);
+        //console.log(ApplicationsForSelectedProgram);
+        console.log(netid, programId, applicationId);
 
         let requestBody = {
-            postid: postid,
-            replyid: replyid,
-            collectionName: "replies"
+            programId: programId,
+            applicationId: applicationId,
+            collectionName: "Applications"
         };
 
         if (netid !== "lablinkadmin") {
             requestBody.netid = netid;
         }
 
-        const response = await fetch("/api/forum?collection=replies", {
+        const response = await fetch("/api/forum?collection=Applications", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -250,7 +250,7 @@ const responseDataText = await response.text();
             console.log(response);
             const statusCode = response.status;
             if (statusCode == 403) {
-                alert("It seems you are deleting unauthorized replies");
+                alert("It seems you are deleting unauthorized Applications");
             }
             else{
                 alert("Your reply is marked as Delete.");
@@ -267,12 +267,12 @@ const responseDataText = await response.text();
 
 
 
-    async function deletethread(netid, postid) {
+    async function deleteProgram(netid, programId) {
         try {
 
         let requestBody = {
-            postid: postid,
-            collectionName: "threads"
+            programId: programId,
+            collectionName: "Programs"
         };
 
         if (netid !== "lablinkadmin") {
@@ -280,10 +280,10 @@ const responseDataText = await response.text();
         }
 
         console.log(process.env);
-       // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
-        //console.log(repliesForSelectedPost);
-        console.log(netid, postid);
-        const response = await fetch("/api/forum?collection=threads", {
+       // const ApplicationsForSelectedProgram = applicationsData.filter(reply => reply.programId === selectedProgramId);
+        //console.log(ApplicationsForSelectedProgram);
+        console.log(netid, programId);
+        const response = await fetch("/api/forum?collection=Programs", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -293,12 +293,12 @@ const responseDataText = await response.text();
             console.log(response);
             const statusCode = response.status;
             if (statusCode == 403) {
-                alert("It seems you are deleting unauthorized posts");
+                alert("It seems you are deleting unauthorized Programs");
             }
             else{
-                alert("Post are removed from database. However, all replies are retained");
+                alert("Program are removed from database. However, all Applications are retained");
             }
-            fetchPostsAndUpdateState();
+            fetchProgramsAndUpdateState();
             console.log(statusCode);
 
         } catch (error) {
@@ -315,13 +315,13 @@ const responseDataText = await response.text();
 
 
 
-const addReplySubmit = async (event) => {
+const addApplicationSubmit = async (event) => {
     event.preventDefault();
 
-    const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
+    const ApplicationsForSelectedProgram = applicationsData.filter(reply => reply.programId === selectedProgramId);
 
     // Determine the next reply ID
-    const nextReplyId = repliesForSelectedPost.length + 1;
+    const nextReplyId = ApplicationsForSelectedProgram.length + 1;
     const token = sessionStorage.getItem('userToken');
     console.log(token,"is token!!!!");
     const randomNetId = token; // Placeholder for actual netid, to be improved
@@ -329,17 +329,17 @@ const addReplySubmit = async (event) => {
 
     const newReply = {
         netid: randomNetId,
-        replycontent: replyData,
+        replycontent: applicationData,
         replydate: currentDate,
-        replyid: nextReplyId,
-        postid: selectedPostId, // This should already be set when the user began the reply process
+        applicationId: nextReplyId,
+        programId: selectedProgramId, // This should already be set when the user began the reply process
     };
-    console.log(postid);
-    await addreply(newReply.netid, newReply.replycontent, newReply.replydate, newReply.replyid, newReply.postid);
-    alert("Thank you for bringing in a post, your response has been submitted");
-    fetchRepliesAndUpdateState();
+    console.log(programId);
+    await addApplication(newReply.netid, newReply.replycontent, newReply.replydate, newReply.applicationId, newReply.programId);
+    alert("Thank you for bringing in a Program, your response has been submitted");
+    fetchApplicationsAndUpdateState();
     console.log("OK??????")
-    setreplyData('');
+    setapplicationData('');
 
 };
 
@@ -347,18 +347,18 @@ const addReplySubmit = async (event) => {
 
 
 
- const addThreadSubmit = async (event) => {
+ const addProgramSubmit = async (event) => {
     event.preventDefault();
 
-    let maxPostId, nextPostId;
+    let maxProgramId, nextProgramId;
 
     try {
-        maxPostId = postsData.length > 0 ? postsData[postsData.length - 1].postid + 1 : 1;
-        nextPostId = maxPostId + 1;
+        maxProgramId = programsData.length > 0 ? programsData[programsData.length - 1].programId + 1 : 1;
+        nextProgramId = maxProgramId + 1;
     } catch (error) {
-        console.error("Error getting max post id:", error);
-        maxPostId = 1;
-        nextPostId = maxPostId + 1;
+        console.error("Error getting max Program id:", error);
+        maxProgramId = 1;
+        nextProgramId = maxProgramId + 1;
     }
 
     const token = sessionStorage.getItem('userToken');
@@ -366,63 +366,63 @@ const addReplySubmit = async (event) => {
     const randomNetId = token; // to be replaced when we connect
     const currentDate = new Date().toISOString();
     setnetid(randomNetId);
-    setpostid(nextPostId);
-    setpostDate(currentDate);
-    alert("Thank you for bringing in a post, your response has been submitted");
-    const response = await addthread(randomNetId, nextPostId, postData, currentDate);  // Call fetchData with netID and password
+    setprogramId(nextProgramId);
+    setprogramDate(currentDate);
+    alert("Thank you for bringing in a Program, your response has been submitted");
+    const response = await addProgram(randomNetId, nextProgramId, programData, currentDate);  // Call fetchData with netID and password
 
-    fetchPostsAndUpdateState();
+    fetchProgramsAndUpdateState();
     console.log("fetching complete!!!")
-    setpostData('');
+    setprogramData('');
 
   };
 
-    // State to determine which view to show: users, posts, or replies
+    // State to determine which view to show: users, Programs, or Applications
     const [view, setView] = useState('users');
-    const [showReplies, setShowReplies] = useState(false);
-    const [selectedPostId, setSelectedPostId] = useState(null);
+    const [showApplications, setShowApplications] = useState(false);
+    const [selectedProgramId, setSelectedProgramId] = useState(null);
     const [currentReplyPage, setCurrentReplyPage] = useState(1);
-    const handlePostClick = (postId) => {
-        setSelectedPostId(postId);
-        setShowReplies(true);
+    const handleProgramClick = (ProgramId) => {
+        setSelectedProgramId(ProgramId);
+        setShowApplications(true);
         setCurrentReplyPage(1);
     };
 
     const handleBackClick = () => {
-        setShowReplies(false);
-        setSelectedPostId(null);
+        setShowApplications(false);
+        setSelectedProgramId(null);
         setCurrentPage(1);
     };
 
     const deleteClick = async (event) => {
         event.preventDefault();
-        setShowReplies(false);
-        // setSelectedPostId(null);
+        setShowApplications(false);
+        // setSelectedProgramId(null);
         setCurrentPage(1);
-        console.log(selectedPostId);
+        console.log(selectedProgramId);
         const token = sessionStorage.getItem('userToken');
         if (token == null){
             alert ("Unauthorized deletion. Please log in.")
             return
         }
         else{
-            await deletethread(token, selectedPostId);
+            await deleteProgram(token, selectedProgramId);
         }
     };
 
     const deleteReplyClick = async (replyId, event) => {
         event.preventDefault();
         setCurrentPage(1);
-        console.log(selectedPostId, replyId);
+        console.log(selectedProgramId, replyId);
         const token = sessionStorage.getItem('userToken');
         if (token == null){
             alert ("Unauthorized deletion. Please log in.")
             return
         }
         else{
-            await deletereply(token, selectedPostId, replyId); //
+            await deleteApplication(token, selectedProgramId, replyId); //
         }
-        fetchRepliesAndUpdateState();
+        fetchApplicationsAndUpdateState();
     };
 
     const handleReplyPageChange = (page) => {
@@ -430,7 +430,7 @@ const addReplySubmit = async (event) => {
     };
 
 
-    //const [postsData, setpostsData] = useState([]);
+    //const [programsData, setprogramsData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
     // Depending on the state, we'll render different views
@@ -456,9 +456,9 @@ const addReplySubmit = async (event) => {
             <div className="col-12">
               <div className="row justify-content-center ">
                 <div className="col-lg-6 text-center ">
-                  <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Self Recommendation</h1>
+                  <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Centralized Application</h1>
                   <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                    <p><h2><em>"We are students interested in research and openly looking for opportunities."</em></h2></p>
+                    <p><h2><em>"A great place for Programs."</em></h2></p>
                     <p>All @ Emory.</p>
                   </div>
 
@@ -479,7 +479,7 @@ const addReplySubmit = async (event) => {
         </div>
       </div>
       <div className="untree_co-section bg-light" id = "News_concrete">
-        <div className="postsContainer">
+        <div className="ProgramsContainer">
 
 
 
@@ -488,64 +488,69 @@ const addReplySubmit = async (event) => {
 
 
 
-            <main>
-            {showReplies ? (
-                <div>
-                    <div class="button-container">
-                        <button class="btn" onClick={handleBackClick}>Back to Posts</button>
-                        <button class="btn" onClick={deleteClick}>Delete My Post</button>
-                    </div>
+ <main>
+    {showApplications ? (
+        <div>
+            <div className="button-container">
+                <button className="btn" onClick={handleBackClick}>Back to Programs</button>
+                <button className="btn" onClick={deleteProgram}>Withdraw My Application</button>
+            </div>
 
-                    <h2>Replies</h2>
-                    <ul>
-                        {repliesData
-                            .filter(reply => reply.postid === selectedPostId)
-                            .map(reply => (
-                                <li key={reply.replyid}>
-                                    <strong>{reply.replydate}</strong> {reply.replycontent}
-                                    <button onClick={(event) => deleteReplyClick(reply.replyid, event)}>Delete My Reply</button>
-                                </li>
-                            ))}
-                    </ul>
-                    <form onSubmit = {addReplySubmit}>
-                    <label>
-                      Replies
-                      <textarea onChange={(e) => setreplyData(e.target.value)}  type="text" name="Replies"  rows="2" cols="50" placeholder = "Peace and love."></textarea>
-                    </label>
-                    <input type="submit" value="SubmitReplies" />
-                  </form>
-                </div>
-            ) : (
-                <div>
-                    <h2>Posts</h2>
-                    <ul>
-                        {postsData.slice((currentPage-1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((post, index) => (
-
-    <li key={post.postid} onClick={() => handlePostClick(post.postid)}>
-        {post.postData} - by {getUserNameByNetId(post.netid)}
-    </li>
-
-                        ))}
-                    </ul>
-                    <form  onSubmit = {addThreadSubmit} >
-                    <label>
-                      New Thread
-                                      <textarea
-                  onChange={(e) => setpostData(e.target.value)}
-                  type="text"
-                  name="New Posts"
-                  rows="2"
-                  cols="50"
-                  placeholder="Sincerity brings connections."
-                  value={postData} // This line ensures the value is updated in the UI
-                />
+            <h2>Applications</h2>
+            <ul>
+                {applicationsData
+                    .filter(application => application.programId === selectedProgramId)
+                    .map(application => (
+                        <li key={application.applicationId}>
+                            <strong>{application.applicationDate}</strong> {application.applicationContent}
+                            <button onClick={() => deleteApplication(application.applicationId)}>Withdraw My Application</button>
+                        </li>
+                    ))}
+            </ul>
+            <form onSubmit={addApplicationSubmit}>
+                <label>
+                    Application
+                    <textarea 
+                        onChange={e => setapplicationData(e.target.value)} 
+                        name="Applications" 
+                        rows="2" 
+                        cols="50" 
+                        placeholder="Your motivation and qualifications for this program."
+                    />
                 </label>
-                    <input type="submit" value="I want to Make a new Post" />
-                  </form>
+                <input type="submit" value="Submit Application" />
+            </form>
+        </div>
+    ) : (
+        <div>
+            <h2>Programs</h2>
+            <ul>
+                {programsData.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+                    .map(program => (
+                        <li key={program.programId} onClick={() => handleProgramClick(program.programId)}>
+                            {program.programData} - by {getUserNameByNetId(program.netid)}
+                        </li>
+                    ))}
+            </ul>
+            <form onSubmit={addProgramSubmit} className="new-program-form">
+                <label>
+                    New Program
+                    <textarea
+                        onChange={e => setprogramData(e.target.value)}
+                        name="New Programs"
+                        rows="2"
+                        cols="50"
+                        placeholder="Description of the new program."
+                        value={programData}
+                    />
+                </label>
+                <input type="submit" value="Create New Program" />
+            </form>
+        </div>
+    )}
+</main>
 
-                </div>
-            )}
-        </main>
+
 
   </div>
 
@@ -555,8 +560,8 @@ const addReplySubmit = async (event) => {
         <ul className="list-unstyled custom-pagination">
 
 
-            {showReplies ?
-                        generatePagination(currentReplyPage, Math.ceil(repliesData.filter(reply => reply.postid === selectedPostId).length / ITEMS_PER_PAGE)).map((page, index) => (
+            {showApplications ?
+                        generatePagination(currentReplyPage, Math.ceil(applicationsData.filter(reply => reply.programId === selectedProgramId).length / ITEMS_PER_PAGE)).map((page, index) => (
                             <li key={index} className={page === currentReplyPage ? 'active' : ''}>
                                 {page === '...' ? (
                                     '...'
@@ -566,7 +571,7 @@ const addReplySubmit = async (event) => {
                             </li>
                         ))
                         :
-                        generatePagination(currentPage, Math.ceil(postsData.length / ITEMS_PER_PAGE)).map((page, index) => (
+                        generatePagination(currentPage, Math.ceil(programsData.length / ITEMS_PER_PAGE)).map((page, index) => (
                             <li key={index} className={page === currentPage ? 'active' : ''}>
                                 {page === '...' ? (
                                     '...'
@@ -669,4 +674,4 @@ const addReplySubmit = async (event) => {
     );
 }
 
-export default Forum;
+export default CentralizedApplication;

@@ -359,6 +359,9 @@ export default function Contact() {
 
             </div>
 
+            
+
+
             <div className="row mt-5">
               <div className="col-12 text-center">
                 <p>Copyright &copy;<script> document.write(new Date().getFullYear());</script> All Rights Reserved.</p>

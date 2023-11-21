@@ -21,6 +21,7 @@ import Verify from './components/verify.js';
 import { LabLinkProvider } from './LabLinkProvider.js';
 import VerifyUser from './components/VerifyUser.js';
 import NewUserVerify from './components/NewUserVerify.js';
+import Application from './components/Application.js';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
   {
     path: "Profile",
     element: <Profile />
+  },
+  {
+    path: "Application",
+    element: <Application />
   }
 ]);
 

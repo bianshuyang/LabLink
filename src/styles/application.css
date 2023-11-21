@@ -1,0 +1,175 @@
+/* General Styling */
+
+.ProgramsContainer body {
+    font-family: 'Times New Roman', serif;
+    background-color: #f4f4f4;
+}
+
+.ProgramsContainer main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.ProgramsContainer div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+.ProgramsContainer h2 {
+    border-bottom: 1px solid #ccc;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+.ProgramsContainer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Post styling */
+.ProgramsContainer li {
+    padding: 15px 20px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.ProgramsContainer li:hover {
+    background-color: #f9f9f9;
+}
+
+/* application (Dialogue Bubble) styling */
+.ProgramsContainer li.application {
+    position: relative;
+    background-color: #e6f7ff;
+    border-color: #b3e0ff;
+}
+
+.ProgramsContainer li.application:before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: #e6f7ff;
+    border: 1px solid #b3e0ff;
+    border-width: 1px 1px 0 0;
+    transform: rotate(45deg);
+    box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ProgramsContainer button {
+    background-color: #204d74; /* A dark blue color */
+    color: #fff;
+    padding: 12px 20px;
+    border: 1px solid #204d74;
+}
+
+.ProgramsContainer button:hover {
+    background-color: #0056b3;
+}
+
+
+.ProgramsContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.ProgramsContainer label {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ProgramsContainer input[type="text"], .ProgramsContainer textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-family: 'Times New Roman', serif;
+}
+
+.ProgramsContainer textarea{
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+
+}
+
+.ProgramsContainer input[type="text"]:focus {
+    border-bottom-color: #007BFF;
+}
+
+.ProgramsContainer input[type="submit"] {
+    background-color: #204d74; /* A dark blue color */
+    border: 1px solid #204d74;
+}
+
+.ProgramsContainer input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.button-container {
+    display: flex;          /* Uses flexbox to lay out children */
+    justify-content: space-between; /* Children are spaced across the full width */
+    align-items: center;    /* Centers children along the cross axis */
+    width: 100%;            /* Optional: takes full width of the parent */
+    padding: 10px;          /* Optional: space around the container */
+}
+
+/* Optional: Additional styles for buttons */
+.btn {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 30px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: .05rem; }
+  .btn:active, .btn:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  .btn.btn-primary {
+    background: #136ad5;
+    border-color: #136ad5; }
+    .btn.btn-primary:hover {
+      border-color: #1573e8;
+      background: #1573e8; }
+  .btn.btn-secondary {
+    background: #00aeff;
+    border-color: #00aeff; }
+    .btn.btn-secondary:hover {
+      border-color: #14b4ff;
+      background: #14b4ff; }
+  .btn.btn-sm {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px; }
+  .btn.btn-outline-primary {
+    border-color: #136ad5;
+    color: #136ad5; }
+    .btn.btn-outline-primary:hover {
+      background: #136ad5;
+      color: #ffffff; }
+
