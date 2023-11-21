@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import "../styles/forum.css";
 import { Link } from "react-router-dom"
 import Navbar from './Navbar.js';
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const ITEMS_PER_PAGE = 9;
 const MAX_VISIBLE_PAGINATION = 8; // Example: 1 ... 4 5 6 ... 25
@@ -25,6 +28,7 @@ function generatePagination(currentPage, maxPages) {
     }
     return pages;
 }
+
 
 
 
@@ -53,7 +57,7 @@ function Forum() {
     const [replyid,setreplyid]= React.useState('');
     const [replyData,setreplyData] = React.useState('');
     const [replyDate,setreplyDate] = React.useState('');
-
+    
 
     /////////////
     useEffect(() => {
@@ -192,6 +196,9 @@ const responseDataText = await response.text();
             console.log(error);
         }
     }
+
+        
+
 
     async function addthread(netid, postid, postData,postDate) {
         try {
@@ -350,6 +357,7 @@ const addReplySubmit = async (event) => {
  const addThreadSubmit = async (event) => {
     event.preventDefault();
 
+    console.log("Submitting Post Data: ", postData);
     let maxPostId, nextPostId;
 
     try {
@@ -432,6 +440,12 @@ const addReplySubmit = async (event) => {
 
     //const [postsData, setpostsData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const showTerms = () => {
+    console.log("Show Terms and Conditions");
+    alert('1. Users are permitted to upload their data to Lablink, including but not limited to, text, images, videos, and other digital content.\n\n2. Visibility Settings: Users have the ability to set visibility parameters for their uploaded data. These settings determine who can view the uploaded content. It is the responsibility of the user to set and maintain these visibility preferences.\n\n3. Changes to Visibility: Users can change the visibility settings of their data at any time. However, it is important to note that changes to visibility settings are not retroactive. This means that if data was previously set to be publicly visible, it could have been viewed, copied, or used by others before the visibility was changed.\n\n4. Risk Acknowledgement: Users must understand that any data uploaded to LabLink and set to a certain visibility level carries the risk of exposure. Even if visibility settings are later changed, the previous exposure of the data cannot be undone. Users should consider the sensitivity of the data they choose to upload and the potential consequences of its exposure.\n\n5. Platform Rights: Lablink reserves the right to modify these terms and conditions at any time. Changes will be effective immediately upon posting on our website. Continued use of the site after any such changes constitutes your consent to such changes.\n\n6. User Discretion: It is the user’s responsibility to regularly review and understand the visibility settings and to use discretion when uploading data to Lablink.\n\nBy using Lablink, you acknowledge that you have read, understood, and agreed to these terms and conditions. Please contact us if you have any questions or concerns regarding these terms.');
+
+  };
+
 
     // Depending on the state, we'll render different views
     return (
@@ -458,7 +472,12 @@ const addReplySubmit = async (event) => {
                 <div className="col-lg-6 text-center ">
                   <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Self Recommendation</h1>
                   <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                    <p><h2><em>"We are students interested in research and openly looking for opportunities."</em></h2></p>
+                    <p><h2>
+
+                    For students:  This is a place for students to post their research statement (if any) here alongside Profiles. Students wishing to begin their first phase of Emory Research, or wishing to continue and switch a direction and actively looking to find an alternative way to cold emails may find it particularly helpful to do so. However, chances may be very limited. 
+                    For professors: This is a place for professor to select interested student profile actively. 
+
+                    </h2></p>
                     <p>All @ Emory.</p>
                   </div>
 
@@ -488,64 +507,115 @@ const addReplySubmit = async (event) => {
 
 
 
-            <main>
-            {showReplies ? (
-                <div>
-                    <div class="button-container">
-                        <button class="btn" onClick={handleBackClick}>Back to Posts</button>
-                        <button class="btn" onClick={deleteClick}>Delete My Post</button>
-                    </div>
+           <main>
+  {showReplies ? (
+      <div>
+          <div className="button-container">
+              <button className="btn" onClick={handleBackClick}>Back to All Research Statement</button>
+              <button className="btn" onClick={deleteClick}>Delete My Research Statement</button>
+          </div>
 
-                    <h2>Replies</h2>
-                    <ul>
-                        {repliesData
-                            .filter(reply => reply.postid === selectedPostId)
-                            .map(reply => (
-                                <li key={reply.replyid}>
-                                    <strong>{reply.replydate}</strong> {reply.replycontent}
-                                    <button onClick={(event) => deleteReplyClick(reply.replyid, event)}>Delete My Reply</button>
-                                </li>
-                            ))}
-                    </ul>
-                    <form onSubmit = {addReplySubmit}>
-                    <label>
-                      Replies
-                      <textarea onChange={(e) => setreplyData(e.target.value)}  type="text" name="Replies"  rows="2" cols="50" placeholder = "Peace and love."></textarea>
-                    </label>
-                    <input type="submit" value="SubmitReplies" />
-                  </form>
-                </div>
-            ) : (
-                <div>
-                    <h2>Posts</h2>
-                    <ul>
-                        {postsData.slice((currentPage-1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((post, index) => (
+          <h2>Replies</h2>
+          <ul>
+              {repliesData
+                  .filter(reply => reply.postid === selectedPostId)
+                  .map(reply => (
+                      <li key={reply.replyid}>
+                          <strong>{reply.replydate}</strong> {reply.replycontent}
+                          <button onClick={() => deleteReplyClick(reply.replyid)}>Delete My Reply</button>
+                      </li>
+                  ))}
+          </ul>
 
-    <li key={post.postid} onClick={() => handlePostClick(post.postid)}>
-        {post.postData} - by {getUserNameByNetId(post.netid)}
-    </li>
-
-                        ))}
-                    </ul>
-                    <form  onSubmit = {addThreadSubmit} >
-                    <label>
-                      New Thread
-                                      <textarea
-                  onChange={(e) => setpostData(e.target.value)}
-                  type="text"
-                  name="New Posts"
-                  rows="2"
-                  cols="50"
-                  placeholder="Sincerity brings connections."
-                  value={postData} // This line ensures the value is updated in the UI
+          <form onSubmit={addReplySubmit}>
+              <label>
+                New Research Statement Follow-Ups
+                <ReactQuill
+                    value={postData}
+                    onChange={(content) => setreplyData(content)}
+                    placeholder="Sincerity brings connections."
                 />
-                </label>
-                    <input type="submit" value="I want to Make a new Post" />
+              </label>
+              <input type="submit" value="I am interested in connecting with the student!" />
+                     <p>
+            Clicking on the above button implies you agree to the 
+            <a href="#" onClick={showTerms}> terms and conditions</a>.
+          </p>
+
+        </form>
+
+          
+      </div>
+  ) : (
+      <div>
+          <h2>Interested Student Profile and their research statement</h2>
+
+          {
+    postsData && postsData.length > 0 ? (
+        <ul>
+    {postsData.slice((currentPage-1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((post) => (
+        <li key={post.postid}>
+            <div dangerouslySetInnerHTML={{ __html: post.postData }}></div>
+            - by {getUserNameByNetId(post.netid)}
+        </li>
+    ))}
+</ul>
+
+    ) : (
+        <div>No posts available.</div>
+    )
+}
+
+          <form onSubmit={addThreadSubmit}>
+              
+
+              <label>   Adding my Research Statement to Cohort </label>
+
+            <div className="App">
+                <CKEditor
+                    editor={ ClassicEditor }
+                    data = {postData}
+                    onReady={editor=>{}}
+onChange={(event, editor) => {
+    try {
+
+        const data = editor.getData();
+        setpostData(data);
+        console.log("OK Set post data?")
+        // Assuming 'postid' holds the ID of the post being edited
+        setpostsData(currentPosts =>
+            currentPosts.map(post => 
+                post.postid === postid ? { ...post, postData: data } : post
+            )
+        );
+    } catch (error) {
+        console.error('Error in editor onChange:', error);
+    }
+}}
+
+
+                />
+            </div>
+
+
+              <input type="submit" value="I am looking for a lab position!" />
+                     
+
+
+                     <p>
+            Clicking on the above button implies you agree to the 
+            <a href="#" onClick={showTerms}> terms and conditions</a>.
+          </p>
+
                   </form>
 
-                </div>
-            )}
-        </main>
+                  
+
+
+
+      </div>
+  )}
+</main>
 
   </div>
 
