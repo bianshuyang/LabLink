@@ -1,0 +1,380 @@
+[
+    {
+        "Name": "Jinho Choi",
+        "Title": "Associate Professor",
+        "Office": "W302-F",
+        "Phone": "404-712-5694",
+        "Email": "",
+        "Personal Website": "tel:1-404-712-5694",
+        "Research Groups": "Data Mining and Machine Learning",
+        "Office Hours": [
+            "Monday: 2:30PM - 4:00PM",
+            "Wednesday: 2:30PM - 4:00PM"
+        ],
+        "Teaching (Fall 2023)": [
+            "CS 371 (1) - Research Practicum in AI MW 11:30AM - 12:45PM",
+            "CS 485 (3) - Computer Vision TuTh 10:00AM - 11:15AM",
+            "CS 584 (4) - Computer Vision TuTh 10:00AM - 11:15AM"
+        ],
+        "Research": [
+            "Natural language processing",
+            "",
+            "Machine learning"
+        ],
+        "Education": [
+            "Ph.D. (2012), University of Colorado Boulder (Computer Science and Cognitive Science, Joint degree).",
+            "",
+            "M.S.E. (2003), University of Pennsylvania (Computer and Information Science).",
+            "",
+            "B.A. (2002), Coe College (Computer Science and Mathematics, Dual degree)."
+        ]
+    },
+    {
+        "Name": "Eugene Agichtein",
+        "Title": "Professor",
+        "Office": "Emerson 500",
+        "Phone": "404-727-7962",
+        "Email": "",
+        "Personal Website": "tel:1-404-727-7962",
+        "Research Groups": "Databases and Information Management",
+        "Office Hours": [
+            "Tuesday: 12:00PM - 1:00PM (CS 557 @ Emerson E500)",
+            "Thursday: 12:00PM - 1:00PM (CS 557 @ Emerson E500)",
+            "Thursday: 1:00PM - 3:00PM (CSI PhD Advising @ the MathCS Advising Room)",
+            "or by appointment"
+        ],
+        "Teaching (Fall 2023)": [
+            "CS 557 (1) - Artificial Intelligence MW 10:00AM - 11:15AM"
+        ],
+        "Research": [
+            "I lead the  Emory Intelligent Information Access Lab (IRLab) . We work on information retrieval and text and data mining, including mining online user behavior and interactions in web search and online social networks, large-scale content analysis and information extraction, and on applications of these techniques to medical domains."
+        ],
+        "Education": [
+            "Ph.D. (2005), M.S. (2000), Columbia University (Computer Science)",
+            "B.S., 1998, Cooper Union (Engineering)"
+        ]
+    },
+    {
+        "Name": "Li Xiong",
+        "Title": "Professor",
+        "Office": "E412",
+        "Phone": "404-727-0758",
+        "Email": "",
+        "Personal Website": "tel:1-404-727-0758",
+        "Research Groups": "Biomedical Informatics",
+        "Office Hours": [
+            "Monday: 11:15AM - 12:15PM",
+            "Wednesday: 11:15AM - 12:15PM"
+        ],
+        "Teaching (Fall 2023)": [
+            "CS 334 (1) - Machine Learning MW 1:00PM - 2:15PM"
+        ],
+        "Research": [
+            "Research Groups: Data and information management, biomedical informatics",
+            "Research: Data privacy and security, data and information management"
+        ],
+        "Education": [
+            "Ph.D. (2005) Georgia Institute of Technology (Computer Science)",
+            "M.S. (1999) Johns Hopkins University (Computer Science)",
+            "B.S. (1997) University of Science and Technology of China (Computer Science)"
+        ]
+    },
+    {
+        "Name": "Joyce Ho",
+        "Title": "Associate Professor",
+        "Office": "W302-M",
+        "Phone": "404-727-5605",
+        "Email": "",
+        "Personal Website": "tel:1-404-727-5605",
+        "Research Groups": "Biomedical Informatics",
+        "Office Hours": [
+            "While on sabbatical, students may contact Prof. Ho via email."
+        ],
+        "Teaching (Fall 2023)": [
+            "CS 334 (2) - Machine Learning TuTh 8:30AM - 9:45AM",
+            "CS 534 (1) - Machine Learning TuTh 11:30AM - 12:45PM"
+        ],
+        "Research": [
+            "Data Mining",
+            "Machine Learning",
+            "Healthcare Informatics"
+        ],
+        "Education": [
+            "Ph.D. (2015), University of Texas at Austin (Electrical and Computer Engineering Department)",
+            "M.Eng (2004), Massachusetts Institute of Technology (Electrical and Computer Science Department)",
+            "M.Eng (2003), Massachusetts Institute of Technology (Electrical and Computer Science Department)"
+        ]
+    },
+    {
+        "Name": "Fei Liu",
+        "Title": "Associate Professor",
+        "Office": "W302-G",
+        "Phone": "",
+        "Email": "",
+        "Personal Website": "tel:1-",
+        "Research Groups": "",
+        "Office Hours": [],
+        "Teaching (Fall 2023)": [
+            "CS 571 (1) - Natural Language Processing MW 5:30PM - 6:45PM"
+        ],
+        "Research": [
+            "Natural Language Processing and Deep Learning"
+        ],
+        "Education": []
+    },
+    {
+        "Name": "Ken Mandelberg",
+        "Title": "Associate Professor",
+        "Office": "E424",
+        "Phone": "404-727-7963",
+        "Email": "",
+        "Personal Website": "tel:1-404-727-7963",
+        "Research Groups": "Data and Networked Systems",
+        "Office Hours": [
+            "Tuesday: 4:00PM - 5:30PM",
+            "Thursday: 4:00PM - 5:30PM"
+        ],
+        "Teaching (Fall 2023)": [
+            "CS 350 (2) - Systems Programming TuTh 11:30AM - 12:45PM",
+            "CS 551 (1) - Systems Programming TuTh 2:30PM - 3:45PM"
+        ],
+        "Research": [
+            "Operating Systems, Networking, Graphics"
+        ],
+        "Education": [
+            "Ph.D. (1973) Cornell University",
+            "M.S. (1971) Cornell University",
+            "B.S. (1968) Brooklyn College"
+        ]
+    },
+    {
+        "Name": "Yolanda Rankin",
+        "Title": "Associate Professor",
+        "Office": "",
+        "Phone": "",
+        "Email": "",
+        "Personal Website": "tel:1-",
+        "Research Groups": "",
+        "Office Hours": [],
+        "Teaching (Fall 2023)": [],
+        "Research": [],
+        "Education": []
+    },
+    {
+        "Name": "Ymir Vigfusson",
+        "Title": "Associate Professor",
+        "Office": "W302-H",
+        "Phone": "404-727-3637",
+        "Email": "",
+        "Personal Website": "tel:1-404-727-3637",
+        "Research Groups": "Databases and Information Management",
+        "Office Hours": [
+            "Wednesday: 1:00PM - 2:00PM"
+        ],
+        "Teaching (Fall 2023)": [],
+        "Research": [
+            "My academic research is focused on distributed systems and data science, and I am particularly interested in socially motivated real-world problems that embody deep trade-offs. My primary interests are on making distributed data replication smarter -- including caching, live streaming and multicast -- and on practical ways to improve security. I am also interested in optimization, data mining, network science, wireless ad-hoc networks and epidemiology. Check out my website or shoot met an e-mail for more information."
+        ],
+        "Education": [
+            "Ph.D. (2010), Cornell University (Department of Computer Science)",
+            "M.Sc. (2008), Cornell University (Department of Computer Science)",
+            "B.Sc. (2005), University of Iceland (Department of Mathematics)"
+        ]
+    },
+    {
+        "Name": "Andreas Züfle",
+        "Title": "Associate Professor",
+        "Office": "W302-I",
+        "Phone": "NA",
+        "Email": "",
+        "Personal Website": "tel:1-NA",
+        "Research Groups": "",
+        "Office Hours": [
+            "Tuesday: 11:30AM - 1:00PM",
+            "Thursday: 11:30AM - 1:00PM"
+        ],
+        "Teaching (Fall 2023)": [
+            "CS 377 (1) - Database Systems MW 4:00PM - 5:15PM"
+        ],
+        "Research": [
+            "Databases, Data Mining, Simulation, Efficient Algorithms, Spatial Computing"
+        ],
+        "Education": [
+            "PhD in Computer Science, Ludwig Maximilian University of Munich, 2013"
+        ]
+    },
+    {
+        "Name": "Wei Jin",
+        "Title": "Assistant Professor",
+        "Office": "N430",
+        "Phone": "",
+        "Email": "",
+        "Personal Website": "tel:1-",
+        "Research Groups": "",
+        "Office Hours": [],
+        "Teaching (Fall 2023)": [
+            "CS 570 (1) - Data Mining MW 4:00PM - 5:15PM"
+        ],
+        "Research": [],
+        "Education": []
+    },
+    {
+        "Name": "Emily Wall",
+        "Title": "Assistant Professor",
+        "Office": "W302-E",
+        "Phone": "",
+        "Email": "",
+        "Personal Website": "tel:1-",
+        "Research Groups": "Human Computer Interaction",
+        "Office Hours": [],
+        "Teaching (Fall 2023)": [
+            "CS 441 (1) - Information Visualization MW 11:30AM - 12:45PM",
+            "CS 541 (1) - Information Visualization MW 11:30AM - 12:45PM"
+        ],
+        "Research": [],
+        "Education": []
+    },
+    {
+        "Name": "Kristin Williams",
+        "Title": "Assistant Professor",
+        "Office": "W302-K",
+        "Phone": "NA",
+        "Email": "",
+        "Personal Website": "tel:1-NA",
+        "Research Groups": "",
+        "Office Hours": [
+            "Monday: 5:15PM - 6:15PM (in person)",
+            "Wednesday: 5:15PM - 6:15PM (in person)"
+        ],
+        "Teaching (Fall 2023)": [
+            "CS 312 (1) - Computing, AI, Ethics, and Soc MW 4:00PM - 5:15PM",
+            "CS 584 (3) - Social and Ethical Issues in Computing MW 1:00PM - 2:15PM"
+        ],
+        "Research": [
+            "Kristin's research studies, designs, and creates approachable ways to program cutting-edge technologies so that anyone could imbue them with their own meanings and ways of life. She is currently focusing on creating a lightweight Internet of Things appropriate for the home. Today’s families use household objects to organize and manage daily life in idiosyncratic ways that resist generalization and differ from family to family. If the Internet of Things (IoT) is to fit with these idiosyncratic arrangements, it will need to be customizable, lightweight, and substantially cheaper (perhaps even <$0.10). To enable this kind of IoT, Kristin uses emerging techniques in backscatter communication to create a battery-free and wireless user interface that incorporates existing possessions into an IoT ecosystem through interactive stickers. Instead of replacing everyday objects in favor of internet-enabled equivalents (e.g., a smart bulb for a lightbulb), Kristin's work allows existing possessions to be upcycled with IoT: like giving an old, favorite teddy bear a friendly, voice interface. As a human computer interaction (HCI) researcher, she enables an Upcycled IoT by both studying how households use everyday objects and building lightweight, customizable technology to integrate with these possessions."
+        ],
+        "Education": [
+            "PhD in Human Computer Interaction, Carnegie Mellon University",
+            "MS in Human Computer Interaction, Carnegie Mellon University",
+            "MS in Human Computer Interaction, University of Maryland, College Park",
+            "BA in Philosophy, Reed College"
+        ]
+    },
+    {
+        "Name": "Carl Yang",
+        "Title": "Assistant Professor",
+        "Office": "N422",
+        "Phone": "",
+        "Email": "",
+        "Personal Website": "tel:1-",
+        "Research Groups": "",
+        "Office Hours": [],
+        "Teaching (Fall 2023)": [
+            "CS 253 (1) - Data Structures and Algorithms MW 10:00AM - 11:15AM"
+        ],
+        "Research": [
+            "Graph Data Mining, Applied Machine Learning, Structured Information Systems",
+            "Biomedical Informatics, Knowledge Bases, Social Networks, Recommender Systems"
+        ],
+        "Education": [
+            "B.Eng. (2014), Zhejiang University (Computer Science)",
+            "Ph.D. (2020), University of Illinois at Urbana Champaign (Computer Science)"
+        ]
+    },
+    {
+        "Name": "Liang Zhao",
+        "Title": "Assistant Professor",
+        "Office": "N424",
+        "Phone": "",
+        "Email": "",
+        "Personal Website": "tel:1-",
+        "Research Groups": "",
+        "Office Hours": [],
+        "Teaching (Fall 2023)": [
+            "CS 253 (2) - Data Structures and Algorithms MW 1:00PM - 2:15PM"
+        ],
+        "Research": [
+            "My research focuses on Data Mining, Machine Learning, and Nonconvex Optimization, with special interests in deep learning on graphs, societal event prediction, interpretable machine learning, spatio-temporal data mining, sparse feature learning, social media mining, and distributed optimization of deep and nonconvex models."
+        ],
+        "Education": [
+            "PhD, Virginia Tech, 2016"
+        ]
+    },
+    {
+        "Name": "Davide Fossati",
+        "Title": "Associate Teaching Professor",
+        "Office": "W410",
+        "Phone": "",
+        "Email": "",
+        "Personal Website": "tel:1-",
+        "Research Groups": "Center for Language and Information Research (CLIR)",
+        "Office Hours": [],
+        "Teaching (Fall 2023)": [],
+        "Research": [
+            "Enhanced Learning and Instructional Technologies at Emory (ELITE)"
+        ],
+        "Education": []
+    },
+    {
+        "Name": "Steven La Fleur",
+        "Title": "Associate Teaching Professor",
+        "Office": "W402",
+        "Phone": "404-727-0885",
+        "Email": "",
+        "Personal Website": "tel:1-404-727-0885",
+        "Research Groups": "",
+        "Office Hours": [
+            "Monday: 1:00PM - 2:30PM",
+            "Tuesday: 1:00PM - 2:30PM"
+        ],
+        "Teaching (Fall 2023)": [
+            "CS 110 (1) - Computer Science Fundamentals TuTh 10:00AM - 11:15AM",
+            "CS 350 (1) - Systems Programming TuTh 1:00PM - 2:15PM"
+        ],
+        "Research": [],
+        "Education": []
+    },
+    {
+        "Name": "Nosayba El-Sayed",
+        "Title": "Assistant Teaching Professor",
+        "Office": "W302-D",
+        "Phone": "",
+        "Email": "",
+        "Personal Website": "tel:1-",
+        "Research Groups": "",
+        "Office Hours": [
+            "Monday: 2:30PM - 4:00PM (CS 171)",
+            "Tuesday: 11:30AM - 12:30PM",
+            "Wednesday: 2:30PM - 4:00PM (CS 170)"
+        ],
+        "Teaching (Fall 2023)": [],
+        "Research": [],
+        "Education": []
+    },
+    {
+        "Name": "Nirmalya Thakur",
+        "Title": "Assistant Teaching Professor",
+        "Office": "W302-J",
+        "Phone": "404-712-9784",
+        "Email": "",
+        "Personal Website": "tel:1-404-712-9784",
+        "Research Groups": "",
+        "Office Hours": [
+            "Friday: 2:00PM - 3:30PM (CS 285)",
+            "Friday: 3:30PM - 5:00PM (CS 326)",
+            "Friday: 5:00PM - 6:45PM (CS 224)"
+        ],
+        "Teaching (Fall 2023)": [
+            "CS 211 (1) - Introduction to Artificial Intelligence TuTh 5:30PM - 6:45PM",
+            "CS 326 (1) - Analysis of Algorithms TuTh 2:30PM - 3:45PM"
+        ],
+        "Research": [
+            "Human-Computer Interaction",
+            "Big Data",
+            "Artificial Intelligence",
+            "Machine Learning",
+            "Natural Language Processing"
+        ],
+        "Education": []
+    }
+]
