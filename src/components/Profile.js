@@ -99,7 +99,7 @@ export default function Profile() {
       }
   };
 
-  async function addUser({ name, role, email, bio, netID }) {
+  async function addUser({ name, role, email, year, major, courses, bio, netID }) {
       try {
         console.log(process.env);
           const response = await fetch("/api/forum?collection=users", {
@@ -295,37 +295,6 @@ export default function Profile() {
             sx={{ display: { xs: 'flex', md: 'none' }, my: 1 }}
           >
             <Stack direction="row" spacing={2}>
-              <Stack direction="column" spacing={1}>
-                <AspectRatio
-                  ratio="1"
-                  maxHeight={108}
-                  sx={{ flex: 1, minWidth: 108, borderRadius: '100%' }}
-                >
-                  <img
-                    src=""
-                    srcSet=""
-                    loading="lazy"
-                    alt=""
-                  />
-                </AspectRatio>
-                <IconButton
-                  aria-label="upload new picture"
-                  size="sm"
-                  variant="outlined"
-                  color="neutral"
-                  sx={{
-                    bgcolor: 'background.body',
-                    position: 'absolute',
-                    zIndex: 2,
-                    borderRadius: '50%',
-                    left: 85,
-                    top: 180,
-                    boxShadow: 'sm',
-                  }}
-                >
-                  <EditRoundedIcon />
-                </IconButton>
-              </Stack>
               <Stack spacing={1} sx={{ flexGrow: 1 }}>
                 <FormLabel>Name</FormLabel>
                 <FormControl
@@ -337,14 +306,21 @@ export default function Profile() {
                     gap: 2,
                   }}
                 >
-                  <Input size="sm" placeholder="Last name" defaultValue={name} />
+                  <Input size="sm" placeholder="Preferred Name" defaultValue={name} />
                 </FormControl>
               </Stack>
             </Stack>
-
             <FormControl>
               <FormLabel>Role</FormLabel>
               <Input size="sm" placeholder="Occupation" defaultValue={role} />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Major</FormLabel>
+              <Input size="sm" placeholder="Major" defaultValue={major} />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Graduation Year</FormLabel>
+              <Input size="sm" placeholder="Year" defaultValue={year} />
             </FormControl>
             <FormControl sx={{ flexGrow: 1 }}>
               <FormLabel>Email</FormLabel>
@@ -357,27 +333,13 @@ export default function Profile() {
                 sx={{ flexGrow: 1 }}
               />
             </FormControl>
+            <FormControl>
+              <FormLabel>Previous Courses</FormLabel>
+              <Input size="sm" placeholder="eg., Data Structures and Algorithms, Research in Biology..." defaultValue={courses} />
+            </FormControl>
           </Stack>
-          <CardOverflow sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
-            <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
-              <Button size="sm" variant="outlined" color="neutral" onClick={handleCancel}>
-                Cancel
-              </Button>
-              <Button size="sm" variant="solid" onClick={handleSave}>
-                Save
-              </Button>
-            </CardActions>
-          </CardOverflow>
-        </Card>
-        <Card>
-          <Box sx={{ mb: 1 }}>
-            <Typography level="title-md">Bio</Typography>
-            <Typography level="body-sm">
-              Write a short introduction to be displayed on your profile
-            </Typography>
-          </Box>
-          <Divider />
-          <Stack spacing={2} sx={{ my: 1 }}>
+          <Stack spacing={1} sx={{ my: 1 }}>
+            <Typography level="title-sm">Bio</Typography>
             <Textarea
               size="sm"
               minRows={4}
