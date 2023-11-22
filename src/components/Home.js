@@ -6,6 +6,7 @@ import Projects from "./Projects";
 import Register from './Register';
 import About from './About';
 import Contact from './Contact';
+import News from './News'
 import { useNavigation } from 'react-router-dom';
 import SingleProf from "./SingleProf";
 import Navbar from './Navbar.js';
@@ -241,7 +242,7 @@ function Home(){
                 <h2 className="mb-3"><Link to={'/'}>Annual Undergraduate Student Research Panel</Link></h2>
                 <div className="meta mb-2"><span className="icon-calendar mr-2"></span><span>September 22, 2020</span>  <span className="icon-person mr-2"></span>Emory CS Department</div>
                 <p>Undergraduate students hold a panel discussing their experience with research at Emory</p>
-                <p><Link to={'/'}>Learn More</Link></p>
+                <p><Link to={'/news'}>Learn More</Link></p>
               </div>
             </div>
           </div>
@@ -254,7 +255,7 @@ function Home(){
                 <h2 className="mb-3"><a href="#">Networking Night</a></h2>
                 <div className="meta mb-2"><span className="icon-calendar mr-2"></span><span>June 2, 2021</span>  <span className="icon-person mr-2"></span>Emory CS Department</div>
                 <p>Join the Emory Computer Science Department in hosting a Networking Night</p>
-                <p><a href="#">Learn More</a></p>
+                <p><Link to={'/news'}>Learn More</Link></p>
               </div>
             </div>
           </div>
@@ -336,7 +337,7 @@ function Home(){
                       <div>
                         <p>One-stop shop for all Emory CS research information</p>
                         <p>Create an informed studybody and wide pool of applicants</p>
-                        <p>Find research related events in a website (vs email)</p>
+                        <p>Find research related events in a website (vs. email)</p>
                       </div>
                     </div>
                   </div>
