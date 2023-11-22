@@ -11,31 +11,147 @@ import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 import Textarea from '@mui/joy/Textarea';
 import Stack from '@mui/joy/Stack';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
 import Typography from '@mui/joy/Typography';
-import Tabs from '@mui/joy/Tabs';
-import TabList from '@mui/joy/TabList';
-import Tab, { tabClasses } from '@mui/joy/Tab';
-import Breadcrumbs from '@mui/joy/Breadcrumbs';
-import Link from '@mui/joy/Link';
 import Card from '@mui/joy/Card';
 import CardActions from '@mui/joy/CardActions';
 import CardOverflow from '@mui/joy/CardOverflow';
-
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
-import AccessTimeFilledRoundedIcon from '@mui/icons-material/AccessTimeFilledRounded';
-import VideocamRoundedIcon from '@mui/icons-material/VideocamRounded';
-import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
 import { LabLinkContext } from '../LabLinkProvider';
 
 export default function Profile() {
 
-  const { netID, setNetID } = React.useContext(LabLinkContext);
+  const { netID } = React.useContext(LabLinkContext);
+  const { name, setName } = React.useContext(LabLinkContext);
+  const { role, setRole } = React.useContext(LabLinkContext);
+  const { email, setEmail } = React.useContext(LabLinkContext);
+  const { bio, setBio } = React.useContext(LabLinkContext);
+  const [usersData, setusersData] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await fetchUsersAndUpdateState();
+        console.log("We have all users below");
+        console.log(usersData);
+
+        const userInfo = await getUserNameByNetId(netID);
+        console.log("This is the user info you are looking for")
+        console.log(userInfo);
+        if (userInfo){
+          console.log("updating... ")
+          setName(userInfo.name || '');
+          setRole(userInfo.role || '');
+          setEmail(userInfo.email || '');
+          setBio(userInfo.bio || '');
+        }
+      } catch (error) {
+        // Handle errors...
+        console.error("Error fetching and updating user data:", error.message);
+      }
+    };
+
+    fetchData();
+
+  });
+
+
+  const getUserNameByNetId = (netId) => {
+      const user = usersData.find(u => u.netId === netId);
+      console.log(user);
+      console.log("Above is user");
+      return user;
+  };
+
+  const fetchUsersAndUpdateState = async () => {
+      try {
+           const response = await fetch("/api/forum?dataType=users", {
+              method: "GET"
+              });
+          const responseDataText = await response.text();
+
+          // Attempt to parse as JSON, if fails, just use the text
+          let responseData;
+          try {
+              responseData = JSON.parse(responseDataText);
+              console.log("OK");
+              console.log(responseData);
+          } catch (error) {
+              console.error("Failed to parse response as JSON: ", responseDataText);
+              responseData = responseDataText;
+          }
+
+          // Handle based on type
+          if (typeof responseData === 'object' && response.ok) {
+              setusersData(responseData);
+          } else {
+              console.error('Error or non-JSON response:', responseData);
+          }
+      } catch (error) {
+          console.error('Error fetching data: ', error);
+      }
+  };
+
+  async function addUser({ name, role, email, bio, netID }) {
+      try {
+        console.log(process.env);
+          const response = await fetch("/api/forum?collection=users", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                  collectionName: 'users',
+                  name: name,
+                  role: role,
+                  email: email,
+                  bio: bio,
+                  netId: netID,
+              }),
+          });
+          console.log(response);
+          const statusCode = response.status;
+          console.log(statusCode);
+          console.log("I added user ")
+
+      } catch (error) {
+          //console.error('Error during registration:', error.message);
+          console.log("Something is wrong...?")
+          console.log(error);
+      }
+
+  }
+
+  const handleSave = async () => {
+    try {
+
+      await addUser({
+        name: name,
+        role: role,
+        email: email,
+        bio: bio,
+        netID: netID,
+      });
+
+      alert("Profile updated successfully!");
+    } catch (error) {
+      // Handle errors
+      console.error("Error saving profile:", error.message);
+      alert("Failed to update profile. Please try again.");
+    }
+  };
+
+
+
+  const handleCancel = () => {
+    // Ignore changes and reset form fields to the values from LabLinkContext
+    setName(prevName => prevName);
+    setRole(prevRole => prevRole);
+    setEmail(prevEmail => prevEmail);
+    setBio(prevBio => prevBio);
+  };
+
 
   return (
     <>
@@ -56,7 +172,7 @@ export default function Profile() {
           <div className="col-12">
             <div className="row justify-content-center ">
               <div className="col-lg-6 text-center ">
-                <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Welcome { netID }</h1>
+                <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Welcome { name ? name : netID }</h1>
                 <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
                   <p>Welcome to the LabLink Profile Page! Here, you have the power to personalize your scientific identity. Update your email, fine-tune your display name, and enhance your professional bio.</p>
                 </div>
@@ -144,14 +260,13 @@ export default function Profile() {
                     gap: 2,
                   }}
                 >
-                  <Input size="sm" placeholder="First name" />
-                  <Input size="sm" placeholder="Last name" sx={{ flexGrow: 1 }} />
+                  <Input size="sm" placeholder="Preferred Name" defaultValue={name} sx={{ flexGrow: 1 }} onChange={((e) => setName(e.target.value))}/>
                 </FormControl>
               </Stack>
               <Stack direction="row" spacing={2}>
                 <FormControl>
                   <FormLabel>Role</FormLabel>
-                  <Input size="sm" defaultValue="UI Developer" />
+                  <Input size="sm" placeholder="Occupation" defaultValue={role} onChange={((e) => setRole(e.target.value))}/>
                 </FormControl>
                 <FormControl sx={{ flexGrow: 1 }}>
                   <FormLabel>Email</FormLabel>
@@ -159,9 +274,10 @@ export default function Profile() {
                     size="sm"
                     type="email"
                     startDecorator={<EmailRoundedIcon />}
-                    placeholder="email"
-                    defaultValue="email@email.com"
+                    placeholder="Email"
+                    defaultValue={email}
                     sx={{ flexGrow: 1 }}
+                    onChange={((e) => setEmail(e.target.value))}
                   />
                 </FormControl>
               </Stack>
@@ -180,8 +296,8 @@ export default function Profile() {
                   sx={{ flex: 1, minWidth: 108, borderRadius: '100%' }}
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
-                    srcSet="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286&dpr=2 2x"
+                    src=""
+                    srcSet=""
                     loading="lazy"
                     alt=""
                   />
@@ -215,15 +331,14 @@ export default function Profile() {
                     gap: 2,
                   }}
                 >
-                  <Input size="sm" placeholder="First name" />
-                  <Input size="sm" placeholder="Last name" />
+                  <Input size="sm" placeholder="Last name" defaultValue={name} />
                 </FormControl>
               </Stack>
             </Stack>
 
             <FormControl>
               <FormLabel>Role</FormLabel>
-              <Input size="sm" defaultValue="UI Developer" />
+              <Input size="sm" placeholder="Occupation" defaultValue={role} />
             </FormControl>
             <FormControl sx={{ flexGrow: 1 }}>
               <FormLabel>Email</FormLabel>
@@ -231,41 +346,18 @@ export default function Profile() {
                 size="sm"
                 type="email"
                 startDecorator={<EmailRoundedIcon />}
-                placeholder="email"
-                defaultValue="siriwatk@test.com"
+                placeholder="Email"
+                defaultValue={email}
                 sx={{ flexGrow: 1 }}
               />
             </FormControl>
-            <div>
-              <FormControl sx={{ display: { sm: 'contents' } }}>
-                <FormLabel>Timezone</FormLabel>
-                <Select
-                  size="sm"
-                  startDecorator={<AccessTimeFilledRoundedIcon />}
-                  defaultValue="1"
-                >
-                  <Option value="1">
-                    Indochina Time (Bangkok){' '}
-                    <Typography textColor="text.tertiary" ml={0.5}>
-                      — GMT+07:00
-                    </Typography>
-                  </Option>
-                  <Option value="2">
-                    Indochina Time (Ho Chi Minh City){' '}
-                    <Typography textColor="text.tertiary" ml={0.5}>
-                      — GMT+07:00
-                    </Typography>
-                  </Option>
-                </Select>
-              </FormControl>
-            </div>
           </Stack>
           <CardOverflow sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
-              <Button size="sm" variant="outlined" color="neutral">
+              <Button size="sm" variant="outlined" color="neutral" onClick={handleCancel}>
                 Cancel
               </Button>
-              <Button size="sm" variant="solid">
+              <Button size="sm" variant="solid" onClick={handleSave}>
                 Save
               </Button>
             </CardActions>
@@ -285,7 +377,7 @@ export default function Profile() {
               minRows={4}
               sx={{ mt: 1.5 }}
               placeholder="Type your bio here..."
-              defaultValue=""
+              defaultValue={bio}
             />
             <FormHelperText sx={{ mt: 0.75, fontSize: 'xs' }}>
               275 characters left
@@ -293,10 +385,10 @@ export default function Profile() {
           </Stack>
           <CardOverflow sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
-              <Button size="sm" variant="outlined" color="neutral">
+              <Button size="sm" variant="outlined" color="neutral" onClick={handleCancel}>
                 Cancel
               </Button>
-              <Button size="sm" variant="solid">
+              <Button size="sm" variant="solid" onClick={handleSave}>
                 Save
               </Button>
             </CardActions>
