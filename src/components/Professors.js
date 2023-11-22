@@ -5,13 +5,37 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import professorInfo from './ProfessorSample.json';
 import Navbar from './Navbar.js';
 
+const ITEMS_PER_PAGE = 9; // Adjust as needed
+const MAX_VISIBLE_PAGINATION = 15; // Maximum number of visible pagination links
+
+function generatePagination(currentPage, maxPages) {
+    let pages = [];
+    if (maxPages <= MAX_VISIBLE_PAGINATION) {
+        for (let i = 1; i <= maxPages; i++) {
+            pages.push(i);
+        }
+    } else {
+        pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', maxPages];
+        if (currentPage <= 3) {
+            pages = [1, 2, 3, 4, '...', maxPages];
+        } else if (currentPage >= maxPages - 2) {
+            pages = [1, '...', maxPages - 3, maxPages - 2, maxPages - 1, maxPages];
+        }
+    }
+    return pages;
+}
+
+
 function Professors() {
   const [currentPage, setCurrentPage] = useState(1);
+  
   const [showModal, setShowModal] = useState(false);
   const [currentDescription, setCurrentDescription] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState(professorInfo);
-
+  const maxPages = Math.ceil(searchResults.length / ITEMS_PER_PAGE);
+  const pagination = generatePagination(currentPage, maxPages);
+  const visibleProfessors = searchResults.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
     const searchLower = event.target.value.toLowerCase();
@@ -84,29 +108,51 @@ function Professors() {
         value={searchTerm}
         onChange={handleSearch}
         />
+
+
           <div className="row align-items-stretch">
-
-
-            <div class="container">
-      <div class="untree_co-section bg-light">
-        <div class="row">
-          {searchResults.map((prof, index) => (
-            <div class="col-12 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay={(index) * 100}>
-              <div class="staff text-center">
-                <div class="mb-4">< img src={prof.Image} alt="Image" class="img-fluid" /></div>
-                <div class="staff-body">
-                  <h3 class="staff-name">
-<Link to={'/SingleProf'} state={{ prof: index } }> {prof.name} </Link></h3>
-                  <span class="d-block position mb-4">{prof.title}</span>
-                  <p class="mb-5">{prof.researchInterest}</p >
-                </div>
+  <div className="container">
+    <div className="untree_co-section bg-light">
+      <div className="row">
+        {visibleProfessors.map((prof, index) => (
+          <div className="col-12 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay={index * 100} key={prof.id /* Assuming each professor has a unique id */}>
+            <div className="staff text-center">
+              <div className="mb-4"><img src={prof.Image} alt="Image" className="img-fluid" /></div>
+              <div className="staff-body">
+                <h3 className="staff-name">
+                  <Link to={'/SingleProf'} state={{ prof: index }}>{prof.name}</Link>
+                </h3>
+                <span className="d-block position mb-4">{prof.title}</span>
+                <p className="mb-5">{prof.researchInterest}</p>
               </div>
-            </div>       
-          ))}
-        </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
+  </div>
 
+
+
+
+<div className="row mt-5">
+  <div className="col-12 text-center">
+    <ul className="list-unstyled custom-pagination">
+      {generatePagination(currentPage, Math.ceil(searchResults.length / ITEMS_PER_PAGE)).map((page, index) => (
+        <li key={index} className={page === currentPage ? 'active' : ''}>
+          {page === '...' ? (
+            <span>...</span>
+          ) : (
+            <a href="#" onClick={(e) => {
+              e.preventDefault();
+              setCurrentPage(page);
+            }}>{page}</a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
 
           
           </div>
