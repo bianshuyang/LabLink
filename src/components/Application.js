@@ -6,6 +6,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import 'react-quill/dist/quill.snow.css';
 
 
 const ITEMS_PER_PAGE = 9;
@@ -30,10 +31,35 @@ function generatePagination(currentPage, maxPages) {
     return pages;
 }
 
-
-
-
 function CentralizedApplication() {
+
+
+
+    // The modules object is used to customize the toolbar options
+    const modules = {
+        toolbar: [
+            [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+            [{ size: [] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' },
+            { 'indent': '-1' }, { 'indent': '+1' }],
+            ['link', 'image', 'video'],
+            ['clean']
+        ],
+        clipboard: {
+            // Match visual, not literal, whitespace
+            matchVisual: false,
+        }
+    };
+
+    const formats = [
+        'header', 'font', 'size',
+        'bold', 'italic', 'underline', 'strike', 'blockquote',
+        'list', 'bullet', 'indent',
+        'link', 'image', 'video'
+    ];
+
+
 
     const getUserNameByNetId = (netid) => {
         const user = usersData.find(u => u.netid === netid);
@@ -180,8 +206,8 @@ function CentralizedApplication() {
                 body: JSON.stringify({
                     collectionName: 'Applications',
                     netid: netid,
-                    replycontent: applicationData,
-                    replydate: applicationDate,
+                    applicationData: applicationData,
+                    applicationDate: applicationDate,
                     applicationId: applicationId,
                     programId: selectedProgramId,
                 }),
@@ -333,13 +359,13 @@ function CentralizedApplication() {
 
         const newReply = {
             netid: randomNetId,
-            replycontent: applicationData,
-            replydate: currentDate,
+            applicationData: applicationData,
+            applicationDate: currentDate,
             applicationId: nextReplyId,
             programId: selectedProgramId, // This should already be set when the user began the reply process
         };
         console.log(programId);
-        await addApplication(newReply.netid, newReply.replycontent, newReply.replydate, newReply.applicationId, newReply.programId);
+        await addApplication(newReply.netid, newReply.applicationData, newReply.applicationDate, newReply.applicationId, newReply.programId);
         alert("Thank you for bringing in a Program, your response has been submitted");
         fetchApplicationsAndUpdateState();
         console.log("OK??????")
@@ -515,14 +541,17 @@ function CentralizedApplication() {
                                             <li key={application.applicationId}>
                                                 <strong>{application.applicationDate}</strong>
                                                 <div className="App">
-                                                    <CKEditor
-                                                        editor={ClassicEditor}
-                                                        data={application.replycontent}
+
+                                                    <ReactQuill
+                                                        value={application.applicationData}
                                                         config={{
                                                             readOnly: true,
-                                                            toolbar: []
+
                                                         }}
+                                                        modules={{ toolbar: false }}
+                                                        theme="snow" // this prop is optional
                                                     />
+
                                                 </div>
                                                 <button onClick={() => deleteApplication(application.applicationId)}>Withdraw My Application</button>
                                             </li>
@@ -531,19 +560,17 @@ function CentralizedApplication() {
                                 <form onSubmit={addApplicationSubmit}>
                                     <label>
                                         New Programs</label>
-                                    <div className="Ap2">
-                                        <CKEditor
-                                            editor={ClassicEditor}
-                                            data={programData}
-                                            onChange={(event, editor) => {
-                                                const data = editor.getData();
-                                                setapplicationData(data);
-                                            }}
-                                            config={{
-                                                // You can set additional CKEditor config here if needed
-                                            }}
-                                        />
-                                    </div>
+
+                                    <ReactQuill
+
+                                        onChange={(content) => setapplicationData(content)}
+                                        modules={modules}
+                                        formats={formats}
+                                        placeholder="Sincerity brings connections."
+                                        theme="snow" // this prop is optional
+                                    />
+
+
                                     <input type="submit" value="Submit Application" />
                                     <p>
                                         Clicking on the above button implies you agree to the
@@ -560,16 +587,19 @@ function CentralizedApplication() {
                                         {programsData.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
                                             .map(program => (
                                                 <li key={program.programId} onClick={() => handleProgramClick(program.programId)}>
-                                                    <div className="App">
-                                                        <CKEditor
-                                                            editor={ClassicEditor}
-                                                            data={program.programData}
-                                                            config={{
-                                                                readOnly: true,
-                                                                toolbar: []
-                                                            }}
-                                                        />
-                                                    </div>
+
+
+                                                    <ReactQuill
+                                                        value={program.programData}
+                                                        config={{
+                                                            readOnly: true,
+
+                                                        }}
+                                                        modules={{ toolbar: false }}
+                                                        theme="snow" // this prop is optional
+                                                    />
+
+
                                                     - by {getUserNameByNetId(program.netid)}
                                                 </li>
                                             ))}
@@ -578,33 +608,16 @@ function CentralizedApplication() {
                                 )
                                 }
                                 <form onSubmit={addProgramSubmit} className="new-program-form">
-                                    <label>   Adding New Program Statement to Cohort </label>
-                                    <div className="App2">
-                                        <CKEditor
-                                            editor={ClassicEditor}
+                                    <label>   Adding New Program Statement to Cohort  </label>
 
-                                            data={programData}
-                                            onReady={editor => { }}
-                                            onChange={(event, editor) => {
-                                                try {
+                                    <ReactQuill
 
-                                                    const data = editor.getData();
-                                                    setprogramData(data);
-                                                    console.log("OK Set post data?")
-                                                    // Assuming 'postid' holds the ID of the post being edited
-                                                    setprogramsData(currentPrograms =>
-                                                        currentPrograms.map(program =>
-                                                            program.programId === programId ? { ...program, programData: data } : program
-                                                        )
-                                                    );
-                                                } catch (error) {
-                                                    console.error('Error in editor onChange:', error);
-                                                }
-                                            }}
-
-
-                                        />
-                                    </div>
+                                        onChange={(content) => setprogramData(content)}
+                                        modules={modules}
+                                        formats={formats}
+                                        placeholder="Sincerity brings c,lonnections."
+                                        theme="snow" // this prop is optional
+                                    />
 
                                     <input type="submit" value="Create New Program" />
                                 </form>
@@ -734,6 +747,7 @@ function CentralizedApplication() {
         </>
 
     );
-}
 
+
+}
 export default CentralizedApplication;

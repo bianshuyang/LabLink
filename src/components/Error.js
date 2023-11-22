@@ -1,53 +1,47 @@
-import { useRouteError } from "react-router-dom";
-import sjcl from 'sjcl';
-import React, { useState, useEffect } from 'react';
-import "../styles/forum.css";
-import { Link } from "react-router-dom"
-import Navbar from './Navbar.js';
+import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
-function hashPassword(password) {
-  try{
-    return sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
-  }
-  catch(error){
-    console.error("Error hashing password:", error);
-  }
-}
-
-
+import 'react-quill/dist/quill.snow.css'; // Include the CSS for the WYSIWYG editor
 
 export default function Error() {
-  const error = useRouteError();
-  console.error(error);
-  const i = 0;
-  return (
+  const [editorHtml, setEditorHtml] = useState(''); // Hold the editor content
 
+  function handleEditorChange(html) {
+    setEditorHtml(html);
+  }
 
-    
-
-
-    <div className="App">
-                <CKEditor
-                    editor={ ClassicEditor }
-
-                    onReady={editor=>{}}
-onChange={(event, editor) => {
-    try {
-
-        const data = editor.getData();
-        
-    } catch (error) {
-        console.error('Error in editor onChange:', error);
+  // The modules object is used to customize the toolbar options
+  const modules = {
+    toolbar: [
+      [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+      [{ size: [] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' },
+      { 'indent': '-1' }, { 'indent': '+1' }],
+      ['link', 'image', 'video'],
+      ['clean']
+    ],
+    clipboard: {
+      // Match visual, not literal, whitespace
+      matchVisual: false,
     }
-}}
+  };
 
+  const formats = [
+    'header', 'font', 'size',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image', 'video'
+  ];
 
-                />
-            </div>
-
+  return (
+    <div>
+      <ReactQuill
+        value={editorHtml}
+        onChange={handleEditorChange}
+        modules={modules}
+        formats={formats}
+        theme="snow" // this prop is optional
+      />
+    </div>
   );
 }
