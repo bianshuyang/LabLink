@@ -1,5 +1,13 @@
 import { useRouteError } from "react-router-dom";
 import sjcl from 'sjcl';
+import React, { useState, useEffect } from 'react';
+import "../styles/forum.css";
+import { Link } from "react-router-dom"
+import Navbar from './Navbar.js';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function hashPassword(password) {
   try{
@@ -10,25 +18,36 @@ function hashPassword(password) {
   }
 }
 
-function dox(){
-  for (var i = 1;i<=1000;i++){
-    console.log(hashPassword('ABCDEF')==hashPassword('abcdef'));
-  }
-}
 
 
 export default function Error() {
   const error = useRouteError();
   console.error(error);
   const i = 0;
-  dox();
   return (
-    <div>
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
-    </div>
+
+
+    
+
+
+    <div className="App">
+                <CKEditor
+                    editor={ ClassicEditor }
+
+                    onReady={editor=>{}}
+onChange={(event, editor) => {
+    try {
+
+        const data = editor.getData();
+        
+    } catch (error) {
+        console.error('Error in editor onChange:', error);
+    }
+}}
+
+
+                />
+            </div>
+
   );
 }

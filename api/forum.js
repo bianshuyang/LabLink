@@ -31,6 +31,19 @@ async function getDocuments(collectionName, res, filter = {}) {
     res.status(200).json(allDocuments);
 }
 
+async function modifyDocument(collectionName, res, filter, updateData) {
+    await connectToDb();
+    const collection = client.db('forum').collection(collectionName);
+    const updateResult = await collection.updateOne(filter, { $set: updateData });
+
+    if (updateResult.modifiedCount === 0) {
+        res.status(404).json({ message: "No documents matched the filter. No changes made." });
+    } else {
+        res.status(200).json({ message: "Document updated successfully!" });
+    }
+}
+
+
 module.exports = async (req, res) => {
     try {
         const { method, body, query } = req;
