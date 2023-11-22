@@ -27,6 +27,9 @@ export default function Profile() {
   const { role, setRole } = React.useContext(LabLinkContext);
   const { email, setEmail } = React.useContext(LabLinkContext);
   const { bio, setBio } = React.useContext(LabLinkContext);
+  const { year, setYear } = React.useContext(LabLinkContext);
+  const { major, setMajor } = React.useContext(LabLinkContext);
+  const { courses, setCourses } = React.useContext(LabLinkContext);
   const [usersData, setusersData] = React.useState([]);
 
   React.useEffect(() => {
@@ -44,6 +47,9 @@ export default function Profile() {
           setName(userInfo.name || '');
           setRole(userInfo.role || '');
           setEmail(userInfo.email || '');
+          setYear(userInfo.year || null);
+          setMajor(userInfo.major || '');
+          setCourses(userInfo.courses || '');
           setBio(userInfo.bio || '');
         }
       } catch (error) {
@@ -93,7 +99,7 @@ export default function Profile() {
       }
   };
 
-  async function addUser({ name, role, email, bio, netID }) {
+  async function addUser({ name, role, email, year, major, courses, bio, netID }) {
       try {
         console.log(process.env);
           const response = await fetch("/api/forum?collection=users", {
@@ -106,6 +112,9 @@ export default function Profile() {
                   name: name,
                   role: role,
                   email: email,
+                  year: year,
+                  major: major,
+                  courses: courses,
                   bio: bio,
                   netId: netID,
               }),
@@ -130,6 +139,9 @@ export default function Profile() {
         name: name,
         role: role,
         email: email,
+        year: year,
+        major: major,
+        courses: courses,
         bio: bio,
         netID: netID,
       });
@@ -150,6 +162,9 @@ export default function Profile() {
     setRole(prevRole => prevRole);
     setEmail(prevEmail => prevEmail);
     setBio(prevBio => prevBio);
+    setYear(prevYear => prevYear);
+    setMajor(prevMajor => prevMajor);
+    setCourses(prevCourses => prevCourses);
   };
 
 
@@ -217,37 +232,6 @@ export default function Profile() {
             spacing={3}
             sx={{ display: { xs: 'none', md: 'flex' }, my: 1 }}
           >
-            <Stack direction="column" spacing={1}>
-              <AspectRatio
-                ratio="1"
-                maxHeight={200}
-                sx={{ flex: 1, minWidth: 120, borderRadius: '100%' }}
-              >
-                <img
-                  src=""
-                  srcSet=""
-                  loading="lazy"
-                  alt=""
-                />
-              </AspectRatio>
-              <IconButton
-                aria-label="upload new picture"
-                size="sm"
-                variant="outlined"
-                color="neutral"
-                sx={{
-                  bgcolor: 'background.body',
-                  position: 'absolute',
-                  zIndex: 2,
-                  borderRadius: '50%',
-                  left: 100,
-                  top: 170,
-                  boxShadow: 'sm',
-                }}
-              >
-                <EditRoundedIcon />
-              </IconButton>
-            </Stack>
             <Stack spacing={2} sx={{ flexGrow: 1 }}>
               <Stack spacing={1}>
                 <FormLabel>Name</FormLabel>
@@ -268,6 +252,14 @@ export default function Profile() {
                   <FormLabel>Role</FormLabel>
                   <Input size="sm" placeholder="Occupation" defaultValue={role} onChange={((e) => setRole(e.target.value))}/>
                 </FormControl>
+                <FormControl>
+                  <FormLabel>Graduation Year</FormLabel>
+                  <Input size="sm" placeholder="Year" defaultValue={year} onChange={((e) => setYear(e.target.value))}/>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Major</FormLabel>
+                  <Input size="sm" placeholder="Major" defaultValue={major} onChange={((e) => setMajor(e.target.value))}/>
+                </FormControl>
                 <FormControl sx={{ flexGrow: 1 }}>
                   <FormLabel>Email</FormLabel>
                   <Input
@@ -281,6 +273,20 @@ export default function Profile() {
                   />
                 </FormControl>
               </Stack>
+              <Stack spacing={1}>
+                <FormLabel>Previous Courses</FormLabel>
+                <FormControl
+                  sx={{
+                    display: {
+                      sm: 'flex-column',
+                      md: 'flex-row',
+                    },
+                    gap: 2,
+                  }}
+                >
+                  <Input size="sm" placeholder="eg., Data Structures and Algorithms, Research in Biology..." defaultValue={courses} sx={{ flexGrow: 1 }} onChange={((e) => setCourses(e.target.value))}/>
+                </FormControl>
+              </Stack>
             </Stack>
           </Stack>
           <Stack
@@ -289,37 +295,6 @@ export default function Profile() {
             sx={{ display: { xs: 'flex', md: 'none' }, my: 1 }}
           >
             <Stack direction="row" spacing={2}>
-              <Stack direction="column" spacing={1}>
-                <AspectRatio
-                  ratio="1"
-                  maxHeight={108}
-                  sx={{ flex: 1, minWidth: 108, borderRadius: '100%' }}
-                >
-                  <img
-                    src=""
-                    srcSet=""
-                    loading="lazy"
-                    alt=""
-                  />
-                </AspectRatio>
-                <IconButton
-                  aria-label="upload new picture"
-                  size="sm"
-                  variant="outlined"
-                  color="neutral"
-                  sx={{
-                    bgcolor: 'background.body',
-                    position: 'absolute',
-                    zIndex: 2,
-                    borderRadius: '50%',
-                    left: 85,
-                    top: 180,
-                    boxShadow: 'sm',
-                  }}
-                >
-                  <EditRoundedIcon />
-                </IconButton>
-              </Stack>
               <Stack spacing={1} sx={{ flexGrow: 1 }}>
                 <FormLabel>Name</FormLabel>
                 <FormControl
@@ -331,14 +306,21 @@ export default function Profile() {
                     gap: 2,
                   }}
                 >
-                  <Input size="sm" placeholder="Last name" defaultValue={name} />
+                  <Input size="sm" placeholder="Preferred Name" defaultValue={name} />
                 </FormControl>
               </Stack>
             </Stack>
-
             <FormControl>
               <FormLabel>Role</FormLabel>
               <Input size="sm" placeholder="Occupation" defaultValue={role} />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Major</FormLabel>
+              <Input size="sm" placeholder="Major" defaultValue={major} />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Graduation Year</FormLabel>
+              <Input size="sm" placeholder="Year" defaultValue={year} />
             </FormControl>
             <FormControl sx={{ flexGrow: 1 }}>
               <FormLabel>Email</FormLabel>
@@ -351,27 +333,13 @@ export default function Profile() {
                 sx={{ flexGrow: 1 }}
               />
             </FormControl>
+            <FormControl>
+              <FormLabel>Previous Courses</FormLabel>
+              <Input size="sm" placeholder="eg., Data Structures and Algorithms, Research in Biology..." defaultValue={courses} />
+            </FormControl>
           </Stack>
-          <CardOverflow sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
-            <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
-              <Button size="sm" variant="outlined" color="neutral" onClick={handleCancel}>
-                Cancel
-              </Button>
-              <Button size="sm" variant="solid" onClick={handleSave}>
-                Save
-              </Button>
-            </CardActions>
-          </CardOverflow>
-        </Card>
-        <Card>
-          <Box sx={{ mb: 1 }}>
-            <Typography level="title-md">Bio</Typography>
-            <Typography level="body-sm">
-              Write a short introduction to be displayed on your profile
-            </Typography>
-          </Box>
-          <Divider />
-          <Stack spacing={2} sx={{ my: 1 }}>
+          <Stack spacing={1} sx={{ my: 1 }}>
+            <Typography level="title-sm">Bio</Typography>
             <Textarea
               size="sm"
               minRows={4}
