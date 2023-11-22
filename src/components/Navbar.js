@@ -80,12 +80,10 @@ export default function Navbar(){
           <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
             <li className={checkActive('/')}><Link to="/">Home</Link></li>
             <li className={checkActive('/Professors')}><Link to="/Professors">Professors</Link></li>
-            <li className={checkActive('/Projects')}><Link to="/Projects">Projects</Link></li>
-            <li className={checkActive('/News')}><Link to="/News">News</Link></li>
-            <li className={checkActive('/Contact')}><Link to="/Contact">Contact</Link></li>
-            <li className={checkActive('/Forum')}><Link to="/Forum">Forum</Link></li>
-            <li className={checkActive('/Application')}><Link to="/Application">Application</Link></li>
             
+            <li className={checkActive('/Forum')}><Link to="/Forum">Students Self Recommendations</Link></li>
+            <li className={checkActive('/Application')}><Link to="/Application">Programs of Interest</Link></li>
+            <li className={checkActive('/News')}><Link to="/News">News</Link></li>
         </ul>
 
 
@@ -98,12 +96,10 @@ export default function Navbar(){
             <Link to={'/'} onClick={toggleMenu}><h2>Home</h2></Link>
             <Link to={'/Projects'} onClick={toggleMenu}><h2>Projects</h2></Link>
             <Link to={'/Professors'} onClick={toggleMenu}><h2>Professors</h2></Link>
+            
+            <Link to={'/Forum'} onClick={toggleMenu}><h2>Students Self Recommendations</h2></Link>
+            <Link to={'/Application'} onClick={toggleMenu}><h2>Programs of Interest</h2></Link>
             <Link to={'/News'} onClick={toggleMenu }><h2>News</h2></Link>
-            <Link to={'/About'} onClick={toggleMenu}><h2>About</h2></Link>
-            <Link to={'/Contact'} onClick={toggleMenu}><h2>Contact</h2></Link>
-            <Link to={'/Forum'} onClick={toggleMenu}><h2>Forum</h2></Link>
-            <Link to={'/Application'} onClick={toggleMenu}><h2>Application</h2></Link>
-          
 
           </div>
 

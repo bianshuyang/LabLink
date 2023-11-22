@@ -7,6 +7,12 @@ import 'react-quill/dist/quill.snow.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+// templates icons
+
+
+import parse from 'html-react-parser';
+import DOMPurify from 'dompurify';
+
 const ITEMS_PER_PAGE = 9;
 const MAX_VISIBLE_PAGINATION = 8; // Example: 1 ... 4 5 6 ... 25
 // import oldnewsData from './fakeData';
@@ -34,6 +40,32 @@ function generatePagination(currentPage, maxPages) {
 
 
 function Forum() {
+
+
+
+const ContentWithEmbeddedMedia = ({ content }) => {
+  // Function to handle media rendering
+  const renderMedia = (mediaUrl) => {
+    // You would implement logic here to render the media based on the URL
+    // For example, for a YouTube URL, render an iframe
+    if (mediaUrl.includes('youtube')) {
+      const embedUrl = mediaUrl.replace('watch?v=', 'embed/');
+      return <iframe title="YouTube video" src={embedUrl} frameBorder="0" allowFullScreen />;
+    }
+    // Add more conditions for other media types if needed
+  };
+
+  // Replace media links with embedded media in the content
+  const contentWithMedia = content.replace(/(https?:\/\/\S+)/gi, (match) => {
+    return renderMedia(match);
+  });
+
+  return (
+    <div dangerouslySetInnerHTML={{ __html: contentWithMedia }} />
+  );
+};
+
+
 
     const getUserNameByNetId = (netid) => {
         const user = usersData.find(u => u.netid === netid);
@@ -81,6 +113,8 @@ function Forum() {
 
         fetchData();
     }, []);
+
+
 
 
 
@@ -303,7 +337,7 @@ const responseDataText = await response.text();
                 alert("It seems you are deleting unauthorized posts");
             }
             else{
-                alert("Post are removed from database. However, all replies are retained");
+                alert("Your research statement is marked as deleted and permanently deleted. However, all replies are NOT retroactively deleted");
             }
             fetchPostsAndUpdateState();
             console.log(statusCode);
@@ -419,7 +453,7 @@ const addReplySubmit = async (event) => {
     };
 
     const deleteReplyClick = async (replyId, event) => {
-        event.preventDefault();
+        //event.preventDefault();
         setCurrentPage(1);
         console.log(selectedPostId, replyId);
         const token = sessionStorage.getItem('userToken');
@@ -445,6 +479,11 @@ const addReplySubmit = async (event) => {
     alert('1. Users are permitted to upload their data to Lablink, including but not limited to, text, images, videos, and other digital content.\n\n2. Visibility Settings: Users have the ability to set visibility parameters for their uploaded data. These settings determine who can view the uploaded content. It is the responsibility of the user to set and maintain these visibility preferences.\n\n3. Changes to Visibility: Users can change the visibility settings of their data at any time. However, it is important to note that changes to visibility settings are not retroactive. This means that if data was previously set to be publicly visible, it could have been viewed, copied, or used by others before the visibility was changed.\n\n4. Risk Acknowledgement: Users must understand that any data uploaded to LabLink and set to a certain visibility level carries the risk of exposure. Even if visibility settings are later changed, the previous exposure of the data cannot be undone. Users should consider the sensitivity of the data they choose to upload and the potential consequences of its exposure.\n\n5. Platform Rights: Lablink reserves the right to modify these terms and conditions at any time. Changes will be effective immediately upon posting on our website. Continued use of the site after any such changes constitutes your consent to such changes.\n\n6. User Discretion: It is the user’s responsibility to regularly review and understand the visibility settings and to use discretion when uploading data to Lablink.\n\nBy using Lablink, you acknowledge that you have read, understood, and agreed to these terms and conditions. Please contact us if you have any questions or concerns regarding these terms.');
 
   };
+
+    
+
+
+
 
 
     // Depending on the state, we'll render different views
@@ -521,28 +560,47 @@ const addReplySubmit = async (event) => {
                   .filter(reply => reply.postid === selectedPostId)
                   .map(reply => (
                       <li key={reply.replyid}>
-                          <strong>{reply.replydate}</strong> {reply.replycontent}
+                          <strong>{reply.replydate}</strong>
+
+<div className="App">
+                <CKEditor
+                    editor={ClassicEditor}
+                    data={reply.replycontent}
+                    config={{
+                        readOnly: true,
+                        toolbar: []
+                    }}
+                />
+            </div>
+
                           <button onClick={() => deleteReplyClick(reply.replyid)}>Delete My Reply</button>
                       </li>
                   ))}
           </ul>
 
           <form onSubmit={addReplySubmit}>
-              <label>
-                New Research Statement Follow-Ups
-                <ReactQuill
-                    value={postData}
-                    onChange={(content) => setreplyData(content)}
-                    placeholder="Sincerity brings connections."
-                />
-              </label>
-              <input type="submit" value="I am interested in connecting with the student!" />
-                     <p>
-            Clicking on the above button implies you agree to the 
-            <a href="#" onClick={showTerms}> terms and conditions</a>.
-          </p>
-
-        </form>
+    <label>
+      New Research Statement Follow-Ups</label>
+      <div className="App">
+        <CKEditor
+            editor={ClassicEditor}
+            data={postData}
+            onChange={(event, editor) => {
+                const data = editor.getData();
+                setreplyData(data);
+            }}
+            config={{
+                // You can set additional CKEditor config here if needed
+            }}
+        />
+      </div>
+    
+    <input type="submit" value="I am interested in connecting with the student!" />
+    <p>
+      Clicking on the above button implies you agree to the 
+      <a href="#" onClick={showTerms}> terms and conditions</a>.
+    </p>
+</form>
 
           
       </div>
@@ -553,9 +611,18 @@ const addReplySubmit = async (event) => {
           {
     postsData && postsData.length > 0 ? (
         <ul>
-    {postsData.slice((currentPage-1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((post) => (
-        <li key={post.postid}>
-            <div dangerouslySetInnerHTML={{ __html: post.postData }}></div>
+    {postsData.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((post) => (
+        <li key={post.postid} onClick={() => handlePostClick(post.postid)}>
+            <div className="App">
+                <CKEditor
+                    editor={ClassicEditor}
+                    data={post.postData}
+                    config={{
+                        readOnly: true,
+                        toolbar: []
+                    }}
+                />
+            </div>
             - by {getUserNameByNetId(post.netid)}
         </li>
     ))}
@@ -566,6 +633,7 @@ const addReplySubmit = async (event) => {
     )
 }
 
+
           <form onSubmit={addThreadSubmit}>
               
 
@@ -574,6 +642,7 @@ const addReplySubmit = async (event) => {
             <div className="App">
                 <CKEditor
                     editor={ ClassicEditor }
+
                     data = {postData}
                     onReady={editor=>{}}
 onChange={(event, editor) => {
