@@ -4,11 +4,14 @@ export const LabLinkContext = React.createContext({})
 
 export function LabLinkProvider({ children }){
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [netID, setNetID] = React.useState('mchill4');
+  const [netID, setNetID] = React.useState('');
   const [name, setName] = React.useState('');
   const [role, setRole] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [bio, setBio] = React.useState('');
+  const [year, setYear] = React.useState();
+  const [major, setMajor] = React.useState('');
+  const [courses, setCourses] = React.useState('');
 
   return(
     <LabLinkContext.Provider value={{
@@ -24,6 +27,12 @@ export function LabLinkProvider({ children }){
       setEmail,
       bio,
       setBio,
+      year,
+      setYear,
+      major,
+      setMajor,
+      courses,
+      setCourses,
     }}>
       { children }
     </LabLinkContext.Provider>
