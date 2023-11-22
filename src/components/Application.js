@@ -531,7 +531,7 @@ function CentralizedApplication() {
                                 <form onSubmit={addApplicationSubmit}>
                                     <label>
                                         New Programs</label>
-                                    <div className="App">
+                                    <div className="Ap2">
                                         <CKEditor
                                             editor={ClassicEditor}
                                             data={programData}
@@ -579,7 +579,7 @@ function CentralizedApplication() {
                                 }
                                 <form onSubmit={addProgramSubmit} className="new-program-form">
                                     <label>   Adding New Program Statement to Cohort </label>
-                                    <div className="App">
+                                    <div className="App2">
                                         <CKEditor
                                             editor={ClassicEditor}
 
