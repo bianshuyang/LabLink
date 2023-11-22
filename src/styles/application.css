@@ -21,7 +21,7 @@
     width: 100%;
 }
 
-.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+.App .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
     border: 0px !important;
 }
 
