@@ -80,7 +80,7 @@ export default function Navbar(){
           <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
             <li className={checkActive('/')}><Link to="/">Home</Link></li>
             <li className={checkActive('/Professors')}><Link to="/Professors">Professors</Link></li>
-            
+            <li className={checkActive('/Projects')}><Link to="/Projects">Projects</Link></li>
             <li className={checkActive('/Forum')}><Link to="/Forum">Students Self Recommendations</Link></li>
             <li className={checkActive('/Application')}><Link to="/Application">Programs of Interest</Link></li>
             <li className={checkActive('/News')}><Link to="/News">News</Link></li>
