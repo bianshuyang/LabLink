@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 export default function Navbar(){
 
   const { isLoggedIn, setIsLoggedIn } = React.useContext(LabLinkContext);
-  const { netID } = React.useContext(LabLinkContext)
+  const { netID, setNetID } = React.useContext(LabLinkContext)
   const [showMenu, setShowMenu] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -15,8 +15,14 @@ export default function Navbar(){
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+  const handleLogout = () => {
+    sessionStorage.removeItem('userToken');
+    setIsLoggedIn(false);
+    sessionStorage.removeItem('userID');
+    setNetID('');
+  };
   const location = useLocation();
-    
+
     const checkActive = (path) => location.pathname === path ? 'active' : '';
 
   return(
@@ -51,7 +57,7 @@ export default function Navbar(){
                     <span className="icon-person menu-person"></span>
                     <span className="profile-text">Profile</span>
                   </Link>
-                  <Link to={'/'} onClick={() => setIsLoggedIn(!isLoggedIn)} className="small">
+                  <Link to={'/'} onClick={handleLogout} className="small">
                     <span className="icon-lock"></span>
                     <span className="log-out-text">Log Out</span>
                   </Link>
@@ -80,7 +86,7 @@ export default function Navbar(){
           <ul className="js-clone-nav d-none d-lg-inline-block site-menu">
             <li className={checkActive('/')}><Link to="/">Home</Link></li>
             <li className={checkActive('/Professors')}><Link to="/Professors">Professors</Link></li>
-            
+
             <li className={checkActive('/Forum')}><Link to="/Forum">Students Self Recommendations</Link></li>
             <li className={checkActive('/Application')}><Link to="/Application">Programs of Interest</Link></li>
             <li className={checkActive('/News')}><Link to="/News">News</Link></li>
@@ -97,7 +103,7 @@ export default function Navbar(){
             <Link to={'/'} onClick={toggleMenu}><h2>Home</h2></Link>
             <Link to={'/Projects'} onClick={toggleMenu}><h2>Projects</h2></Link>
             <Link to={'/Professors'} onClick={toggleMenu}><h2>Professors</h2></Link>
-            
+
             <Link to={'/Forum'} onClick={toggleMenu}><h2>Students Self Recommendations</h2></Link>
             <Link to={'/Application'} onClick={toggleMenu}><h2>Programs of Interest</h2></Link>
             <Link to={'/News'} onClick={toggleMenu }><h2>News</h2></Link>

@@ -1,13 +1,8 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-
-
-
 const uri = process.env.MONGODB_URI;
-
-
-
 const client = new MongoClient(uri);
-
+const secretKey = process.env.JWT_SECRET
+const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
     console.log('1');
@@ -26,7 +21,12 @@ module.exports = async (req, res) => {
         } else {
             console.log(`Found a document:\n${JSON.stringify(findOneResult)}\n`);
             if (findOneResult.status === "verified") {
-                res.status(200).json(findOneResult);
+                const expiresIn = '7 days';
+                const token = jwt.sign({ netID: data.field1 }, secretKey, { expiresIn });
+                res.status(200).json({
+                  findOneResult: findOneResult,
+                  token: token
+                });
             } else {
                 res.status(203).send("Document found, but status is not 'verified'");
             }
