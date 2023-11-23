@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 import Navbar from './Navbar.js';
 import { useLocation } from 'react-router-dom';
-import professorInfo from './ProfessorSample.json';
+
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Include the CSS for the WYSIWYG editor
 import Quill from 'quill';
@@ -14,18 +14,73 @@ const MAX_VISIBLE_PAGINATION = 8;
 
 Quill.register('modules/htmlEditButton', QuillHtmlEditButton);
 
-function findProfessorByName(name) {
-    return professorInfo.find(prof => prof.Name === name);
-}
+
 
 
 function SingleProf() {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditClick = () => {
+    console.log("OK CLCIED");
+    console.log(isEditing);
+    if (isEditing){
+      setIsEditing(false);
+    }
+    else{
+      setIsEditing(true);
+    }
+    
+  };
   const location = useLocation();
+  const [professorInfo, setprofessorInfo] = useState([]);
   const [professor, setProfessor] = useState(null); // Moved useState to the top
   const [editorContent, setEditorContent] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const joinArrayOrReturnNull = (array) => {
     return Array.isArray(array) ? array.join(', ') : null;
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true); // Set loading to true
+      try {
+        await fetchProfessorsAndUpdateState();
+      } catch (error) {
+        console.error('Error fetching data: ', error);
+      }
+      setIsLoading(false); // Set loading to false after fetch
+    };
+
+    fetchData();
+  }, []);
+
+  const fetchProfessorsAndUpdateState = async () => {
+        try {
+            const response = await fetch("/api/forum?dataType=ProfessorSample", {
+                method: "GET"
+            });
+            const responseDataText = await response.text();
+
+            // Attempt to parse as JSON, if fails, just use the text
+            let responseData;
+            try {
+                responseData = JSON.parse(responseDataText);
+            } catch (error) {
+                console.error("Failed to parse response as JSON: ", responseDataText);
+                responseData = responseDataText;
+            }
+
+            // Handle based on type
+            if (typeof responseData === 'object' && response.ok) {
+                console.log("OK PROFESSORSET")
+                setprofessorInfo(responseData);
+                
+            } else {
+                console.error('Error or non-JSON response:', responseData);
+            }
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
 
 
   const [mathFieldLatex, setMathFieldLatex] = useState('');
@@ -59,6 +114,52 @@ function SingleProf() {
     ];
   const profKey = location.state && location.state.prof;
 
+
+  function findProfessorByName(name) {
+    return professorInfo.find(prof => prof.Name === name);
+}
+
+async function modifyCV(Name, PopupInfo) {
+    try {
+        const response = await fetch("/api/forum", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                collectionName: 'ProfessorSample',
+                filter: { Name: Name }, // Assuming 'Name' is the field you want to match
+                updateData: { PopupInfo: editorContent } // The data you want to update
+            }),
+        });
+        console.log(response);
+        const statusCode = response.status;
+        console.log(statusCode);
+
+    } catch (error) {
+        console.log("Something is wrong...?")
+        console.log(error);
+    }
+}
+
+const modifyCVSubmit = async (event) => {
+        event.preventDefault();
+        const profdt = findProfessorByName(profKey);
+
+        // Determine the next reply ID
+        const Name = profdt.Name;
+        console.log(editorContent);
+        await modifyCV(Name, editorContent);
+        alert("SAVED!");
+
+    };
+
+
+
+if (isLoading) {
+    
+  return (<p>Loading professor Details...</p>);
+  }
 
 
   if (!profKey || !findProfessorByName(profKey)) {
@@ -116,6 +217,7 @@ function SingleProf() {
         <ReactQuill
           theme="snow"
           value = {editorContent}
+          onChange={(content) => setEditorContent(content)}
           modules={modules}
           formats={formats}
         />
@@ -285,19 +387,39 @@ function SingleProf() {
 
 
 
-      <div>
-      <div className="text-editor">
-        <ReactQuill
-          theme="snow"
-          value = {profdt.PopupInfo}
-          placeholder={"Write something awesome..."}
-          modules={modules}
-          formats={formats}
-        />
+      
+
+
+      <form onSubmit={modifyCVSubmit}>
+    <label>Public Research Website Editor</label>
+    <div>
+      {isEditing ? (
+        <div className="text-editor">
+          <ReactQuill
+            theme="snow"
+            onChange={(content) => setEditorContent(content)}
+            modules={modules}
+            formats={formats}
+          />
+        </div>
+      ) : (
+        <div className="text-editor">
+          <ReactQuill
+            theme="snow"
+            onChange={(content) => setEditorContent(content)}
+            modules={modules}
+            formats={formats}
+            value={profdt.PopupInfo}
+          />
+        </div>
+      )}
       </div>
+      <input type="submit" value="Edit my Website!" />
+  </form>
 
+  <button type="button" onClick={handleEditClick}>Edit</button>
 
-    </div>
+  
 
         <div className="untree_co-section bg-light" id = "News_concrete">
 

@@ -34,11 +34,18 @@ async function getDocuments(collectionName, res, filter = {}) {
 async function modifyDocument(collectionName, res, filter, updateData) {
     await connectToDb();
     const collection = client.db('forum').collection(collectionName);
+    console.log("OK COLLECTION ESTABLISHED");
+    console.log(collection);
     const updateResult = await collection.updateOne(filter, { $set: updateData });
-
+    console.log(updateResult);
+    console.log(updateData);
+    console.log(filter);
+    console.log("OK UPDATE RESULT ESTABLISHED");
     if (updateResult.modifiedCount === 0) {
+        console.log("NO DOCUMENTS BAD");
         res.status(404).json({ message: "No documents matched the filter. No changes made." });
     } else {
+        console.log("OK DOCUMENTS GOOD");
         res.status(200).json({ message: "Document updated successfully!" });
     }
 }
@@ -69,6 +76,10 @@ module.exports = async (req, res) => {
                 await deleteDocument(body.collectionName, res, body);
                 return res.status(200).json({ message: "Document deleted successfully!" });
             
+            case 'PATCH': // Handling PATCH requests
+                await modifyDocument(body.collectionName, res, body.filter, body.updateData);
+                break;
+
             default:
                 return res.status(400).json({ error: 'Invalid request method!' });
         }
