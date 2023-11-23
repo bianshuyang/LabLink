@@ -39,7 +39,7 @@ function Home(){
                 <Link to={'/'} href="https://vimeo.com/342333493" data-fancybox data-aos="fade-up" data-aos-delay="0" className="caption mb-4 d-inline-block">LabLink!</Link>
 
                 <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100"><em>Research is to see what everybody else has seen, and to think what nobody else has thought.</em></h1>
-                <p className="mb-0" data-aos="fade-up" data-aos-delay="300"><Link to="/projects" className="btn btn-secondary">Explore projects</Link></p>
+                <p className="mb-0" data-aos="fade-up" data-aos-delay="300"><Link to="/Applications" className="btn btn-secondary">Explore projects</Link></p>
               </div>
 
 
@@ -183,7 +183,7 @@ function Home(){
                 <h3>Data Driven Innovations for Human-Technology Symbiosis Lab</h3>
                 <p className="mb-4">NLP, AI, ML, HCI</p>
                 <div className="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                  <div><Link to={'Projects'}>Learn More</Link></div>
+                  <div><Link to={'Applications'}>Learn More</Link></div>
                 </div>
               </div>
             </div>
@@ -199,7 +199,7 @@ function Home(){
                 <h3>Practical Data Mining & Exploration Lab</h3>
                 <p className="mb-4">ML, Data Mining, Healthcare</p>
                 <div className="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                  <div><Link to={'Projects'}>Learn More</Link></div>
+                  <div><Link to={'Applications'}>Learn More</Link></div>
                 </div>
               </div>
             </div>
@@ -215,7 +215,7 @@ function Home(){
                 <h3>Simbiosys Lab</h3>
                 <p className="mb-4">Distributed Systems, Data Science</p>
                 <div className="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                  <div><Link to={'Projects'}>Learn More</Link></div>
+                  <div><Link to={'Applications'}>Learn More</Link></div>
                 </div>
               </div>
             </div>
@@ -335,9 +335,9 @@ function Home(){
                   <div className="accordion-body">
                     <div className="d-flex">
                       <div>
-                        <p>One-stop shop for all Emory CS research information</p>
+                        <p>Lab Link offers a platform for in-coming students to avoid the awkwardness of cold emails</p>
                         <p>Create an informed studybody and wide pool of applicants</p>
-                        <p>Find research related events in a website (vs. email)</p>
+                        <p>Find research events in an interdisciplinary way</p>
                       </div>
                     </div>
                   </div>
@@ -354,6 +354,7 @@ function Home(){
                       <div>
                         <p>Students can self-nominate and take initative to raise their presence in the department</p>
                         <p>Professors can post recruitment notices to gain student applications</p>
+                        <p>Department can modify appropriately the professors and students for best practices </p>
                       </div>
                     </div>
                   </div>
@@ -368,7 +369,7 @@ function Home(){
                   <div className="accordion-body">
                     <div className="d-flex">
                       <div>
-                        <p>Provide stable platform (vs. email) to access information on upcoming CS events</p>
+                        <p>Provide stable platform (vs. email) to access information on upcoming academic and campus-wide events</p>
                         <p>Raise general awareness of what opportunities are available</p>
                       </div>
                     </div>
