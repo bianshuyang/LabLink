@@ -8,6 +8,37 @@ import Navbar from './Navbar.js';
 const ITEMS_PER_PAGE = 9; // Adjust as needed
 const MAX_VISIBLE_PAGINATION = 15; // Maximum number of visible pagination links
 
+
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // You can log the error to an error reporting service
+    console.error("Uncaught error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children; 
+  }
+}
+
+
+
+
 function generatePagination(currentPage, maxPages) {
     let pages = [];
     if (maxPages <= MAX_VISIBLE_PAGINATION) {
@@ -120,7 +151,11 @@ function Professors() {
               <div className="mb-4"><img src={prof.Image} alt="Image" className="img-fluid" /></div>
               <div className="staff-body">
                 <h3 className="staff-name">
-                  <Link to={'/SingleProf'} state={{ prof: index }}>{prof.name}</Link>
+                <ErrorBoundary>
+ <Link to={'/SingleProf'} state={{ prof: index }}>{prof.name}</Link>
+</ErrorBoundary>
+
+                  
                 </h3>
                 <span className="d-block position mb-4">{prof.title}</span>
                 <p className="mb-5">{prof.researchInterest}</p>

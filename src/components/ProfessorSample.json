@@ -1,5 +1,24 @@
 [
     {
+        "name": "Jeff Epstein",
+        "title": "Visiting Associate Professor",
+        "office": "MSC E421",
+        "phone": "404-727-7580",
+        "email": "jeff.epstein@emory.edu",
+        "Personal Website": "TBD",
+        "researchInterest Groups": "Data Mining and Machine Learning",
+        "office Hours": "",
+        "Teaching (Fall 2023)": [
+            "CS 170",
+            "CS 370"
+        ],
+        "researchInterest": "",
+        "Education": "",
+        "Image":[
+            "https://computerscience.emory.edu/images/headshot3.jpg"
+        ]
+    },
+    {
         "name": "Jinho Choi",
         "title": "Associate Professor",
         "office": "W302-F",
