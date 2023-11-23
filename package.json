@@ -48,6 +48,7 @@
     "@ckeditor/ckeditor5-theme-lark": "^40.1.0",
     "@ckeditor/ckeditor5-typing": "^40.1.0",
     "@ckeditor/ckeditor5-word-count": "^40.1.0",
+    "@edtr-io/mathquill": "^0.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
@@ -71,15 +72,19 @@
     "dompurify": "^3.0.6",
     "ejs": "^3.1.9",
     "html-react-parser": "^5.0.6",
+    "katex": "^0.16.9",
     "lodash": "^4.17.21",
+    "mathquill4quill": "^2.4.0",
     "mongodb": "^6.2.0",
     "node-fetch": "^3.3.2",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "nodemailer": "^6.9.7",
+    "quill-html-edit-button": "^2.2.13",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
     "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^18.2.0",
+    "react-mathquill": "^1.0.3",
     "react-modal": "^3.16.1",
     "react-native-password-eye": "^1.0.5",
     "react-query": "^3.39.3",
@@ -118,6 +123,8 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.22.15",
-    "@ckeditor/ckeditor5-font": "^40.1.0"
+    "@ckeditor/ckeditor5-font": "^40.1.0",
+    "exports-loader": "^4.0.0",
+    "imports-loader": "^4.0.1"
   }
 }

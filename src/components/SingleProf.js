@@ -4,10 +4,14 @@ import { Modal, Button } from 'react-bootstrap';
 import Navbar from './Navbar.js';
 import { useLocation } from 'react-router-dom';
 import professorInfo from './ProfessorSample.json';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Include the CSS for the WYSIWYG editor
+import Quill from 'quill';
+import QuillHtmlEditButton from 'quill-html-edit-button';
 const ITEMS_PER_PAGE = 10;
 const MAX_VISIBLE_PAGINATION = 8;
 
-
+Quill.register('modules/htmlEditButton', QuillHtmlEditButton);
 
 function SingleProf() {
   const location = useLocation();
@@ -16,7 +20,35 @@ function SingleProf() {
     return Array.isArray(array) ? array.join(', ') : null;
   };
 
-  // Perform the rest of your conditional logic after declaring useState
+  const [mathFieldLatex, setMathFieldLatex] = useState('');
+  const modules = {
+        toolbar: [
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' },
+            { 'indent': '-1' }, { 'indent': '+1' }],
+            ['link', 'image', 'video'],
+            [{ 'script': 'sub'}, { 'script': 'super' }], 
+            [{ 'direction': 'rtl' }], 
+            ['clean'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+        ],
+        clipboard: {
+            // Match visual, not literal, whitespace
+            matchVisual: false,
+        },
+        htmlEditButton: {}
+    };
+
+    const formats = [
+        'header', 'font', 'size',
+        'bold', 'italic', 'underline', 'strike', 'blockquote',
+        'list', 'bullet', 'indent',
+        'link', 'image', 'video','script','direction','color','background','align'
+    ];
   const profKey = location.state && location.state.prof;
 
   if (!profKey || !professorInfo[profKey]) {
@@ -78,6 +110,24 @@ function SingleProf() {
       </div>
     </div>
       </div>
+
+            <div>
+      <div className="text-editor">
+        <ReactQuill
+          theme="snow"
+          placeholder={"Write something awesome..."}
+          modules={modules}
+          formats={formats}
+        />
+      </div>
+
+
+    </div>
+
+
+
+
+
 
         <div className="untree_co-section bg-light" id = "News_concrete">
 
@@ -162,6 +212,11 @@ function SingleProf() {
     </div>);
   }
 
+
+
+
+
+
   const profdt = professorInfo[profKey];
 
   
@@ -224,6 +279,20 @@ function SingleProf() {
       </div>
     </div>
       </div>
+
+
+      <div>
+      <div className="text-editor">
+        <ReactQuill
+          theme="snow"
+          placeholder={"Write something awesome..."}
+          modules={modules}
+          formats={formats}
+        />
+      </div>
+
+
+    </div>
 
         <div className="untree_co-section bg-light" id = "News_concrete">
 
