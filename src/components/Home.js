@@ -39,7 +39,7 @@ function Home(){
                 <Link to={'/'} href="https://vimeo.com/342333493" data-fancybox data-aos="fade-up" data-aos-delay="0" className="caption mb-4 d-inline-block">LabLink!</Link>
 
                 <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100"><em>Research is to see what everybody else has seen, and to think what nobody else has thought.</em></h1>
-                <p className="mb-0" data-aos="fade-up" data-aos-delay="300"><Link to="/Applications" className="btn btn-secondary">Explore projects</Link></p>
+                <p className="mb-0" data-aos="fade-up" data-aos-delay="300"><Link to="/Application" className="btn btn-secondary">Explore projects</Link></p>
               </div>
 
 
@@ -183,7 +183,7 @@ function Home(){
                 <h3>Data Driven Innovations for Human-Technology Symbiosis Lab</h3>
                 <p className="mb-4">NLP, AI, ML, HCI</p>
                 <div className="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                  <div><Link to={'Applications'}>Learn More</Link></div>
+                  <div><Link to={'Application'}>Learn More</Link></div>
                 </div>
               </div>
             </div>
@@ -199,7 +199,7 @@ function Home(){
                 <h3>Practical Data Mining & Exploration Lab</h3>
                 <p className="mb-4">ML, Data Mining, Healthcare</p>
                 <div className="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                  <div><Link to={'Applications'}>Learn More</Link></div>
+                  <div><Link to={'Application'}>Learn More</Link></div>
                 </div>
               </div>
             </div>
@@ -215,7 +215,7 @@ function Home(){
                 <h3>Simbiosys Lab</h3>
                 <p className="mb-4">Distributed Systems, Data Science</p>
                 <div className="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                  <div><Link to={'Applications'}>Learn More</Link></div>
+                  <div><Link to={'Application'}>Learn More</Link></div>
                 </div>
               </div>
             </div>
