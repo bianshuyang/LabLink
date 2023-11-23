@@ -13,6 +13,11 @@ const MAX_VISIBLE_PAGINATION = 8;
 
 Quill.register('modules/htmlEditButton', QuillHtmlEditButton);
 
+function findProfessorByName(name) {
+    return professorInfo.find(prof => prof.Name === name);
+}
+
+
 function SingleProf() {
   const location = useLocation();
   const [professor, setProfessor] = useState(null); // Moved useState to the top
@@ -51,7 +56,7 @@ function SingleProf() {
     ];
   const profKey = location.state && location.state.prof;
 
-  if (!profKey || !professorInfo[profKey]) {
+  if (!profKey || !findProfessorByName(profKey)) {
     const profdt = professorInfo[0]
     return (<div className='SingleProf'>
 
@@ -95,17 +100,11 @@ function SingleProf() {
         <div className="container">
       <div className="row">
         <div className="col-lg-5 mr-auto mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
-          <img src={profdt.Image && profdt.Image.length > 0 ? profdt.Image[0] : null} alt="profile" className="img-fluid" style={{ width: '40%', height: 'auto' }} />
+          <img src={profdt.Image && profdt.Image.length > 0 ? profdt.Image : null} alt="profile" className="img-fluid" style={{ width: '40%', height: 'auto' }} />
         </div>
         <div>
-          <p>{profdt.title && profdt.name ? `${profdt.title} ${profdt.name}` : null}</p>
-          <p>{profdt.office ? profdt.office : null} {profdt.phone ? profdt.phone : null}</p>
-          <p>{profdt.email || null}</p>
-          <p>{profdt['Personal Website'] ? <a href={profdt['Personal Website']}>Website</a> : null}</p>
-          <p>{joinArrayOrReturnNull(profdt['office Hours'])}</p>
-          <p>{joinArrayOrReturnNull(profdt['Teaching (Fall 2023)'])}</p>
-          <p>{joinArrayOrReturnNull(profdt.researchInterest)}</p>
-          <p>{joinArrayOrReturnNull(profdt.Education)}</p>
+          <p>{profdt.Title && profdt.Name ? `${profdt.Title} ${profdt.Name}` : null}</p>
+          <p>{profdt.PopupInfo ? `${profdt.PopupInfo} ` : null} </p>
         </div>
       </div>
     </div>
@@ -217,7 +216,7 @@ function SingleProf() {
 
 
 
-  const profdt = professorInfo[profKey];
+  const profdt = findProfessorByName(profKey);
 
   
 
@@ -261,24 +260,21 @@ function SingleProf() {
          <div className="untree_co-section">
 
 
-        <div className="container">
+<div className="container">
       <div className="row">
         <div className="col-lg-5 mr-auto mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
-          <img src={profdt.Image && profdt.Image.length > 0 ? profdt.Image[0] : null} alt="profile" className="img-fluid" style={{ width: '40%', height: 'auto' }} />
+          <img src={profdt.Image && profdt.Image.length > 0 ? profdt.Image : null} alt="profile" className="img-fluid" style={{ width: '40%', height: 'auto' }} />
         </div>
         <div>
-          <p>{profdt.title && profdt.name ? `${profdt.title} ${profdt.name}` : null}</p>
-          <p>{profdt.office ? profdt.office : null} {profdt.phone ? profdt.phone : null}</p>
-          <p>{profdt.email || null}</p>
-          <p>{profdt['Personal Website'] ? <a href={profdt['Personal Website']}>Website</a> : null}</p>
-          <p>{joinArrayOrReturnNull(profdt['office Hours'])}</p>
-          <p>{joinArrayOrReturnNull(profdt['Teaching (Fall 2023)'])}</p>
-          <p>{joinArrayOrReturnNull(profdt.researchInterest)}</p>
-          <p>{joinArrayOrReturnNull(profdt.Education)}</p>
+          <p>{profdt.Title && profdt.Name ? `${profdt.Title} ${profdt.Name}` : null}</p>
+          <p>{profdt.PopupInfo ? `${profdt.PopupInfo} ` : null} </p>
         </div>
       </div>
     </div>
       </div>
+
+
+
 
 
       <div>

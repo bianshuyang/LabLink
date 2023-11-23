@@ -6,71 +6,90 @@ import professorInfo from './ProfessorSample.json';
 import Navbar from './Navbar.js';
 
 const ITEMS_PER_PAGE = 9; // Adjust as needed
-const MAX_VISIBLE_PAGINATION = 15; // Maximum number of visible pagination links
-
-
-
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    // You can log the error to an error reporting service
-    console.error("Uncaught error:", error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
-    }
-
-    return this.props.children; 
-  }
-}
-
-
-
+const MAX_VISIBLE_PAGINATION = 19; // Maximum number of visible pagination links
 
 function generatePagination(currentPage, maxPages) {
     let pages = [];
+    const wingSpan = Math.floor(MAX_VISIBLE_PAGINATION / 2);
+
     if (maxPages <= MAX_VISIBLE_PAGINATION) {
+        // If the total pages are less than the max visible, show all pages
         for (let i = 1; i <= maxPages; i++) {
             pages.push(i);
         }
     } else {
-        pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', maxPages];
-        if (currentPage <= 3) {
-            pages = [1, 2, 3, 4, '...', maxPages];
-        } else if (currentPage >= maxPages - 2) {
-            pages = [1, '...', maxPages - 3, maxPages - 2, maxPages - 1, maxPages];
+        // Always include the first page
+        pages.push(1);
+
+        // Determine if we need to add the starting ellipsis
+        let startEllipsisNeeded = currentPage > wingSpan + 2;
+        if (startEllipsisNeeded) {
+            pages.push('...');
         }
+
+        // Determine the middle range of pages
+        let start = Math.max(2, currentPage - wingSpan);
+        let end = Math.min(maxPages - 1, currentPage + wingSpan);
+
+        // Adjust the start and end if near the beginning or end
+        if (currentPage < wingSpan + 2) {
+            end = MAX_VISIBLE_PAGINATION - 2;
+        }
+        if (currentPage > maxPages - wingSpan - 1) {
+            start = maxPages - MAX_VISIBLE_PAGINATION + 3;
+        }
+
+        // Add the middle range of pages
+        for (let i = start; i <= end; i++) {
+            pages.push(i);
+        }
+
+        // Determine if we need to add the ending ellipsis
+        let endEllipsisNeeded = currentPage < maxPages - wingSpan - 1;
+        if (endEllipsisNeeded) {
+            pages.push('...');
+        }
+
+        // Always include the last page
+        pages.push(maxPages);
     }
+
     return pages;
 }
 
+const sortProfessorsByName = (professors) => {
+  return professors.slice().sort((a, b) => a.Name.localeCompare(b.Name));
+};
 
 function Professors() {
   const [currentPage, setCurrentPage] = useState(1);
-  
+  const [isSorted, setIsSorted] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [currentDescription, setCurrentDescription] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState(professorInfo);
   const maxPages = Math.ceil(searchResults.length / ITEMS_PER_PAGE);
   const pagination = generatePagination(currentPage, maxPages);
-  const visibleProfessors = searchResults.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  const visibleProfessors = searchResults.slice(
+  (currentPage - 1) * ITEMS_PER_PAGE,
+  currentPage * ITEMS_PER_PAGE
+);
+
+  const toggleSort = () => {
+  setIsSorted(!isSorted);
+
+  // If you're toggling sorting, sort the entire search results
+  const sortedResults = isSorted
+    ? sortProfessorsByName(searchResults)
+    : professorInfo; // Assuming professorInfo is your default data
+
+  setSearchResults(sortedResults);
+};
+
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
     const searchLower = event.target.value.toLowerCase();
-
+    setCurrentPage(1)
     const filteredProfessors = professorInfo.filter(professor => {
       return Object.values(professor).some(value => {
         if (Array.isArray(value)) {
@@ -83,7 +102,7 @@ function Professors() {
     setSearchResults(filteredProfessors);
   };
 
-
+  
   useEffect(() => {
 /*    fetch('/ProfessorSample.json')
     .then(response => response.json())
@@ -91,6 +110,12 @@ function Professors() {
     .catch(error => console.error('Error fetching data:', error));
     */
   }, []);
+
+
+  useEffect(() => {
+    const sortedProfessors = isSorted ? sortProfessorsByName(searchResults) : searchResults;
+    setSearchResults(sortedProfessors);
+  }, [isSorted, searchResults]);
 
   return (
     <div className='Professors'>
@@ -140,6 +165,10 @@ function Professors() {
         onChange={handleSearch}
         />
 
+        <button onClick={toggleSort}>
+        {isSorted ? "Unsort" : "Sort Alphabetically"}
+      </button>
+
 
           <div className="row align-items-stretch">
   <div className="container">
@@ -151,11 +180,7 @@ function Professors() {
               <div className="mb-4"><img src={prof.Image} alt="Image" className="img-fluid" /></div>
               <div className="staff-body">
                 <h3 className="staff-name">
-                <ErrorBoundary>
- <Link to={'/SingleProf'} state={{ prof: index }}>{prof.name}</Link>
-</ErrorBoundary>
-
-                  
+                  <Link to={'/SingleProf'} state={{ prof: prof.Name }}>{prof.Name}</Link>
                 </h3>
                 <span className="d-block position mb-4">{prof.title}</span>
                 <p className="mb-5">{prof.researchInterest}</p>
