@@ -1,0 +1,30 @@
+
+.text-editor {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    height: 100vh;           
+}
+
+.text-editor div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto; /* Centers horizontally inside the flex container */
+}
+
+
+.ProfessorIntroduction {
+    font-family: sans-serif; /* Sets the font to sans-serif */
+    font-size: 25 px;        /* Sets the font size to 44 points */
+    text-align: right;      /* Aligns text to the right of the container */
+
+    /* Vertical centering */
+    display: flex;
+    align-items: center;    /* Aligns the content vertically in the middle */
+    justify-content: flex-end; /* Aligns the content to the right */
+    height: 100%;           /* Adjust as per your layout needs */
+}

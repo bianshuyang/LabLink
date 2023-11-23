@@ -8,6 +8,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Include the CSS for the WYSIWYG editor
 import Quill from 'quill';
 import QuillHtmlEditButton from 'quill-html-edit-button';
+import '../styles/singleprof.css'
 const ITEMS_PER_PAGE = 10;
 const MAX_VISIBLE_PAGINATION = 8;
 
@@ -21,9 +22,11 @@ function findProfessorByName(name) {
 function SingleProf() {
   const location = useLocation();
   const [professor, setProfessor] = useState(null); // Moved useState to the top
+  const [editorContent, setEditorContent] = useState('');
   const joinArrayOrReturnNull = (array) => {
     return Array.isArray(array) ? array.join(', ') : null;
   };
+
 
   const [mathFieldLatex, setMathFieldLatex] = useState('');
   const modules = {
@@ -56,8 +59,11 @@ function SingleProf() {
     ];
   const profKey = location.state && location.state.prof;
 
+
+
   if (!profKey || !findProfessorByName(profKey)) {
     const profdt = professorInfo[0]
+
     return (<div className='SingleProf'>
 
       <div className="site-mobile-menu">
@@ -105,21 +111,22 @@ function SingleProf() {
         <div>
           <p>{profdt.Title && profdt.Name ? `${profdt.Title} ${profdt.Name}` : null}</p>
           <p>{profdt.PopupInfo ? `${profdt.PopupInfo} ` : null} </p>
+          <div>
+      <div className="text-editor">
+        <ReactQuill
+          theme="snow"
+          value = {editorContent}
+          modules={modules}
+          formats={formats}
+        />
+      </div>
         </div>
       </div>
     </div>
       </div>
 
-            <div>
-      <div className="text-editor">
-        <ReactQuill
-          theme="snow"
-          placeholder={"Write something awesome..."}
-          modules={modules}
-          formats={formats}
-        />
-      </div>
-
+            
+//////////////
 
     </div>
 
@@ -218,6 +225,8 @@ function SingleProf() {
 
   const profdt = findProfessorByName(profKey);
 
+
+
   
 
   return (
@@ -265,9 +274,8 @@ function SingleProf() {
         <div className="col-lg-5 mr-auto mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
           <img src={profdt.Image && profdt.Image.length > 0 ? profdt.Image : null} alt="profile" className="img-fluid" style={{ width: '40%', height: 'auto' }} />
         </div>
-        <div>
+        <div className = 'ProfessorIntroduction'>
           <p>{profdt.Title && profdt.Name ? `${profdt.Title} ${profdt.Name}` : null}</p>
-          <p>{profdt.PopupInfo ? `${profdt.PopupInfo} ` : null} </p>
         </div>
       </div>
     </div>
@@ -281,6 +289,7 @@ function SingleProf() {
       <div className="text-editor">
         <ReactQuill
           theme="snow"
+          value = {profdt.PopupInfo}
           placeholder={"Write something awesome..."}
           modules={modules}
           formats={formats}
