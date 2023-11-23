@@ -47,16 +47,16 @@ function Login(){
 
   const handleButtonClick = () => {
     if (isChange) {
-      navigate('/'); 
+      navigate('/');
     } else {
-      setIsChange(true); 
+      setIsChange(true);
     }
   };
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
-  
+
   async function fetchData(netID, password) {
     try{
       validateNetID(netID);
@@ -100,7 +100,8 @@ function Login(){
       setIsLoggedIn(true);
       alert("OKOKOKOK")
       console.log("Login successful!");
-      sessionStorage.setItem('userToken', netID);
+      sessionStorage.setItem('userID', netID);
+      sessionStorage.setItem('userToken', responseData.token);
       navigate('/');
     } catch (error) {
       setLoading(false);
@@ -155,7 +156,7 @@ function Login(){
           <i className="fas fa-envelope"></i>
           <input placeholder="NetID" value = {netID} onChange={e => setNetID(e.target.value)}  />
         </div>
-        
+
         <div className="input-group">
       <input
         type={isPasswordVisible ? "text" : "password"}
