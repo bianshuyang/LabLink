@@ -362,10 +362,6 @@ function CentralizedApplication() {
 
     };
 
-
-
-
-
     const addProgramSubmit = async (event) => {
         event.preventDefault();
 
@@ -424,7 +420,7 @@ function CentralizedApplication() {
     };
 
     const deleteReplyClick = async (replyId, event) => {
-        event.preventDefault();
+        //event.preventDefault();
         setCurrentPage(1);
         if (netID == null) {
             alert("Unauthorized deletion. Please log in.")
@@ -483,35 +479,20 @@ function CentralizedApplication() {
                                     <p className="mb-0" data-aos="fade-up" data-aos-delay="300">
                                         <a href="#News_concrete" className="btn btn-secondary">Check available positions below</a>
                                     </p>
-
-
                                 </div>
-
-
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
             <div className="untree_co-section bg-light" id="News_concrete">
                 <div className="ProgramsContainer">
-
-
-
-
-
-
-
-
                     <main>
                         {showApplications ? (
                             <div>
                                 <div className="button-container">
                                     <button className="btn" onClick={handleBackClick}>Back to Programs</button>
-                                    <button className="btn" onClick={deleteProgram}>Withdraw My Application</button>
+                                    <button className="btn" onClick={deleteClick}>Withdraw My Program</button>
                                 </div>
 
                                 <h2>Applications</h2>
@@ -522,7 +503,6 @@ function CentralizedApplication() {
                                             <li key={application.applicationId}>
                                                 <strong>{application.applicationDate}</strong>
                                                 <div className="App">
-
                                                     <ReactQuill
                                                         value={application.applicationData}
                                                         config={{
@@ -532,9 +512,8 @@ function CentralizedApplication() {
                                                         modules={{ toolbar: false }}
                                                         theme="snow" // this prop is optional
                                                     />
-
                                                 </div>
-                                                <button onClick={() => deleteApplication(application.applicationId)}>Withdraw My Application</button>
+                                                <button onClick={() => deleteReplyClick(application.applicationId)}>Withdraw My Application</button>
                                             </li>
                                         ))}
                                 </ul>
