@@ -39,7 +39,9 @@ function Home(){
                 <Link to={'/'} href="https://vimeo.com/342333493" data-fancybox data-aos="fade-up" data-aos-delay="0" className="caption mb-4 d-inline-block">LabLink!</Link>
 
                 <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100"><em>Research is to see what everybody else has seen, and to think what nobody else has thought.</em></h1>
-                <p className="mb-0" data-aos="fade-up" data-aos-delay="300"><Link to="/Application" className="btn btn-secondary">Explore projects</Link></p>
+                <p className="mb-0" data-aos="fade-up" data-aos-delay="300">
+                  <a href="#Home_concrete" className="btn btn-secondary">Explore Research</a>
+                </p>
               </div>
 
 
@@ -163,7 +165,7 @@ function Home(){
       </div>
     </div>
 
-    <div className="untree_co-section bg-light">
+    <div className="untree_co-section bg-light" id="Home_concrete">
       <div className="container">
         <div className="row justify-content-center mb-5">
           <div className="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">

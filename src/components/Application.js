@@ -673,27 +673,17 @@ function CentralizedApplication() {
                                     <p></p>
                                 </div>
                                 <div className="widget">
-                                    <h3>Connect</h3>
+                                    <h3><Link to={'/Contact'}>Connect</Link></h3>
                                     <ul className="list-unstyled social">
-                                        <li><Link to={'/'}><span className="icon-instagram"></span></Link></li>
-                                        <li><Link to={'/'}><span className="icon-twitter"></span></Link></li>
-                                        <li><Link to={'/'}><span className="icon-facebook"></span></Link></li>
-                                        <li><Link to={'/'}><span className="icon-linkedin"></span></Link></li>
-                                        <li><Link to={'/'}><span className="icon-pinterest"></span></Link></li>
-                                        <li><Link to={'/'}><span className="icon-dribbble"></span></Link></li>
                                     </ul>
                                 </div>
                             </div>
 
                             <div className="col-lg-2 ml-auto">
                                 <div className="widget">
-                                    <h3>Projects</h3>
+                                    <h3>Learn More</h3>
                                     <ul className="list-unstyled float-left links">
-                                        <li><Link to={'/'}>Web Design</Link></li>
-                                        <li><Link to={'/'}>HTML5</Link></li>
-                                        <li><Link to={'/'}>CSS3</Link></li>
-                                        <li><Link to={'/'}>jQuery</Link></li>
-                                        <li><Link to={'/'}>Bootstrap</Link></li>
+                                    <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -721,7 +711,7 @@ function CentralizedApplication() {
 
                             <div className="col-lg-3">
                                 <div className="widget">
-                                    <h3>Contact</h3>
+                                    <h3>Get in Touch</h3>
                                     <address>201 Dowman Dr, Atlanta, GA 30322</address>
                                     <ul className="list-unstyled links mb-4">
                                         <li><a href="tel://4047276123">+1(404) 727-6123</a></li>

@@ -536,12 +536,10 @@ function Forum() {
                                 <div className="col-lg-6 text-center ">
                                     <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Self Recommendation</h1>
                                     <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                                        <p><h2>
-
-                                            For students:  This is a place for students to post their research statement (if any) here alongside Profiles. Students wishing to begin their first phase of Emory Research, or wishing to continue and switch a direction and actively looking to find an alternative way to cold emails may find it particularly helpful to do so. However, chances may be very limited.
-                                            For professors: This is a place for professor to select interested student profile actively.
-
-                                        </h2></p>
+                                        <p><em>
+                                            For students:  This is a place for students seeking research positions to post their research statement and profiles, alternative to cold emails
+                                            For professors: This is a place for professor to access pool of students that take initiative 
+                                        </em></p>
                                         <p>All @ Emory.</p>
                                     </div>
 
@@ -753,27 +751,16 @@ function Forum() {
                                     <p></p>
                                 </div>
                                 <div className="widget">
-                                    <h3>Connect</h3>
-                                    <ul className="list-unstyled social">
-                                        <li><Link to={'/'}><span className="icon-instagram"></span></Link></li>
-                                        <li><Link to={'/'}><span className="icon-twitter"></span></Link></li>
-                                        <li><Link to={'/'}><span className="icon-facebook"></span></Link></li>
-                                        <li><Link to={'/'}><span className="icon-linkedin"></span></Link></li>
-                                        <li><Link to={'/'}><span className="icon-pinterest"></span></Link></li>
-                                        <li><Link to={'/'}><span className="icon-dribbble"></span></Link></li>
-                                    </ul>
+                                    <h3><Link to={'/Contact'}>Connect</Link></h3>
+                                    <ul className="list-unstyled social"></ul>
                                 </div>
                             </div>
 
                             <div className="col-lg-2 ml-auto">
                                 <div className="widget">
-                                    <h3>Projects</h3>
+                                    <h3>Learn More</h3>
                                     <ul className="list-unstyled float-left links">
-                                        <li><Link to={'/'}>Web Design</Link></li>
-                                        <li><Link to={'/'}>HTML5</Link></li>
-                                        <li><Link to={'/'}>CSS3</Link></li>
-                                        <li><Link to={'/'}>jQuery</Link></li>
-                                        <li><Link to={'/'}>Bootstrap</Link></li>
+                                    <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -801,7 +788,7 @@ function Forum() {
 
                             <div className="col-lg-3">
                                 <div className="widget">
-                                    <h3>Contact</h3>
+                                    <h3>Get in Touch</h3>
                                     <address>201 Dowman Dr, Atlanta, GA 30322</address>
                                     <ul className="list-unstyled links mb-4">
                                         <li><a href="tel://4047276123">+1(404) 727-6123</a></li>
