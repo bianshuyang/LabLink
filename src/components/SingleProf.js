@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { LabLinkContext } from '../LabLinkProvider';
 import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 import Navbar from './Navbar.js';
@@ -34,13 +35,15 @@ function SingleProf() {
     else{
       setIsEditing(true);
     }
-    
+
   };
   const location = useLocation();
   const [professorInfo, setprofessorInfo] = useState([]);
   const [professor, setProfessor] = useState(null); // Moved useState to the top
   const [editorContent, setEditorContent] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const { netID, setNetID } = useContext(LabLinkContext);
+
   const joinArrayOrReturnNull = (array) => {
     return Array.isArray(array) ? array.join(', ') : null;
   };
@@ -78,7 +81,7 @@ function SingleProf() {
             if (typeof responseData === 'object' && response.ok) {
                 console.log("OK PROFESSORSET")
                 setprofessorInfo(responseData);
-                
+
             } else {
                 console.error('Error or non-JSON response:', responseData);
             }
@@ -97,8 +100,8 @@ function SingleProf() {
             [{ 'list': 'ordered' }, { 'list': 'bullet' },
             { 'indent': '-1' }, { 'indent': '+1' }],
             ['link', 'image', 'video'],
-            [{ 'script': 'sub'}, { 'script': 'super' }], 
-            [{ 'direction': 'rtl' }], 
+            [{ 'script': 'sub'}, { 'script': 'super' }],
+            [{ 'direction': 'rtl' }],
             ['clean'],
             [{ 'color': [] }, { 'background': [] }],
             [{ 'font': [] }],
@@ -121,8 +124,8 @@ function SingleProf() {
 
 
   function findProfessorByName(name) {
-  return professorInfo.find(prof => prof.Name === decodeURIComponent(name));
-}
+    return professorInfo.find(prof => prof.Name === decodeURIComponent(name));
+  }
 
 
 async function modifyCV(Name, PopupInfo) {
@@ -163,7 +166,7 @@ const modifyCVSubmit = async (event) => {
 
 
 if (isLoading) {
-    
+
   return (<p>Loading professor Details...</p>);
   }
 
@@ -233,7 +236,7 @@ if (isLoading) {
     </div>
       </div>
 
-            
+
 //////////////
 
     </div>
@@ -336,7 +339,7 @@ if (isLoading) {
 
 
 
-  
+
 
   return (
     <div className='SingleProf'>
@@ -394,40 +397,45 @@ if (isLoading) {
 
 
 
-      
 
 
+
+      <div>
       <form onSubmit={modifyCVSubmit}>
-    <label>Public Research Website Editor</label>
-    <div>
-      {isEditing ? (
-        <div className="text-editor">
-          <ReactQuill
-            theme="snow"
-            onChange={(content) => setEditorContent(content)}
-            modules={modules}
-            formats={formats}
-          />
+        <label>Public Research Website Editor</label>
+        <div>
+          {isEditing ? (
+            <div className="text-editor">
+              <ReactQuill
+                theme="snow"
+                onChange={(content) => setEditorContent(content)}
+                modules={modules}
+                formats={formats}
+              />
+            </div>
+          ) : (
+            <div className="text-editor">
+              <ReactQuill
+                theme="snow"
+                onChange={(content) => setEditorContent(content)}
+                modules={modules}
+                formats={formats}
+                value={profdt.PopupInfo}
+              />
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="text-editor">
-          <ReactQuill
-            theme="snow"
-            onChange={(content) => setEditorContent(content)}
-            modules={modules}
-            formats={formats}
-            value={profdt.PopupInfo}
-          />
-        </div>
+        {netID === profdt.name && (
+          <input type="submit" value="Edit my Website!" />
+        )}
+      </form>
+
+      {netID === profdt.name && (
+        <button type="button" onClick={handleEditClick}>
+          Edit
+        </button>
       )}
-      </div>
-      <input type="submit" value="Edit my Website!" />
-  </form>
-
-  <button type="button" onClick={handleEditClick}>Edit</button>
-
-  
-
+    </div>
         <div className="untree_co-section bg-light" id = "News_concrete">
 
         <div className="site-footer">
@@ -497,7 +505,6 @@ if (isLoading) {
                   </ul>
                 </div>
               </div>
-
             </div>
 
             <div className="row mt-5">
