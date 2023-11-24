@@ -604,7 +604,7 @@ function CentralizedApplication() {
                                                 </li>
                                             ))}
                                     </ul>) : (
-                                    <div>No programs available.</div>
+                                    <div></div>
                                 )
                                 }
                                 <form onSubmit={addProgramSubmit} className="new-program-form">
@@ -615,7 +615,7 @@ function CentralizedApplication() {
                                         onChange={(content) => setprogramData(content)}
                                         modules={modules}
                                         formats={formats}
-                                        placeholder="Sincerity brings c,lonnections."
+                                        placeholder="Sincerity brings connections."
                                         theme="snow" // this prop is optional
                                     />
 
