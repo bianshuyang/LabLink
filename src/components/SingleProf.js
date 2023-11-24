@@ -255,33 +255,22 @@ if (isLoading) {
 
               <div className="col-lg-3 mr-auto">
                 <div className="widget">
-                  <h3>About Us<span className="text-primary">.</span> </h3>
+                  <h3>About Us<span className="text-primary"></span> </h3>
                     <p></p>
                 </div>
 
                 <div className="widget">
-                  <h3>Connect</h3>
-                  <ul className="list-unstyled social">
-                        <li><Link to={'/'}><span className="icon-instagram"></span></Link></li>
-                        <li><Link to={'/'}><span className="icon-twitter"></span></Link></li>
-                        <li><Link to={'/'}><span className="icon-facebook"></span></Link></li>
-                        <li><Link to={'/'}><span className="icon-linkedin"></span></Link></li>
-                        <li><Link to={'/'}><span className="icon-pinterest"></span></Link></li>
-                        <li><Link to={'/'}><span className="icon-dribbble"></span></Link></li>
-                  </ul>
+                  <h3><Link to={'/Contact'}>Connect</Link></h3>
+                    <ul className="list-unstyled social"></ul>
                 </div>
               </div>
 
               <div className="col-lg-2 ml-auto">
-                <div className="widget">
-                  <h3>Projects</h3>
-                  <ul className="list-unstyled float-left links">
-                        <li><Link to={'/'}>Web Design</Link></li>
-                        <li><Link to={'/'}>HTML5</Link></li>
-                        <li><Link to={'/'}>CSS3</Link></li>
-                        <li><Link to={'/'}>jQuery</Link></li>
-                        <li><Link to={'/'}>Bootstrap</Link></li>
-                  </ul>
+              <div className="widget">
+                <h3>Learn More</h3>
+                    <ul className="list-unstyled float-left links">
+                      <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
+                    </ul>
                 </div>
               </div>
 
