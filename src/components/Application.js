@@ -493,9 +493,9 @@ function CentralizedApplication() {
                         <div className="col-12">
                             <div className="row justify-content-center ">
                                 <div className="col-lg-6 text-center ">
-                                    <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Centralized Application</h1>
+                                    <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Research Position Postings</h1>
                                     <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                                        <p><h2><em>"A great place for Programs."</em></h2></p>
+                                        <p><em>Find research position postings from Emory professors</em></p>
                                         <p>All @ Emory.</p>
                                     </div>
 
