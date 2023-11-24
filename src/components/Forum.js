@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { LabLinkContext } from '../LabLinkProvider';
 import "../styles/forum.css";
 import { Link } from "react-router-dom"
 import Navbar from './Navbar.js';
@@ -106,7 +107,7 @@ function Forum() {
     const [repliesData, setrepliesData] = useState([]);
     const [usersData, setusersData] = useState([]);
 
-    const [netid, setnetid] = React.useState('');
+    const { netID, setNetID } = useContext(LabLinkContext);
     const [postid, setpostid] = React.useState('');
     const [postData, setpostData] = React.useState('');
     const [postDate, setpostDate] = React.useState('');
@@ -428,15 +429,11 @@ function Forum() {
             nextPostId = maxPostId + 1;
         }
 
-        const token = sessionStorage.getItem('userToken');
-        console.log(token, "is token!!!!");
-        const randomNetId = token; // to be replaced when we connect
         const currentDate = new Date().toISOString();
-        setnetid(randomNetId);
         setpostid(nextPostId);
         setpostDate(currentDate);
         alert("Thank you for bringing in a post, your response has been submitted");
-        const response = await addthread(randomNetId, nextPostId, postData, currentDate);  // Call fetchData with netID and password
+        const response = await addthread(netID, nextPostId, postData, currentDate);  // Call fetchData with netID and password
 
         fetchPostsAndUpdateState();
         console.log("fetching complete!!!")
@@ -473,7 +470,7 @@ function Forum() {
             return
         }
         else {
-            await deletethread(token, selectedPostId);
+            await deletethread(netID, selectedPostId);
         }
     };
 

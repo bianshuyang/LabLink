@@ -1,8 +1,9 @@
 import * as React from "react";
+import { LabLinkContext } from '../LabLinkProvider';
 import { Link } from "react-router-dom";
 import "../styles/login.css";
 import eLogo from "../images/eLogo.png";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import sjcl from 'sjcl';
 function ResetPass(){
@@ -12,7 +13,7 @@ function ResetPass(){
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [netID, setNetID] = React.useState('');
+  const { netID, setNetID } = useContext(LabLinkContext);
   const navigate = useNavigate();
   const [email, setemail] = React.useState('');
   const [emailData, setEmailData] = useState({
@@ -24,9 +25,9 @@ function ResetPass(){
 
   const handleButtonClick = () => {
     if (isChange) {
-      navigate('/'); 
+      navigate('/');
     } else {
-      setIsChange(true); 
+      setIsChange(true);
     }
   };
 
@@ -84,8 +85,8 @@ const resetStates = () => {
     try {
         validateNetID(recordedPairs.user);
         console.log("NetID is valid");
-    
-    try { 
+
+    try {
       const res = await fetch('/api/reset/forget', {
           method: 'POST',
           headers: {
@@ -93,7 +94,7 @@ const resetStates = () => {
           },
           body: JSON.stringify(recordedPairs),
       });
-  
+
       console.log(res.status === 400);
       if (!res.ok) {
           const data = await res.text();
@@ -124,10 +125,10 @@ const resetStates = () => {
         if (!res.ok) {
           alert('Network response was not ok');
         }
-  
+
         // Update state with the success response (can be customized based on your backend response)
         alert('Email sent successfully!');
-  
+
         // Optionally, clear the form after successful submission
         setEmailData({
           from: "lablnk_help@outlook.com",
@@ -146,8 +147,8 @@ const resetStates = () => {
         resetStates();
     }
 
-    
-    
+
+
   };
 
   useEffect(() => {
@@ -157,7 +158,7 @@ const resetStates = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  
+
   return(
     <div className={`login-container ${isChange ? "change" : ""}`}>
     <div className="login-form-wrapper">
@@ -184,7 +185,7 @@ const resetStates = () => {
         </div>
         <button type="submit">Send Email</button>
       </form>
-    
+
     </div>
   </div>
 )

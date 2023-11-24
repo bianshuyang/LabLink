@@ -53,6 +53,10 @@ function Login(){
     }
   };
 
+  const base64Encode = (str) => {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
@@ -100,7 +104,7 @@ function Login(){
       setIsLoggedIn(true);
       alert("OKOKOKOK")
       console.log("Login successful!");
-      sessionStorage.setItem('userID', netID);
+      sessionStorage.setItem('userID', base64Encode(netID));
       sessionStorage.setItem('userToken', responseData.token);
       navigate('/');
     } catch (error) {

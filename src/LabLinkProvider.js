@@ -2,9 +2,14 @@ import * as React from 'react';
 
 export const LabLinkContext = React.createContext({})
 
-export function LabLinkProvider({ children }){
+const base64Decode = (encodedStr) => {
+  return decodeURIComponent(Array.prototype.map.call(atob(encodedStr), (c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+}
 
-  const userID = sessionStorage.getItem('userID');
+export function LabLinkProvider({ children }){
+  
+  const sessionUserID = sessionStorage.getItem('userID');
+  const userID = sessionUserID ? base64Decode(sessionUserID) : null;
   const userToken = sessionStorage.getItem('userToken');
   const [isLoggedIn, setIsLoggedIn] = React.useState(!!userToken);
   const [netID, setNetID] = React.useState(userID ? userID : '');

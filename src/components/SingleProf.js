@@ -37,6 +37,7 @@ function SingleProf() {
     }
 
   };
+  
   const location = useLocation();
   const [professorInfo, setprofessorInfo] = useState([]);
   const [professor, setProfessor] = useState(null); // Moved useState to the top

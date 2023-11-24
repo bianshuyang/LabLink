@@ -1,8 +1,9 @@
 import * as React from "react";
+import { LabLinkContext } from '../LabLinkProvider';
 import { Link } from "react-router-dom";
 import "../styles/login.css";
 import eLogo from "../images/eLogo.png";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import sjcl from 'sjcl';
 import { ReactComponent as EyeSlashIcon } from '../images/eye-solid.svg'; // Adjust the path accordingly
@@ -24,16 +25,16 @@ function Register(){
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [netID, setNetID] = React.useState('');
+  const { netID, setNetID } = useContext(LabLinkContext);
   const [password, setPassword] = React.useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     if (isChange) {
-      navigate('/'); 
+      navigate('/');
     } else {
-      setIsChange(true); 
+      setIsChange(true);
     }
   };
 
@@ -84,7 +85,7 @@ try {
                 field2: hashPassword(password),
             }),
         });
-        
+
         console.log(netID, hashPassword(password));
         console.log(response);
 
@@ -132,7 +133,7 @@ try {
   if (loading) {
     return <div>Loading...</div>;
   }
-  
+
   return(
       <div className={`login-container ${isChange ? "change" : ""}`}>
         <div className="login-form-wrapper">
@@ -172,7 +173,7 @@ try {
             <button type="submit">Register</button>
             <Link to={'/login'} className="login">Already have an account? Login</Link>
           </form>
-        
+
         </div>
       </div>
   )
