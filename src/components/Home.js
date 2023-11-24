@@ -336,7 +336,7 @@ function Home(){
                     <div className="d-flex">
                       <div>
                         <p>Lab Link offers a platform for in-coming students to avoid the awkwardness of cold emails</p>
-                        <p>Create an informed studybody and wide pool of applicants</p>
+                        <p>Create an informed student body and wide pool of applicants</p>
                         <p>Find research events in an interdisciplinary way</p>
                       </div>
                     </div>
