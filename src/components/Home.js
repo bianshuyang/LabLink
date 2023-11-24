@@ -157,7 +157,7 @@ function Home(){
 
         <div className="row justify-content-center" data-aos="fade-up" data-aos-delay="400">
           <div className="col-lg-8 text-center">
-            <p>Learn more about specific projects at Emory <Link to="Projects">Browse all</Link></p>
+            <p>Learn more about research recruiting at Emory <Link to="Applications">Browse all</Link></p>
           </div>
         </div>
       </div>
@@ -252,7 +252,7 @@ function Home(){
                 <img src="images/img-school-2-min.jpg" alt="Image"/>
               </figure>
               <div className="media-h-body">
-                <h2 className="mb-3"><a href="#">Interpretable and Interactive Representation Learning on Geometric Data</a></h2>
+                <h2 className="mb-3"><Link to={'/news'}>Interpretable and Interactive Representation Learning on Geometric Data</Link></h2>
                 <div className="meta mb-2"><span className="icon-calendar mr-2"></span><span>December 1, 2022</span>  <span className="icon-person mr-2"></span>Emory CS Department</div>
                 <p>In recent years, representation learning on geometrics data, such as image and graph-structured data, are experiencing rapid developments and achieving significant progress</p>
                 <p><Link to={'/news'}>Learn More</Link></p>
@@ -398,27 +398,17 @@ function Home(){
               <p></p>
             </div>
             <div className="widget">
-              <h3>Connect</h3>
+              <h3><Link to={'/Contact'}>Connect</Link></h3>
               <ul className="list-unstyled social">
-                <li><a href="#"><span className="icon-instagram"></span></a></li>
-                <li><a href="#"><span className="icon-twitter"></span></a></li>
-                <li><a href="#"><span className="icon-facebook"></span></a></li>
-                <li><a href="#"><span className="icon-linkedin"></span></a></li>
-                <li><a href="#"><span className="icon-pinterest"></span></a></li>
-                <li><a href="#"><span className="icon-dribbble"></span></a></li>
               </ul>
             </div>
           </div>
 
           <div className="col-lg-2 ml-auto">
             <div className="widget">
-              <h3>Project Areas</h3>
+              <h3>Learn More</h3>
               <ul className="list-unstyled float-left links">
-                <li><a href="#">AI</a></li>
-                <li><a href="#">HCI</a></li>
-                <li><a href="#">Software</a></li>
-                <li><a href="#">Robotics</a></li>
-                <li><a href="#">......</a></li>
+                <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
               </ul>
             </div>
           </div>
@@ -446,7 +436,7 @@ function Home(){
 
           <div className="col-lg-3">
             <div className="widget">
-              <h3>Contact</h3>
+              <h3>Get in Touch</h3>
               <address>201 Dowman Dr, Atlanta, GA 30322</address>
               <ul className="list-unstyled links mb-4">
                 <li><a href="tel://4047276123">+1(404) 727-6123</a></li>
