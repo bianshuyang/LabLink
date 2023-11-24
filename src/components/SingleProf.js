@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 import Navbar from './Navbar.js';
 import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Include the CSS for the WYSIWYG editor
@@ -18,6 +19,10 @@ Quill.register('modules/htmlEditButton', QuillHtmlEditButton);
 
 
 function SingleProf() {
+
+  const { profName } = useParams();
+
+
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditClick = () => {
@@ -112,12 +117,13 @@ function SingleProf() {
         'list', 'bullet', 'indent',
         'link', 'image', 'video','script','direction','color','background','align'
     ];
-  const profKey = location.state && location.state.prof;
+  // const profKey = location.state && location.state.prof;
 
 
   function findProfessorByName(name) {
-    return professorInfo.find(prof => prof.Name === name);
+  return professorInfo.find(prof => prof.Name === decodeURIComponent(name));
 }
+
 
 async function modifyCV(Name, PopupInfo) {
     try {
@@ -144,7 +150,7 @@ async function modifyCV(Name, PopupInfo) {
 
 const modifyCVSubmit = async (event) => {
         event.preventDefault();
-        const profdt = findProfessorByName(profKey);
+        const profdt = findProfessorByName(profName);
 
         // Determine the next reply ID
         const Name = profdt.Name;
@@ -162,7 +168,7 @@ if (isLoading) {
   }
 
 
-  if (!profKey || !findProfessorByName(profKey)) {
+  if (!profName || !findProfessorByName(profName)) {
     const profdt = professorInfo[0]
 
     return (<div className='SingleProf'>
@@ -325,7 +331,8 @@ if (isLoading) {
 
 
 
-  const profdt = findProfessorByName(profKey);
+
+  const profdt = findProfessorByName(profName);
 
 
 
@@ -407,17 +414,17 @@ if (isLoading) {
           <ReactQuill
             theme="snow"
             onChange={(content) => setEditorContent(content)}
-            modules={modules}
+            modules={{ toolbar: false }}
             formats={formats}
             value={profdt.PopupInfo}
           />
         </div>
       )}
       </div>
-      <input type="submit" value="Edit my Website!" />
+      <input type="submit" className='btn' value="Edit my Website!" />
   </form>
 
-  <button type="button" onClick={handleEditClick}>Edit</button>
+  <button type="button" className='btn' onClick={handleEditClick}>Edit</button>
 
   
 

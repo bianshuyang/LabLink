@@ -45,9 +45,10 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
-    path: "SingleProf",
-    element: <SingleProf />,
-  },
+  path: "SingleProf/:profName",
+  element: <SingleProf />,
+},
+
   {
     path: "login",
     element: <Login />,

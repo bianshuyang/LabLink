@@ -381,7 +381,8 @@ function Professors() {
               <div className="mb-4"><img src={prof.Image} alt="Image" className="img-fluid" /></div>
               <div className="staff-body">
                 <h3 className="staff-name">
-                  <Link to={'/SingleProf'} state={{ prof: prof.Name }}>{prof.Name}</Link>
+                  <Link to={`/SingleProf/${encodeURIComponent(prof.Name)}`}>{prof.Name}</Link>
+z
                 </h3>
                 <span className="d-block position mb-4">{prof.title}</span>
                 <p className="mb-5">{prof.researchInterest}</p>
