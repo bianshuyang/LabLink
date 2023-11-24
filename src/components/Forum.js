@@ -544,7 +544,7 @@ function Forum() {
                                     </div>
 
                                     <p className="mb-0" data-aos="fade-up" data-aos-delay="300">
-                                        <a href="#News_concrete" className="btn btn-secondary">Check on the forum</a>
+                                        <a href="#News_concrete" className="btn btn-secondary">Find motivated students</a>
                                     </p>
 
 

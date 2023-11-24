@@ -500,7 +500,7 @@ function CentralizedApplication() {
                                     </div>
 
                                     <p className="mb-0" data-aos="fade-up" data-aos-delay="300">
-                                        <a href="#News_concrete" className="btn btn-secondary">Check on the forum bellow</a>
+                                        <a href="#News_concrete" className="btn btn-secondary">Check available positions below</a>
                                     </p>
 
 
