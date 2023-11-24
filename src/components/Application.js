@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { LabLinkContext } from '../LabLinkProvider';
 import "../styles/application.css";
 import { Link } from "react-router-dom"
 import Navbar from './Navbar.js';
@@ -75,17 +76,15 @@ function CentralizedApplication() {
     const [applicationsData, setapplicationsData] = useState([]);
     const [usersData, setusersData] = useState([]);
 
-    const [netid, setnetid] = React.useState('');
+    const { netID, setNetID } = useContext(LabLinkContext);
     const [programId, setprogramId] = React.useState('');
     const [programData, setprogramData] = React.useState('');
     const [programDate, setprogramDate] = React.useState('');
-    ////////////
     const [applicationId, setapplicationId] = React.useState('');
     const [applicationData, setapplicationData] = React.useState('');
     const [applicationDate, setapplicationDate] = React.useState('');
 
 
-    /////////////
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -338,13 +337,6 @@ function CentralizedApplication() {
         }
     }
 
-
-
-
-
-
-
-
     const addApplicationSubmit = async (event) => {
         event.preventDefault();
 
@@ -352,13 +344,10 @@ function CentralizedApplication() {
 
         // Determine the next reply ID
         const nextReplyId = ApplicationsForSelectedProgram.length + 1;
-        const token = sessionStorage.getItem('userToken');
-        console.log(token, "is token!!!!");
-        const randomNetId = token; // Placeholder for actual netid, to be improved
         const currentDate = new Date().toISOString();
 
         const newReply = {
-            netid: randomNetId,
+            netid: netID,
             applicationData: applicationData,
             applicationDate: currentDate,
             applicationId: nextReplyId,
@@ -391,15 +380,11 @@ function CentralizedApplication() {
             nextProgramId = maxProgramId + 1;
         }
 
-        const token = sessionStorage.getItem('userToken');
-        console.log(token, "is token!!!!");
-        const randomNetId = token; // to be replaced when we connect
         const currentDate = new Date().toISOString();
-        setnetid(randomNetId);
         setprogramId(nextProgramId);
         setprogramDate(currentDate);
         alert("Thank you for bringing in a Program, your response has been submitted");
-        const response = await addProgram(randomNetId, nextProgramId, programData, currentDate);  // Call fetchData with netID and password
+        const response = await addProgram(netID, nextProgramId, programData, currentDate);  // Call fetchData with netID and password
 
         fetchProgramsAndUpdateState();
         console.log("fetching complete!!!")
@@ -429,28 +414,24 @@ function CentralizedApplication() {
         setShowApplications(false);
         // setSelectedProgramId(null);
         setCurrentPage(1);
-        console.log(selectedProgramId);
-        const token = sessionStorage.getItem('userToken');
-        if (token == null) {
+        if (netID == null) {
             alert("Unauthorized deletion. Please log in.")
             return
         }
         else {
-            await deleteProgram(token, selectedProgramId);
+            await deleteProgram(netID, selectedProgramId);
         }
     };
 
     const deleteReplyClick = async (replyId, event) => {
         event.preventDefault();
         setCurrentPage(1);
-        console.log(selectedProgramId, replyId);
-        const token = sessionStorage.getItem('userToken');
-        if (token == null) {
+        if (netID == null) {
             alert("Unauthorized deletion. Please log in.")
             return
         }
         else {
-            await deleteApplication(token, selectedProgramId, replyId); //
+            await deleteApplication(netID, selectedProgramId, replyId); //
         }
         fetchApplicationsAndUpdateState();
     };

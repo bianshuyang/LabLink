@@ -111,13 +111,10 @@ function Forum() {
     const [postid, setpostid] = React.useState('');
     const [postData, setpostData] = React.useState('');
     const [postDate, setpostDate] = React.useState('');
-    ////////////
     const [replyid, setreplyid] = React.useState('');
     const [replyData, setreplyData] = React.useState('');
     const [replyDate, setreplyDate] = React.useState('');
 
-
-    /////////////
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -389,13 +386,10 @@ function Forum() {
 
         // Determine the next reply ID
         const nextReplyId = repliesForSelectedPost.length + 1;
-        const token = sessionStorage.getItem('userToken');
-        console.log(token, "is token!!!!");
-        const randomNetId = token; // Placeholder for actual netid, to be improved
         const currentDate = new Date().toISOString();
 
         const newReply = {
-            netid: randomNetId,
+            netid: netID,
             replycontent: replyData,
             replydate: currentDate,
             replyid: nextReplyId,
