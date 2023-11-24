@@ -414,17 +414,17 @@ if (isLoading) {
           <ReactQuill
             theme="snow"
             onChange={(content) => setEditorContent(content)}
-            modules={{ toolbar: false }}
+            modules={modules}
             formats={formats}
             value={profdt.PopupInfo}
           />
         </div>
       )}
       </div>
-      <input type="submit" className='btn' value="Edit my Website!" />
+      <input type="submit" value="Edit my Website!" />
   </form>
 
-  <button type="button" className='btn' onClick={handleEditClick}>Edit</button>
+  <button type="button" onClick={handleEditClick}>Edit</button>
 
   
 

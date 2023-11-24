@@ -78,7 +78,7 @@ function Professors() {
 
     const sortedResults = isSorted
       ? sortProfessorsByName(searchResults)
-      : professorInfo; 
+      : professorInfo;
 
 
     setSearchResults(sortedResults);
@@ -100,7 +100,7 @@ function Professors() {
     setSearchResults(filteredProfessors);
   };
 
-  
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true); // Set loading to true
@@ -152,7 +152,7 @@ function Professors() {
 
 
   if (isLoading) {
-    
+
   return (
     <div className='Professors'>
 
@@ -162,7 +162,7 @@ function Professors() {
             <span className="icofont-close js-menu-toggle"></span>
           </div>
         </div>
-        
+
         <div className="site-mobile-menu-body">
         </div>
       </div>
@@ -188,10 +188,10 @@ function Professors() {
             </div>
           </div>
       </div>
-            
+
       <div className="untree_co-section bg-light" id = "Professor_concrete">
 
-        
+
         <div className="container">
 
           <input
@@ -220,24 +220,24 @@ function Professors() {
 
 <div className="row mt-5">
   <div className="col-12 text-center">
-    
+
   </div>
 </div>
 
-          
+
           </div>
         </div>
 
         <div className="site-footer">
             <div className="container">
               <div className="row">
-                
+
                 <div className="col-lg-3 mr-auto">
                   <div className="widget">
                     <h3>About Us<span className="text-primary">.</span> </h3>
                       <p></p>
                   </div>
-                  
+
                   <div className="widget">
                     <h3>Connect</h3>
                     <ul className="list-unstyled social">
@@ -327,7 +327,7 @@ function Professors() {
             <span className="icofont-close js-menu-toggle"></span>
           </div>
         </div>
-        
+
         <div className="site-mobile-menu-body">
         </div>
       </div>
@@ -353,10 +353,10 @@ function Professors() {
             </div>
           </div>
       </div>
-            
+
       <div className="untree_co-section bg-light" id = "Professor_concrete">
 
-        
+
         <div className="container">
 
           <input
@@ -382,7 +382,6 @@ function Professors() {
               <div className="staff-body">
                 <h3 className="staff-name">
                   <Link to={`/SingleProf/${encodeURIComponent(prof.Name)}`}>{prof.Name}</Link>
-z
                 </h3>
                 <span className="d-block position mb-4">{prof.title}</span>
                 <p className="mb-5">{prof.researchInterest}</p>
@@ -416,20 +415,20 @@ z
   </div>
 </div>
 
-          
+
           </div>
         </div>
 
         <div className="site-footer">
             <div className="container">
               <div className="row">
-                
+
                 <div className="col-lg-3 mr-auto">
                   <div className="widget">
                     <h3>About Us<span className="text-primary">.</span> </h3>
                       <p></p>
                   </div>
-                  
+
                   <div className="widget">
                     <h3>Connect</h3>
                     <ul className="list-unstyled social">
