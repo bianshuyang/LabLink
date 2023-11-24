@@ -534,7 +534,7 @@ function Forum() {
                                     <h1 className="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Student Profiles</h1>
                                     <div className="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
                                         <p><em>
-                                            <p><strong>For students:</strong>  This is a place for students seeking research positions to "nominate" their research statement and profiles, alternative to cold emails</p>
+                                            <p><strong>For students:</strong>  This is a place for students seeking research positions to "nominate" their research statement and profiles, alternative to cold emails, network with other students</p>
                                             <p><strong>For professors:</strong> This is a place for professor to access pool of students that take initiative</p>
                                         </em></p>
                                         <p>All @ Emory.</p>
