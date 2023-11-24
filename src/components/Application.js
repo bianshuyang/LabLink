@@ -406,7 +406,7 @@ function CentralizedApplication() {
     };
 
     const deleteClick = async (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         setShowApplications(false);
         // setSelectedProgramId(null);
         setCurrentPage(1);
