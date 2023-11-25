@@ -29,6 +29,38 @@
     height: 100%;           /* Adjust as per your layout needs */
 }
 
+
+.container1
+{border: 2px solid #4CAF50;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s; border-radius: 5px;} 
+
+.container1:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+
+/* This styles the content within the editor */
+.ql-editor {
+  color: black;        /* Set the text color to black */
+  line-height: 1.5;    /* Set the line height for 1.5 spacing */
+  font-family: sans-serif; /* Set the font to sans-serif */
+}
+
+/* Styles for when the user is not actively editing */
+.viewing .ql-editor {
+  color: black;        /* Set the text color to black */
+  line-height: 1.5;    /* Set the line height for 1.5 spacing */
+  font-family: sans-serif; /* Set the font to sans-serif */
+}
+
+/* The toolbar should be unaffected by the text styling */
+.ql-toolbar {
+  /* Toolbar styles if necessary */
+}
+
 .btn {
   padding-top: 15px;
   padding-bottom: 15px;
