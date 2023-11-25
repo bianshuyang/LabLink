@@ -1,11 +1,11 @@
 # LabLink
-A platform connecting CS students at Emory with research opportunities. LabLink aims to simplify and centralize the search for research positions, making it easier for students to get involved and for professors to find passionate individuals.
+A platform connecting Emory students with research opportunities and beyond. LabLink aims to simplify and centralize the search for research positions, making it easier for students to get involved and for professors to find passionate individuals.
 
 ## Deployment and Installation
 
-It is deployed on vercel. Therefore, no installation is necessary for now. 
+It is deployed on vercel. Therefore, no installation is necessary. 
 
-Tablet / Computer Users: You should visit our link at [here](https://lab-link.vercel.app/)
+Tablet / Computer Users: You should visit our link at [https://lab-link.vercel.app](https://lab-link.vercel.app/)
  
 Android users: There is an APK downloadable [here](https://www.upload-apk.com/en/1ggwF4ZCCwGOYzA)
  
@@ -16,12 +16,11 @@ iOS users: You could add as a short cut here: [here](https://www.icloud.com/shor
 **Are you:**
 - A curious student looking for research opportunities at Emory University?
 - A professor looking to recruit driven students to your research lab?
-- A member of the Emory community looking to learn more about Emory Computer Science?
+- A member of the Emory community looking to learn more about Emory Subjects?
 
 **Then you’re at the right place!**
 ![Example Image](public/images/CS_370_User_Documentation_Part_1.jpg)
 ![Example Image](public/images/CS_370_User_Documentation_Part_2.jpg)
-
 
 
 ## Technical Documentation
@@ -44,8 +43,6 @@ iOS users: You could add as a short cut here: [here](https://www.icloud.com/shor
 **Navbar.js**: Navigation Bar Javascript File.
 
 **News.js**: News Page Javascript File.
-
-**ProfessorSample.json**: Json template for Professor Data Dictionary.
 
 **Professors.js**: Professors Page Javascript File.
 
@@ -83,5 +80,3 @@ We appreciate your feedback!
 
 ### LabLink/public/images/:
 Images used in the Lablink website can be found here
-
-
