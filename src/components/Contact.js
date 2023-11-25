@@ -293,9 +293,10 @@ export default function Contact() {
         </div>
 
 
-        <div>
-            <Chatbot />
+        <div style={{ zIndex: 9999 }}>
+          <Chatbot />
         </div>
+
 
 
 

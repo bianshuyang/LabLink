@@ -4,6 +4,7 @@ import { LabLinkContext } from "../LabLinkProvider";
 import { useState } from 'react';
 import "../styles/navbar.css";
 import { useLocation } from 'react-router-dom';
+import Chatbot from './Chatbot.js'
 export default function Navbar(){
 
   const { isLoggedIn, setIsLoggedIn } = React.useContext(LabLinkContext);
@@ -115,7 +116,11 @@ export default function Navbar(){
 
 
         </div>
+
       </div>
+      <div style={{ zIndex: 9999 }}>
+                          <Chatbot />
+                        </div>
     </nav>
   )
 }

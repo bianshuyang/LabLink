@@ -6,6 +6,7 @@ import eLogo from "../images/eLogo.png";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import sjcl from 'sjcl';
+import Chatbot from './Chatbot.js'
 function ResetPass(){
 
 
@@ -187,6 +188,9 @@ const resetStates = () => {
       </form>
 
     </div>
+        <div style={{ zIndex: 9999 }}>
+                          <Chatbot />
+                        </div>
   </div>
 )
 }

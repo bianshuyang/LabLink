@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import sjcl from 'sjcl';
 import { ReactComponent as EyeSlashIcon } from '../images/eye-solid.svg'; // Adjust the path accordingly
 import { ReactComponent as EyeIcon } from '../images/eye-slash-solid.svg'; // Adjust the path accordingly
-
+import Chatbot from './Chatbot.js'
 
 function Register(){
 
@@ -175,6 +175,9 @@ try {
           </form>
 
         </div>
+        <div style={{ zIndex: 9999 }}>
+                          <Chatbot />
+                        </div>
       </div>
   )
 }

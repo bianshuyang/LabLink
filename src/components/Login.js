@@ -8,7 +8,7 @@ import { LabLinkContext } from '../LabLinkProvider';
 import sjcl from 'sjcl';
 import { ReactComponent as EyeSlashIcon } from '../images/eye-solid.svg'; // Adjust the path accordingly
 import { ReactComponent as EyeIcon } from '../images/eye-slash-solid.svg'; // Adjust the path accordingly
-
+import Chatbot from './Chatbot.js'
 function Login(){
 
   function validateNetID(netID) {
@@ -137,6 +137,8 @@ function Login(){
   }
 
   return(
+
+
     <div className={`login-container ${isChange ? "change" : ""}`}>
     <div className="login-form-wrapper">
       <div className="eLogo">
@@ -179,7 +181,11 @@ function Login(){
         <Link to={'/Register'} className="Register">Don't have an account? Register</Link>
       </form>
     </div>
+    <div style={{ zIndex: 9999 }}>
+                          <Chatbot />
+                        </div>
   </div>
+
 )
 }
 export default Login

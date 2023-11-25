@@ -4,6 +4,50 @@
     right: 20px;
 }
 
+
+/* Adjust the styling for the submit button */
+.send-button {
+    margin-left: 10px;
+    padding: 10px 20px; /* Increase padding for a rounder appearance */
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 25px; /* Increase border-radius for roundness */
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Add a smooth hover effect */
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Style for the input box */
+.chat-input-area input[type="text"] {
+    padding: 10px; /* Adjust padding for a rounder appearance */
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Increase border-radius for roundness */
+    flex: 1;
+    margin-right: 10px; /* Add spacing between input box and button */
+}
+
+/* Style for the "Send" button */
+.chat-input-area button {
+    padding: 10px 20px; /* Adjust padding for a rounder appearance */
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 25px; /* Increase border-radius for roundness */
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Add a smooth hover effect */
+}
+
+.chat-input-area button:hover {
+    background-color: #0056b3;
+}
+
+
+
 .chatbot-toggle {
     background-color: transparent; /* Adjust the color to match your theme */
     border: none;
@@ -50,9 +94,10 @@
 }
 
 /* Chat bubble styles */
-.chat-history {
-  display: flex;
-  flex-direction: column;
+.chat-history-container {
+    max-height: 300px; /* Set a maximum height to enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling when content exceeds the container */
+    padding: 0 10px; /* Add padding for better appearance */
 }
 
 .chat-message {

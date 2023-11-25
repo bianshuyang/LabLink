@@ -9,7 +9,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import 'react-quill/dist/quill.snow.css';
 
-
+import Chatbot from './Chatbot.js'
 const ITEMS_PER_PAGE = 9;
 const MAX_VISIBLE_PAGINATION = 8; // Example: 1 ... 4 5 6 ... 25
 // import oldnewsData from './fakeData';
@@ -453,6 +453,8 @@ function CentralizedApplication() {
 
         <>
 
+
+
             <div className="site-mobile-menu">
                 <div className="site-mobile-menu-header">
                     <div className="site-mobile-menu-close">
@@ -585,7 +587,7 @@ function CentralizedApplication() {
                         )}
                     </main>
 
-
+                        
 
                 </div>
 
