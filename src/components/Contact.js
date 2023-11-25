@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar.js';
-
+import Chatbot from './Chatbot.js'
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root')
@@ -291,6 +291,13 @@ export default function Contact() {
 
           </div>
         </div>
+
+
+        <div>
+            <Chatbot />
+        </div>
+
+
 
         <div className="site-footer">
 

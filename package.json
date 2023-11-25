@@ -84,6 +84,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
     "react-bootstrap-validation": "^0.1.11",
+    "react-chatbot-kit": "^2.1.2",
     "react-dom": "^18.2.0",
     "react-mathquill": "^1.0.3",
     "react-modal": "^3.16.1",
