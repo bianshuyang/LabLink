@@ -44,7 +44,7 @@ function SingleProf() {
   const [editorContent, setEditorContent] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const { netID, setNetID } = useContext(LabLinkContext);
-
+  
   const joinArrayOrReturnNull = (array) => {
     return Array.isArray(array) ? array.join(', ') : null;
   };
@@ -412,10 +412,10 @@ if (isLoading) {
             </div>
           )}
         </div>
-        {netID === profdt.name && (
+        {netID === profdt.netID && (
           <input className="submit-edits" type="submit" value="Save Edits" />
         )}
-        {netID === profdt.name && (
+        {netID === profdt.netID && (
           <button className="edit-website" type="button" onClick={handleEditClick}>
             Edit
           </button>
