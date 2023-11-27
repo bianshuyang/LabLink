@@ -37,7 +37,7 @@ function SingleProf() {
     }
 
   };
-  
+
   const location = useLocation();
   const [professorInfo, setprofessorInfo] = useState([]);
   const [professor, setProfessor] = useState(null); // Moved useState to the top
@@ -237,9 +237,6 @@ if (isLoading) {
     </div>
       </div>
 
-
-//////////////
-
     </div>
 
 
@@ -391,7 +388,7 @@ if (isLoading) {
 
 
       <div>
-      <form onSubmit={modifyCVSubmit}>
+      <form className="editor-container" onSubmit={modifyCVSubmit}>
         <label>Public Research Website Editor</label>
         <div>
           {isEditing ? (
@@ -415,18 +412,17 @@ if (isLoading) {
             </div>
           )}
         </div>
-        {netID === profdt.name && (
-          <input type="submit" value="Edit my Website!" />
+        {true && (
+          <input className="submit-edits" type="submit" value="Save Edits" />
+        )}
+        {true && (
+          <button className="edit-website" type="button" onClick={handleEditClick}>
+            Edit
+          </button>
         )}
       </form>
-
-      {netID === profdt.name && (
-        <button type="button" onClick={handleEditClick}>
-          Edit
-        </button>
-      )}
     </div>
-        <div className="untree_co-section bg-light" id = "News_concrete">
+        <div className="untree_co-section bg-light footer-container" id = "News_concrete">
 
         <div className="site-footer">
           <div className="container">
