@@ -412,10 +412,10 @@ if (isLoading) {
             </div>
           )}
         </div>
-        {true && (
+        {netID === profdt.name && (
           <input className="submit-edits" type="submit" value="Save Edits" />
         )}
-        {true && (
+        {netID === profdt.name && (
           <button className="edit-website" type="button" onClick={handleEditClick}>
             Edit
           </button>
