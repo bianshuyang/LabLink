@@ -94,8 +94,8 @@ function Forum() {
 
 
     const getUserNameByNetId = (netid) => {
-        const user = usersData.find(u => u.netid === netid);
-        return user ? user.Name : netid;
+        const user = usersData.find(u => u.netId === netid);
+        return user ? user.name : netid;
     };
 
     const urlWithParams = (endpoint, collectionName, filter = {}) => {
@@ -156,7 +156,7 @@ function Forum() {
                 console.error("Failed to parse response as JSON: ", responseDataText);
                 responseData = responseDataText;
             }
-
+            console.log(responseData);
             // Handle based on type
             if (typeof responseData === 'object' && response.ok) {
                 setusersData(responseData);

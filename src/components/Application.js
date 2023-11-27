@@ -63,8 +63,8 @@ function CentralizedApplication() {
 
 
     const getUserNameByNetId = (netid) => {
-        const user = usersData.find(u => u.netid === netid);
-        return user ? user.Name : netid;
+        const user = usersData.find(u => u.netId === netid);
+        return user ? user.name : netid;
     };
 
     const urlWithParams = (endpoint, collectionName, filter = {}) => {
