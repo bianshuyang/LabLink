@@ -187,8 +187,8 @@ function Professors() {
       </div>
       <div className="untree_co-section bg-light" id = "Professor_concrete">
         <div className="container">
-          <input type="text" placeholder="Find Professor!" value={searchTerm} onChange={handleSearch}/>
-          <button onClick={toggleSort}>
+          <input className="search-professor-input" type="text" placeholder="Find Professor!" value={searchTerm} onChange={handleSearch}/>
+          <button className="search-professor-button" onClick={toggleSort}>
             {isSorted ? "Unsort" : "Sort Alphabetically"}
           </button>
           <div className="row align-items-stretch">
