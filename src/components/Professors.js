@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Navbar.js';
+import '../styles/professors.css'
 
 const ITEMS_PER_PAGE = 9; // Adjust as needed
 const MAX_VISIBLE_PAGINATION = 19; // Maximum number of visible pagination links
