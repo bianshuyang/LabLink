@@ -107,16 +107,16 @@
     transition: border-color 0.3s;
 }
 
-.postsContainer textarea{
-  width: 100%;
-  height: 150px;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  font-size: 16px;
-  resize: none;
+.postsContainer textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
 
 }
 
@@ -139,49 +139,86 @@
 }
 
 .button-container {
-    display: flex;          /* Uses flexbox to lay out children */
-    justify-content: space-between; /* Children are spaced across the full width */
-    align-items: center;    /* Centers children along the cross axis */
-    width: 100%;            /* Optional: takes full width of the parent */
-    padding: 10px;          /* Optional: space around the container */
+    display: flex;
+    /* Uses flexbox to lay out children */
+    justify-content: space-between;
+    /* Children are spaced across the full width */
+    align-items: center;
+    /* Centers children along the cross axis */
+    width: 100%;
+    /* Optional: takes full width of the parent */
+    padding: 10px;
+    /* Optional: space around the container */
+}
+
+select {
+    width: 27%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+/* Style the options */
+option {
+    background-color: #fff;
+    font-size: 16px;
 }
 
 /* Optional: Additional styles for buttons */
 .btn {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 30px;
-  font-size: 11px;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: .05rem; }
-  .btn:active, .btn:focus {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 30px;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: .05rem;
+}
+
+.btn:active,
+.btn:focus {
     outline: none;
     -webkit-box-shadow: none;
-    box-shadow: none; }
-  .btn.btn-primary {
+    box-shadow: none;
+}
+
+.btn.btn-primary {
     background: #136ad5;
-    border-color: #136ad5; }
-    .btn.btn-primary:hover {
-      border-color: #1573e8;
-      background: #1573e8; }
-  .btn.btn-secondary {
+    border-color: #136ad5;
+}
+
+.btn.btn-primary:hover {
+    border-color: #1573e8;
+    background: #1573e8;
+}
+
+.btn.btn-secondary {
     background: #00aeff;
-    border-color: #00aeff; }
-    .btn.btn-secondary:hover {
-      border-color: #14b4ff;
-      background: #14b4ff; }
-  .btn.btn-sm {
+    border-color: #00aeff;
+}
+
+.btn.btn-secondary:hover {
+    border-color: #14b4ff;
+    background: #14b4ff;
+}
+
+.btn.btn-sm {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 15px;
-    padding-right: 15px; }
-  .btn.btn-outline-primary {
-    border-color: #136ad5;
-    color: #136ad5; }
-    .btn.btn-outline-primary:hover {
-      background: #136ad5;
-      color: #ffffff; }
+    padding-right: 15px;
+}
 
+.btn.btn-outline-primary {
+    border-color: #136ad5;
+    color: #136ad5;
+}
+
+.btn.btn-outline-primary:hover {
+    background: #136ad5;
+    color: #ffffff;
+}

@@ -42,9 +42,12 @@ function generatePagination(currentPage, maxPages) {
 
 
 function Forum() {
+    const [selectedOption, setSelectedOption] = useState('public');
 
-
-
+    const handleOptionChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+    const profnetid = ["yagicht", "darnol4", "jchoi", "ybrombe", "jepst25", "dfossat", "mgrigni", "jho31", "slafleu", "km", "vss", "yvigfus", "lxiong", "wjin30", "ckulka2", "fliu40", "nthaku4", "yrankin", "lzhao41", "jyang71", 'kwil271', "ewall2"];
     // The modules object is used to customize the toolbar options
     const modules = {
         toolbar: [
@@ -114,7 +117,7 @@ function Forum() {
     const [replyid, setreplyid] = React.useState('');
     const [replyData, setreplyData] = React.useState('');
     const [replyDate, setreplyDate] = React.useState('');
-
+    console.log(netID === "");
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -156,7 +159,7 @@ function Forum() {
                 console.error("Failed to parse response as JSON: ", responseDataText);
                 responseData = responseDataText;
             }
-            console.log(responseData);
+
             // Handle based on type
             if (typeof responseData === 'object' && response.ok) {
                 setusersData(responseData);
@@ -177,7 +180,6 @@ function Forum() {
             });
             const responseDataText = await response.text();
 
-            // Attempt to parse as JSON, if fails, just use the text
             let responseData;
             try {
                 responseData = JSON.parse(responseDataText);
@@ -186,7 +188,23 @@ function Forum() {
                 responseData = responseDataText;
             }
 
-            // Handle based on type
+            const filteredData = responseData.filter((item) => {
+                if (item.visibility === 'public') {
+                    // Public posts are accessible by everyone
+                    return true;
+                } else if (item.visibility === 'protected' && profnetid.includes(netID)) {
+                    // Protected posts are accessible by professors
+                    return true;
+                } else if (item.visibility === 'private' && item.netid === netID) {
+                    // Private posts are only accessible by the post owner
+                    return true;
+                }
+                return false;
+            });
+
+
+            responseData = filteredData
+
             if (typeof responseData === 'object' && response.ok) {
                 setpostsData(responseData);
             } else {
@@ -228,6 +246,7 @@ function Forum() {
     };
 
     async function addreply(netid, replyData, replyDate, replyid, selectedPostId) {
+
         try {
             const response = await fetch("/api/forum?collection=replies", {
                 method: "POST",
@@ -241,6 +260,7 @@ function Forum() {
                     replydate: replyDate,
                     replyid: replyid,
                     postid: selectedPostId,
+
                 }),
             });
             console.log(response);
@@ -270,7 +290,8 @@ function Forum() {
                     postid: postid,
                     postData: postData,
                     postDate: postDate,
-                    collectionName: "threads"
+                    collectionName: "threads",
+                    visibility: selectedOption
                 }),
             });
             console.log(response);
@@ -396,6 +417,10 @@ function Forum() {
             postid: selectedPostId, // This should already be set when the user began the reply process
         };
         console.log(postid);
+        if (netID === "") {
+            alert("Unloggedin Guests are not allowed to make postings!")
+            return;
+        }
         await addreply(newReply.netid, newReply.replycontent, newReply.replydate, newReply.replyid, newReply.postid);
         alert("Thank you for bringing in a post, your response has been submitted");
         fetchRepliesAndUpdateState();
@@ -422,7 +447,10 @@ function Forum() {
             maxPostId = 1;
             nextPostId = maxPostId + 1;
         }
-
+        if (netID === "") {
+            alert("Unloggedin Guests are not allowed to make postings!")
+            return;
+        }
         const currentDate = new Date().toISOString();
         setpostid(nextPostId);
         setpostDate(currentDate);
@@ -675,7 +703,14 @@ function Forum() {
                                     />
 
 
-
+                                    <div>
+                                        <label htmlFor="visibility">Post Visibility:</label>
+                                        <select id="visibility" value={selectedOption} onChange={handleOptionChange}>
+                                            <option value="public">Public to Students and Professor</option>
+                                            <option value="protected">Public to Professor Only (Protected)</option>
+                                            <option value="private">Private (Only you can access)</option>
+                                        </select>
+                                    </div>
 
                                     <input type="submit" value="I am looking for a lab position!" />
 
@@ -687,6 +722,7 @@ function Forum() {
                                     </p>
 
                                 </form>
+
 
 
 
@@ -751,7 +787,7 @@ function Forum() {
                                 <div className="widget">
                                     <h3>Learn More</h3>
                                     <ul className="list-unstyled float-left links">
-                                    <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
+                                        <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
                                     </ul>
                                 </div>
                             </div>
