@@ -1,23 +1,37 @@
-.search-professor-input{
+.search-professor-input {
   width: 45%;
   padding: 10px;
-  margin-right: 5rem;
+  margin-right: 1rem; /* Reduced the margin to make it more compact */
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 20px;
 }
 
-.search-professor-button{
+/* Updated CSS for the Sort Alphabetically button */
+.sort-alphabetically-button {
   width: 45%;
   padding: 10px;
-  margin-left: 5rem;
   font-size: 16px;
   background-color: #00aeff;
   color: white;
   border: 1px solid #00aeff;
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 0.5rem; /* Added a small right margin for spacing */
+}
+
+/* Updated CSS for the Sort by Similarity button */
+.sort-by-similarity-button {
+  width: 45%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #00aeff;
+  color: white;
+  border: 1px solid #00aeff;
+  border-radius: 20px;
   cursor: pointer;
 }
+
 
 .pagination-container{
   display: flex;

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Navbar.js';
 import '../styles/professors.css'
-
+import { LabLinkContext } from '../LabLinkProvider';
 const ITEMS_PER_PAGE = 9; // Adjust as needed
 const MAX_VISIBLE_PAGINATION = 19; // Maximum number of visible pagination links
-
+const stringSimilarity = require("string-similarity");
 function generatePagination(currentPage, maxPages) {
     let pages = [];
     const wingSpan = Math.floor(MAX_VISIBLE_PAGINATION / 2);
@@ -58,13 +58,49 @@ function generatePagination(currentPage, maxPages) {
     return pages;
 }
 
+
+
 const sortProfessorsByName = (professors) => {
   return professors.slice().sort((a, b) => a.Name.localeCompare(b.Name));
 };
 
 function Professors() {
+  console.log(stringSimilarity.compareTwoStrings("healed", "sealed"));
+
+  // Helper function to calculate Levenshtein distance
+
+// Function to calculate overall similarity between a student and a professor
+const calculateSimilarity = (student, professor) => {
+  // Convert the professor object to a string
+  const professorString = JSON.stringify(professor);
+
+  // Calculate the similarity between the student and professor strings
+  const similarity = stringSimilarity.compareTwoStrings(student, professorString);
+
+  return similarity;
+};
+
+// Updated sorting function
+const sortProfessorsBySimilarity = (professors, studentProfile) => {
+  return professors.slice().sort((a, b) => {
+    //console.log(professors,studentProfile);
+
+    const similarityA = calculateSimilarity(studentProfile, a);
+    const similarityB = calculateSimilarity(studentProfile, b);
+    //console.log(a,studentProfile,similarityA,similarityB);
+    return similarityA - similarityB;
+  });
+};
+  const { netID } = useContext(LabLinkContext);
+  const { bio, setBio } = React.useContext(LabLinkContext);
+  const { major, setMajor } = React.useContext(LabLinkContext);
+  const { courses, setCourses } = React.useContext(LabLinkContext);
+  //console.log(bio+major+courses);
   const [currentPage, setCurrentPage] = useState(1);
   const [isSorted, setIsSorted] = useState(false);
+  const [isSortedsim, setIsSortedsim] = useState(false);
+  const [doneSorted, setDoneSorted] = useState(true);
+  const [doneSortedsim, setDoneSortedsim] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [currentDescription, setCurrentDescription] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -73,6 +109,8 @@ function Professors() {
   const maxPages = Math.ceil(searchResults.length / ITEMS_PER_PAGE);
   const pagination = generatePagination(currentPage, maxPages);
   const [isLoading, setIsLoading] = useState(true);
+  const [profile,setprofile]=useState(null);
+  const [usersData, setusersData] = React.useState([]);
 
   const toggleSort = () => {
     setIsSorted(!isSorted);
@@ -82,6 +120,17 @@ function Professors() {
       : professorInfo;
 
 
+    setSearchResults(sortedResults);
+  };
+
+  const toggleSortsim = () => {
+    setIsSortedsim(!isSortedsim);
+    console.log(searchResults.length);
+    console.log(bio+major+courses);
+    console.log(isSortedsim);
+    const sortedResults = isSortedsim
+      ? sortProfessorsBySimilarity(searchResults,bio+major+courses)
+      : professorInfo;
     setSearchResults(sortedResults);
   };
 
@@ -100,21 +149,31 @@ function Professors() {
 
     setSearchResults(filteredProfessors);
   };
-
+  const getUserNameByNetId = (netId) => {
+    const user = usersData.find(u => u.netId === netId);
+    console.log(user);
+    console.log("Above is user");
+    return user;
+  };
 
   useEffect(() => {
+
     const fetchData = async () => {
       setIsLoading(true); // Set loading to true
-      try {
-        await fetchProfessorsAndUpdateState();
-      } catch (error) {
-        console.error('Error fetching data: ', error);
+      if (isLoading){
+          try {
+          await fetchProfessorsAndUpdateState();
+        } catch (error) {
+          console.error('Error fetching data: ', error);
+        }
+        setIsLoading(false); // Set loading to false after fetch
       }
-      setIsLoading(false); // Set loading to false after fetch
+
     };
 
     fetchData();
   }, []);
+
 
   const fetchProfessorsAndUpdateState = async () => {
         try {
@@ -146,9 +205,29 @@ function Professors() {
     };
 
     useEffect(() => {
-      const sortedProfessors = isSorted ? sortProfessorsByName(searchResults) : searchResults;
+
+  if (isSorted && doneSorted) {
+    // Sort alphabetically only if similarity sort is not active
+    if (!isSortedsim) {
+      const sortedProfessors = sortProfessorsByName(searchResults);
       setSearchResults(sortedProfessors);
-    }, [isSorted, searchResults]);
+      setDoneSorted(false);
+    }
+  }
+}, [isSorted, isSortedsim, searchResults]);
+
+useEffect(() => {
+  console.log("It's logging the other one");
+  if (isSortedsim && doneSortedsim) {
+    // Sort by similarity only if alphabetical sort is not active
+    if (!isSorted) {
+      const sortedProfessors = sortProfessorsBySimilarity(searchResults, bio + major + courses);
+      setSearchResults(sortedProfessors);
+      setDoneSortedsim(false);
+    }
+  }
+}, [isSortedsim, isSorted, searchResults, bio, major, courses]);
+
 
 
 
@@ -188,8 +267,11 @@ function Professors() {
       <div className="untree_co-section bg-light" id = "Professor_concrete">
         <div className="container">
           <input className="search-professor-input" type="text" placeholder="Find Professor!" value={searchTerm} onChange={handleSearch}/>
-          <button className="search-professor-button" onClick={toggleSort}>
+          <button className="sort-alphabetically-button" onClick={toggleSort}>
             {isSorted ? "Unsort" : "Sort Alphabetically"}
+          </button>
+          <button className="sort-by-similarity-button" onClick={toggleSortsim}>
+            {isSortedsim ? "Unsort" : "Sort by Similarity"}
           </button>
           <div className="row align-items-stretch">
             <div className="container">
@@ -252,8 +334,11 @@ function Professors() {
       <div className="untree_co-section bg-light" id = "Professor_concrete">
         <div className="container">
           <input className="search-professor-input" type="text" placeholder="Find Professor!" value={searchTerm} onChange={handleSearch}/>
-          <button className="search-professor-button" onClick={toggleSort}>
+          <button className="sort-alphabetically-button" onClick={toggleSort}>
             {isSorted ? "Unsort" : "Sort Alphabetically"}
+          </button>
+          <button className="sort-by-similarity-button" onClick={toggleSortsim}>
+            {isSortedsim ? "Unsort" : "Sort by Similarity"}
           </button>
           <div className="row align-items-stretch">
   <div className="container">

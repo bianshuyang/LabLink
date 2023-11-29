@@ -95,6 +95,7 @@
     "react-scripts": "^5.0.1",
     "sjcl": "^1.0.8",
     "stream": "^0.0.2",
+    "string-similarity": "^4.0.4",
     "use-history": "^1.4.1",
     "util": "^0.12.5",
     "web-vitals": "^2.1.4"
