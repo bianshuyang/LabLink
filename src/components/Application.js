@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext , useMemo } from 'react';
 import { LabLinkContext } from '../LabLinkProvider';
 import "../styles/application.css";
 import { Link } from "react-router-dom"
@@ -37,6 +37,7 @@ function CentralizedApplication() {
     const [applicationsData, setapplicationsData] = useState([]);
     const [currentnumber, setcurrentnumber] = useState(0);
     const [selectedOption, setSelectedOption] = useState('protected');
+    const [applicationCounts, setApplicationCounts] = useState({});
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
     };
@@ -89,6 +90,13 @@ function CentralizedApplication() {
     const [applicationId, setapplicationId] = React.useState('');
     const [applicationData, setapplicationData] = React.useState('');
     const [applicationDate, setapplicationDate] = React.useState('');
+    const [done, setDone] = React.useState(true);
+
+
+
+    const selectedProgramApplicationsCount = useMemo(() => {
+        return applicationsData.filter(app => app.programId === selectedProgramId).length;
+    }, [applicationsData, selectedProgramId]);
 
 
     useEffect(() => {
@@ -103,20 +111,25 @@ function CentralizedApplication() {
                 fetchApplicationsAndUpdateState();
                 fetchUsersAndUpdateState();
                 console.log(usersData);
-
+                setDone(true);
                 console.log("ALLDONE");
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
         };
 
-
-        fetchData();
+        if (done){
+            fetchData();
+            setDone(false);
+        }
         console.log("OK done");
-        const selectedProgramApplicationsCount = applicationsData.filter(app => app.programId === selectedProgramId).length;
-        setcurrentnumber(selectedProgramApplicationsCount);
-    }, [applicationsData, selectedProgramId]);
+        // setcurrentnumber(selectedProgramApplicationsCount);
+    }, [done]);
 
+
+    useEffect(() => {
+    setcurrentnumber(applicationCounts[selectedProgramId]);
+}, [applicationCounts, selectedProgramId]);
 
 
     const fetchUsersAndUpdateState = async () => {
@@ -192,9 +205,13 @@ function CentralizedApplication() {
                 console.error("Failed to parse response as JSON: ", responseDataText);
                 responseData = responseDataText;
             }
-            const selectedProgramApplicationsCount = applicationsData.filter(reply => reply.programId === selectedProgramId).length;
-
-            setcurrentnumber(selectedProgramApplicationsCount);
+            //const selectedProgramApplicationsCount = applicationsData.filter(reply => reply.programId === selectedProgramId).length;
+            const applicationCounts2 = responseData.reduce((acc, app) => {
+            acc[app.programId] = (acc[app.programId] || 0) + 1;
+            return acc;
+            }, {});
+            setApplicationCounts(applicationCounts2);
+            //setcurrentnumber(selectedProgramApplicationsCount);
             console.log(selectedProgramApplicationsCount);
             console.log(applicationsData.filter(reply => reply.programId === selectedProgramId));
             const filteredData = responseData.filter((item) => {
@@ -537,24 +554,27 @@ function CentralizedApplication() {
                                 <h2>Applications</h2>
                                 <ul>
                                     {applicationsData
-                                        .filter(application => application.programId === selectedProgramId)
-                                        .map(application => (
-                                            <li key={application.applicationId}>
-                                                <strong>{application.applicationDate}</strong>
-                                                <div className="App">
-                                                    <ReactQuill
-                                                        value={application.applicationData}
-                                                        config={{
-                                                            readOnly: true,
-
-                                                        }}
-                                                        modules={{ toolbar: false }}
-                                                        theme="snow" // this prop is optional
-                                                    />
-                                                </div>
-                                                <button onClick={() => deleteReplyClick(application.applicationId)}>Withdraw My Application</button>
-                                            </li>
-                                        ))}
+                                .filter(application => application.programId === selectedProgramId)
+                                .map(application => {
+                                
+                                    return (
+                                        <li key={application.applicationId}>
+                                            <strong>{application.applicationDate}</strong>
+                                            <div className="App">
+                                                <ReactQuill
+                                                    value={application.applicationData}
+                                                    readOnly={true}
+                                                    modules={{ toolbar: false }}
+                                                    theme="snow" // this prop is optional
+                                                />
+                                            </div>
+                                            <button onClick={() => deleteReplyClick(application.applicationId)}>
+                                                Withdraw My Application
+                                            </button>
+                                        </li>
+                                    );
+                                })
+                            }
                                 </ul>
                                 <form onSubmit={addApplicationSubmit}>
                                     <label>
