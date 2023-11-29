@@ -65,170 +65,130 @@ const sortProfessorsByName = (professors) => {
 };
 
 function Professors() {
-  console.log(stringSimilarity.compareTwoStrings("healed", "sealed"));
+  const calculateSimilarity = (student, professor) => {
+    // Convert the professor object to a string
+    const professorString = JSON.stringify(professor);
 
-  // Helper function to calculate Levenshtein distance
+    // Calculate the similarity between the student and professor strings
+    const similarity = stringSimilarity.compareTwoStrings(student, professorString);
 
-// Function to calculate overall similarity between a student and a professor
-const calculateSimilarity = (student, professor) => {
-  // Convert the professor object to a string
-  const professorString = JSON.stringify(professor);
-
-  // Calculate the similarity between the student and professor strings
-  const similarity = stringSimilarity.compareTwoStrings(student, professorString);
-
-  return similarity;
-};
-
-// Updated sorting function
-const sortProfessorsBySimilarity = (professors, studentProfile) => {
-  return professors.slice().sort((a, b) => {
-    //console.log(professors,studentProfile);
-
-    const similarityA = calculateSimilarity(studentProfile, a);
-    const similarityB = calculateSimilarity(studentProfile, b);
-    //console.log(a,studentProfile,similarityA,similarityB);
-    return similarityA - similarityB;
-  });
-};
+    return similarity;
+  };
   const { netID } = useContext(LabLinkContext);
   const { bio, setBio } = React.useContext(LabLinkContext);
   const { major, setMajor } = React.useContext(LabLinkContext);
   const { courses, setCourses } = React.useContext(LabLinkContext);
   //console.log(bio+major+courses);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isSorted, setIsSorted] = useState(false);
-  const [isSortedsim, setIsSortedsim] = useState(false);
   const [doneSorted, setDoneSorted] = useState(true);
   const [doneSortedsim, setDoneSortedsim] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [currentDescription, setCurrentDescription] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [professorInfo, setprofessorInfo] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  const maxPages = Math.ceil(searchResults.length / ITEMS_PER_PAGE);
-  const pagination = generatePagination(currentPage, maxPages);
-  const [isLoading, setIsLoading] = useState(true);
   const [profile,setprofile]=useState(null);
   const [usersData, setusersData] = React.useState([]);
+  
 
-  const toggleSort = () => {
-    setIsSorted(!isSorted);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isSorted, setIsSorted] = useState(false);
+  const [isSortedsim, setIsSortedsim] = useState(false);
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [professorInfo, setProfessorInfo] = useState([]);
+  const [filteredAndSortedProfessors, setFilteredAndSortedProfessors] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    const sortedResults = isSorted
-      ? sortProfessorsByName(searchResults)
-      : professorInfo;
-
-
-    setSearchResults(sortedResults);
-  };
-
-  const toggleSortsim = () => {
-    setIsSortedsim(!isSortedsim);
-    console.log(searchResults.length);
-    console.log(bio+major+courses);
-    console.log(isSortedsim);
-    const sortedResults = isSortedsim
-      ? sortProfessorsBySimilarity(searchResults,bio+major+courses)
-      : professorInfo;
-    setSearchResults(sortedResults);
-  };
-
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-    const searchLower = event.target.value.toLowerCase();
-    setCurrentPage(1)
-    const filteredProfessors = professorInfo.filter(professor => {
-      return Object.values(professor).some(value => {
-        if (Array.isArray(value)) {
-          return value.join(' ').toLowerCase().includes(searchLower);
-        }
-        return typeof value === 'string' && value.toLowerCase().includes(searchLower);
-      });
-    });
-
-    setSearchResults(filteredProfessors);
-  };
-  const getUserNameByNetId = (netId) => {
-    const user = usersData.find(u => u.netId === netId);
-    console.log(user);
-    console.log("Above is user");
-    return user;
-  };
-
+  // Fetch professors data and update state
   useEffect(() => {
-
     const fetchData = async () => {
-      setIsLoading(true); // Set loading to true
-      if (isLoading){
-          try {
-          await fetchProfessorsAndUpdateState();
-        } catch (error) {
-          console.error('Error fetching data: ', error);
-        }
-        setIsLoading(false); // Set loading to false after fetch
-      }
+      try {
+        const response = await fetch('/api/forum?dataType=ProfessorSample', {
+          method: 'GET',
+        });
+        const responseDataText = await response.text();
 
+        let responseData;
+        try {
+          responseData = JSON.parse(responseDataText);
+        } catch (error) {
+          console.error('Failed to parse response as JSON: ', responseDataText);
+          responseData = responseDataText;
+        }
+
+        if (typeof responseData === 'object' && response.ok) {
+          setProfessorInfo(responseData);
+        } else {
+          console.error('Error or non-JSON response:', responseData);
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching data: ', error);
+        setIsLoading(false);
+      }
     };
 
     fetchData();
   }, []);
 
+  // Filter and sort professors based on current state
+  useEffect(() => {
+  // Filter and sort professors based on current state
+  const filteredAndSortedProfessors2 = professorInfo
+    .filter((prof) => {
+      // Apply subject filter if a subject is selected
+      if (selectedSubject !== '' && prof.Subject !== selectedSubject) {
+        return false;
+      }
+      // Apply search term filter
+      if (searchTerm !== '' && !prof.Name.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return false;
+      }
+      return true;
+    })
+    .sort((a, b) => {
+      // Sort alphabetically
+      if (isSorted) {
+        return a.Name.localeCompare(b.Name);
+      }
+      // Sort by similarity
+      if (isSortedsim) {
+        
+        const similarityA = stringSimilarity.compareTwoStrings(searchTerm, JSON.stringify(a));
+        const similarityB = stringSimilarity.compareTwoStrings(searchTerm, JSON.stringify(b));
+        return similarityB - similarityA; // Reverse order for similarity
+      }
+      return 0; // No sorting by default
+    });
 
-  const fetchProfessorsAndUpdateState = async () => {
-        try {
-            const response = await fetch("/api/forum?dataType=ProfessorSample", {
-                method: "GET"
-            });
-            const responseDataText = await response.text();
-
-            // Attempt to parse as JSON, if fails, just use the text
-            let responseData;
-            try {
-                responseData = JSON.parse(responseDataText);
-            } catch (error) {
-                console.error("Failed to parse response as JSON: ", responseDataText);
-                responseData = responseDataText;
-            }
-
-            // Handle based on type
-            if (typeof responseData === 'object' && response.ok) {
-                console.log("OK PROFESSORSET")
-                setprofessorInfo(responseData);
-                setSearchResults(responseData);
-            } else {
-                console.error('Error or non-JSON response:', responseData);
-            }
-        } catch (error) {
-            console.error('Error fetching data: ', error);
-        }
-    };
-
-    useEffect(() => {
-
-  if (isSorted && doneSorted) {
-    // Sort alphabetically only if similarity sort is not active
-    if (!isSortedsim) {
-      const sortedProfessors = sortProfessorsByName(searchResults);
-      setSearchResults(sortedProfessors);
-      setDoneSorted(false);
-    }
-  }
-}, [isSorted, isSortedsim, searchResults]);
-
-useEffect(() => {
-  console.log("It's logging the other one");
-  if (isSortedsim && doneSortedsim) {
-    // Sort by similarity only if alphabetical sort is not active
-    if (!isSorted) {
-      const sortedProfessors = sortProfessorsBySimilarity(searchResults, bio + major + courses);
-      setSearchResults(sortedProfessors);
-      setDoneSortedsim(false);
-    }
-  }
-}, [isSortedsim, isSorted, searchResults, bio, major, courses]);
+  setFilteredAndSortedProfessors(filteredAndSortedProfessors2);
+}, [professorInfo, selectedSubject, searchTerm, isSorted, isSortedsim]); // Dependencies array
 
 
+  // Calculate pagination
+  const maxPages = Math.ceil(filteredAndSortedProfessors.length / ITEMS_PER_PAGE);
+  const pagination = generatePagination(currentPage, maxPages);
+
+
+
+  // Event handlers
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+    setCurrentPage(1); // Reset to the first page when searching
+  };
+
+  const handleSubjectFilter = (event) => {
+    setSelectedSubject(event.target.value);
+    setCurrentPage(1); // Reset to the first page when filtering by subject
+  };
+
+  const toggleSort = () => {
+    setIsSorted(!isSorted);
+    setIsSortedsim(false); // Reset similarity sorting
+  };
+
+  const toggleSortsim = () => {
+    setIsSortedsim(!isSortedsim);
+    setIsSorted(false); // Reset alphabetical sorting
+  };
 
 
   if (isLoading) {
@@ -273,6 +233,43 @@ useEffect(() => {
           <button className="sort-by-similarity-button" onClick={toggleSortsim}>
             {isSortedsim ? "Unsort" : "Sort by Similarity"}
           </button>
+          <select
+                value={selectedSubject}
+                onChange={(e) => setSelectedSubject(e.target.value)}
+                  >
+                <option value="">All Subjects</option>
+                <option value="German">German</option>
+<option value="African American Studies">African American Studies</option>
+<option value="French">French</option>
+<option value="Sociology">Sociology</option>
+<option value="Physics">Physics</option>
+<option value="Women's Gender and Sexuality Studies">Women's Gender and Sexuality Studies</option>
+<option value="Classics">Classics</option>
+<option value="Computer Science">Computer Science</option>
+<option value="Ancient Mediterranean Studies">Ancient Mediterranean Studies</option>
+<option value="Music">Music</option>
+<option value="Philosophy">Philosophy</option>
+<option value="African Studies">African Studies</option>
+<option value="Comparative Literature">Comparative Literature</option>
+<option value="Spanish and Portugese">Spanish and Portugese</option>
+<option value="English">English</option>
+<option value="Biology">Biology</option>
+<option value="Writing Programs">Writing Programs</option>
+<option value="Latin American and Carribean Studies">Latin American and Carribean Studies</option>
+<option value="Theater">Theater</option>
+<option value="Russian and East Asian Languages and Cultures">Russian and East Asian Languages and Cultures</option>
+<option value="Dance">Dance</option>
+<option value="NBB, Neuroscience and Behavioral Biology (N and BB)">NBB, Neuroscience and Behavioral Biology (N and BB)</option>
+<option value="Intstitute for the Liberal Arts">Intstitute for the Liberal Arts</option>
+<option value="History">History</option>
+<option value="Jewish Studies">Jewish Studies</option>
+<option value="Anthropology">Anthropology</option>
+<option value="Art History (arthistory)">Art History (arthistory)</option>
+<option value="Religion">Religion</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Environmental Sciences">Environmental Sciences</option>
+                {/* Add more options for other subjects */}
+              </select>
           <div className="row align-items-stretch">
             <div className="container">
               <div className="untree_co-section bg-light">
@@ -294,7 +291,7 @@ useEffect(() => {
 
 
 
-  const visibleProfessors = searchResults.slice(
+  const visibleProfessors = filteredAndSortedProfessors.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
@@ -340,6 +337,43 @@ useEffect(() => {
           <button className="sort-by-similarity-button" onClick={toggleSortsim}>
             {isSortedsim ? "Unsort" : "Sort by Similarity"}
           </button>
+          <select
+                value={selectedSubject}
+                onChange={(e) => setSelectedSubject(e.target.value)}
+                  >
+                <option value="">All Subjects</option>
+                <option value="German">German</option>
+<option value="African American Studies">African American Studies</option>
+<option value="French">French</option>
+<option value="Sociology">Sociology</option>
+<option value="Physics">Physics</option>
+<option value="Women's Gender and Sexuality Studies">Women's Gender and Sexuality Studies</option>
+<option value="Classics">Classics</option>
+<option value="Computer Science">Computer Science</option>
+<option value="Ancient Mediterranean Studies">Ancient Mediterranean Studies</option>
+<option value="Music">Music</option>
+<option value="Philosophy">Philosophy</option>
+<option value="African Studies">African Studies</option>
+<option value="Comparative Literature">Comparative Literature</option>
+<option value="Spanish and Portugese">Spanish and Portugese</option>
+<option value="English">English</option>
+<option value="Biology">Biology</option>
+<option value="Writing Programs">Writing Programs</option>
+<option value="Latin American and Carribean Studies">Latin American and Carribean Studies</option>
+<option value="Theater">Theater</option>
+<option value="Russian and East Asian Languages and Cultures">Russian and East Asian Languages and Cultures</option>
+<option value="Dance">Dance</option>
+<option value="NBB, Neuroscience and Behavioral Biology (N and BB)">NBB, Neuroscience and Behavioral Biology (N and BB)</option>
+<option value="Intstitute for the Liberal Arts">Intstitute for the Liberal Arts</option>
+<option value="History">History</option>
+<option value="Jewish Studies">Jewish Studies</option>
+<option value="Anthropology">Anthropology</option>
+<option value="Art History (arthistory)">Art History (arthistory)</option>
+<option value="Religion">Religion</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Environmental Sciences">Environmental Sciences</option>
+                {/* Add more options for other subjects */}
+              </select>
           <div className="row align-items-stretch">
   <div className="container">
     <div className="untree_co-section bg-light">
