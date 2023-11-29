@@ -235,6 +235,7 @@ function Professors() {
           <button className="sort-alphabetically-button" onClick={toggleSort}>
             {isSorted ? "Unsort" : "Sort Alphabetically"}
           </button>
+          <div className="row">
           <button className="sort-by-similarity-button" onClick={toggleSortsim}>
             {isSortedsim ? "Unsort" : "Sort by Similarity"}
           </button>
@@ -274,6 +275,7 @@ function Professors() {
 <option value="Environmental Sciences">Environmental Sciences</option>
                 {/* Add more options for other subjects */}
               </select>
+              </div>
           <div className="row align-items-stretch">
             <div className="container">
               <div className="untree_co-section bg-light">
@@ -338,6 +340,7 @@ function Professors() {
           <button className="sort-alphabetically-button" onClick={toggleSort}>
             {isSorted ? "Unsort" : "Sort Alphabetically"}
           </button>
+          <div className="row">
           <button className="sort-by-similarity-button" onClick={toggleSortsim}>
             {isSortedsim ? "Unsort" : "Sort by Similarity"}
           </button>
@@ -377,6 +380,7 @@ function Professors() {
 <option value="Environmental Sciences">Environmental Sciences</option>
                 {/* Add more options for other subjects */}
               </select>
+              </div>
           <div className="row align-items-stretch">
   <div className="container">
     <div className="untree_co-section bg-light">

@@ -24,7 +24,7 @@
 
 /* Updated CSS for the Sort by Similarity button */
 .sort-by-similarity-button {
-  width: 45%;
+  width: 44%;
   padding: 10px;
   font-size: 16px;
   background-color: #00aeff;
@@ -32,7 +32,9 @@
   border: 1px solid #00aeff;
   border-radius: 20px;
   cursor: pointer;
-
+  margin-left: 11px;
+  margin-right: 1rem;
+  margin-top: 20px;
 }
 
 
@@ -73,11 +75,11 @@
 
 /* Style for the select element to look like the provided button */
 select {
-  width: 46%;
+  width: 45%;
   /* Adjust as needed */
-  padding: 15px;
+  padding: 5px;
   /* Spacing inside the button */
-  font-size: 18px;
+  font-size: 16px;
   /* Font size similar to the button in the image */
   font-weight: bold;
   /* Make the text bold */
@@ -101,7 +103,7 @@ select {
   /* Removes default styling for Mozilla browsers */
   appearance: none;
   /* Removes default system styling */
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 
 /* Add custom down arrow icon inside the button */
