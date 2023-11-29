@@ -1,7 +1,8 @@
 .search-professor-input {
   width: 45%;
   padding: 10px;
-  margin-right: 1rem; /* Reduced the margin to make it more compact */
+  margin-right: 1rem;
+  /* Reduced the margin to make it more compact */
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -17,7 +18,8 @@
   border: 1px solid #00aeff;
   border-radius: 20px;
   cursor: pointer;
-  margin-right: 0.5rem; /* Added a small right margin for spacing */
+  margin-right: 0;
+  /* Added a small right margin for spacing */
 }
 
 /* Updated CSS for the Sort by Similarity button */
@@ -30,10 +32,11 @@
   border: 1px solid #00aeff;
   border-radius: 20px;
   cursor: pointer;
+
 }
 
 
-.pagination-container{
+.pagination-container {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -42,6 +45,7 @@
 }
 
 @media only screen and (max-width: 767px) {
+
   .search-professor-input,
   .search-professor-button {
     margin-right: 0;
@@ -50,6 +54,7 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 990px) {
+
   .search-professor-input,
   .search-professor-button {
     margin-right: 0;
@@ -58,9 +63,70 @@
 }
 
 @media only screen and (min-width: 991px) and (max-width: 1200px) {
+
   .search-professor-input,
   .search-professor-button {
     margin-right: 0;
     margin-left: 30px;
   }
+}
+
+/* Style for the select element to look like the provided button */
+select {
+  width: 46%;
+  /* Adjust as needed */
+  padding: 15px;
+  /* Spacing inside the button */
+  font-size: 18px;
+  /* Font size similar to the button in the image */
+  font-weight: bold;
+  /* Make the text bold */
+  text-align: center;
+  /* Center text */
+  color: white;
+  /* Button text color */
+
+  /* Background color of the button */
+  border-color: lightgray;
+  /* No border */
+  border-radius: 25px;
+  /* Rounded corners for pill shape */
+
+  /* Shadow similar to the button */
+  cursor: pointer;
+  /* Change cursor to indicate button */
+  -webkit-appearance: none;
+  /* Removes default styling for Webkit browsers */
+  -moz-appearance: none;
+  /* Removes default styling for Mozilla browsers */
+  appearance: none;
+  /* Removes default system styling */
+  margin-left: 10px;
+}
+
+/* Add custom down arrow icon inside the button */
+select {
+
+  /* SVG for the arrow */
+  background-repeat: no-repeat;
+  /* Arrow position inside the button */
+  background-size: 5px 5px;
+  /* Size of the arrow */
+
+  margin-top: 20px;
+}
+
+/* Style for options to ensure they are visible against the button color */
+select option {
+  background-color: white;
+  /* Option background color */
+  color: black;
+  /* Option text color */
+
+}
+
+/* Hover effect for select to emulate button hover behavior - optional */
+select:hover {
+  background-color: white;
+  /* Slightly darker shade on hover */
 }
