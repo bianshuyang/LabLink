@@ -366,36 +366,30 @@ if (isLoading) {
               </div>
             </div>
 
-              <div class="col-12 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-4">
-
-                <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100">
-                  <h2 class="line-bottom mb-4">{profdt.Title && profdt.Name ? `${profdt.Title} ${profdt.Name}` : null}</h2>
-                </div>
-
-                <div class="large mr-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-                  <span class="uil uil-envelope mr-2"></span> 
-                  <span class="d-none d-lg-inline-block">{profdt.Email}</span>
-                </div>
-
-                <div class="large mr-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-                  <span class="uil uil-book-open mr-2"></span> 
-                  <span class="d-none d-lg-inline-block">{profdt.Subject}</span>
-                </div>
-
-                <div class="large mr-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-                  <span class="uil uil-bag-alt mr-2"></span> 
-                  <span class="d-none d-lg-inline-block">{profdt.Office}</span>
-                </div>
-
-
+            <div class="col-12 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-4">
+              <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="line-bottom mb-4">{profdt.Title && profdt.Name ? `${profdt.Title} ${profdt.Name}` : null}</h2>
               </div>
 
-          </div>
-        </div>
-      </div>
+              <div class="large mr-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <span class="uil uil-envelope mr-2"></span> 
+                <span class="d-none d-lg-inline-block">{profdt.Email}</span>
+              </div>
 
-      <div>
-        <form className="editor-container" onSubmit={modifyCVSubmit}>
+              <div class="large mr-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <span class="uil uil-book-open mr-2"></span> 
+                <span class="d-none d-lg-inline-block">{profdt.Subject}</span>
+              </div>
+
+              <div class="large mr-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <span class="uil uil-bag-alt mr-2"></span> 
+                <span class="d-none d-lg-inline-block">{profdt.Office}</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <form className="editor-container" onSubmit={modifyCVSubmit}>
           <label>Public Research Website Editor</label>
           <div>
             {isEditing ? (
@@ -427,7 +421,10 @@ if (isLoading) {
               Edit
             </button>
           )}
-        </form>
+            </form>
+          </div>
+          
+        </div>
       </div>
 
       <div className="untree_co-section bg-light footer-container" id = "News_concrete">
