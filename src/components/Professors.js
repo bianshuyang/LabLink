@@ -352,8 +352,8 @@ useEffect(() => {
                 <h3 className="staff-name">
                   <Link to={`/SingleProf/${encodeURIComponent(prof.Name)}`}>{prof.Name}</Link>
                 </h3>
-                <span className="d-block position mb-4">{prof.title}</span>
-                <p className="mb-5">{prof.researchInterest}</p>
+                <span className="d-block position mb-4">{prof.Title}</span>
+                <p className="mb-5">{prof.Subject}</p>
               </div>
             </div>
           </div>
