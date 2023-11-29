@@ -396,8 +396,8 @@ function Professors() {
           </div>
         ))}
       </div>
-    </div>
-  </div>
+
+
 <div className="row mt-5 pagination-container">
   <div className="col-12 text-center">
     <ul className="list-unstyled custom-pagination">
@@ -416,6 +416,8 @@ function Professors() {
     </ul>
   </div>
 </div>
+  </div>
+      </div>
           </div>
         </div>
             <div className="site-footer">
