@@ -247,70 +247,59 @@ if (isLoading) {
         <div className="untree_co-section bg-light" id = "News_concrete">
 
         <div className="site-footer">
-          <div className="container">
-            <div className="row">
+      <div className="container">
 
-              <div className="col-lg-3 mr-auto">
-                <div className="widget">
-                  <h3>About Us<span className="text-primary"></span> </h3>
-                    <p></p>
-                </div>
-
-                <div className="widget">
-                  <h3><Link to={'/Contact'}>Connect</Link></h3>
-                    <ul className="list-unstyled social"></ul>
-                </div>
-              </div>
-
-              <div className="col-lg-2 ml-auto">
-              <div className="widget">
-                <h3>Learn More</h3>
-                    <ul className="list-unstyled float-left links">
-                      <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
-                    </ul>
-                </div>
-              </div>
-
-              <div className="col-lg-3">
-                <div className="widget">
-                  <h3>Gallery</h3>
-                  <ul className="instafeed instagram-gallery list-unstyled">
-                        <li><a className="instagram-item" href="images/gal_1.jpg" data-fancybox="gal"><img src="images/gal_1.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                        <li><a className="instagram-item" href="images/gal_2.jpg" data-fancybox="gal"><img src="images/gal_2.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                        <li><a className="instagram-item" href="images/gal_3.jpg" data-fancybox="gal"><img src="images/gal_3.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                        <li><a className="instagram-item" href="images/gal_4.jpg" data-fancybox="gal"><img src="images/gal_4.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                        <li><a className="instagram-item" href="images/gal_5.jpg" data-fancybox="gal"><img src="images/gal_5.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                        <li><a className="instagram-item" href="images/gal_6.jpg" data-fancybox="gal"><img src="images/gal_6.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                  </ul>
-                </div>
-              </div>
-
-
-              <div className="col-lg-3">
-                <div className="widget">
-                  <h3>Contact</h3>
-                  <address>201 Dowman Dr, Atlanta, GA 30322</address>
-                  <ul className="list-unstyled links mb-4">
-                      <li><a href="tel://4047276123">+1(404) 727-6123</a></li>
-                      <li><a href="email://jeff.epstein@emory.edu">jeff.epstein@emory.edu</a></li>
-                  </ul>
-                </div>
-              </div>
-
-            </div>
-
-            <div className="row mt-5">
-              <div className="col-12 text-center">
-                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved.</p>
-              </div>
+        <div className="row">
+          <div className="col-lg-3 mr-auto">
+            <div className="widget">
+              <h3>About Us<span className="text-primary"></span> </h3>
+              <p>A group of Emory students.</p>
             </div>
           </div>
+
+          <div className="col-lg-3 ml-auto">
+            <div className="widget">
+              <h3>Learn More</h3>
+              <ul className="list-unstyled float-left links">
+                <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="col-lg-3">
+            <div className="widget">
+              <h3>Ongoing Projects</h3>
+              <ul className="instafeed instagram-gallery list-unstyled">
+                <li><a className="instagram-item" href="images/DDIHTS_cover.jpg" data-fancybox="gal"><img src="images/DDIHTS_cover.jpg" alt="" width="72" height="72"/></a>
+                </li>
+                <li><a className="instagram-item" href="images/Simbiosys_cover.jpg" data-fancybox="gal"><img src="images/Simbiosys_cover.jpg" alt="" width="72" height="72"/></a>
+                </li>
+                <li><a className="instagram-item" href="images/data_mining_cover.jpg" data-fancybox="gal"><img src="images/data_mining_cover.jpg" alt="" width="72" height="72"/></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div className="col-lg-3">
+            <div className="widget">
+              <h3>Get in Touch</h3>
+              <address>201 Dowman Dr, Atlanta, GA 30322</address>
+              <ul className="list-unstyled links mb-4">
+                <li><a href="tel://4047276123">+1(404) 727-6123</a></li>
+                <li><a href="email://jeff.epstein@emory.edu">jeff.epstein@emory.edu</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="row mt-5">
+          <div className="col-12 text-center">
+            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </div>);
@@ -365,141 +354,141 @@ if (isLoading) {
         </div>
 
 
-         <div className="untree_co-section">
+      <div className="untree_co-section">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+              
+              <div class="staff text-center">
+                <div class="mb-4">
+                  <img src={profdt.Image && profdt.Image.length > 0 ? profdt.Image : null} alt="profile" className="img-fluid" style={{ width: '80%', height: 'auto' }} />
+                </div>
+              </div>
+            </div>
+
+              <div class="col-12 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-4">
+
+                <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100">
+                  <h2 class="line-bottom mb-4">{profdt.Title && profdt.Name ? `${profdt.Title} ${profdt.Name}` : null}</h2>
+                </div>
+
+                <div class="large mr-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                  <span class="uil uil-envelope mr-2"></span> 
+                  <span class="d-none d-lg-inline-block">{profdt.Email}</span>
+                </div>
+
+                <div class="large mr-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                  <span class="uil uil-book-open mr-2"></span> 
+                  <span class="d-none d-lg-inline-block">{profdt.Subject}</span>
+                </div>
+
+                <div class="large mr-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                  <span class="uil uil-bag-alt mr-2"></span> 
+                  <span class="d-none d-lg-inline-block">{profdt.Office}</span>
+                </div>
 
 
-<div className="container">
-      <div className="row">
-        <div className="col-lg-5 mr-auto mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
-          <img src={profdt.Image && profdt.Image.length > 0 ? profdt.Image : null} alt="profile" className="img-fluid" style={{ width: '40%', height: 'auto' }} />
-        </div>
-        <div className = 'ProfessorIntroduction'>
-          <p>{profdt.Title && profdt.Name ? `${profdt.Title} ${profdt.Name}` : null}</p>
+              </div>
+
+          </div>
         </div>
       </div>
-    </div>
-      </div>
-
-
-
-
-
-
-
 
       <div>
-      <form className="editor-container" onSubmit={modifyCVSubmit}>
-        <label>Public Research Website Editor</label>
-        <div>
-          {isEditing ? (
-            <div className="text-editor">
-              <ReactQuill
-                theme="snow"
-                onChange={(content) => setEditorContent(content)}
-                modules={modules}
-                formats={formats}
-              />
-            </div>
-          ) : (
-            <div className="text-editor">
-              <ReactQuill
-                theme="snow"
-                onChange={(content) => setEditorContent(content)}
-                modules={modules}
-                formats={formats}
-                value={profdt.PopupInfo}
-              />
-            </div>
+        <form className="editor-container" onSubmit={modifyCVSubmit}>
+          <label>Public Research Website Editor</label>
+          <div>
+            {isEditing ? (
+              <div className="text-editor">
+                <ReactQuill
+                  theme="snow"
+                  onChange={(content) => setEditorContent(content)}
+                  modules={modules}
+                  formats={formats}
+                />
+              </div>
+            ) : (
+              <div className="text-editor">
+                <ReactQuill
+                  theme="snow"
+                  onChange={(content) => setEditorContent(content)}
+                  modules={modules}
+                  formats={formats}
+                  value={profdt.PopupInfo}
+                />
+              </div>
+            )}
+          </div>
+          {netID === profdt.netID && (
+            <input className="submit-edits" type="submit" value="Save Edits" />
           )}
-        </div>
-        {netID === profdt.netID && (
-          <input className="submit-edits" type="submit" value="Save Edits" />
-        )}
-        {netID === profdt.netID && (
-          <button className="edit-website" type="button" onClick={handleEditClick}>
-            Edit
-          </button>
-        )}
-      </form>
-    </div>
-        <div className="untree_co-section bg-light footer-container" id = "News_concrete">
+          {netID === profdt.netID && (
+            <button className="edit-website" type="button" onClick={handleEditClick}>
+              Edit
+            </button>
+          )}
+        </form>
+      </div>
 
-        <div className="site-footer">
-          <div className="container">
-            <div className="row">
+      <div className="untree_co-section bg-light footer-container" id = "News_concrete">
 
-              <div className="col-lg-3 mr-auto">
-                <div className="widget">
-                  <h3>About Us<span className="text-primary">.</span> </h3>
-                    <p></p>
-                </div>
+    <div className="site-footer">
 
-                <div className="widget">
-                  <h3>Connect</h3>
-                  <ul className="list-unstyled social">
-                        <li><Link to={'/'}><span className="icon-instagram"></span></Link></li>
-                        <li><Link to={'/'}><span className="icon-twitter"></span></Link></li>
-                        <li><Link to={'/'}><span className="icon-facebook"></span></Link></li>
-                        <li><Link to={'/'}><span className="icon-linkedin"></span></Link></li>
-                        <li><Link to={'/'}><span className="icon-pinterest"></span></Link></li>
-                        <li><Link to={'/'}><span className="icon-dribbble"></span></Link></li>
-                  </ul>
-                </div>
-              </div>
+      <div className="container">
 
-              <div className="col-lg-2 ml-auto">
-                <div className="widget">
-                  <h3>Projects</h3>
-                  <ul className="list-unstyled float-left links">
-                        <li><Link to={'/'}>Web Design</Link></li>
-                        <li><Link to={'/'}>HTML5</Link></li>
-                        <li><Link to={'/'}>CSS3</Link></li>
-                        <li><Link to={'/'}>jQuery</Link></li>
-                        <li><Link to={'/'}>Bootstrap</Link></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="col-lg-3">
-                <div className="widget">
-                  <h3>Gallery</h3>
-                  <ul className="instafeed instagram-gallery list-unstyled">
-                        <li><a className="instagram-item" href="images/gal_1.jpg" data-fancybox="gal"><img src="images/gal_1.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                        <li><a className="instagram-item" href="images/gal_2.jpg" data-fancybox="gal"><img src="images/gal_2.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                        <li><a className="instagram-item" href="images/gal_3.jpg" data-fancybox="gal"><img src="images/gal_3.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                        <li><a className="instagram-item" href="images/gal_4.jpg" data-fancybox="gal"><img src="images/gal_4.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                        <li><a className="instagram-item" href="images/gal_5.jpg" data-fancybox="gal"><img src="images/gal_5.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                        <li><a className="instagram-item" href="images/gal_6.jpg" data-fancybox="gal"><img src="images/gal_6.jpg" alt="" width="72" height="72"/></a>
-                        </li>
-                  </ul>
-                </div>
-              </div>
-
-
-              <div className="col-lg-3">
-                <div className="widget">
-                  <h3>Contact</h3>
-                  <address>201 Dowman Dr, Atlanta, GA 30322</address>
-                  <ul className="list-unstyled links mb-4">
-                      <li><a href="tel://4047276123">+1(404) 727-6123</a></li>
-                      <li><a href="email://jeff.epstein@emory.edu">jeff.epstein@emory.edu</a></li>
-                  </ul>
-                </div>
-              </div>
+        <div className="row">
+          <div className="col-lg-3 mr-auto">
+            <div className="widget">
+              <h3>About Us<span className="text-primary"></span> </h3>
+              <p>A group of Emory students.</p>
             </div>
+          </div>
 
-            <div className="row mt-5">
-              <div className="col-12 text-center">
-                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved.</p>
-              </div>
+          <div className="col-lg-3 ml-auto">
+            <div className="widget">
+              <h3>Learn More</h3>
+              <ul className="list-unstyled float-left links">
+                <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="col-lg-3">
+            <div className="widget">
+              <h3>Ongoing Projects</h3>
+              <ul className="instafeed instagram-gallery list-unstyled">
+                <li><a className="instagram-item" href="images/DDIHTS_cover.jpg" data-fancybox="gal"><img src="images/DDIHTS_cover.jpg" alt="" width="72" height="72"/></a>
+                </li>
+                <li><a className="instagram-item" href="images/Simbiosys_cover.jpg" data-fancybox="gal"><img src="images/Simbiosys_cover.jpg" alt="" width="72" height="72"/></a>
+                </li>
+                <li><a className="instagram-item" href="images/data_mining_cover.jpg" data-fancybox="gal"><img src="images/data_mining_cover.jpg" alt="" width="72" height="72"/></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div className="col-lg-3">
+            <div className="widget">
+              <h3>Get in Touch</h3>
+              <address>201 Dowman Dr, Atlanta, GA 30322</address>
+              <ul className="list-unstyled links mb-4">
+                <li><a href="tel://4047276123">+1(404) 727-6123</a></li>
+                <li><a href="email://jeff.epstein@emory.edu">jeff.epstein@emory.edu</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="row mt-5">
+          <div className="col-12 text-center">
+            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved.</p>
             </div>
           </div>
         </div>
+      </div>
+
       </div>
     </div>
   );
