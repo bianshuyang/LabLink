@@ -222,6 +222,7 @@ export default function Profile() {
       console.error("Error saving profile:", error.message);
       alert("Failed to update profile. Please try again.");
     }
+    setIsEditMode(false);
   };
 
 
