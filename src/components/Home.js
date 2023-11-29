@@ -241,10 +241,9 @@ function Home(){
                 <img src="images/img-school-1-min.jpg" alt="Image"/>
               </figure>
               <div className="media-h-body">
-                <h2 className="mb-3"><Link to={'/news'}>Contextual Embedding Representation for Dialogue Systems</Link></h2>
+                <h2 className="mb-3">Contextual Embedding Representation for Dialogue Systems</h2>
                 <div className="meta mb-2"><span className="icon-calendar mr-2"></span><span>March 30, 2020</span>  <span className="icon-person mr-2"></span>Zihao Wang, Emory Universityt</div>
                 <p>Context is a crucial element for conversational agents to conduct natural and engaging conversations with human users</p>
-                <p><Link to={'/news'}>Learn More</Link></p>
               </div>
             </div>
           </div>
@@ -254,68 +253,18 @@ function Home(){
                 <img src="images/img-school-2-min.jpg" alt="Image"/>
               </figure>
               <div className="media-h-body">
-                <h2 className="mb-3"><Link to={'/news'}>Interpretable and Interactive Representation Learning on Geometric Data</Link></h2>
+                <h2 className="mb-3">Interpretable and Interactive Representation Learning on Geometric Data</h2>
                 <div className="meta mb-2"><span className="icon-calendar mr-2"></span><span>December 1, 2022</span>  <span className="icon-person mr-2"></span>Emory CS Department</div>
                 <p>In recent years, representation learning on geometrics data, such as image and graph-structured data, are experiencing rapid developments and achieving significant progress</p>
-                <p><Link to={'/news'}>Learn More</Link></p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
 
     <div className="untree_co-section bg-light">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-7 text-center mx-auto">
-
-            <h3 className="line-bottom mb-4">Instructors</h3>
-            <div className="owl-carousel wide-slider-testimonial">
-              <div className="item">
-                <blockquote className="block-testimonial">
-
-                  <p>&ldquo;Emory Natural Language Processing&rdquo;</p>
-                  <div className="author">
-                    <img src="images/person_1.jpg" alt="Free template by TemplateUX"/>
-                    <h3>Jinho Choi</h3>
-                    <p className="position">Associate Professor</p>
-                  </div>
-                </blockquote>
-              </div>
-
-              <div className="item">
-                <blockquote className="block-testimonial">
-
-                  <p>&ldquo;Data Driven Innovations for Huamn-Technology Symbiosis Group&rdquo;</p>
-                  <div className="author">
-                    <img src="images/person_2.jpg" alt="Free template by TemplateUX"/>
-                    <h3>Nirmalya Thakur</h3>
-                    <p className="position">Assistant Teaching Professor</p>
-                  </div>
-                </blockquote>
-              </div>
-
-              <div className="item">
-                <blockquote className="block-testimonial">
-
-                  <p>&ldquo;Cognition & Visualization Lab at Emory&rdquo;</p>
-                  <div className="author">
-                    <img src="images/person_3.jpg" alt="Free template by TemplateUX"/>
-                    <h3>Emily Wall</h3>
-                    <p className="position">Assistant Professor</p>
-                  </div>
-                </blockquote>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div className="untree_co-section">
 
 
       <div className="container">
@@ -324,7 +273,7 @@ function Home(){
             <img src="images/img-school-5-min.jpg" alt="image" className="img-fluid"/>
           </div>
           <div className="col-lg-7 ml-auto" data-aos="fade-up" data-aos-delay="100">
-            <h3 className="line-bottom mb-4">The Mission Behind LabLink!</h3>
+            <h2 className="line-bottom mb-4">The Mission Behind LabLink!</h2>
             <p>Many reasons are as follows: </p>
 
             <div className="custom-accordion" id="accordion_1">
@@ -396,17 +345,12 @@ function Home(){
         <div className="row">
           <div className="col-lg-3 mr-auto">
             <div className="widget">
-              <h3>About Us<span className="text-primary">.</span> </h3>
-              <p></p>
-            </div>
-            <div className="widget">
-              <h3><Link to={'/Contact'}>Connect</Link></h3>
-              <ul className="list-unstyled social">
-              </ul>
+              <h3>About Us<span className="text-primary"></span> </h3>
+              <p>A group of Emory students.</p>
             </div>
           </div>
 
-          <div className="col-lg-2 ml-auto">
+          <div className="col-lg-3 ml-auto">
             <div className="widget">
               <h3>Learn More</h3>
               <ul className="list-unstyled float-left links">
@@ -419,12 +363,6 @@ function Home(){
             <div className="widget">
               <h3>Ongoing Projects</h3>
               <ul className="instafeed instagram-gallery list-unstyled">
-                <li><a className="instagram-item" href="images/DDIHTS_cover.jpg" data-fancybox="gal"><img src="images/DDIHTS_cover.jpg" alt="" width="72" height="72"/></a>
-                </li>
-                <li><a className="instagram-item" href="images/Simbiosys_cover.jpg" data-fancybox="gal"><img src="images/Simbiosys_cover.jpg" alt="" width="72" height="72"/></a>
-                </li>
-                <li><a className="instagram-item" href="images/data_mining_cover.jpg" data-fancybox="gal"><img src="images/data_mining_cover.jpg" alt="" width="72" height="72"/></a>
-                </li>
                 <li><a className="instagram-item" href="images/DDIHTS_cover.jpg" data-fancybox="gal"><img src="images/DDIHTS_cover.jpg" alt="" width="72" height="72"/></a>
                 </li>
                 <li><a className="instagram-item" href="images/Simbiosys_cover.jpg" data-fancybox="gal"><img src="images/Simbiosys_cover.jpg" alt="" width="72" height="72"/></a>
