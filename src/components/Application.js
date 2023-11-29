@@ -33,8 +33,14 @@ function generatePagination(currentPage, maxPages) {
 }
 
 function CentralizedApplication() {
-
-
+    const [selectedProgramId, setSelectedProgramId] = useState(null);
+    const [applicationsData, setapplicationsData] = useState([]);
+    const [currentnumber, setcurrentnumber] = useState(0);
+    const [selectedOption, setSelectedOption] = useState('protected');
+    const handleOptionChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+    const profnetid = ["yagicht", "darnol4", "jchoi", "ybrombe", "jepst25", "dfossat", "mgrigni", "jho31", "slafleu", "km", "vss", "yvigfus", "lxiong", "wjin30", "ckulka2", "fliu40", "nthaku4", "yrankin", "lzhao41", "jyang71", 'kwil271', "ewall2", "sbian8"];
 
     // The modules object is used to customize the toolbar options
     const modules = {
@@ -73,7 +79,7 @@ function CentralizedApplication() {
     };
 
     const [programsData, setprogramsData] = useState([]);
-    const [applicationsData, setapplicationsData] = useState([]);
+
     const [usersData, setusersData] = useState([]);
 
     const { netID, setNetID } = useContext(LabLinkContext);
@@ -86,6 +92,7 @@ function CentralizedApplication() {
 
 
     useEffect(() => {
+
         const fetchData = async () => {
             try {
 
@@ -105,7 +112,10 @@ function CentralizedApplication() {
 
 
         fetchData();
-    }, []);
+        console.log("OK done");
+        const selectedProgramApplicationsCount = applicationsData.filter(app => app.programId === selectedProgramId).length;
+        setcurrentnumber(selectedProgramApplicationsCount);
+    }, [applicationsData, selectedProgramId]);
 
 
 
@@ -182,7 +192,22 @@ function CentralizedApplication() {
                 console.error("Failed to parse response as JSON: ", responseDataText);
                 responseData = responseDataText;
             }
+            const selectedProgramApplicationsCount = applicationsData.filter(reply => reply.programId === selectedProgramId).length;
 
+            setcurrentnumber(selectedProgramApplicationsCount);
+            console.log(selectedProgramApplicationsCount);
+            console.log(applicationsData.filter(reply => reply.programId === selectedProgramId));
+            const filteredData = responseData.filter((item) => {
+                if ((item.visibility === 'protected' && profnetid.includes(netID)) || item.netid === netID) {
+                    // Protected posts are accessible by professors
+                    return true;
+                } else if (item.visibility === 'private' && item.netid === netID) {
+                    // Private posts are only accessible by the post owner
+                    return true;
+                }
+                return false;
+            });
+            responseData = filteredData;
             // Handle based on type
             if (typeof responseData === 'object' && response.ok) {
                 setapplicationsData(responseData);
@@ -209,6 +234,7 @@ function CentralizedApplication() {
                     applicationDate: applicationDate,
                     applicationId: applicationId,
                     programId: selectedProgramId,
+                    visibility: selectedOption
                 }),
             });
             console.log(response);
@@ -353,6 +379,10 @@ function CentralizedApplication() {
             applicationId: nextReplyId,
             programId: selectedProgramId, // This should already be set when the user began the reply process
         };
+        if (netID === "") {
+            alert("Unloggedin Guests are not allowed to make postings!")
+            return;
+        }
         console.log(programId);
         await addApplication(newReply.netid, newReply.applicationData, newReply.applicationDate, newReply.applicationId, newReply.programId);
         alert("Thank you for bringing in a Program, your response has been submitted");
@@ -376,6 +406,10 @@ function CentralizedApplication() {
             nextProgramId = maxProgramId + 1;
         }
 
+        if (netID === "") {
+            alert("Unloggedin Guests are not allowed to make postings!")
+            return;
+        }
         const currentDate = new Date().toISOString();
         setprogramId(nextProgramId);
         setprogramDate(currentDate);
@@ -391,7 +425,6 @@ function CentralizedApplication() {
     // State to determine which view to show: users, Programs, or Applications
     const [view, setView] = useState('users');
     const [showApplications, setShowApplications] = useState(false);
-    const [selectedProgramId, setSelectedProgramId] = useState(null);
     const [currentReplyPage, setCurrentReplyPage] = useState(1);
     const handleProgramClick = (ProgramId) => {
         setSelectedProgramId(ProgramId);
@@ -440,7 +473,11 @@ function CentralizedApplication() {
     //const [programsData, setprogramsData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
+    const showTerms2 = () => {
+        console.log("Show Terms and Conditions");
+        alert('Applications in working status as draft private to students and those submitted to professors are included in number of counts!');
 
+    };
 
     const showTerms = () => {
         console.log("Show Terms and Conditions");
@@ -521,8 +558,11 @@ function CentralizedApplication() {
                                 </ul>
                                 <form onSubmit={addApplicationSubmit}>
                                     <label>
-                                        New Programs</label>
-
+                                        New Applications</label>
+                                    <label>
+                                        Current number of application:
+                                        {currentnumber}  <a href="#" onClick={showTerms2}> What is it?</a>
+                                    </label>
                                     <ReactQuill
 
                                         onChange={(content) => setapplicationData(content)}
@@ -531,7 +571,13 @@ function CentralizedApplication() {
                                         placeholder="Sincerity brings connections."
                                         theme="snow" // this prop is optional
                                     />
-
+                                    <div>
+                                        <label htmlFor="visibility">Post Visibility:</label>
+                                        <select id="visibility" value={selectedOption} onChange={handleOptionChange}>
+                                            <option value="protected">To Professor and you (Protected)</option>
+                                            <option value="private">Private (Only you can access)</option>
+                                        </select>
+                                    </div>
 
                                     <input type="submit" value="Submit Application" />
                                     <p>
@@ -587,7 +633,7 @@ function CentralizedApplication() {
                         )}
                     </main>
 
-                        
+
 
                 </div>
 
@@ -645,7 +691,7 @@ function CentralizedApplication() {
                                 <div className="widget">
                                     <h3>Learn More</h3>
                                     <ul className="list-unstyled float-left links">
-                                    <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
+                                        <li><a href="https://github.com/bianshuyang/LabLink">LabLink Github and Documentation</a></li>
                                     </ul>
                                 </div>
                             </div>

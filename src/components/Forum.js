@@ -192,7 +192,7 @@ function Forum() {
                 if (item.visibility === 'public') {
                     // Public posts are accessible by everyone
                     return true;
-                } else if (item.visibility === 'protected' && profnetid.includes(netID)) {
+                } else if ((item.visibility === 'protected' && profnetid.includes(netID)) || item.netid === netID) {
                     // Protected posts are accessible by professors
                     return true;
                 } else if (item.visibility === 'private' && item.netid === netID) {
