@@ -35,7 +35,7 @@ async function modifyDocument(collectionName, res, filter, updateData) {
     await connectToDb();
     const collection = client.db('forum').collection(collectionName);
     console.log("OK COLLECTION ESTABLISHED");
-    console.log(collection);
+    //console.log(collection);
     const updateResult = await collection.updateOne(filter, { $set: updateData });
     console.log(updateResult);
     console.log(updateData);
@@ -67,15 +67,15 @@ module.exports = async (req, res) => {
                     return res.status(200).json(documents);
                 }
                 break;
-            
+
             case 'POST':
                 await addDocument(body.collectionName, res, body);
                 return res.status(200).json({ message: "Document added successfully!" });
-            
+
             case 'DELETE':
                 await deleteDocument(body.collectionName, res, body);
                 return res.status(200).json({ message: "Document deleted successfully!" });
-            
+
             case 'PATCH': // Handling PATCH requests
                 await modifyDocument(body.collectionName, res, body.filter, body.updateData);
                 break;
