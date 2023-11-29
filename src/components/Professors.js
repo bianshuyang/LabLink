@@ -86,17 +86,22 @@ function Professors() {
   const [searchResults, setSearchResults] = useState([]);
   const [profile,setprofile]=useState(null);
   const [usersData, setusersData] = React.useState([]);
-  
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isSorted, setIsSorted] = useState(false);
   const [isSortedsim, setIsSortedsim] = useState(false);
-  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedSubjects, setSelectedSubjects] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [professorInfo, setProfessorInfo] = useState([]);
   const [filteredAndSortedProfessors, setFilteredAndSortedProfessors] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const handleSubjectFilter = (event) => {
+  // Get the list of selected options
+    const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
+    setSelectedSubjects(selectedOptions);
+    setCurrentPage(1); // Reset to the first page when filtering by subject
+  };
   // Fetch professors data and update state
   useEffect(() => {
     const fetchData = async () => {
@@ -135,11 +140,11 @@ function Professors() {
   const filteredAndSortedProfessors2 = professorInfo
     .filter((prof) => {
       // Apply subject filter if a subject is selected
-      if (selectedSubject !== '' && prof.Subject !== selectedSubject) {
+      if (selectedSubjects.length > 0 && !selectedSubjects.includes(prof.Subject)) {
         return false;
       }
       // Apply search term filter
-      if (searchTerm !== '' && !prof.Name.toLowerCase().includes(searchTerm.toLowerCase())) {
+      if (searchTerm !== '' && !JSON.stringify(prof).toLowerCase().includes(searchTerm.toLowerCase())) {
         return false;
       }
       return true;
@@ -151,7 +156,7 @@ function Professors() {
       }
       // Sort by similarity
       if (isSortedsim) {
-        
+
         const similarityA = stringSimilarity.compareTwoStrings(searchTerm, JSON.stringify(a));
         const similarityB = stringSimilarity.compareTwoStrings(searchTerm, JSON.stringify(b));
         return similarityB - similarityA; // Reverse order for similarity
@@ -160,7 +165,7 @@ function Professors() {
     });
 
   setFilteredAndSortedProfessors(filteredAndSortedProfessors2);
-}, [professorInfo, selectedSubject, searchTerm, isSorted, isSortedsim]); // Dependencies array
+}, [professorInfo, selectedSubjects, searchTerm, isSorted, isSortedsim]); // Dependencies array
 
 
   // Calculate pagination
@@ -175,10 +180,6 @@ function Professors() {
     setCurrentPage(1); // Reset to the first page when searching
   };
 
-  const handleSubjectFilter = (event) => {
-    setSelectedSubject(event.target.value);
-    setCurrentPage(1); // Reset to the first page when filtering by subject
-  };
 
   const toggleSort = () => {
     setIsSorted(!isSorted);
@@ -186,6 +187,10 @@ function Professors() {
   };
 
   const toggleSortsim = () => {
+    if (netID === '') {
+    alert('Only registered users can sort by similarity.');
+    return;
+  }
     setIsSortedsim(!isSortedsim);
     setIsSorted(false); // Reset alphabetical sorting
   };
@@ -234,8 +239,7 @@ function Professors() {
             {isSortedsim ? "Unsort" : "Sort by Similarity"}
           </button>
           <select
-                value={selectedSubject}
-                onChange={(e) => setSelectedSubject(e.target.value)}
+                multiple value={selectedSubjects} onChange={handleSubjectFilter}
                   >
                 <option value="">All Subjects</option>
                 <option value="German">German</option>
@@ -338,8 +342,7 @@ function Professors() {
             {isSortedsim ? "Unsort" : "Sort by Similarity"}
           </button>
           <select
-                value={selectedSubject}
-                onChange={(e) => setSelectedSubject(e.target.value)}
+                multiple value={selectedSubjects} onChange={handleSubjectFilter}
                   >
                 <option value="">All Subjects</option>
                 <option value="German">German</option>
@@ -398,7 +401,7 @@ function Professors() {
 <div className="row mt-5 pagination-container">
   <div className="col-12 text-center">
     <ul className="list-unstyled custom-pagination">
-      {generatePagination(currentPage, Math.ceil(searchResults.length / ITEMS_PER_PAGE)).map((page, index) => (
+      {pagination.map((page, index) => (
         <li key={index} className={page === currentPage ? 'active' : ''}>
           {page === '...' ? (
             <span>...</span>
