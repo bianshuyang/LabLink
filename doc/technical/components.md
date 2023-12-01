@@ -1,3 +1,104 @@
+
+
+# Forum.js Component Documentation
+
+## Overview
+The `Forum` component is a React-based forum page for a web application, designed to facilitate student and professor interactions within an academic setting.
+
+## Features
+- **Pagination**: Implements dynamic pagination for forum posts using `generatePagination`.
+- **Post Management**: Allows users to create and view forum posts.
+- **Reply Management**: Enables users to reply to existing posts and manage these replies.
+- **User Authentication**: Utilizes `LabLinkContext` for user authentication and access control.
+- **Rich Text Editing**: Incorporates `ReactQuill` and `CKEditor` for rich text editing in posts and replies.
+- **Media Embedding**: Includes a `ContentWithEmbeddedMedia` component to render embedded media in posts.
+- **Visibility Control**: Offers options for post visibility (public, protected, private) controlled by the user.
+
+## Hooks and Contexts
+- Uses `useState` for local state management.
+- Uses `useEffect` for fetching data on component mount.
+- Uses `useContext` to access `LabLinkContext` for global state.
+
+## Styling
+- Styled using external CSS imported as `../styles/forum.css`.
+
+## External Dependencies
+- `ReactQuill` and `CKEditor` for text editing.
+- `html-react-parser` and `DOMPurify` for parsing and sanitizing HTML content.
+
+
+# Home.js Component Documentation
+
+## Overview
+`Home` is a React component in the LabLink application serving as the main landing page.
+
+## Features
+- Displays a hero section with a motivational quote and a call-to-action button.
+- Showcases various research areas in Computer Science with direct links to relevant resources.
+- Highlights ongoing projects, upcoming events, and the mission behind LabLink.
+- Integrates `Navbar` component for navigation.
+
+## UI Components
+- Hero section with a large heading and a button linking to the main content.
+- Grid of research areas with buttons linking to external websites.
+- List of ongoing projects with images, titles, and descriptions.
+- Upcoming events section with event details.
+- Accordion-style component describing the mission of LabLink.
+- Footer with contact information and links.
+
+## Navigation
+- Utilizes `Link` from `react-router-dom` for internal navigation.
+- External links for further information on research areas.
+
+## Layout
+- Organized into sections for easy navigation and readability.
+- Responsive design ensuring compatibility with different screen sizes.
+
+## Styling
+- Styled using CSS defined in 'navbar.css' and other related stylesheets.
+- Animations and transitions for an engaging user experience.
+
+## Purpose
+This component serves as the entry point for users to explore the LabLink platform, providing an overview of available research areas, ongoing projects, and upcoming events, encouraging user engagement and exploration.
+
+## Usage
+- As the main landing page, it's the first interface users interact with upon visiting LabLink.
+- Offers quick access to different parts of the application and external resources.
+
+
+# Login.js Component Documentation
+
+## Overview
+`Login` is a React component in the LabLink application that facilitates user authentication with NetID and password.
+
+## Key Features
+- Provides a login form with NetID and password fields.
+- Implements password hashing for secure authentication.
+- Includes visibility toggle for the password field.
+
+## Functions
+- `validateNetID`: Validates the format of the NetID input.
+- `hashPassword`: Hashes the password using SHA-256 for security.
+- `togglePasswordVisibility`: Toggles the visibility of the password input field.
+- `handleFormSubmit`: Submits the login form and handles authentication logic.
+
+## State Management
+- Manages state for form inputs (NetID, password), loading, error, and password visibility using `useState`.
+
+## Context
+- Utilizes `LabLinkContext` for managing global authentication status (`isLoggedIn`).
+
+## API Interaction
+- Sends login credentials to '/api/login' for user authentication.
+
+## UI Components
+- Form inputs for NetID and password with an eye icon to toggle password visibility.
+- Links for password reset and new user registration.
+
+## Navigation
+- Uses `useNavigate` for red
+
+
 # Navbar.js Component Documentation
 
 ## Overview
