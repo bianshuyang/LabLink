@@ -7,7 +7,4 @@
 - A member of the Emory community looking to learn more about Emory Subjects?
 
 **Then you’re at the right place!**
-![Example Image](public/images/CS_370_User_Documentation_Part_1.jpg)
-![Example Image](public/images/CS_370_User_Documentation_Part_2.jpg)
-
-
+Please go to https://lab-link.vercel.app/ for more information.
