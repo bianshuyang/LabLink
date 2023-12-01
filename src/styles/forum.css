@@ -151,7 +151,7 @@
     /* Optional: space around the container */
 }
 
-select {
+.select {
     width: 27%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -160,8 +160,13 @@ select {
     font-size: 16px;
 }
 
+#visibility {
+  /* Style the select element */
+  background-color: blue; /* Make the select background transparent */
+}
+
 /* Style the options */
-option {
+.option {
     background-color: #fff;
     font-size: 16px;
 }

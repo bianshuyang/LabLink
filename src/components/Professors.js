@@ -157,8 +157,9 @@ function Professors() {
       // Sort by similarity
       if (isSortedsim) {
 
-        const similarityA = stringSimilarity.compareTwoStrings(searchTerm, JSON.stringify(a));
-        const similarityB = stringSimilarity.compareTwoStrings(searchTerm, JSON.stringify(b));
+        const similarityA = stringSimilarity.compareTwoStrings(bio+major+courses, JSON.stringify(a));
+        const similarityB = stringSimilarity.compareTwoStrings(bio+major+courses, JSON.stringify(b));
+        //console.log(isSortedsim,similarityA,similarityB);
         return similarityB - similarityA; // Reverse order for similarity
       }
       return 0; // No sorting by default
@@ -191,8 +192,9 @@ function Professors() {
     alert('Only registered users can sort by similarity.');
     return;
   }
+  
     setIsSortedsim(!isSortedsim);
-    setIsSorted(false); // Reset alphabetical sorting
+   setIsSorted(false); // Reset alphabetical sorting
   };
 
 
