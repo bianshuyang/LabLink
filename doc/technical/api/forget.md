@@ -1,6 +1,6 @@
 # API Connection for Password Reset
 
-The provided code is a Node.js server-side script for handling requests to generate and store password reset codes for users in a MongoDB database. Let's break down the code step by step.
+The provided code is a Node.js server-side script for handling requests to generate and store password reset codes for users in a MongoDB database.
 
 ## Dependencies
 
