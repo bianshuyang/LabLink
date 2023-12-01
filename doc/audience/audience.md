@@ -25,8 +25,8 @@
 2. Scroll all the way down to the bottom of the page.
 3. Fill in the detailed information.
 <img width="1199" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/f6ea435c-3e87-44fe-b069-696f02627870">
-* Template guidance.
-`
+* Template guidance:
+```
 FIRST_NAME LAST_NAME (Self-Nomination for POSITION)  [H2, Large Bold, Italics, Underline]
 
 AREAS OF INTEREST [Bold]
@@ -56,7 +56,8 @@ CONTACT_TYPE_3: [Underline] INFO3
 
 RESUME [Bold]
 Link [Hyperlink]
-`
+```
+
 4. Set the visibility
 <img width="525" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/2845f053-87e6-4a60-9077-06c3fefdb3f6">
 
