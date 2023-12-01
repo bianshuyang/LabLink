@@ -22,16 +22,28 @@
 
 ### Adding research statement
 1. Click on `Students Self Recommendation`
+2. Scroll all the way down to the bottom of the page.
+3. Fill in the detailed information.
+<img width="1199" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/f6ea435c-3e87-44fe-b069-696f02627870">
+
+* Sample application:
+<img width="605" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/3ef8d818-b9bb-4847-b850-34eaa8e6274f">
+
+4. Set the visibility
+<img width="525" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/2845f053-87e6-4a60-9077-06c3fefdb3f6">
+
+5. You are all set!
 
 ### Creating new research projects
 1. Click on `Programs of Interest`
 
-## Help
+## Support and Feedback
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+- **Contact Support**: Reach out to our support team for assistance.
+- **Feedback**: Share your suggestions or report issues.
+<img width="1174" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/9bfa8dd8-365c-4f6f-8913-6043d729fb96">
+
+---
 
 ## Authors
 - Nazif Azizi
