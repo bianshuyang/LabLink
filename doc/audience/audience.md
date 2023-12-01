@@ -43,6 +43,7 @@
 - **Feedback**: Share your suggestions or report issues.
 <img width="1174" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/9bfa8dd8-365c-4f6f-8913-6043d729fb96">
 
+---
 
 ## Authors
 - Nazif Azizi
