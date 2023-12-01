@@ -7,8 +7,6 @@ const jwt = require('jsonwebtoken');
 module.exports = async (req, res) => {
     try {
         const data = req.body;
-        console.log(data);
-
         const findOneQuery = { field1: data.field1, field2: data.field2};
         await client.connect();
         const collection = client.db('myDatabase').collection('myCollection');
