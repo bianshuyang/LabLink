@@ -73,6 +73,7 @@ catch (error) {
 ```
 Catches any errors that occur during the try block and sends a response with a status code of 500 ("Internal Server Error") and an error message.
 
+### Finally Block
 ```javascript
 finally {
     // Close the connection
