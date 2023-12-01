@@ -22,7 +22,10 @@
 
 ### Adding research statement
 1. Click on `Students Self Recommendation`
-2. <img width="632" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/12c9b1ac-2779-421e-8627-48b347e4bbd8">
+2. Scroll all the way down to the bottom of the page.
+3. Fill in the detailed information.
+* <img width="1199" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/f6ea435c-3e87-44fe-b069-696f02627870">
+
 
 
 ### Creating new research projects
