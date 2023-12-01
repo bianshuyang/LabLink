@@ -4,23 +4,25 @@
 
 **List of files / folders here:**
 ### LabLink/src/components/:
-**jsons/**: Directory containing JSON files for mongodb transfer and data handling.
+**Contact.js**: Gives users an option to contact. Anything unresolved should be handled through this page, including errors in page to directly communicate with the technical team.
 
-**Contact.js**: Implements the Profile Page feature.
+**Error.js**: This is a 404 pages. It currently redirects to a quill editor to allow anyone to use our editor. 
 
-**Error.js**: Contains CSS styling rules.
+**Forum.js**: Users are allowed to post their self-recommendation to professors by setting up privileges.
 
-**Forum.js**: Updates to user access privilege settings.
+**Application.js**: Professors are allowed to post their programs for students to apply or respond in different visibility settings.
 
-**Home.js**: Home Page Javascript File.
+**Chatbot.js**: A cool chatbot that executes a reply based on a hashmap / dictionary predefined. Current allowed questions include: current time, name identification (No lookup to the database), General greetings, function question. It can serve as an interactivate FAQ page.
 
-**Login.js**: Login Page Javascript File.
+**Home.js**: Home Page Javascript File. This introduces students to the various parts of the Lab Link features.
 
-**Navbar.js**: Navigation Bar Javascript File.
+**Login.js**: Login Page component.
 
-**News.js**: News Page Javascript File.
+**Navbar.js**: Navigation Bar. This is our "header" that allows user to go to the respective part. 
 
-**Professors.js**: Professors Page Javascript File.
+**News.js**: News Page Javascript File. For now it is static but would be allowed to be updated accordingly upon audience request.
+
+**Professors.js**: Professors Page. This includes sorting, searching for multiple disciplines for users interested in cross-disciplinary work, and also sort by similarity upon user login.
 
 **Profile.js**: User Profile Page Javascript File.
 
@@ -33,18 +35,18 @@
 - Manages its state with hooks for change indication, data, loading, error, user input for netID, and email content.
 - Uses a function to handle form submission, which validates the netID, generates a verification code, sends an email to the user's Emory address with the code, and then navigates to a verification page.
 
-**SingleProf.js**: Test / Sample Page for Single Professor Page Javascript File.
+**SingleProf.js**: This allows a user to read the profile on a single professor. 
 
-**test.js**: A basic implementation for sending emails.
+**verify.js**: This is an intermediate page for allowing a verification code to be sent to an `NETID@emory.edu` address.
 
-**test2.js**: Test file for experimenting with local storage and session storage.
+**NewUserVerify.js**: This is another intermediate page for allowing a verification code to be sent to an `NETID@emory.edu` address.
 
-**verify.js**: Enhancements to the CSS for the verification process.
+
 We appreciate your feedback!
 
 ### LabLink/src/styles/:
 
-**forum.css**: style for body, main, div, h2, ul, li, li:hover, li:reply, li.reply:before ..., and button
+**forum.css**: style for forum.
 
 **login.css**: style for login page
 
@@ -52,7 +54,7 @@ We appreciate your feedback!
 
 **reset.css**: style for reset password page
 
-**verify.css**: style for ???
+**verify.css**: style for verification code page.
 
 ### LabLink/public/images/:
 Images used in the Lablink website can be found here
