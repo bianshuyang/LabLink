@@ -102,7 +102,7 @@ function Login(){
       setData(responseData);
       setLoading(false);
       setIsLoggedIn(true);
-      alert("OKOKOKOK")
+      alert("You have successfully logged in! Your password is matched against a hashed value and it passes!")
       console.log("Login successful!");
       sessionStorage.setItem('userID', base64Encode(netID));
       sessionStorage.setItem('userToken', responseData.token);
