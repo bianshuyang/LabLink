@@ -28,6 +28,15 @@
 <img width="948" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/ddb47934-de2e-4785-ac67-4957f904142f">
 
 
+### Resetting password
+1. Enter your NetID and click on `Send Email`.
+<img width="948" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/81a52053-f117-4fdf-bd87-f586c118097f">
+
+2. Enter the verification code.
+<img width="937" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/2f68ba21-2800-4616-b8b0-73fbe7868015">
+
+3. Password reset successfully.
+
 ### Adding research statement
 1. Click on `Students Self Recommendation`
 2. Scroll all the way down to the bottom of the page.
