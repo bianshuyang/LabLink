@@ -1,3 +1,107 @@
+# Navbar.js Component Documentation
+
+## Overview
+`Navbar` is a React component for the navigation bar in the LabLink application, providing links to various sections and user account management.
+
+## Features
+- Responsive navigation bar with links to different sections of the application.
+- User account management with login, logout, and profile access.
+
+## State Management
+- Manages state for menu visibility and user authentication status using `useState`.
+
+## Context
+- Utilizes `LabLinkContext` for accessing and updating user-related data (`isLoggedIn`, `netID`).
+
+## Functions
+- `toggleMenu`: Toggles the visibility of the mobile menu.
+- `handleLogout`: Logs out the user by clearing session storage and context states.
+- `checkActive`: Determines if the current path matches the link's path for active styling.
+
+## Styling
+- Custom CSS styles are applied from 'navbar.css'.
+- Responsive design to accommodate different screen sizes.
+
+## UI Components
+- Links to different application sections such as Home, Professors, Forum, etc.
+- User-specific options like Profile and Logout for authenticated users.
+- A burger menu for mobile view, with expanded menu options on click.
+
+## Navigation
+- Uses `Link` from 'react-router-dom' for client-side navigation without page refresh.
+- `useLocation` from 'react-router-dom' to get the current path for active link styling.
+
+## Additional Components
+- Integrates `Chatbot` for user interaction and assistance.
+
+## Usage
+This component provides a consistent navigation experience across different pages of the LabLink application, with dynamic content based on user authentication status.
+
+
+# News.js Component Documentation
+
+## Overview
+`News` is a React component in the LabLink application that displays news articles with pagination and modal details.
+
+## Key Features
+- Displays a list of news articles fetched from an API.
+- Implements pagination to navigate through news articles.
+- Uses a modal to show full descriptions of news articles.
+
+## State Management
+- Uses React's `useState` to manage news data, current page, modal visibility, and article description.
+- `generatePagination` function dynamically creates pagination links.
+
+## API Interaction
+- Fetches news data from '/api/news' endpoint on component mount.
+
+## UI Components
+- News articles are presented in a list with image, title, author, and a brief description.
+- `Modal` from 'react-bootstrap' is used to display the full description of a news article.
+- Pagination is handled at the bottom of the page.
+
+## Event Handlers
+- `handleFormSubmit`: Submits the verification code for user verification.
+- Click handlers for pagination links and modal toggling.
+
+## Styling
+- Custom CSS styles are defined in 'verify.css' for
+
+
+# NewUserVerify.js Component Documentation
+
+## Overview
+`NewUserVerify` is a React component designed for new users in the LabLink application to verify their accounts using a verification code.
+
+## Key Features
+- Allows new users to enter a verification code for account verification.
+- Manages local state for verification code, loading, and error status.
+
+## Functions
+- `handleButtonClick`: Toggles UI state.
+- `resetStates`: Resets the verification code to its initial state.
+- `handleFormSubmit`: Submits the verification code and handles the response.
+
+## Context
+- Utilizes `LabLinkContext` to access `netID` context value.
+
+## API Interaction
+- Sends verification data to '/api/reset/verifyreg' for backend verification.
+
+## UI Components
+- Form for entering the verification code.
+- Loading state and error handling for user feedback.
+
+## Navigation
+- Uses `useNavigate` for redirecting users upon successful verification.
+
+## Styling
+- Styled using CSS defined in 'verify.css'.
+
+## Usage
+Intended for new users who need to verify their accounts before accessing the LabLink application.
+
+
 # Professors.js Component Documentation
 
 ## Overview
