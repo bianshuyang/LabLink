@@ -1,4 +1,4 @@
-# Professors Component Documentation
+# Professors.js Component Documentation
 
 ## Overview
 `Professors` is a React component in the LabLink application for displaying and filtering professor profiles.
@@ -32,7 +32,7 @@
 Used to view and interact with professor profiles, offering personalized sorting and filtering options for users.
 
 
-# Profile Component Documentation
+# Profile.js Component Documentation
 
 ## Overview
 `Profile` is a React component for viewing and editing user profiles in the LabLink application.
