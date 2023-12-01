@@ -26,11 +26,14 @@ Creates a new MongoDB client instance using the provided URI.
 
 ## API Endpoints
 ```javascript
-module.exports = async (req, res) =>
+module.exports = async (req, res) =>{
+  //Try Block...
+  //Catch Block
+}
 ```
 Exports an asynchronous function as the module. This function handles HTTP requests.
 
-## Try-Catch Block
+### Try Block
 ```javascript
 try {
     const data = req.body;
@@ -50,6 +53,7 @@ Inserts the received data into the MongoDB collection and stores the result in i
 
 If the insertion is successful it sends a response with a status code of 201 ("Created") and a message "OK".
 
+### Catch Block
 ```javascript
  catch (error) {
     res.status(500).send('Error registering user');

@@ -31,11 +31,15 @@ secretKey: Secret key for signing JWTs, fetched from the environment variable JW
 
 ## API Endpoints
 ```javascript
-module.exports = async (req, res) =>
+module.exports = async (req, res) =>{
+  //Try Block...
+    //If-Else Block...
+  //Catch Block...
+}
 ```
 Exports an asynchronous function as the module. This function handles HTTP requests.
 
-## Try
+### Try Block
 ```javascript
 try {
   const data = req.body;
@@ -43,8 +47,6 @@ try {
   await client.connect();
   const collection = client.db('myDatabase').collection('myCollection');
   const findOneResult = await collection.findOne(findOneQuery);
-  //If-Else Block...
-  //Catch Block...
 }
 ```
 
@@ -77,7 +79,7 @@ If the document is found and its status is "verified," generates a JWT with a 7-
 
 If the document is found but its status is not "verified," sends a response with a status code of 203 ("Non-Authoritative Information") indicating that the document was found but not verified.
 
-## Catch
+### Catch Block
 
 ```javascript
 catch (error) {
