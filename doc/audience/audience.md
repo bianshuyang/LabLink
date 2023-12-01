@@ -1,4 +1,3 @@
-## Audience-facing Documentation
 # Welcome to the LabLink! User Guide
 
 ## Table of Contents
@@ -9,25 +8,25 @@
 - [Support and Feedback](#support-and-feedback)
 
 ## Getting Started
-* Go to 
 
-### Dependencies
+### Creating an Account
+1. Go to [Lab-Link](https://lab-link.vercel.app).
+2. Click on `Register`.
+3. Fill in your details and submit.
+4. Fill in your netID for varification purposes.
+5. Go to your Emory email account and get in the verification code.
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+### Logging in
+1. Click `Login` on the homepage.
+2. Enter your credentials.
 
-### Installing
+### Adding research statement
+1. Click on `Students Self Recommendation`
+2. <img width="632" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/12c9b1ac-2779-421e-8627-48b347e4bbd8">
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
 
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+### Creating new research projects
+1. Click on `Programs of Interest`
 
 ## Help
 
@@ -37,11 +36,11 @@ command to run if program contains helper info
 ```
 
 ## Authors
-
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+- Nazif Azizi
+- Nicole Cui (Shuqi)
+- Marcus Hill
+- Michelle Kim
+- Simon Bian (Shuyang)
 
 ## Version History
 
@@ -64,4 +63,4 @@ Inspiration, code snippets, etc.
 * [zenorocha](https://gist.github.com/zenorocha/4526327)
 * [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
 
-# Thank you for choosing LabLink!
+## Thank you for choosing LabLink!
