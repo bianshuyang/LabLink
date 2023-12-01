@@ -5,7 +5,6 @@ const secretKey = process.env.JWT_SECRET
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
-    console.log('1');
     try {
         const data = req.body;
         console.log(data);
@@ -16,10 +15,8 @@ module.exports = async (req, res) => {
         const findOneResult = await collection.findOne(findOneQuery);
 
         if (findOneResult === null) {
-            console.log("Document not found.");
             res.status(404).send('Document not found');
         } else {
-            console.log(`Found a document:\n${JSON.stringify(findOneResult)}\n`);
             if (findOneResult.status === "verified") {
                 const expiresIn = '7 days';
                 const token = jwt.sign({ netID: data.field1 }, secretKey, { expiresIn });
@@ -33,7 +30,6 @@ module.exports = async (req, res) => {
         }
 
     } catch (error) {
-        console.error(`Error occurred: ${error}`);
         res.status(500).send('Error checking data');
     }
 };
