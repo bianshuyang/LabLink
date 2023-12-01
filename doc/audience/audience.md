@@ -9,25 +9,17 @@
 - [Support and Feedback](#support-and-feedback)
 
 ## Getting Started
-* Go to 
 
-### Dependencies
+### Creating an Account
+1. Go to [Lab-Link](https://lab-link.vercel.app).
+2. Click on `Register`.
+3. Fill in your details and submit.
+4. Fill in your netID for varification purposes.
+5. Go to your Emory email account and get in the verification code.
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+### Logging In
+1. Click `Login` on the homepage.
+2. Enter your credentials.
 
 ## Help
 
@@ -37,11 +29,11 @@ command to run if program contains helper info
 ```
 
 ## Authors
-
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+- Nazif Azizi
+- Nicole Cui (Shuqi)
+- Marcus Hill
+- Michelle Kim
+- Simon Bian (Shuyang)
 
 ## Version History
 
@@ -64,4 +56,4 @@ Inspiration, code snippets, etc.
 * [zenorocha](https://gist.github.com/zenorocha/4526327)
 * [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
 
-# Thank you for choosing LabLink!
+## Thank you for choosing LabLink!
