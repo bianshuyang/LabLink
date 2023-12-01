@@ -12,7 +12,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 MongoClient: This is the MongoDB driver for Node.js, allowing communication with a MongoDB database.
 ServerApiVersion: It specifies the version of the MongoDB server API.
 
-##MongoDB Connection URI
+## MongoDB Connection URI
 
 ```javascript
 const uri = process.env.MONGODB_URI;
@@ -24,46 +24,36 @@ const client = new MongoClient(uri);
 ```
 Creates a new MongoDB client instance using the provided URI.
 
-##API Endpoints
+## API Endpoints
 ```javascript
 module.exports = async (req, res) =>
 ```
 Exports an asynchronous function as the module. This function handles HTTP requests.
 
-##Try-Catch Block
+## Try-Catch Block
 ```javascript
 try {
     const data = req.body;
-    console.log(data);
-  }
+    await client.connect();
+    const collection = client.db('myDatabase').collection('contactCollection');
+    const insertResult = await collection.insertOne(data);
+    res.status(201).send("OK");
+}
 ```
 Retrieves the data from the request body. Assumes that the incoming data is in JSON format and logs it to the console.
 
-```javascript
-    await client.connect();
-```
 Connects to the MongoDB database using the previously defined client.
 
-```javascript
-    const collection = client.db('myDatabase').collection('contactCollection');
-```
 Specifies the target collection (contactCollection) within the specified database (myDatabase).
 
-```javascript
-    const insertResult = await collection.insertOne(data);
-```
 Inserts the received data into the MongoDB collection and stores the result in insertResult.
 
-```javascript
-    res.status(201).send("OK");
-```
 If the insertion is successful it sends a response with a status code of 201 ("Created") and a message "OK".
 
 ```javascript
  catch (error) {
-    console.error(`Error occurred: ${error}`);
     res.status(500).send('Error registering user');
  }
 ```
 
-Catches any errors that occur during the try block, logs the error to the console, and sends a response with a status code of 500 ("Internal Server Error") and an error message.
+Catches any errors that occur during the try block and sends a response with a status code of 500 ("Internal Server Error") and an error message.
