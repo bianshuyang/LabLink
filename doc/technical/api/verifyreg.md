@@ -1,6 +1,6 @@
 # API Connection for User Registration Verification
 
-The provided code is a Node.js server-side script for handling requests to verify and update the status of user registrations in a MongoDB database. Let's break down the code step by step.
+The provided code is a Node.js server-side script for handling requests to verify and update the status of user registrations in a MongoDB database.
 
 ## Dependencies
 

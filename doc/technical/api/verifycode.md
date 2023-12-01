@@ -1,6 +1,6 @@
 # API Connection for User Verification Code Validation
 
-The provided code is a Node.js server-side script for handling requests to validate user verification codes stored in a MongoDB database and proceeding with user registration. Let's break down the code step by step.
+The provided code is a Node.js server-side script for handling requests to validate user verification codes stored in a MongoDB database and proceeding with user registration.
 
 ## Dependencies
 

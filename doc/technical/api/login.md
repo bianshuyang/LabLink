@@ -1,5 +1,5 @@
 # API Connection for Login Page
-The provided code is a Node.js server-side script for handling login requests, verifying user credentials against a MongoDB database, and issuing JSON Web Tokens (JWT) for authenticated users. Let's break down the code step by step.
+The provided code is a Node.js server-side script for handling login requests, verifying user credentials against a MongoDB database, and issuing JSON Web Tokens (JWT) for authenticated users.
 
 ## Dependencies
 

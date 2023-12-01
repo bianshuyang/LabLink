@@ -1,6 +1,6 @@
 # API Connection for User Registration
 
-The provided code is a Node.js server-side script for handling the contact form submissions and storing them in a MongoDB database. Here is a break down of the code step by step.
+The provided code is a Node.js server-side script for handling user registration requests and storing new user data in a MongoDB database.
 
 ## Dependencies
 
