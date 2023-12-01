@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
         await client.connect();
         const collection = client.db('myDatabase').collection('contactCollection');
         const insertResult = await collection.insertOne(data);
-        res.status(201).send("OK"); // 201 means "Created"
+        res.status(201).send("OK");
     } catch (error) {
         res.status(500).send('Error registering user');
     }
