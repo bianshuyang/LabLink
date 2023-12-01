@@ -13,12 +13,20 @@
 1. Go to [Lab-Link](https://lab-link.vercel.app).
 2. Click on `Register`.
 3. Fill in your details and submit.
+<img width="946" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/8f14c1cc-dc2d-44ee-afd3-cbe99e5443f0">
+
 4. Fill in your netID for varification purposes.
 5. Go to your Emory email account and get in the verification code.
+<img width="291" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/1393adbe-e9e3-4fba-985e-67282da4b3f8">
+
+5. Fill in the verification code.
+6. Account created.
 
 ### Logging in
 1. Click `Login` on the homepage.
 2. Enter your credentials.
+<img width="948" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/ddb47934-de2e-4785-ac67-4957f904142f">
+
 
 ### Adding research statement
 1. Click on `Students Self Recommendation`
