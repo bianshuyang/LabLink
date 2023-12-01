@@ -1,6 +1,6 @@
 # API Connection for Contact Page
 
-The provided code is a Node.js server-side script for handling the contact form submissions and storing them in a MongoDB database. Let's break down the code step by step.
+The provided code is a Node.js server-side script for handling the contact form submissions and storing them in a MongoDB database. Here is a break down of the code step by step.
 
 ## Dependencies
 
