@@ -1,5 +1,8 @@
 ### User Authentication System Components
 
+![image](https://github.com/bianshuyang/LabLink/assets/52821055/67d7d032-6d93-45ed-b16f-f5f5ec5f0f43)
+
+
 #### 1. New User Registration
 - **Register Component**: This is the entry point for new users to create an account. Users provide their registration details which are submitted to the system.
 - **VerifyUser Component**: Once registration details are submitted, they are processed by this component. This is the time when a NETID is prompted to be used.
