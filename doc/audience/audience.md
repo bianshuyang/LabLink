@@ -24,7 +24,41 @@
 1. Click on `Students Self Recommendation`
 2. Scroll all the way down to the bottom of the page.
 3. Fill in the detailed information.
-* <img width="1199" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/f6ea435c-3e87-44fe-b069-696f02627870">
+<img width="1199" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/f6ea435c-3e87-44fe-b069-696f02627870">
+* Template guidance:
+```
+FIRST_NAME LAST_NAME (Self-Nomination for POSITION)  [H2, Large Bold, Italics, Underline]
+
+AREAS OF INTEREST [Bold]
+AREA_1, AREA2, …
+
+QUALIFICATIONS [Bold]
+- GPA
+- QUAL_1
+
+SKILLS [Bold]
+SKILL_CATEGORY_1: [Underline]
+SKILL_1 [in quotation]
+SKILL_2 [in quotation]
+SKILL_3 [in quotation]
+
+…
+
+SKILL_CATEGORY_N: [Underline]
+SKILL_1 [in quotation] (e.g. SPECIFIC_TECHNOLOGY_OR LIBRARY_NAME)
+SKILL_2 [in quotation]
+SKILL_3 [in quotation]
+
+CONTACT [Bold]
+Email: [Underline] EMAILL_ADDRESS
+Phone: [Underline] PHONE_NUMBER
+CONTACT_TYPE_3: [Underline] INFO3
+
+RESUME [Bold]
+Link [Hyperlink]
+```
+4. Set the visibility
+<img width="525" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/2845f053-87e6-4a60-9077-06c3fefdb3f6">
 
 
 
