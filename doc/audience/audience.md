@@ -1,4 +1,3 @@
-## Audience-facing Documentation
 # Welcome to the LabLink! User Guide
 
 ## Table of Contents
@@ -17,9 +16,15 @@
 4. Fill in your netID for varification purposes.
 5. Go to your Emory email account and get in the verification code.
 
-### Logging In
+### Logging in
 1. Click `Login` on the homepage.
 2. Enter your credentials.
+
+### Adding research statement
+1. Click on `Students Self Recommendation`
+
+### Creating new research projects
+1. Click on `Programs of Interest`
 
 ## Help
 
