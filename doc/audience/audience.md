@@ -25,7 +25,7 @@
 2. Scroll all the way down to the bottom of the page.
 3. Fill in the detailed information.
 <img width="1199" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/f6ea435c-3e87-44fe-b069-696f02627870">
-* Template guidance:
+* Template guidance.
 ```
 FIRST_NAME LAST_NAME (Self-Nomination for POSITION)  [H2, Large Bold, Italics, Underline]
 
