@@ -9,3 +9,5 @@ Android users: There is an APK downloadable [here](https://www.upload-apk.com/en
 
 iOS users: You could add as a short cut here: [here](https://www.icloud.com/shortcuts/c0e7d56ec63044e4b6dfefc4ec494ae4)
 
+## Further Documentation
+Please visit our [docs](https://github.com/bianshuyang/LabLink/tree/main/doc)
