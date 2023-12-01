@@ -12,7 +12,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 MongoClient: This is the MongoDB driver for Node.js, allowing communication with a MongoDB database.
 ServerApiVersion: It specifies the version of the MongoDB server API.
 
-##MongoDB Connection URI
+## MongoDB Connection URI
 
 ```javascript
 const uri = process.env.MONGODB_URI;
@@ -24,13 +24,13 @@ const client = new MongoClient(uri);
 ```
 Creates a new MongoDB client instance using the provided URI.
 
-##API Endpoints
+## API Endpoints
 ```javascript
 module.exports = async (req, res) =>
 ```
 Exports an asynchronous function as the module. This function handles HTTP requests.
 
-##Try-Catch Block
+## Try-Catch Block
 ```javascript
 try {
     const data = req.body;
