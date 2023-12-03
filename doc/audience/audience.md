@@ -6,7 +6,6 @@
   - [Logging in](#logging-in)
   - [Resetting password](#resetting-password)
   - [Adding research statement](#adding-research-statement)
-  - [Creating new research projects](#creating-new-research-projects)
   - [Finding Professors](#finding-professors)
 - [Support and Feedback](#support-and-feedback)
 
@@ -19,7 +18,7 @@
 3. Fill in your details and submit.
 <img width="450" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/8f14c1cc-dc2d-44ee-afd3-cbe99e5443f0">
 
-4. Fill in your netID for varification purposes.
+4. Fill in your netID for varification purposes. You must not enter anything containing an "@" symbol. You must not enter your employee ID / student ID.
 5. Go to your Emory email account and get in the verification code.
 <img width="450" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/1393adbe-e9e3-4fba-985e-67282da4b3f8">
 
@@ -27,19 +26,38 @@
 6. Account created.
 
 ### Logging in
-1. Click `Login` on the homepage.
-2. Enter your credentials.
+1. Click `Login` on the homepage. Note that the netid used is capitzliation sensitive, and so is the verification code in account creation. Please make sure not to commit typos.
+
+Use the "eye" icon to toggle password visibility.
+
+<img width="300" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/f9f63cc4-8c55-4413-a7ae-182273ea6649">
+
+3. Checks in place of netID including emptiness and numerical numbers entering.
+<img width="400" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/cf24b19b-51ce-4655-986f-d7054df93e6a">
+<img width="400" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/b8ac998b-eca5-4c10-9f02-be4876b204d5">
+
+
+4. Enter your credentials.
 <img width="450" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/ddb47934-de2e-4785-ac67-4957f904142f">
+
+Erroneous message is marked as "potential error" to prevent brute force attempt at cracking out passwords.
+
+<img width="592" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/6b59d285-a042-4b82-b169-323743f9fffa">
+
+Successful Message is extended to enable user to immediately recognize the status of login.
+
+<img width="643" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/c3f4507e-18ff-41ce-88db-bad9b1f2b86f">
 
 
 ### Resetting password
-1. Enter your NetID and click on `Send Email`.
+1. Enter your NetID and click on `Send Email`. There is NetID checks in place to prevent unwanted injections or unauthorized netid. 
 <img width="450" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/81a52053-f117-4fdf-bd87-f586c118097f">
 
 2. Enter the verification code.
 <img width="450" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/2f68ba21-2800-4616-b8b0-73fbe7868015">
 
-3. Password reset successfully.
+3. Password reset successfully. Do note that if you have previously been given a verification code, you MUST use up the very initial verification code to be able to reset, even if a later verification code is sent. This is in place to deter spamming and unwanted resets. If in doubt, please contact the lablink team. Note: if you successfully go through the reset process, your old account's password and netid is cleared. Therefore, you could use old password again.
+
 
 ### Setting up profile
 - Profile setup will not be available unless user logs in the system. Toggle to the netID attribute on the right top side to view the profile set up.
@@ -51,7 +69,7 @@
 - Scrolling down would reveal the profile in detail, with an editable button.
 <img width="583" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/10d648e9-81ba-4852-842c-51a338609075">
 
-- User could customize most of the fields. 
+- User could customize most of the fields. Use `save` button to save your profile. 
 <img width="737" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/17be45d6-0698-43f8-a9d3-f05f6d85aa3c">
 
 
@@ -60,7 +78,17 @@
 1. Click on `Students Self Recommendation`
 2. Scroll all the way down to the bottom of the page.
 3. Fill in the detailed information.
-<img width="450" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/772ed78f-479d-4065-b3d2-cf73935dffee">
+<img width="200" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/772ed78f-479d-4065-b3d2-cf73935dffee">
+
+* Sample application:
+<img width="200" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/3ef8d818-b9bb-4847-b850-34eaa8e6274f">
+
+4. Set the visibility.
+<img width="200" alt="image" src="https://github.com/bianshuyang/LabLink/assets/123330983/2845f053-87e6-4a60-9077-06c3fefdb3f6">
+
+5. Click on `I am looking for a lab position`.
+6. You are all set!
+
 
 ### Replying to research statement
 1. Go to a specific student's statement.
@@ -78,7 +106,8 @@ Receipt of deletion:
 
 
 
-### Creating new research projects
+### Creating new research projects, applying to projects, and deleting applications or project.
+
 1. Click on `Programs of Interest`
 2. Scroll all the way down to the bottom of the page.
 3. Fill in the detailed information.
@@ -92,7 +121,8 @@ Receipt of deletion:
 
 Visibility setting change:
 We have opted for no visibility setting for program of interest for a professor's posting, because there simply exists no reason why an offering of a research position is to be hidden to someone. If the information is outdated, they could simply do a deletion on the program offering, and the user would no longer have access to the database item.
-Nevertheless, students may wish to use the platform to save their drafts before their posting is visible, so the following two options are offered.
+
+Nevertheless, students may wish to use the platform to save their drafts before their posting is visible, so the following two options are offered: visible to themselves or visible to professors.
 <img width="640" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/a0ba3f26-0af7-491e-9faf-790eae3c44d0">
 
 
