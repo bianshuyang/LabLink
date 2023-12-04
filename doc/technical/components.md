@@ -1,4 +1,96 @@
 
+# Application.js Component Documentation
+
+## Overview
+The `CentralizedApplication` component is a comprehensive React-based interface for managing research program applications and postings at Emory University. It includes features for adding, viewing, and managing programs and applications.
+
+## Features
+- **Program and Application Management**: Supports adding, viewing, and deleting research programs and applications.
+- **Custom Pagination**: Implements dynamic pagination for displaying programs and applications.
+- **Visibility Control**: Allows users to set visibility of their applications (protected or private).
+- **Rich Text Editing**: Incorporates `ReactQuill` and `CKEditor` for rich text editing in program descriptions and applications.
+- **Dynamic State Management**: Uses `useState` and `useContext` for managing component state and global context.
+- **Asynchronous Data Fetching**: Fetches data from a backend API asynchronously.
+- **User Authentication**: Utilizes `LabLinkContext` for user authentication and role-based access control.
+
+## Hooks and Contexts
+- Uses `useState` for managing state like program and application data, user inputs, and pagination.
+- Uses `useEffect` for fetching data on component mount and updates.
+- Uses `useContext` to access `LabLinkContext` for global state and user information.
+- Utilizes `useMemo` for optimized computation of application counts.
+
+## Styling
+- Styled using external CSS imported as `../styles/application.css`.
+
+## External Dependencies
+- `React` for the component framework.
+- `ReactQuill` and `CKEditor` for rich text editing.
+- `react-router-dom` for navigation and linking.
+- Backend API for fetching and managing data.
+
+## Custom Functions
+- Includes several custom functions for data fetching, adding, and deleting programs and applications.
+- Implements `generatePagination` for dynamic pagination logic.
+
+
+# Chatbot.js Component Documentation
+
+## Overview
+The `Chatbot` component is a React-based interactive chat interface designed to assist users with information and answers to frequently asked questions. It features a keyword-based response system and a dynamic chat history.
+
+## Features
+- **Interactive Chat Interface**: Provides a user-friendly chat interface for interacting with the bot.
+- **Keyword Responses**: Includes a dictionary of predefined responses for common queries.
+- **Dynamic Chat History**: Maintains a chat history for the current session.
+- **Customizable Responses**: Supports custom responses based on user input.
+- **Time and Date Function**: Integrated function to provide the current time and date.
+
+## Implementation Details
+- Utilizes `useState` for managing component state such as chat history, user input, and bot activity.
+- `useRef` is used to manage focus on the input field.
+- Custom functions handle user input, message sending, and response generation.
+- Regular expressions are used for detecting specific patterns in user input.
+
+## Styling
+- Styled using an external CSS file `bot.css`.
+- Includes a toggle button for showing and hiding the chatbot interface.
+
+## External Dependencies
+- `React` for the component framework.
+- Custom images and assets, such as `bot.webp`, for the chatbot's appearance.
+
+## Usage
+- Users can interact with the chatbot by typing questions or commands into the input field.
+- The chatbot responds based on predefined keywords or patterns recognized in the input.
+
+
+# Contact.js Component Documentation
+
+## Overview
+The `Contact` component is a React-based contact form designed for user inquiries and feedback. It includes form submission, email sending functionality, and modal displays for notifications and errors.
+
+## Features
+- **Form Submission**: Allows users to submit their details (name, email, subject, message) through a form.
+- **Email Integration**: Sends an email to users upon form submission using a predefined template.
+- **Modal Displays**: Utilizes `Modal` from `react-modal` for displaying success and error messages.
+- **Validation**: Includes field validation to ensure all form fields are filled.
+- **Dynamic State Management**: Uses `useState` hook for managing local state including form inputs and modal states.
+- **Asynchronous Data Handling**: Incorporates `async` function `fetchData` for sending form data to backend and handling email sending.
+
+## Hooks and Contexts
+- Uses `useState` for managing component state, such as form inputs and modal visibility.
+- Uses `useEffect` for component lifecycle management, although currently commented out.
+
+## Styling
+- Relies on external CSS for styling, along with inline styles for specific elements.
+
+## External Dependencies
+- `React` for the component framework.
+- `react-router-dom` for navigation and linking.
+- `react-modal` for modal functionality.
+- Backend integration for form submission and email sending (assumed from the use of fetch API).
+
+
 
 # Forum.js Component Documentation
 
