@@ -82,10 +82,8 @@ const resetStates = () => {
       user: netID,
       code: verificationCode
     }
-    console.log(verificationCode);
     try {
         validateNetID(recordedPairs.user);
-        console.log("NetID is valid");
 
     try {
       const res = await fetch('/api/reset/forget', {
@@ -96,7 +94,6 @@ const resetStates = () => {
           body: JSON.stringify(recordedPairs),
       });
 
-      console.log(res.status === 400);
       if (!res.ok) {
           const data = await res.text();
           alert("Your verification code was unsuccessful because you must have asked for verification once");
@@ -121,7 +118,6 @@ const resetStates = () => {
           },
           body: JSON.stringify(emailToSend),
         });
-        console.log(emailToSend);
         // Error handling with the response
         if (!res.ok) {
           alert('Network response was not ok');

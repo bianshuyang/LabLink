@@ -117,7 +117,6 @@ function Forum() {
     const [replyid, setreplyid] = React.useState('');
     const [replyData, setreplyData] = React.useState('');
     const [replyDate, setreplyDate] = React.useState('');
-    console.log(netID === "");
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -128,9 +127,7 @@ function Forum() {
                 fetchPostsAndUpdateState();
                 fetchRepliesAndUpdateState();
                 fetchUsersAndUpdateState();
-                console.log(usersData);
 
-                console.log("ALLDONE");
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
@@ -217,7 +214,6 @@ function Forum() {
 
     const fetchRepliesAndUpdateState = async () => {
         try {
-            console.log("STEP on replies?????/ !")
             const response = await fetch("/api/forum?dataType=replies", {
                 method: "GET"
             });
@@ -263,9 +259,7 @@ function Forum() {
 
                 }),
             });
-            console.log(response);
             const statusCode = response.status;
-            console.log(statusCode);
 
         } catch (error) {
             //console.error('Error during registration:', error.message);
@@ -279,7 +273,6 @@ function Forum() {
 
     async function addthread(netid, postid, postData, postDate) {
         try {
-            console.log(process.env);
             const response = await fetch("/api/forum?collection=threads", {
                 method: "POST",
                 headers: {
@@ -294,10 +287,7 @@ function Forum() {
                     visibility: selectedOption
                 }),
             });
-            console.log(response);
             const statusCode = response.status;
-            console.log(statusCode);
-            console.log("I have rerendered. ")
 
         } catch (error) {
             //console.error('Error during registration:', error.message);
@@ -309,10 +299,8 @@ function Forum() {
 
     async function deletereply(netid, postid, replyid) {
         try {
-            console.log(process.env);
             // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
             //console.log(repliesForSelectedPost);
-            console.log(netid, postid, replyid);
 
             let requestBody = {
                 postid: postid,
@@ -332,7 +320,6 @@ function Forum() {
                 body: JSON.stringify(requestBody),
             });
 
-            console.log(response);
             const statusCode = response.status;
             if (statusCode == 403) {
                 alert("It seems you are deleting unauthorized replies");
@@ -340,7 +327,7 @@ function Forum() {
             else {
                 alert("Your reply is marked as Delete.");
             }
-            console.log(statusCode);
+
 
         } catch (error) {
             //console.error('Error during registration:', error.message);
@@ -364,10 +351,8 @@ function Forum() {
                 requestBody.netid = netid;
             }
 
-            console.log(process.env);
             // const repliesForSelectedPost = repliesData.filter(reply => reply.postid === selectedPostId);
             //console.log(repliesForSelectedPost);
-            console.log(netid, postid);
             const response = await fetch("/api/forum?collection=threads", {
                 method: "DELETE",
                 headers: {
@@ -375,7 +360,7 @@ function Forum() {
                 },
                 body: JSON.stringify(requestBody)
             });
-            console.log(response);
+
             const statusCode = response.status;
             if (statusCode == 403) {
                 alert("It seems you are deleting unauthorized posts");
@@ -384,7 +369,6 @@ function Forum() {
                 alert("Your research statement is marked as deleted and permanently deleted. However, all replies are NOT retroactively deleted");
             }
             fetchPostsAndUpdateState();
-            console.log(statusCode);
 
         } catch (error) {
             //console.error('Error during registration:', error.message);
@@ -416,7 +400,6 @@ function Forum() {
             replyid: nextReplyId,
             postid: selectedPostId, // This should already be set when the user began the reply process
         };
-        console.log(postid);
         if (netID === "") {
             alert("Unloggedin Guests are not allowed to make postings!")
             return;
@@ -424,7 +407,6 @@ function Forum() {
         await addreply(newReply.netid, newReply.replycontent, newReply.replydate, newReply.replyid, newReply.postid);
         alert("Thank you for bringing in a post, your response has been submitted");
         fetchRepliesAndUpdateState();
-        console.log("OK??????")
         setreplyData('');
 
     };
@@ -436,7 +418,6 @@ function Forum() {
     const addThreadSubmit = async (event) => {
         event.preventDefault();
 
-        console.log("Submitting Post Data: ", postData);
         let maxPostId, nextPostId;
 
         try {
@@ -458,7 +439,6 @@ function Forum() {
         const response = await addthread(netID, nextPostId, postData, currentDate);  // Call fetchData with netID and password
 
         fetchPostsAndUpdateState();
-        console.log("fetching complete!!!")
         setpostData('');
 
     };
@@ -485,7 +465,6 @@ function Forum() {
         setShowReplies(false);
         // setSelectedPostId(null);
         setCurrentPage(1);
-        console.log(selectedPostId);
         const token = sessionStorage.getItem('userToken');
         if (token == null) {
             alert("Unauthorized deletion. Please log in.")
@@ -499,7 +478,6 @@ function Forum() {
     const deleteReplyClick = async (replyId, event) => {
         //event.preventDefault();
         setCurrentPage(1);
-        console.log(selectedPostId, replyId);
         const token = sessionStorage.getItem('userToken');
         if (token == null) {
             alert("Unauthorized deletion. Please log in.")
@@ -519,7 +497,6 @@ function Forum() {
     //const [postsData, setpostsData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const showTerms = () => {
-        console.log("Show Terms and Conditions");
         alert('1. Users are permitted to upload their data to Lablink, including but not limited to, text, images, videos, and other digital content.\n\n2. Visibility Settings: Users have the ability to set visibility parameters for their uploaded data. These settings determine who can view the uploaded content. It is the responsibility of the user to set and maintain these visibility preferences.\n\n3. Changes to Visibility: Users can change the visibility settings of their data at any time. However, it is important to note that changes to visibility settings are not retroactive. This means that if data was previously set to be publicly visible, it could have been viewed, copied, or used by others before the visibility was changed.\n\n4. Risk Acknowledgement: Users must understand that any data uploaded to LabLink and set to a certain visibility level carries the risk of exposure. Even if visibility settings are later changed, the previous exposure of the data cannot be undone. Users should consider the sensitivity of the data they choose to upload and the potential consequences of its exposure.\n\n5. Platform Rights: Lablink reserves the right to modify these terms and conditions at any time. Changes will be effective immediately upon posting on our website. Continued use of the site after any such changes constitutes your consent to such changes.\n\n6. User Discretion: It is the user’s responsibility to regularly review and understand the visibility settings and to use discretion when uploading data to Lablink.\n\nBy using Lablink, you acknowledge that you have read, understood, and agreed to these terms and conditions. Please contact us if you have any questions or concerns regarding these terms.');
 
     };

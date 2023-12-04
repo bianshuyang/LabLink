@@ -45,15 +45,10 @@ export default function Profile() {
       try {
         if (updated) {
           await fetchUsersAndUpdateState();
-          console.log("We have all users below");
-          console.log(usersData);
 
           const userInfo = await getUserNameByNetId(netID);
-          console.log("This is the user info you are looking for")
-          console.log(userInfo);
           if (userInfo && updated) {
             setIsEditMode(false);
-            console.log("updating... ")
             setName(userInfo.name || '');
             setRole(userInfo.role || '');
             setEmail(userInfo.email || '');
@@ -78,8 +73,6 @@ export default function Profile() {
 
   const getUserNameByNetId = (netId) => {
     const user = usersData.find(u => u.netId === netId);
-    console.log(user);
-    console.log("Above is user");
     return user;
   };
 
@@ -94,8 +87,6 @@ export default function Profile() {
       let responseData;
       try {
         responseData = JSON.parse(responseDataText);
-        console.log("OK");
-        console.log(responseData);
       } catch (error) {
         console.error("Failed to parse response as JSON: ", responseDataText);
         responseData = responseDataText;
@@ -114,7 +105,6 @@ export default function Profile() {
 
   async function addUser({ name, role, email, year, major, courses, bio, netID }) {
     try {
-      console.log(process.env);
       const response = await fetch("/api/forum?collection=users", {
         method: "POST",
         headers: {
@@ -132,11 +122,7 @@ export default function Profile() {
           netId: netID,
         }),
       });
-      console.log(response);
       const statusCode = response.status;
-      console.log(statusCode);
-      console.log("I added user ")
-
     } catch (error) {
       //console.error('Error during registration:', error.message);
       console.log("Something is wrong...?")
@@ -147,8 +133,6 @@ export default function Profile() {
 
 
   async function modifyUser({ name, role, email, year, major, courses, bio }) {
-    console.log("bio", bio);
-    console.log(netID);
     try {
       //console.log(process.env);
       const response = await fetch("/api/forum?collection=users", {
@@ -171,11 +155,7 @@ export default function Profile() {
           }
         }),
       });
-      console.log(response);
       const statusCode = response.status;
-      console.log(statusCode);
-      console.log("I added user ")
-
     } catch (error) {
       //console.error('Error during registration:', error.message);
       console.log("Something is wrong...?")

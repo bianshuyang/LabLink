@@ -67,14 +67,12 @@ function validateNetID(netID) {
 
 try {
         validateNetID(netID);
-        console.log("NetID is valid");
     } catch (error) {
         alert(error.message);
     }
 
 
     try {
-      console.log(process.env);
         const response = await fetch("/api/register", {
             method: "POST",
             headers: {
@@ -86,17 +84,12 @@ try {
             }),
         });
 
-        console.log(netID, hashPassword(password));
-        console.log(response);
 
         const statusCode = response.status;
-        console.log(statusCode);
         if (statusCode >= 200 && statusCode < 300) {  // Successful response range
             const responseData = await response.text();
             setData(responseData);
             setLoading(false);
-            console.log("Response status:", response.status);
-            console.log("Response status text:", response.statusText);
             navigate('/VerifyUser');
 
         } else {
@@ -114,13 +107,10 @@ try {
         //console.error('Error during registration:', error.message);
         alert("We believe there is a duplicate in the user Token. ");  // Display the error message in an alert
     }
-    console.log(isError);
 }
 
 
   const handleFormSubmit = (e) => {
-    console.log("NetID:", netID);
-    console.log("Password:", password);
     e.preventDefault();
 
     fetchData(netID, hashPassword(password));  // Call fetchData with netID and password

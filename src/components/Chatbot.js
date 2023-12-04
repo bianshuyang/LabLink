@@ -123,9 +123,7 @@ const Chatbot = () => {
       // Check for likely names using a regular expression
       const nameRegex = "[A-Z]([a-z]+|\\.)(?:\\s+[A-Z]([a-z]+|\\.))*(?:\\s+[a-z][a-z\\-]+){0,2}\\s+[A-Z]([a-z]+|\\.)";
 const regexObject = new RegExp(nameRegex, "g"); // "g" flag for global search
-console.log(userMessage);
 const likelyNameMatch = userInput.match(regexObject);
-console.log(likelyNameMatch);
       if (likelyNameMatch) {
         const likelyName = likelyNameMatch[0];
         const notFoundMessage = `It's unlikely that "${likelyName}" is in our database. You can search on the Professor page for more information.`;

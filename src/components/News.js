@@ -34,13 +34,9 @@ function News(){
 
 
   const token = sessionStorage.getItem('userToken');
-  console.log(token,"is token!!!!");
   const [newsData, setNewsData] = useState([]); // You can fetch this from an external source if needed
   const [currentPage, setCurrentPage] = useState(1);
 
-
-
-  //console.log(oldnewsData);
   const [showModal, setShowModal] = useState(false);
   const [currentDescription, setCurrentDescription] = useState('');
   const bool = true;
@@ -59,7 +55,6 @@ function News(){
 
 
 if (bool){
-  console.log("====")
   return(
 
 

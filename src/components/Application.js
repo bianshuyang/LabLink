@@ -110,9 +110,7 @@ function CentralizedApplication() {
                 fetchProgramsAndUpdateState();
                 fetchApplicationsAndUpdateState();
                 fetchUsersAndUpdateState();
-                console.log(usersData);
                 setDone(true);
-                console.log("ALLDONE");
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
@@ -122,7 +120,6 @@ function CentralizedApplication() {
             fetchData();
             setDone(false);
         }
-        console.log("OK done");
         // setcurrentnumber(selectedProgramApplicationsCount);
     }, [done]);
 
@@ -190,7 +187,6 @@ function CentralizedApplication() {
 
     const fetchApplicationsAndUpdateState = async () => {
         try {
-            console.log("STEP on Applications?????/ !")
             const response = await fetch("/api/forum?dataType=Applications", {
                 method: "GET"
             });
@@ -212,8 +208,6 @@ function CentralizedApplication() {
             }, {});
             setApplicationCounts(applicationCounts2);
             //setcurrentnumber(selectedProgramApplicationsCount);
-            console.log(selectedProgramApplicationsCount);
-            console.log(applicationsData.filter(reply => reply.programId === selectedProgramId));
             const filteredData = responseData.filter((item) => {
                 if ((item.visibility === 'protected' && profnetid.includes(netID)) || item.netid === netID) {
                     // Protected posts are accessible by professors
@@ -254,9 +248,7 @@ function CentralizedApplication() {
                     visibility: selectedOption
                 }),
             });
-            console.log(response);
             const statusCode = response.status;
-            console.log(statusCode);
 
         } catch (error) {
             //console.error('Error during registration:', error.message);
@@ -267,7 +259,6 @@ function CentralizedApplication() {
 
     async function addProgram(netid, programId, programData, programDate) {
         try {
-            console.log(process.env);
             const response = await fetch("/api/forum?collection=Programs", {
                 method: "POST",
                 headers: {
@@ -281,10 +272,7 @@ function CentralizedApplication() {
                     collectionName: "Programs"
                 }),
             });
-            console.log(response);
             const statusCode = response.status;
-            console.log(statusCode);
-            console.log("I have rerendered. ")
 
         } catch (error) {
             //console.error('Error during registration:', error.message);
@@ -296,10 +284,8 @@ function CentralizedApplication() {
 
     async function deleteApplication(netid, programId, applicationId) {
         try {
-            console.log(process.env);
             // const ApplicationsForSelectedProgram = applicationsData.filter(reply => reply.programId === selectedProgramId);
             //console.log(ApplicationsForSelectedProgram);
-            console.log(netid, programId, applicationId);
 
             let requestBody = {
                 programId: programId,
@@ -319,7 +305,6 @@ function CentralizedApplication() {
                 body: JSON.stringify(requestBody),
             });
 
-            console.log(response);
             const statusCode = response.status;
             if (statusCode == 403) {
                 alert("It seems you are deleting unauthorized Applications");
@@ -327,7 +312,6 @@ function CentralizedApplication() {
             else {
                 alert("Your reply is marked as Delete.");
             }
-            console.log(statusCode);
 
         } catch (error) {
             //console.error('Error during registration:', error.message);
@@ -351,10 +335,8 @@ function CentralizedApplication() {
                 requestBody.netid = netid;
             }
 
-            console.log(process.env);
             // const ApplicationsForSelectedProgram = applicationsData.filter(reply => reply.programId === selectedProgramId);
             //console.log(ApplicationsForSelectedProgram);
-            console.log(netid, programId);
             const response = await fetch("/api/forum?collection=Programs", {
                 method: "DELETE",
                 headers: {
@@ -362,7 +344,6 @@ function CentralizedApplication() {
                 },
                 body: JSON.stringify(requestBody)
             });
-            console.log(response);
             const statusCode = response.status;
             if (statusCode == 403) {
                 alert("It seems you are deleting unauthorized Programs");
@@ -371,7 +352,6 @@ function CentralizedApplication() {
                 alert("Program are removed from database. However, all Applications are retained");
             }
             fetchProgramsAndUpdateState();
-            console.log(statusCode);
 
         } catch (error) {
             //console.error('Error during registration:', error.message);
@@ -400,11 +380,9 @@ function CentralizedApplication() {
             alert("Unloggedin Guests are not allowed to make postings!")
             return;
         }
-        console.log(programId);
         await addApplication(newReply.netid, newReply.applicationData, newReply.applicationDate, newReply.applicationId, newReply.programId);
         alert("Thank you for bringing in a Program, your response has been submitted");
         fetchApplicationsAndUpdateState();
-        console.log("OK??????")
         setapplicationData('');
 
     };
@@ -434,7 +412,6 @@ function CentralizedApplication() {
         const response = await addProgram(netID, nextProgramId, programData, currentDate);  // Call fetchData with netID and password
 
         fetchProgramsAndUpdateState();
-        console.log("fetching complete!!!")
         setprogramData('');
 
     };
@@ -491,13 +468,11 @@ function CentralizedApplication() {
     const [currentPage, setCurrentPage] = useState(1);
 
     const showTerms2 = () => {
-        console.log("Show Terms and Conditions");
         alert('Applications in working status as draft private to students and those submitted to professors are included in number of counts!');
 
     };
 
     const showTerms = () => {
-        console.log("Show Terms and Conditions");
         alert('1. Users are permitted to upload their data to Lablink, including but not limited to, text, images, videos, and other digital content.\n\n2. Visibility Settings: Users have the ability to set visibility parameters for their uploaded data. These settings determine who can view the uploaded content. It is the responsibility of the user to set and maintain these visibility preferences.\n\n3. Changes to Visibility: Users can change the visibility settings of their data at any time. However, it is important to note that changes to visibility settings are not retroactive. This means that if data was previously set to be publicly visible, it could have been viewed, copied, or used by others before the visibility was changed.\n\n4. Risk Acknowledgement: Users must understand that any data uploaded to LabLink and set to a certain visibility level carries the risk of exposure. Even if visibility settings are later changed, the previous exposure of the data cannot be undone. Users should consider the sensitivity of the data they choose to upload and the potential consequences of its exposure.\n\n5. Platform Rights: Lablink reserves the right to modify these terms and conditions at any time. Changes will be effective immediately upon posting on our website. Continued use of the site after any such changes constitutes your consent to such changes.\n\n6. User Discretion: It is the user’s responsibility to regularly review and understand the visibility settings and to use discretion when uploading data to Lablink.\n\nBy using Lablink, you acknowledge that you have read, understood, and agreed to these terms and conditions. Please contact us if you have any questions or concerns regarding these terms.');
 
     };

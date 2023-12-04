@@ -35,9 +35,6 @@ const resetStates = () => {
       user: sessionStorage.getItem('temporarynetID'),
       code: verificationCode
     }
-    console.log(recordedPairs);
-    console.log(verificationCode);
-    console.log("=======");
     try {
       const res = await fetch('/api/reset/verifyreg', {
           method: 'POST',
@@ -47,7 +44,6 @@ const resetStates = () => {
           body: JSON.stringify(recordedPairs),
       });
 
-      console.log(res.status === 400);
       if (!res.ok) {
           const data = await res.text();
           alert("Your verification code was wrong. Try again.");

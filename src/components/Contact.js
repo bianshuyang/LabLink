@@ -50,7 +50,6 @@ export default function Contact() {
 
   async function fetchData(netID, password) {
     try {
-      console.log(process.env);
         const response = await fetch("/api/contact", {
             method: "POST",
             headers: {
@@ -64,18 +63,14 @@ export default function Contact() {
             }),
         });
 
-        console.log(name,email,subject,text);
-        console.log(response);
+
 
         const statusCode = response.status;
-        console.log(statusCode);
+
         if (statusCode >= 200 && statusCode < 300) {  // Successful response range
             const responseData = await response.json();
             setData(responseData);
             setLoading(false);
-            console.log("Response status:", response.status);
-            console.log("Response status text:", response.statusText);
-
         } else {
             let errorMessage;
             try {
@@ -92,14 +87,9 @@ export default function Contact() {
         console.log(error.message);
         //alert(error.message);  // Display the error message in an alert
     }
-    console.log(isError);
 }
 
   const handleFormSubmit = async (e) => {
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Subject:", subject);
-    console.log("Text:", text);
     e.preventDefault();
     if (!validateFields()) return;
     fetchData(name,email,subject,text);  // Call fetchData with netID and password
@@ -117,10 +107,8 @@ export default function Contact() {
         },
         body: JSON.stringify(emailToSend),
       });
-      console.log(emailToSend);
       // Error handling with the response
       if (!res.ok) {
-        console.log('network response was not ok');
         //alert('Network response was not ok');
       }
 

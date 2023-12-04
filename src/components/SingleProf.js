@@ -27,8 +27,6 @@ function SingleProf() {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditClick = () => {
-    console.log("OK CLCIED");
-    console.log(isEditing);
     if (isEditing){
       setIsEditing(false);
     }
@@ -80,7 +78,6 @@ function SingleProf() {
 
             // Handle based on type
             if (typeof responseData === 'object' && response.ok) {
-                console.log("OK PROFESSORSET")
                 setprofessorInfo(responseData);
 
             } else {
@@ -142,9 +139,7 @@ async function modifyCV(Name, PopupInfo) {
                 updateData: { PopupInfo: editorContent } // The data you want to update
             }),
         });
-        console.log(response);
         const statusCode = response.status;
-        console.log(statusCode);
 
     } catch (error) {
         console.log("Something is wrong...?")
@@ -158,7 +153,6 @@ const modifyCVSubmit = async (event) => {
 
         // Determine the next reply ID
         const Name = profdt.Name;
-        console.log(editorContent);
         await modifyCV(Name, editorContent);
         alert("SAVED!");
 

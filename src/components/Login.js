@@ -64,13 +64,7 @@ function Login(){
   async function fetchData(netID, password) {
     try{
       validateNetID(netID);
-      console.log("Valid netID FORMAT");
-
-
-    console.log(hashPassword(password));
-    console.log("is pss")
     try {
-      console.log(process.env);
       const response = await fetch("/api/login", {
         method: "POST",
         headers: {
@@ -81,8 +75,6 @@ function Login(){
           field2: hashPassword(password),
         }),
       });
-      console.log(netID,hashPassword(password));
-      console.log(response);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -103,7 +95,6 @@ function Login(){
       setLoading(false);
       setIsLoggedIn(true);
       alert("You have successfully logged in! Your password is matched against a hashed value and it passes!")
-      console.log("Login successful!");
       sessionStorage.setItem('userID', base64Encode(netID));
       sessionStorage.setItem('userToken', responseData.token);
       navigate('/');
@@ -112,7 +103,6 @@ function Login(){
       setIsError(true);
       alert("Potential error")
     }
-    console.log(isError);
   }
   catch (error){
     alert(error.message);
@@ -121,8 +111,6 @@ function Login(){
   }
 
   const handleFormSubmit = (e) => {
-    console.log("NetID:", netID);
-    console.log("Password:", hashPassword(password));
     e.preventDefault();
 
     fetchData(netID, hashPassword(password));  // Call fetchData with netID and password
