@@ -8,3 +8,4 @@ If you would like to setup a connection to the database, you must do so via mong
 
 You can set up an appointment to use these data by sending an email to sbian8@emory.edu for more information on full cloning of the website. 
 
+Once all set, you could locally preview our project at: `vercel dev`, which essentially is an npm start, albeit with more functions.
