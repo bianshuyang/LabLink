@@ -1,3 +1,4 @@
+# Complete Documentation for components folder (javascript files)
 
 # Application.js Component Documentation
 
