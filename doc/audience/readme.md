@@ -137,6 +137,13 @@ Available Features:
 3. Keynote Function: Enable your profile after editing it with an extensive text description, and then click "sort by similarity". This is a string similarity computation that determines your profile similarity to the professor, which allows you to understand your most important research interest given past experiences. Note: this feature's accuracy is strongly dependent on your profile completeness, and also on all professors who posted. Since no NLP was involved, the results might be only indicative. This is time-consuming given the number of professors.
    Example sort:
    ![Example Sort](https://github.com/bianshuyang/LabLink/assets/52821055/31d1b16f-de97-4d91-b5b7-969f6648ac12)
+### Responsive Design
+
+This website is responsive! It has been able to be viewed on Android, iPhones, and Tablets without issue so far.
+![output](https://github.com/bianshuyang/LabLink/assets/52821055/0751b810-6ef6-4d97-b504-fd66b11e91c5)
+
+
+
 ### Support and Feedback
 
 - **Use our chatbot**: Please toggle to the chatbot for immediate assistance. It is meant to be an FAQ. Example well-performed queries include:
