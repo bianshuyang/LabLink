@@ -125,6 +125,11 @@ We have opted for no visibility setting for program of interest for a professor'
 Nevertheless, students may wish to use the platform to save their drafts before their posting is visible, so the following two options are offered: visible to themselves or visible to professors.
 <img width="640" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/a0ba3f26-0af7-491e-9faf-790eae3c44d0">
 
+6. Additional Logics to the Application Page
+
+Whether you are a logged in professor, student, or an unlogged in guest, you can view "the number of applications" whenever is greater than 0 counter is recorded for the program posted. This ensure you know well in advance whether your profile might get accepted by the professor before application, further easing the competiveness of the research program finding process. If you are not sure what it is, click on "What is it?" to go for a definition.
+<img width="293" alt="image" src="https://github.com/bianshuyang/LabLink/assets/52821055/0d449f9c-b550-41b2-affd-450db17f2452">
+
 
 ### Finding Professors
 Available Features:
