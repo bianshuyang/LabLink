@@ -199,8 +199,8 @@ For a complete list of commands, please visit the docs.
 
 ## Acknowledgments
 Inspiration, code snippets, etc.
-* [Emory Official Website]([https://gist.github.com/PurpleBooth/109311bb0361f32d87a2](https://www.emory.edu/home/index.html))
-* [Emory CS Department Website]([https://github.com/dbader/readme-template](https://computerscience.emory.edu/index.html)https://computerscience.emory.edu/index.html)
+* [Emory Official Website](https://www.emory.edu/home/index.html)
+* [Emory CS Department Website](https://computerscience.emory.edu/index.html)
 * [awesome-readme](https://github.com/matiassingers/awesome-readme)
 
 ## Thank you for choosing LabLink!
