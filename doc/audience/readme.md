@@ -140,7 +140,7 @@ Available Features:
 ### Responsive Design
 
 This website is responsive! It has been able to be viewed on Android, iPhones, and Tablets without issue so far.
-![output](https://github.com/bianshuyang/LabLink/assets/52821055/0751b810-6ef6-4d97-b504-fd66b11e91c5)
+![output](https://github.com/bianshuyang/LabLink/assets/52821055/57a0bc7a-c16c-4ba9-af59-e39ee95e039b)
 
 
 
